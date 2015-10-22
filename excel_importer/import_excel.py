@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
-from openpyxl import Workbook
+from openpyxl import load_workbook
 from openpyxl.compat import range
 from openpyxl.cell import get_column_letter
 import sys, getopt
 import logging
+from user_factory import UserFactory
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
 Logger = logging.getLogger("import_excel")
@@ -17,8 +18,26 @@ def usage():
     print "-o (--output) the output file path to store the generated file. Option argument required. If this option is not specified, the output file will be stored on the same path of this script\n"
     print "The script needs the list of input excel file path to actually perform the import action"
 
+def find_header_row(work_sheet):
+    for row in work_sheet.rows:
+        for cell in row:
+            if cell.value =='First Name' or cell.value == 'Last Name':
+                return cell.row
+    return None
+
 def read_from_excel(file_list):
-    pass
+    excel_path = file_list[0]
+    wb = load_workbook(excel_path, read_only=True, data_only=True, keep_vba=True)
+    for ws in wb:
+        header_row = find_header_row(ws)
+        if header_row:
+            user_factory = UserFactory('fairviewhealthcare.com')
+            users = user_factory.get_users(ws, header_row)
+            for user_member in users:
+                print "{}, {}, {}".format(user_member.first_name, user_member.last_name, user_member.email)
+
+
+
 
 def main(argv):
     try:
@@ -42,7 +61,10 @@ def main(argv):
         else:
             assert False, "unhandled option"
     input_array = args
-    logging.debug("here are the input files: {}".format(input_array))
+    if len(input_array) <=0:
+        usage()
+        sys.exit(2)
+    Logger.debug("here are the input files: {}".format(input_array))
     read_from_excel(input_array)
 
 if __name__ == "__main__":
