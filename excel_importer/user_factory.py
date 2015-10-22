@@ -6,9 +6,9 @@ import unicodedata
 class UserFactory(object):
     def __init__(self, company_domain):
         self.company_domain = company_domain
-        self._first_name = {'key':'First Name', 'column':None, 'value':None}
-        self._last_name = {'key':'Last Name', 'column':None, 'value':None}
-        self._email = {'key':'Email', 'column':None, 'value':None}
+        self._first_name = {'key':'First Name', 'column':None, 'value':""}
+        self._last_name = {'key':'Last Name', 'column':None, 'value':""}
+        self._email = {'key':'Email', 'column':None, 'value':""}
 
     def _populate_mapper(self, map_item, cell):
         if cell.value == map_item['key']:
@@ -16,8 +16,7 @@ class UserFactory(object):
 
     def _populate_value(self, map_item, cell):
         if cell.value and cell.column == map_item['column']:
-            #map_item['value'] = unicodedata.normalize('NFKD', cell.value).encode('ascii','ignore')
-            map_item['value'] = '{0}'.format(cell.value)
+            map_item['value'] = cell.value
 
     def get_users(self, worksheet, header_row_num):
         # first we need to get the column range for each attribute

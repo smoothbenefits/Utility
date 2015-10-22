@@ -33,10 +33,8 @@ def read_from_excel(file_list):
         if header_row:
             user_factory = UserFactory('fairviewhealthcare.com')
             users = user_factory.get_users(ws, header_row)
-            for user_member in users:
-                print "{}, {}, {}".format(user_member.first_name, user_member.last_name, user_member.email)
-
-
+            for user in users:
+                print "{}, {}, {}".format(user.first_name, user.last_name, user.email)
 
 
 def main(argv):
