@@ -5,10 +5,11 @@ from openpyxl.compat import range
 from openpyxl.cell import get_column_letter
 import sys, getopt
 import logging
-from user_factory import UserFactory
+from model.data_supplier import DataSupplier
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
 Logger = logging.getLogger("import_excel")
+data_supplier = DataSupplier()
 
 def usage():
     print "import_excel.py [options] [arguments]\n"
@@ -19,22 +20,23 @@ def usage():
     print "The script needs the list of input excel file path to actually perform the import action"
 
 def find_header_row(work_sheet):
+    header_row = None
     for row in work_sheet.rows:
+        header_row = row
         for cell in row:
             if cell.value =='First Name' or cell.value == 'Last Name':
-                return cell.row
-    return None
+                return header_row, cell.row
+    return None, None
 
 def read_from_excel(file_list):
     excel_path = file_list[0]
     wb = load_workbook(excel_path, read_only=True, data_only=True, keep_vba=True)
     for ws in wb:
-        header_row = find_header_row(ws)
+        header_row, row_num = find_header_row(ws)
         if header_row:
-            user_factory = UserFactory('fairviewhealthcare.com')
-            users = user_factory.get_users(ws, header_row)
-            for user in users:
-                print "{}, {}, {}".format(user.first_name, user.last_name, user.email)
+            data_supplier.supply_header_data(header_row, row_num)
+            data_supplier.supply_data(ws)
+            data_supplier.serialize_all()
 
 
 def main(argv):
