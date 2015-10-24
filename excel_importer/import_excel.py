@@ -28,15 +28,14 @@ def find_header_row(work_sheet):
                 return header_row, cell.row
     return None, None
 
-def read_from_excel(file_list):
-    excel_path = file_list[0]
-    wb = load_workbook(excel_path, read_only=True, data_only=True, keep_vba=True)
-    for ws in wb:
-        header_row, row_num = find_header_row(ws)
-        if header_row:
-            data_supplier.supply_header_data(header_row, row_num)
-            data_supplier.supply_data(ws)
-            data_supplier.serialize_all()
+def read_from_excel(excel_file):
+    wb = load_workbook(excel_file, read_only=True, data_only=True, keep_vba=True)
+    ws = wb.active
+    header_row, row_num = find_header_row(ws)
+    if header_row:
+        data_supplier.supply_header_data(header_row, row_num)
+        data_supplier.supply_data(ws)
+        data_supplier.serialize_all()
 
 
 def main(argv):
@@ -60,12 +59,12 @@ def main(argv):
             output = a
         else:
             assert False, "unhandled option"
-    input_array = args
-    if len(input_array) <=0:
+    if len(args) <= 0:
         usage()
         sys.exit(2)
-    Logger.debug("here are the input files: {}".format(input_array))
-    read_from_excel(input_array)
+    input_excel = args[0]
+    Logger.debug("here is the input excel: {}".format(input_excel))
+    read_from_excel(input_excel)
 
 if __name__ == "__main__":
    main(sys.argv[1:])
