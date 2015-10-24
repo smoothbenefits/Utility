@@ -5,7 +5,6 @@ class UserSerializerFactory(SerializerFactory):
     def __init__(self, company_domain):
         super(UserSerializerFactory, self).__init__()
         self.company_domain = company_domain
-        self.serializer_dict = {}
         self._first_name_meta = {'key':'First Name', 'column':None}
         self._last_name_meta = {'key':'Last Name', 'column':None}
         self._email_meta = {'key':'Email', 'column':None}
