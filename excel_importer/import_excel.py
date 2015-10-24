@@ -9,7 +9,7 @@ from model.data_supplier import DataSupplier
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
 Logger = logging.getLogger("import_excel")
-data_supplier = DataSupplier()
+data_supplier = DataSupplier(40)
 
 def usage():
     print "import_excel.py [options] [arguments]\n"

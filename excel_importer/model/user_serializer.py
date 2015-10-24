@@ -1,8 +1,7 @@
 from serializer import Serializer
 class UserSerializer(Serializer):
-    def __init__(self, row_num, serializer_factory, company_domain):
+    def __init__(self, row_num, company_domain):
         super(UserSerializer, self).__init__(row_num)
-        self.serializer_factory = serializer_factory
         self.first_name = ""
         self.last_name = ""
         self.company_domain = company_domain

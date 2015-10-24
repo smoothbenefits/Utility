@@ -48,14 +48,7 @@ class PersonSerializerFactory(SerializerFactory):
         elif self._gender_meta['column'] == cell.column:
             serializer.gender = cell.value
 
-    def get_data(self, data_cell):
-        serializer = self.serializer_dict.get(data_cell.row)
-        if not serializer:
-            serializer = PersonSerializer(data_cell.row, self.company_id)
-            self.serializer_dict[data_cell.row] = serializer
-        self._store_data_to_attr(serializer, data_cell)
+    def construct_serializer(self, row_num):
+        return PersonSerializer(row_num, self.company_id)
 
-    def serialize(self):
-        for data_item in self.serializer_dict.values():
-            data_item.serialize()
 

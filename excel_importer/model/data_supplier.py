@@ -1,11 +1,15 @@
 from user_serializer_factory import UserSerializerFactory
 from person_serializer_factory import PersonSerializerFactory
+from address_serializer_factory import AddressSerializerFactory
+from phone_serializer_factory import PhoneSerializerFactory
 
 class DataSupplier(object):
-    def __init__(self):
+    def __init__(self, company_id):
         self.factories = []
         self.factories.append(UserSerializerFactory("fairviewhealthcare.com"))
-        self.factories.append(PersonSerializerFactory(40))
+        self.factories.append(PersonSerializerFactory(company_id))
+        self.factories.append(AddressSerializerFactory(company_id))
+        self.factories.append(PhoneSerializerFactory())
         self.header_row_num = None
         self.serializer_list_dict = {}
 
@@ -37,6 +41,7 @@ class DataSupplier(object):
 
 
     def serialize_all(self):
-        for factory in self.factories:
-            factory.serialize()
+        for key in self.serializer_list_dict.keys():
+            for serializer in self.serializer_list_dict[key]:
+                serializer.serialize()
 
