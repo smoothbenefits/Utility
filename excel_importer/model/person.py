@@ -1,4 +1,4 @@
-class PersonSerializer(object):
+class Person(object):
     def __init__(self):
         self.person_type = ''
         self.first_name = ''

@@ -1,6 +1,7 @@
 from openpyxl import load_workbook
 
-from parser.fairview.address_parser import AddressParser
+from parser.fairview.parser_factory import ParserFactory
+from serializer.sql.person_sql_serializer import PersonSqlSerializer
 
 
 class UserDataProvider(object):
@@ -10,12 +11,8 @@ class UserDataProvider(object):
 
     def process(self):
         # initialize parsers
-        self.parsers = []
-        self.parsers.append(AddressParser())
-
         header_row, self.header_row_num = self._find_header_row(self.work_sheet)
-        for parser in self.parsers:
-            parser.initialize_column_mapping(header_row)
+        ParserFactory.initialize(header_row)
 
         # start processing data
         self.models = []
@@ -38,9 +35,9 @@ class UserDataProvider(object):
         for row in self.work_sheet.iter_rows(row_offset=self.header_row_num):
             if not row:
                 continue
-            model = self.parsers[0].parse_data_row(row)
+            model = ParserFactory.get_person_parser().parse_data_row(row)
             self.models.append(model)
 
     def _serialize_data(self):
         for model in self.models:
-            print "{}, {}".format(model.street_1, model.street_2)
+            PersonSqlSerializer.serialize(model)
