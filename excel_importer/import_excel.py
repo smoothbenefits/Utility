@@ -50,7 +50,9 @@ def main(argv):
     company_users = CompanyUsers(40, 'fairviewhealthcare.com')
     data_provider = UsersDataProvider(company_users)
     data_provider.process(input_excel)
-    for user in company_users.get_all_users():
+    all_users = company_users.get_all_users()
+    print "users list size: {}".format(len(all_users))
+    for user in all_users:
         User.serialize(user)
 
 if __name__ == "__main__":

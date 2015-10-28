@@ -1,4 +1,6 @@
-class User(object):
+from base import Base
+
+class User(Base):
     def __init__(self):
         self.first_name = ""
         self.last_name = ""
@@ -6,4 +8,3 @@ class User(object):
         self.email = None
         self.family_members = []
         self.person = None
-

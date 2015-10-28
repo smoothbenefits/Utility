@@ -1,4 +1,6 @@
-class Address(object):
+from base import Base
+
+class Address(Base):
     def __init__(self):
         self.address_type = 'home'
         self.street_1 = None

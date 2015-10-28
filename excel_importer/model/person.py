@@ -1,4 +1,6 @@
-class Person(object):
+from base import Base
+
+class Person(Base):
     def __init__(self):
         self.person_type = ''
         self.first_name = ''
@@ -12,3 +14,4 @@ class Person(object):
         self.phone = None
         self.address = None
         self.member_id = None
+        self.employee_profile = None

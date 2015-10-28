@@ -1,6 +1,7 @@
 from excel_type import ExcelType
 from model_type import ModelType
 from user import User
+from base import Base
 import datetime
 
 class CompanyUsers(object):
@@ -23,11 +24,11 @@ class CompanyUsers(object):
         return the_user
 
     def _merge_info(self, existing, new):
-        for attr in dir(existing):
+        for attr in vars(existing):
             item = getattr(existing, attr, None)
             new_item = getattr(new, attr, None)
-            if item and new_item and isinstance(item, object):
-                self._merge_info(item, new_item) 
+            if item and new_item and isinstance(item, Base):
+                self._merge_info(item, new_item)
             if new_item and not item:
                 setattr(existing, attr, new_item)
 
@@ -57,7 +58,9 @@ class CompanyUsers(object):
             if not cur_user:
                 return
             self._merge_with_family(cur_user, person)
-                
+        elif excel_type == ExcelType.ENROLLMENT and person.employee_profile and \
+            not 'Active' in person.employee_profile.employment_status:
+            return
         else:
             # we need to find the user reference by user key
             cur_user = self.users.get(key)
