@@ -11,7 +11,6 @@ class EmployeeCompensationParser(ModelParserBase):
         self.column_property_mapping = {
             'Salary': (lambda value, model: setattr(model, 'annual_base_salary', value)),
             'Hours': (lambda value, model: setattr(model, 'projected_hour_per_month', float(value)*52/12)),
-            'City': (lambda value, model: setattr(model, 'hourly_rate', value)),
             'Date of Hire': (lambda value, model: setattr(model, 'effective_date', value))
         }
 

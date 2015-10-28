@@ -13,7 +13,7 @@ class CompanyUsers(object):
 
     def _get_user_key(self, person):
         key = "{}{}{}".format(person.first_name, person.last_name, person.birth_date)
-        key = key.replace(" ", "_")
+        key = key.replace(" ", "_").lower()
         return key
 
     def _create_new_user(self, first_name, last_name):
@@ -31,6 +31,7 @@ class CompanyUsers(object):
                 self._merge_info(item, new_item)
             if new_item and not item:
                 setattr(existing, attr, new_item)
+                print "merge attribute {}. Old value: {}, new value: {}".format(attr, item, new_item)
 
 
     def _merge_with_family(self, user, person):

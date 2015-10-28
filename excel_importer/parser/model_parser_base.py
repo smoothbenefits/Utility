@@ -26,14 +26,14 @@ class ModelParserBase(object):
 
         for cell in data_row:
             if cell.column in self.column_index_property_mapping:
+                print "column: {}, cell.value = {}".format(cell.column, cell.value)
                 self.column_index_property_mapping[cell.column](cell.value, model_instance)
 
         return model_instance
 
-    # Allow concrete classes to populate the mapping polymorphically 
+    # Allow concrete classes to populate the mapping polymorphically
     def _setup_column_mapping(self):
         raise NotImplementedError("Please Implement this method in the sub-class")
 
     def _create_model_instance(self):
         raise NotImplementedError("Please Implement this method in the sub-class")
-
