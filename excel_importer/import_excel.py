@@ -45,11 +45,12 @@ def main(argv):
     if len(args) <= 0:
         usage()
         sys.exit(2)
-    input_excel = args[0]
-    Logger.debug("here is the input excel: {}".format(input_excel))
     company_users = CompanyUsers(40, 'fairviewhealthcare.com')
     data_provider = UsersDataProvider(company_users)
-    data_provider.process(input_excel)
+    for excel_path in args:
+        Logger.debug("here is the input excel: {}".format(excel_path))
+        data_provider.process(excel_path)
+
     all_users = company_users.get_all_users()
     print "users list size: {}".format(len(all_users))
     for user in all_users:
