@@ -16,9 +16,9 @@ class ModelParserBase(object):
     def initialize_column_mapping(self, header_row):
         self._setup_column_mapping()
         for cell in header_row:
-            if cell.value in self.column_property_mapping:
+            if cell.value and cell.value.lower() in self.column_property_mapping:
                 self.column_index_property_mapping[cell.column] \
-                    = self.column_property_mapping[cell.value]
+                    = self.column_property_mapping[cell.value.lower()]
 
     # Parse a data row into an instance of the corresponding model object
     def parse_data_row(self, data_row):
@@ -26,7 +26,6 @@ class ModelParserBase(object):
 
         for cell in data_row:
             if cell.column in self.column_index_property_mapping:
-                print "column: {}, cell.value = {}".format(cell.column, cell.value)
                 self.column_index_property_mapping[cell.column](cell.value, model_instance)
 
         return model_instance

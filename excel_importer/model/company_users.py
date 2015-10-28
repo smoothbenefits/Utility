@@ -31,7 +31,6 @@ class CompanyUsers(object):
                 self._merge_info(item, new_item)
             if new_item and not item:
                 setattr(existing, attr, new_item)
-                print "merge attribute {}. Old value: {}, new value: {}".format(attr, item, new_item)
 
 
     def _merge_with_family(self, user, person):
@@ -76,4 +75,5 @@ class CompanyUsers(object):
                 cur_user.person = person
 
     def get_all_users(self):
+        print self.users.keys()
         return self.users.values()

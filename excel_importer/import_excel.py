@@ -53,8 +53,8 @@ def main(argv):
 
     all_users = company_users.get_all_users()
     print "users list size: {}".format(len(all_users))
-    #for user in all_users:
-    #    User.serialize(user)
+    for user in all_users:
+        User.serialize(user)
 
 if __name__ == "__main__":
    main(sys.argv[1:])

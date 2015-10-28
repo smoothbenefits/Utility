@@ -9,7 +9,7 @@ class PhoneParser(ModelParserBase):
     # Allow concrete classes to populate the mapping polymorphically 
     def _setup_column_mapping(self):
         self.column_property_mapping = {
-            'Home Phone': (lambda value, model: setattr(model, 'number', value))
+            'home phone': (lambda value, model: setattr(model, 'number', value))
         }
 
     def _create_model_instance(self):
