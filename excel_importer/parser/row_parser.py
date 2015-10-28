@@ -3,6 +3,7 @@ from person_parser import PersonParser
 from phone_parser import PhoneParser
 from model.model_type import ModelType
 from employee_profile_parser import EmployeeProfileParser
+from employee_compensation_parser import EmployeeCompensationParser
 
 class RowParser(object):
     def __init__(self):
@@ -10,12 +11,14 @@ class RowParser(object):
         self._person_parser = PersonParser()
         self._phone_parser = PhoneParser()
         self._employee_profile_parser = EmployeeProfileParser()
+        self._employee_compensation_parser = EmployeeCompensationParser()
 
     def initialize(self, excel_header_row):
         self._address_parser.initialize_column_mapping(excel_header_row)
         self._person_parser.initialize_column_mapping(excel_header_row)
         self._phone_parser.initialize_column_mapping(excel_header_row)
         self._employee_profile_parser.initialize_column_mapping(excel_header_row)
+        self._employee_compensation_parser.initialize_column_mapping(excel_header_row)
 
     def parse_data(self, excel_row):
         row_parsed = {}
@@ -23,4 +26,5 @@ class RowParser(object):
         row_parsed[ModelType.PERSON].address = self._address_parser.parse_data_row(excel_row)
         row_parsed[ModelType.PERSON].phone = self._phone_parser.parse_data_row(excel_row)
         row_parsed[ModelType.PERSON].employee_profile = self._employee_profile_parser.parse_data_row(excel_row)
+        row_parsed[ModelType.PERSON].employee_compensation = self._employee_compensation_parser.parse_data_row(excel_row)
         return row_parsed

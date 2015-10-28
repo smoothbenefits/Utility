@@ -15,3 +15,4 @@ class Person(Base):
         self.address = None
         self.member_id = None
         self.employee_profile = None
+        self.employee_compensation = None
