@@ -53,18 +53,23 @@ class CompanyUsers(object):
             else:
                 self._merge_info(merge_target, person)
 
+    def _populate_dependent(self, dependent, c_user):
+        if not dependent or c_user:
+            return
+        self._merge_with_family(c_user, dependent)
+
+
     def merge_with_excel_data(self, row, excel_type):
         cur_user = None
-        person = row[ModelType.PERSON]
+        person = row.get(ModelType.PERSON, None)
+        if not person:
+            return
         key = self._get_user_key(person)
         if excel_type == ExcelType.HCHP and person.relationship != 'Subscriber':
             cur_user = self.member_id_users.get(person.member_id[:-2])
             if not cur_user:
                 return
             self._merge_with_family(cur_user, person)
-        elif excel_type == ExcelType.ENROLLMENT and person.employee_profile and \
-            not 'Active' in person.employee_profile.employment_status:
-            return
         else:
             # we need to find the user reference by user key
             cur_user = self.users.get(key)
@@ -77,6 +82,9 @@ class CompanyUsers(object):
                 self._merge_info(cur_user.person, person)
             else:
                 cur_user.person = person
+
+        self._populate_dependent(row.get(ModelType.DEPENDENT, None), cur_user)
+        
 
     def get_all_users(self):
         return self.users.values()
