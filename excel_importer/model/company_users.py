@@ -12,7 +12,11 @@ class CompanyUsers(object):
         self.member_id_users = {}
 
     def _get_user_key(self, person):
-        key = "{}{}{}".format(person.first_name, person.last_name, person.birth_date)
+        if isinstance(person.birth_date, unicode):
+            birth_date = datetime.datetime.strptime(person.birth_date, '%m/%d/%Y')
+        else:
+            birth_date = person.birth_date
+        key = "{}{}{}".format(person.first_name, person.last_name, birth_date.strftime('%m/%d/%Y'))
         key = key.replace(" ", "_").lower()
         return key
 
@@ -75,5 +79,4 @@ class CompanyUsers(object):
                 cur_user.person = person
 
     def get_all_users(self):
-        print self.users.keys()
         return self.users.values()

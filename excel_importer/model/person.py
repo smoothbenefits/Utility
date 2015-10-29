@@ -1,4 +1,5 @@
 from base import Base
+from datetime import datetime
 
 class Person(Base):
     def __init__(self):
@@ -16,3 +17,5 @@ class Person(Base):
         self.member_id = None
         self.employee_profile = None
         self.employee_compensation = None
+    
+
