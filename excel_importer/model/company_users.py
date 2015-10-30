@@ -38,6 +38,7 @@ class CompanyUsers(object):
 
 
     def _merge_with_family(self, user, person):
+        person.person_type = 'family'
         if not user.family_members or len(user.family_members) <= 0:
             user.family_members.append(person)
         else:
@@ -81,6 +82,7 @@ class CompanyUsers(object):
             if cur_user.person:
                 self._merge_info(cur_user.person, person)
             else:
+                person.person_type = 'primary_contact'
                 cur_user.person = person
 
         self._populate_dependent(row.get(ModelType.DEPENDENT, None), cur_user)

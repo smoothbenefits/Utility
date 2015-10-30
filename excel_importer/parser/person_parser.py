@@ -15,7 +15,7 @@ class PersonParser(ModelParserBase):
             'email': (lambda value, model: setattr(model, 'email', value)),
             'mid name': (lambda value, model: setattr(model, 'middle_name', value)),
             'relation to subscriber': (lambda value, model: setattr(model, 'relationship', value)),
-            'member\'s SSN': (lambda value, model: setattr(model, 'ssn', value)),
+            'member\'s ssn': (lambda value, model: setattr(model, 'ssn', value)),
             'date of birth': (lambda value, model: setattr(model, 'birth_date', value)),
             'gender': (lambda value, model: setattr(model, 'gender', value)),
             'member id number': (lambda value, model: setattr(model, 'member_id', value))

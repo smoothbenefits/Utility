@@ -7,7 +7,7 @@ import sys, getopt
 import logging
 from model.company_users import CompanyUsers
 from users_data_provider import UsersDataProvider
-from serializer.sql.user import User
+from serializer.sql.company_users_serializer import CompanyUsersSerializer
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
 Logger = logging.getLogger("import_excel")
@@ -51,11 +51,10 @@ def main(argv):
         Logger.debug("here is the input excel: {}".format(excel_path))
         data_provider.process(excel_path)
 
-    all_users = company_users.get_all_users()
-    for user in all_users:
-        User.serialize(user)
+    if not output:
+        output = "serialized_users.sql"
 
-    print "\nusers list size: {}".format(len(all_users))
+    CompanyUsersSerializer.serialize(company_users, output)
 
 
 if __name__ == "__main__":
