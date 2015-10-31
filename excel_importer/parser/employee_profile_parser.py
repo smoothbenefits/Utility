@@ -12,7 +12,7 @@ class EmployeeProfileParser(ModelParserBase):
             'salary': (lambda value, model: setattr(model, 'annual_base_salary', value)),
             'date of hire': (lambda value, model: setattr(model, 'start_date', value)),
             'member status': (lambda value, model: setattr(model, 'employment_status', value)),
-            'salary mode': (lambda value, model: setattr(model, 'employment_type', value)),
+            'salary mode': (lambda value, model: setattr(model, 'pay_rate', value)),
             'orig eff date': (lambda value, model: setattr(model, 'benefit_start_date', value))
         }
 
