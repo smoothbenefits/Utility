@@ -1,8 +1,11 @@
 from user_serializer import UserSerializer
+from ..serializer import Serializer
 
 class CompanyUsersSerializer(object):
+
     @staticmethod
-    def serialize(company_users, file_name):
+    def serialize(company_users, file_name, exclude_path=None):
+        exclude_list = Serializer.get_exclude_list(exclude_path)
         target = open(file_name, 'w')
         target.truncate() # clear the file content so it is now empty
         target.write('DO $$\n')
@@ -13,7 +16,8 @@ class CompanyUsersSerializer(object):
         users = company_users.get_all_users()
         counter = 0;
         for user in users:
-            if user.person.employee_profile and \
+            if user.email.lower() not in exclude_list and \
+            user.person.employee_profile and \
             user.person.employee_profile.employment_status and \
             'Active' in user.person.employee_profile.employment_status:
                 counter += 1

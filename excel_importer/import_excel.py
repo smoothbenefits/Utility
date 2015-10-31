@@ -17,6 +17,7 @@ def usage():
     print "options can be one of the following: \n"
     print "-d (--debug) this will turn on the debug statment output \n"
     print "-h (--help) the option will print this message \n"
+    print "-e (--exclude) the option will specify where the exclude file is. Argument needed for the path to the exclude file. Default is 'exclude.txt'"
     print "-o (--output) the output file path to store the generated file. Option argument required. If this option is not specified, the output file will be stored on the same path of this script\n"
     print "The script needs the list of input excel file path to actually perform the import action"
 
@@ -32,6 +33,7 @@ def main(argv):
     input_array = None
     output = None
     debug = False
+    exclude = 'exclude.txt'
     for o, a in opts:
         if o == "-d":
             Logger.setLevel(logging.DEBUG)
@@ -40,6 +42,8 @@ def main(argv):
             sys.exit()
         elif o in ("-o", "--output"):
             output = a
+        elif o in ("-e", "--exclude"):
+            exclude = a
         else:
             assert False, "unhandled option"
     if len(args) <= 0:
@@ -54,7 +58,7 @@ def main(argv):
     if not output:
         output = "serialized_users.sql"
 
-    CompanyUsersSerializer.serialize(company_users, output)
+    CompanyUsersSerializer.serialize(company_users, output, exclude)
 
 
 if __name__ == "__main__":
