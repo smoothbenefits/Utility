@@ -22,4 +22,3 @@ class UserSerializer(object):
             PersonSerializer.serialize(member, file, id)
         file.write('END;\n')
         file.write('\n')
-
