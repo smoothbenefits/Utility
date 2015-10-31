@@ -11,13 +11,13 @@ class CompanyUsersSerializer(object):
         target.write('BEGIN\n')
         target.write('raise notice \'The company_id to start is %\', company_id;\n')
         users = company_users.get_all_users()
-        counter = 1;
+        counter = 0;
         for user in users:
             if user.person.employee_profile and \
             user.person.employee_profile.employment_status and \
             'Active' in user.person.employee_profile.employment_status:
-                UserSerializer.serialize(user, target, counter)
                 counter += 1
+                UserSerializer.serialize(user, target, counter)
 
         target.write('raise notice \'There are {} users created \';\n'.format(counter))
         target.write('END\n')

@@ -88,13 +88,15 @@ class CompanyUsers(object):
             if not cur_user:
                 cur_user = self._create_new_user(person.first_name, person.last_name)
                 self.users[key] = cur_user
-                if person.member_id:
-                    self.member_id_users[person.member_id[:-2]] = cur_user
+
             if cur_user.person:
                 self._merge_info(cur_user.person, person)
             else:
                 person.person_type = 'primary_contact'
                 cur_user.person = person
+
+            if person.member_id:
+                self.member_id_users[person.member_id[:-2]] = cur_user
 
         self._populate_dependent(row.get(ModelType.DEPENDENT, None), cur_user)
         

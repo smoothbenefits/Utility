@@ -1,6 +1,6 @@
 class EmployeeCompensationSerializer(object):
     @staticmethod
-    def serialize(comp, file, id):
+    def serialize(comp, file, person_id_string):
         if not comp or not comp.hours:
             return
 
@@ -14,5 +14,5 @@ class EmployeeCompensationSerializer(object):
 
 
         file.write('  INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)\n')
-        file.write('  VALUES({}, \'{}\', now(), now(), company_id, person_id_{}, null, {}, {});\n'.format(annual_base_salary, comp.effective_date, id, hourly_rate, projected_hour_per_month))
+        file.write('  VALUES({}, \'{}\', now(), now(), company_id, {}, null, {}, {});\n'.format(annual_base_salary, comp.effective_date, person_id_string, hourly_rate, projected_hour_per_month))
         file.write('\n')
