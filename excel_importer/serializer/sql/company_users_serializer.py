@@ -19,7 +19,7 @@ class CompanyUsersSerializer(object):
                 UserSerializer.serialize(user, target, counter)
                 counter += 1
 
-        target.write('raise notice \'There are {} users created \'\n'.format(counter))
+        target.write('raise notice \'There are {} users created \';\n'.format(counter))
         target.write('END\n')
         target.write('$$\n')
         target.close()

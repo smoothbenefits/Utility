@@ -1,6 +1,6 @@
 DO $$
 DECLARE
-  company_id int := 40;
+  company_id int := 23;
 BEGIN
 raise notice 'The company_id to start is %', company_id;
 
@@ -10,15 +10,15 @@ DECLARE
   company_user_id_1 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'TINALECLAIR@fairviewhealthcare.com', 't', 'f', 'f', 'TINA', 'LECLAIR', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'tinaleclair@fairviewhealthcare.com', 't', 'f', 'f', 'Tina', 'Leclair', now(), now())
   RETURNING id into user_id_1;
-  raise notice 'The user_id_1 after insert is %', user_id;
+  raise notice 'The user_id_1 after insert is %', user_id_1;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_1)
   RETURNING id into company_user_id_1;
   raise notice 'The company_user_id_1 is %', company_user_id_1;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Tina', '', 'Leclair', '', 'self', 'ALeCc_jpnFsG9qbGM9VyxqGul85_IHzklrS8Xx0ODCTfXAH2AEEJszNDMzmalsfjLoFruNohwVRY', '1983-02-06', 'F', company_id, user_id_1, '')
+  VALUES('primary_contact', 'Tina', '', 'Leclair', '', 'self', 'ALeCc_g1JSjQ8Q1YYllUoPqQ3RQqzqPZrxQNnsRbIjmvSyflEcKevvVhSXtAj2vZJzKoIkyWdAOi', '1983-02-06', 'F', company_id, user_id_1, '')
   RETURNING id into person_id_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -28,10 +28,10 @@ BEGIN
   VALUES('home', '6032312889', person_id_1);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 50000.0, '2014-07-14', 'FullTime', 'Active', now(), now(), person_id_1, company_id, '', '2015-09-01');
+  VALUES('', 50000.0, '2014-07-14', 'FullTime', 'Active', now(), now(), person_id_1, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(50000.0, '07/14/2014', now(), now(), company_id, person_id_1, '', null, null);
+  VALUES(50000.0, '07/14/2014', now(), now(), company_id, person_id_1, null, null, null);
 
 END;
 
@@ -42,15 +42,15 @@ DECLARE
   company_user_id_2 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'SELINAFLETCHER@fairviewhealthcare.com', 't', 'f', 'f', 'SELINA', 'FLETCHER', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'selinafletcher@fairviewhealthcare.com', 't', 'f', 'f', 'Selina', 'Fletcher', now(), now())
   RETURNING id into user_id_2;
-  raise notice 'The user_id_2 after insert is %', user_id;
+  raise notice 'The user_id_2 after insert is %', user_id_2;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_2)
   RETURNING id into company_user_id_2;
   raise notice 'The company_user_id_2 is %', company_user_id_2;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Selina', '', 'Fletcher', '', 'self', 'ALeCc_g5NvJHj42keCVsWZwaRnOCXTzAmGBawLL508el7OJTgaV1qjRLQ6vWnR0nvmcdoN9ZBoGi', '1978-12-11', 'F', company_id, user_id_2, '')
+  VALUES('primary_contact', 'Selina', '', 'Fletcher', '', 'self', 'ALeCc_hSWNSj0QOdbDO0vaS7OwzHwmIaKKQSFkhAN2GlItg-LpT_2TZB0zQEhaDyGVEEaDvpk6Ye', '1978-12-11', 'F', company_id, user_id_2, '')
   RETURNING id into person_id_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -60,10 +60,10 @@ BEGIN
   VALUES('home', '8179832986', person_id_2);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 23712.0, '2014-09-04', 'FullTime', 'Active', now(), now(), person_id_2, company_id, '', '2015-09-01');
+  VALUES('', 23712.0, '2014-09-04', 'FullTime', 'Active', now(), now(), person_id_2, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(23712.0, '09/04/2014', now(), now(), company_id, person_id_2, '', null, null);
+  VALUES(23712.0, '09/04/2014', now(), now(), company_id, person_id_2, null, null, null);
 
 END;
 
@@ -74,9 +74,9 @@ DECLARE
   company_user_id_3 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'SUSANTRUBACZ@fairviewhealthcare.com', 't', 'f', 'f', 'SUSAN', 'TRUBACZ', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'susantrubacz@fairviewhealthcare.com', 't', 'f', 'f', 'Susan', 'Trubacz', now(), now())
   RETURNING id into user_id_3;
-  raise notice 'The user_id_3 after insert is %', user_id;
+  raise notice 'The user_id_3 after insert is %', user_id_3;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_3)
   RETURNING id into company_user_id_3;
@@ -89,10 +89,10 @@ BEGIN
   VALUES('home', '17 Cottonwood Dr', '', 'Hudson', 'NH', '03051', company_id, person_id_3);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 21450.0, '2015-03-02', 'FullTime', 'Active', now(), now(), person_id_3, company_id, '', '2015-09-01');
+  VALUES('', 21450.0, '2015-03-02', 'FullTime', 'Active', now(), now(), person_id_3, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(21450.0, '03/02/2015', now(), now(), company_id, person_id_3, '', null, null);
+  VALUES(21450.0, '03/02/2015', now(), now(), company_id, person_id_3, null, null, null);
 
 END;
 
@@ -103,9 +103,9 @@ DECLARE
   company_user_id_4 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'THERESEWARRINGTON@fairviewhealthcare.com', 't', 'f', 'f', 'THERESE', 'WARRINGTON', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'theresewarrington@fairviewhealthcare.com', 't', 'f', 'f', 'Therese', 'Warrington', now(), now())
   RETURNING id into user_id_4;
-  raise notice 'The user_id_4 after insert is %', user_id;
+  raise notice 'The user_id_4 after insert is %', user_id_4;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_4)
   RETURNING id into company_user_id_4;
@@ -118,10 +118,10 @@ BEGIN
   VALUES('home', '9 Birch St', '', 'Hudson', 'NH', '03051', company_id, person_id_4);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 19721.0, '2015-02-09', 'FullTime', 'Active', now(), now(), person_id_4, company_id, '', '2015-09-01');
+  VALUES('', 19721.0, '2015-02-09', 'FullTime', 'Active', now(), now(), person_id_4, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(19721.0, '02/09/2015', now(), now(), company_id, person_id_4, '', null, null);
+  VALUES(19721.0, '02/09/2015', now(), now(), company_id, person_id_4, null, null, null);
 
 END;
 
@@ -132,15 +132,15 @@ DECLARE
   company_user_id_5 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'JERENEVEILLEUX@fairviewhealthcare.com', 't', 'f', 'f', 'JERENE', 'VEILLEUX', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jereneveilleux@fairviewhealthcare.com', 't', 'f', 'f', 'Jerene', 'Veilleux', now(), now())
   RETURNING id into user_id_5;
-  raise notice 'The user_id_5 after insert is %', user_id;
+  raise notice 'The user_id_5 after insert is %', user_id_5;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_5)
   RETURNING id into company_user_id_5;
   raise notice 'The company_user_id_5 is %', company_user_id_5;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Jerene', '', 'Veilleux', '', 'self', 'ALeCc_iayr0r_LvYFGEVSzRDYyHIRI_r5Cf9l7p4wJbDwtSOGOJffKlvEQF73cTHcRRLrE9skpFs', '1967-06-21', 'F', company_id, user_id_5, '')
+  VALUES('primary_contact', 'Jerene', '', 'Veilleux', '', 'self', 'ALeCc_g8ZifOeJsU-rLgoLagS5K-KIr4lwY4EZD0oXWvWen9kFo6HXQ3wLLI1njR1IHGGYy0jzh-', '1967-06-21', 'F', company_id, user_id_5, '')
   RETURNING id into person_id_5;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -150,10 +150,10 @@ BEGIN
   VALUES('home', '6035217174', person_id_5);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 54080.0, '2015-03-31', 'FullTime', 'Active', now(), now(), person_id_5, company_id, '', '2015-09-01');
+  VALUES('', 54080.0, '2015-03-31', 'FullTime', 'Active', now(), now(), person_id_5, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(54080.0, '03/31/2015', now(), now(), company_id, person_id_5, '', null, null);
+  VALUES(54080.0, '03/31/2015', now(), now(), company_id, person_id_5, null, null, null);
 
 END;
 
@@ -164,15 +164,15 @@ DECLARE
   company_user_id_6 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DIANEZACHER@fairviewhealthcare.com', 't', 'f', 'f', 'DIANE', 'ZACHER', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dianezacher@fairviewhealthcare.com', 't', 'f', 'f', 'Diane', 'Zacher', now(), now())
   RETURNING id into user_id_6;
-  raise notice 'The user_id_6 after insert is %', user_id;
+  raise notice 'The user_id_6 after insert is %', user_id_6;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_6)
   RETURNING id into company_user_id_6;
   raise notice 'The company_user_id_6 is %', company_user_id_6;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Diane', '', 'Zacher', '', 'self', 'ALeCc_h4vJUe8cHUzeAH4ucbZx-YGec3IRtDKu6kq9pWBHNNAjlBRjQALR_EVUYrzQtxk_JIaGvK', '1956-10-03', 'F', company_id, user_id_6, '')
+  VALUES('primary_contact', 'Diane', '', 'Zacher', '', 'self', 'ALeCc_hLT6XhIouFuZQWeJGtr-Cf4EsZcDEyGJK3rKG9ChOOW0rEkuiK_52Nc-4VvI9H2_QXEXWf', '1956-10-03', 'F', company_id, user_id_6, '')
   RETURNING id into person_id_6;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -182,10 +182,10 @@ BEGIN
   VALUES('home', '6039307795', person_id_6);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 25324.0, '2013-12-11', 'FullTime', 'Active', now(), now(), person_id_6, company_id, '', '2015-09-01');
+  VALUES('', 25324.0, '2013-12-11', 'FullTime', 'Active', now(), now(), person_id_6, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(25324.0, '12/11/2013', now(), now(), company_id, person_id_6, '', null, null);
+  VALUES(25324.0, '12/11/2013', now(), now(), company_id, person_id_6, null, null, null);
 
 END;
 
@@ -196,15 +196,15 @@ DECLARE
   company_user_id_7 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'EMILYINGLIS@fairviewhealthcare.com', 't', 'f', 'f', 'EMILY', 'INGLIS', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'emilyinglis@fairviewhealthcare.com', 't', 'f', 'f', 'Emily', 'Inglis', now(), now())
   RETURNING id into user_id_7;
-  raise notice 'The user_id_7 after insert is %', user_id;
+  raise notice 'The user_id_7 after insert is %', user_id_7;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_7)
   RETURNING id into company_user_id_7;
   raise notice 'The company_user_id_7 is %', company_user_id_7;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Emily', 'S', 'Inglis', '', 'self', 'ALeCc_g2H88OjOvjl1WQEEwrKiV19SzWvBtdmGS-VQL9OckPyl9s-zK3KkrhWuGiZW9beXH3_sTk', '1987-06-05', 'F', company_id, user_id_7, '')
+  VALUES('primary_contact', 'Emily', 'S', 'Inglis', '', 'self', 'ALeCc_iHdA7AXLVN88I99meo7gsStDGNJatptwXWrywL4zAWINm7THjImJEuCbfU2D35QR0-TFbm', '1987-06-05', 'F', company_id, user_id_7, '')
   RETURNING id into person_id_7;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -214,10 +214,10 @@ BEGIN
   VALUES('home', '6038607924', person_id_7);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 46342.4, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_7, company_id, '', '2015-09-01');
+  VALUES('', 46342.4, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_7, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(46342.4, '09/01/2008', now(), now(), company_id, person_id_7, '', null, null);
+  VALUES(46342.4, '09/01/2008', now(), now(), company_id, person_id_7, null, null, null);
 
 END;
 
@@ -228,9 +228,9 @@ DECLARE
   company_user_id_8 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CATHERINELAJOIE@fairviewhealthcare.com', 't', 'f', 'f', 'CATHERINE', 'LAJOIE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'catherinelajoie@fairviewhealthcare.com', 't', 'f', 'f', 'Catherine', 'Lajoie', now(), now())
   RETURNING id into user_id_8;
-  raise notice 'The user_id_8 after insert is %', user_id;
+  raise notice 'The user_id_8 after insert is %', user_id_8;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_8)
   RETURNING id into company_user_id_8;
@@ -243,10 +243,10 @@ BEGIN
   VALUES('home', '20 McKean St', '', 'Nashua', 'NH', '03060', company_id, person_id_8);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 41860.0, '2014-06-12', 'FullTime', 'Active', now(), now(), person_id_8, company_id, '', '2015-09-01');
+  VALUES('', 41860.0, '2014-06-12', 'FullTime', 'Active', now(), now(), person_id_8, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(41860.0, '06/12/2014', now(), now(), company_id, person_id_8, '', null, null);
+  VALUES(41860.0, '06/12/2014', now(), now(), company_id, person_id_8, null, null, null);
 
 END;
 
@@ -257,15 +257,15 @@ DECLARE
   company_user_id_9 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ROBINLUCIANO@fairviewhealthcare.com', 't', 'f', 'f', 'ROBIN', 'LUCIANO', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'robinluciano@fairviewhealthcare.com', 't', 'f', 'f', 'Robin', 'Luciano', now(), now())
   RETURNING id into user_id_9;
-  raise notice 'The user_id_9 after insert is %', user_id;
+  raise notice 'The user_id_9 after insert is %', user_id_9;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_9)
   RETURNING id into company_user_id_9;
   raise notice 'The company_user_id_9 is %', company_user_id_9;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Robin', '', 'Luciano', '', 'self', 'ALeCc_gcKMqseVJXOkVS-k6jXJ44EDbx4wAO6mId659ddgMuplv8JyF1twMJNW-ajtG81z8HbsD-', '1974-12-14', 'F', company_id, user_id_9, '')
+  VALUES('primary_contact', 'Robin', '', 'Luciano', '', 'self', 'ALeCc_hzqjqmzVz1MhHFGxcJ2ZHgZItMMkxYRkLU-V98o681tnyi4W4xN-a_YeFc4xO_6QLGFh7e', '1974-12-14', 'F', company_id, user_id_9, '')
   RETURNING id into person_id_9;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -275,10 +275,10 @@ BEGIN
   VALUES('home', '9788088398', person_id_9);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 54080.0, '2014-08-04', 'FullTime', 'Active', now(), now(), person_id_9, company_id, '', '2015-09-01');
+  VALUES('', 54080.0, '2014-08-04', 'FullTime', 'Active', now(), now(), person_id_9, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(54080.0, '08/04/2014', now(), now(), company_id, person_id_9, '', null, null);
+  VALUES(54080.0, '08/04/2014', now(), now(), company_id, person_id_9, null, null, null);
 
 END;
 
@@ -289,15 +289,15 @@ DECLARE
   company_user_id_10 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ANGELAKRAUS@fairviewhealthcare.com', 't', 'f', 'f', 'ANGELA', 'KRAUS', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'angelakraus@fairviewhealthcare.com', 't', 'f', 'f', 'Angela', 'Kraus', now(), now())
   RETURNING id into user_id_10;
-  raise notice 'The user_id_10 after insert is %', user_id;
+  raise notice 'The user_id_10 after insert is %', user_id_10;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_10)
   RETURNING id into company_user_id_10;
   raise notice 'The company_user_id_10 is %', company_user_id_10;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Angela', 'J', 'Kraus', '', 'self', 'ALeCc_hIik54sw25q-wVYVd1AzJck8VaulTkKy2XnqlUb3T0AodsV1qwrXSyKI1zfQmrtR8E6adB', '1980-08-21', 'F', company_id, user_id_10, '')
+  VALUES('primary_contact', 'Angela', 'J', 'Kraus', '', 'self', 'ALeCc_icLq57os80URIH_EGExMi2EMZoS_OQv0A3yARCutcgFNhrVTYa8_fs81JUtX6JdcBQc2k1', '1980-08-21', 'F', company_id, user_id_10, '')
   RETURNING id into person_id_10;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -307,10 +307,10 @@ BEGIN
   VALUES('home', '6038094297', person_id_10);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 62400.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_10, company_id, '', '2015-09-01');
+  VALUES('', 62400.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_10, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(62400.0, '09/01/2008', now(), now(), company_id, person_id_10, '', null, null);
+  VALUES(62400.0, '09/01/2008', now(), now(), company_id, person_id_10, null, null, null);
 
 END;
 
@@ -321,9 +321,9 @@ DECLARE
   company_user_id_11 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KRISTINENUTTER@fairviewhealthcare.com', 't', 'f', 'f', 'KRISTINE', 'NUTTER', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kristinenutter@fairviewhealthcare.com', 't', 'f', 'f', 'Kristine', 'Nutter', now(), now())
   RETURNING id into user_id_11;
-  raise notice 'The user_id_11 after insert is %', user_id;
+  raise notice 'The user_id_11 after insert is %', user_id_11;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_11)
   RETURNING id into company_user_id_11;
@@ -336,10 +336,10 @@ BEGIN
   VALUES('home', '97 Ansonia Ave', '', 'Dracut', 'NH', '01826', company_id, person_id_11);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 58552.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_11, company_id, '', '2015-09-01');
+  VALUES('', 58552.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_11, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(58552.0, '09/01/2008', now(), now(), company_id, person_id_11, '', null, null);
+  VALUES(58552.0, '09/01/2008', now(), now(), company_id, person_id_11, null, null, null);
 
 END;
 
@@ -350,9 +350,9 @@ DECLARE
   company_user_id_12 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'TASHAVANCELETTE@fairviewhealthcare.com', 't', 'f', 'f', 'TASHA', 'VANCELETTE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'tashavancelette@fairviewhealthcare.com', 't', 'f', 'f', 'Tasha', 'Vancelette', now(), now())
   RETURNING id into user_id_12;
-  raise notice 'The user_id_12 after insert is %', user_id;
+  raise notice 'The user_id_12 after insert is %', user_id_12;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_12)
   RETURNING id into company_user_id_12;
@@ -365,10 +365,10 @@ BEGIN
   VALUES('home', '17 Pierce St', '', 'Nashua', 'NH', '03060', company_id, person_id_12);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 20280.0, '2014-08-14', 'FullTime', 'Active', now(), now(), person_id_12, company_id, '', '2015-09-01');
+  VALUES('', 20280.0, '2014-08-14', 'FullTime', 'Active', now(), now(), person_id_12, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(20280.0, '08/14/2014', now(), now(), company_id, person_id_12, '', null, null);
+  VALUES(20280.0, '08/14/2014', now(), now(), company_id, person_id_12, null, null, null);
 
 END;
 
@@ -379,9 +379,9 @@ DECLARE
   company_user_id_13 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ALYSSAMACKAY@fairviewhealthcare.com', 't', 'f', 'f', 'ALYSSA', 'MACKAY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'alyssamackay@fairviewhealthcare.com', 't', 'f', 'f', 'Alyssa', 'Mackay', now(), now())
   RETURNING id into user_id_13;
-  raise notice 'The user_id_13 after insert is %', user_id;
+  raise notice 'The user_id_13 after insert is %', user_id_13;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_13)
   RETURNING id into company_user_id_13;
@@ -394,10 +394,10 @@ BEGIN
   VALUES('home', '9 Chestnut Street', '', 'Hudson', 'NH', '03051', company_id, person_id_13);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 46000.0, '2013-09-01', 'FullTime', 'Active', now(), now(), person_id_13, company_id, '', '2015-09-01');
+  VALUES('', 46000.0, '2013-09-01', 'FullTime', 'Active', now(), now(), person_id_13, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(46000.0, '09/01/2013', now(), now(), company_id, person_id_13, '', null, null);
+  VALUES(46000.0, '09/01/2013', now(), now(), company_id, person_id_13, null, null, null);
 
 END;
 
@@ -408,15 +408,15 @@ DECLARE
   company_user_id_14 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'BRITTANYSHAY@fairviewhealthcare.com', 't', 'f', 'f', 'BRITTANY', 'SHAY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'brittanyshay@fairviewhealthcare.com', 't', 'f', 'f', 'Brittany', 'Shay', now(), now())
   RETURNING id into user_id_14;
-  raise notice 'The user_id_14 after insert is %', user_id;
+  raise notice 'The user_id_14 after insert is %', user_id_14;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_14)
   RETURNING id into company_user_id_14;
   raise notice 'The company_user_id_14 is %', company_user_id_14;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Brittany', '', 'Shay', '', 'self', 'ALeCc_iTrJeHGEcOx4ohHSAqdAmHB6OeQ2ybYsAl7Qfm1e2vn_gWI1mqUNG28ULLZQ13JHh0yuua', '1990-07-12', 'F', company_id, user_id_14, '')
+  VALUES('primary_contact', 'Brittany', '', 'Shay', '', 'self', 'ALeCc_iIOwqPGcdSu7ITObXR3ui_rMzxUKzjq1UMKHmIl2tWHByTkTEpcwmMMzqqCRvKSXtxqvAW', '1990-07-12', 'F', company_id, user_id_14, '')
   RETURNING id into person_id_14;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -426,10 +426,10 @@ BEGIN
   VALUES('home', '6038975852', person_id_14);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 24440.0, '2014-10-12', 'FullTime', 'Active', now(), now(), person_id_14, company_id, '', '2015-09-01');
+  VALUES('', 24440.0, '2014-10-12', 'FullTime', 'Active', now(), now(), person_id_14, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(24440.0, '10/12/2014', now(), now(), company_id, person_id_14, '', null, null);
+  VALUES(24440.0, '10/12/2014', now(), now(), company_id, person_id_14, null, null, null);
 
 END;
 
@@ -440,9 +440,9 @@ DECLARE
   company_user_id_15 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MAUREENAMADI@fairviewhealthcare.com', 't', 'f', 'f', 'MAUREEN', 'AMADI', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'maureenamadi@fairviewhealthcare.com', 't', 'f', 'f', 'Maureen', 'Amadi', now(), now())
   RETURNING id into user_id_15;
-  raise notice 'The user_id_15 after insert is %', user_id;
+  raise notice 'The user_id_15 after insert is %', user_id_15;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_15)
   RETURNING id into company_user_id_15;
@@ -452,10 +452,10 @@ BEGIN
   RETURNING id into person_id_15;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 20962.0, '2011-05-05', 'FullTime', 'Active', now(), now(), person_id_15, company_id, '', '2015-09-01');
+  VALUES('', 20962.0, '2011-05-05', 'FullTime', 'Active', now(), now(), person_id_15, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(20962.0, '05/05/2011', now(), now(), company_id, person_id_15, '', null, null);
+  VALUES(20962.0, '05/05/2011', now(), now(), company_id, person_id_15, null, null, null);
 
 END;
 
@@ -466,9 +466,9 @@ DECLARE
   company_user_id_16 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KATIEPICARD@fairviewhealthcare.com', 't', 'f', 'f', 'KATIE', 'PICARD', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'katiepicard@fairviewhealthcare.com', 't', 'f', 'f', 'Katie', 'Picard', now(), now())
   RETURNING id into user_id_16;
-  raise notice 'The user_id_16 after insert is %', user_id;
+  raise notice 'The user_id_16 after insert is %', user_id_16;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_16)
   RETURNING id into company_user_id_16;
@@ -481,10 +481,10 @@ BEGIN
   VALUES('home', '12 Stonewood Lane', '', 'Hudson', 'NH', '03051', company_id, person_id_16);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 18720.0, '2014-08-18', 'FullTime', 'Active', now(), now(), person_id_16, company_id, '', '2015-09-01');
+  VALUES('', 18720.0, '2014-08-18', 'FullTime', 'Active', now(), now(), person_id_16, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(18720.0, '08/18/2014', now(), now(), company_id, person_id_16, '', null, null);
+  VALUES(18720.0, '08/18/2014', now(), now(), company_id, person_id_16, null, null, null);
 
 END;
 
@@ -495,15 +495,15 @@ DECLARE
   company_user_id_17 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DANIELLEQUINN@fairviewhealthcare.com', 't', 'f', 'f', 'DANIELLE', 'QUINN', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'daniellequinn@fairviewhealthcare.com', 't', 'f', 'f', 'Danielle', 'Quinn', now(), now())
   RETURNING id into user_id_17;
-  raise notice 'The user_id_17 after insert is %', user_id;
+  raise notice 'The user_id_17 after insert is %', user_id_17;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_17)
   RETURNING id into company_user_id_17;
   raise notice 'The company_user_id_17 is %', company_user_id_17;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Danielle', '', 'Quinn', '', 'self', 'ALeCc_iBuQnO5XZseqlLuVpJ7EjjlvQMxDuMzBlw7JLqBVkjhJ-wT_Ta7rF2XF4GtrL4df_A7eiI', '1980-06-16', 'F', company_id, user_id_17, '')
+  VALUES('primary_contact', 'Danielle', '', 'Quinn', '', 'self', 'ALeCc_iqPs_Gbyumy8pHkTKf5wTQ3cZHHw2gan-XWhaSOFDL9f_pJY9HLk0BK_5CkiEOQpeJx9zw', '1980-06-16', 'F', company_id, user_id_17, '')
   RETURNING id into person_id_17;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -513,10 +513,10 @@ BEGIN
   VALUES('home', '6033450151', person_id_17);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 55000.0, '2014-01-15', 'FullTime', 'Active', now(), now(), person_id_17, company_id, '', '2015-09-01');
+  VALUES('', 55000.0, '2014-01-15', 'FullTime', 'Active', now(), now(), person_id_17, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(55000.0, '01/15/2014', now(), now(), company_id, person_id_17, '', null, null);
+  VALUES(55000.0, '01/15/2014', now(), now(), company_id, person_id_17, null, null, null);
 
 END;
 
@@ -527,15 +527,15 @@ DECLARE
   company_user_id_18 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CAROLYNBEAULIEU@fairviewhealthcare.com', 't', 'f', 'f', 'CAROLYN', 'BEAULIEU', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'carolynbeaulieu@fairviewhealthcare.com', 't', 'f', 'f', 'Carolyn', 'Beaulieu', now(), now())
   RETURNING id into user_id_18;
-  raise notice 'The user_id_18 after insert is %', user_id;
+  raise notice 'The user_id_18 after insert is %', user_id_18;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_18)
   RETURNING id into company_user_id_18;
   raise notice 'The company_user_id_18 is %', company_user_id_18;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Carolyn', 'S', 'Beaulieu', '', 'self', 'ALeCc_hPPYbASSqNamIWabXS2s0eQstKdh-o434YDf4aZkBOBiQkbTFducSOWtv2MNridJrQFMQD', '1953-08-27', 'F', company_id, user_id_18, '')
+  VALUES('primary_contact', 'Carolyn', 'S', 'Beaulieu', '', 'self', 'ALeCc_jHNG4CUEJB6w-_rJSuGSxPVRgLm6MPt5S1N1v6sSoea1VmGvX_ZI7lYAjMFo-SvA1BAfyL', '1953-08-27', 'F', company_id, user_id_18, '')
   RETURNING id into person_id_18;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -545,10 +545,10 @@ BEGIN
   VALUES('home', '6035666314', person_id_18);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 42577.6, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_18, company_id, '', '2015-09-01');
+  VALUES('', 42577.6, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_18, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(42577.6, '09/01/2008', now(), now(), company_id, person_id_18, '', null, null);
+  VALUES(42577.6, '09/01/2008', now(), now(), company_id, person_id_18, null, null, null);
 
 END;
 
@@ -559,9 +559,9 @@ DECLARE
   company_user_id_19 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CARLAWHOLEY@fairviewhealthcare.com', 't', 'f', 'f', 'CARLA', 'WHOLEY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'carlawholey@fairviewhealthcare.com', 't', 'f', 'f', 'Carla', 'Wholey', now(), now())
   RETURNING id into user_id_19;
-  raise notice 'The user_id_19 after insert is %', user_id;
+  raise notice 'The user_id_19 after insert is %', user_id_19;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_19)
   RETURNING id into company_user_id_19;
@@ -571,10 +571,10 @@ BEGIN
   RETURNING id into person_id_19;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 45760.0, '2011-03-03', 'FullTime', 'Active', now(), now(), person_id_19, company_id, '', '2015-09-01');
+  VALUES('', 45760.0, '2011-03-03', 'FullTime', 'Active', now(), now(), person_id_19, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(45760.0, '03/03/2011', now(), now(), company_id, person_id_19, '', null, null);
+  VALUES(45760.0, '03/03/2011', now(), now(), company_id, person_id_19, null, null, null);
 
 END;
 
@@ -585,15 +585,15 @@ DECLARE
   company_user_id_20 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ROBERTHUTCHINGS@fairviewhealthcare.com', 't', 'f', 'f', 'ROBERT', 'HUTCHINGS', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'roberthutchings@fairviewhealthcare.com', 't', 'f', 'f', 'Robert', 'Hutchings', now(), now())
   RETURNING id into user_id_20;
-  raise notice 'The user_id_20 after insert is %', user_id;
+  raise notice 'The user_id_20 after insert is %', user_id_20;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_20)
   RETURNING id into company_user_id_20;
   raise notice 'The company_user_id_20 is %', company_user_id_20;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Robert', '', 'Hutchings', '', 'self', 'ALeCc_h7skoAKoMbpRlxMVRET_4UKpKCYF-pspdjMpFkKvv4iOZwLlgfknPOjzOZeTfalNZJYBTK', '1952-03-14', 'M', company_id, user_id_20, '')
+  VALUES('primary_contact', 'Robert', '', 'Hutchings', '', 'self', 'ALeCc_gT9a47fiRZ3BTcqW2FBnkvW4UVFJVFGvI7QVvaIMkoQTVS1iICwrqz2PWZPftw_ABHcWed', '1952-03-14', 'M', company_id, user_id_20, '')
   RETURNING id into person_id_20;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -603,10 +603,10 @@ BEGIN
   VALUES('home', '0000000000', person_id_20);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 16770.0, '2013-03-01', 'FullTime', 'Active', now(), now(), person_id_20, company_id, '', '2015-09-01');
+  VALUES('', 16770.0, '2013-03-01', 'FullTime', 'Active', now(), now(), person_id_20, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(16770.0, '03/01/2013', now(), now(), company_id, person_id_20, '', null, null);
+  VALUES(16770.0, '03/01/2013', now(), now(), company_id, person_id_20, null, null, null);
 
 END;
 
@@ -617,25 +617,25 @@ DECLARE
   company_user_id_21 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DARLENECROSS@fairviewhealthcare.com', 't', 'f', 'f', 'DARLENE', 'CROSS', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'darlenecross@fairviewhealthcare.com', 't', 'f', 'f', 'Darlene', 'Cross', now(), now())
   RETURNING id into user_id_21;
-  raise notice 'The user_id_21 after insert is %', user_id;
+  raise notice 'The user_id_21 after insert is %', user_id_21;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_21)
   RETURNING id into company_user_id_21;
   raise notice 'The company_user_id_21 is %', company_user_id_21;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Darlene', '', 'Cross', '', 'self', 'ALeCc_jsqcax05HaHN80WrHU4M_8zUYX4rRgTuv6ubS6WUpr2iFoEOA05NpdsMAS5be3vhU-2z8m', '1962-05-25', 'F', company_id, user_id_21, '')
+  VALUES('primary_contact', 'Darlene', '', 'Cross', '', 'self', 'ALeCc_iy7cx9LXO7QnXrkLXOCov-kAJs5bdwfm8CJ92FQPdj-RcK8BTvQTK4SzUeBCH8COhHionm', '1962-05-25', 'F', company_id, user_id_21, '')
   RETURNING id into person_id_21;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
   VALUES('home', '66 Farmwood Drive', '', 'Nashua', 'NH', '03062', company_id, person_id_21);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 21000.0, '2014-06-09', 'FullTime', 'Active', now(), now(), person_id_21, company_id, '', '2015-09-01');
+  VALUES('', 21000.0, '2014-06-09', 'FullTime', 'Active', now(), now(), person_id_21, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(21000.0, '06/09/2014', now(), now(), company_id, person_id_21, '', null, null);
+  VALUES(21000.0, '06/09/2014', now(), now(), company_id, person_id_21, null, null, null);
 
 END;
 
@@ -646,9 +646,9 @@ DECLARE
   company_user_id_22 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CHRISTINECARPENTER@fairviewhealthcare.com', 't', 'f', 'f', 'CHRISTINE', 'CARPENTER', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'christinecarpenter@fairviewhealthcare.com', 't', 'f', 'f', 'Christine', 'Carpenter', now(), now())
   RETURNING id into user_id_22;
-  raise notice 'The user_id_22 after insert is %', user_id;
+  raise notice 'The user_id_22 after insert is %', user_id_22;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_22)
   RETURNING id into company_user_id_22;
@@ -661,10 +661,10 @@ BEGIN
   VALUES('home', '1391 Union Street', '', 'Manchester', 'NH', '03104', company_id, person_id_22);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 37440.0, '2015-05-11', 'FullTime', 'Active', now(), now(), person_id_22, company_id, '', '2015-09-01');
+  VALUES('', 37440.0, '2015-05-11', 'FullTime', 'Active', now(), now(), person_id_22, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(37440.0, '05/11/2015', now(), now(), company_id, person_id_22, '', null, null);
+  VALUES(37440.0, '05/11/2015', now(), now(), company_id, person_id_22, null, null, null);
 
 END;
 
@@ -675,15 +675,15 @@ DECLARE
   company_user_id_23 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'STEPHANIESAOUMA@fairviewhealthcare.com', 't', 'f', 'f', 'STEPHANIE', 'SAOUMA', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'stephaniesaouma@fairviewhealthcare.com', 't', 'f', 'f', 'Stephanie', 'Saouma', now(), now())
   RETURNING id into user_id_23;
-  raise notice 'The user_id_23 after insert is %', user_id;
+  raise notice 'The user_id_23 after insert is %', user_id_23;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_23)
   RETURNING id into company_user_id_23;
   raise notice 'The company_user_id_23 is %', company_user_id_23;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Stephanie', 'A', 'Saouma', '', 'self', 'ALeCc_jQNQ63RDrY96ItSwlRFq_GtMHWaL6Kqh2PIkwgMez9_tGlERE34UmaH6czJ8CXrck_lty1', '1967-06-02', 'F', company_id, user_id_23, '')
+  VALUES('primary_contact', 'Stephanie', 'A', 'Saouma', '', 'self', 'ALeCc_hdH5v6BFZCmpFpJqb8OTPaDbLV6obOjFYmftX6L6rd_Q39HfqJfMHC1OmbKCyCPvQ-zvTf', '1967-06-02', 'F', company_id, user_id_23, '')
   RETURNING id into person_id_23;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -693,10 +693,10 @@ BEGIN
   VALUES('home', '6035401487', person_id_23);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 44283.2, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_23, company_id, '', '2015-09-01');
+  VALUES('', 44283.2, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_23, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(44283.2, '09/01/2008', now(), now(), company_id, person_id_23, '', null, null);
+  VALUES(44283.2, '09/01/2008', now(), now(), company_id, person_id_23, null, null, null);
 
 END;
 
@@ -707,9 +707,9 @@ DECLARE
   company_user_id_24 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CARLAWHOLEY@fairviewhealthcare.com', 't', 'f', 'f', 'CARLA', 'WHOLEY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'carlawholey1@fairviewhealthcare.com', 't', 'f', 'f', 'Carla', 'Wholey', now(), now())
   RETURNING id into user_id_24;
-  raise notice 'The user_id_24 after insert is %', user_id;
+  raise notice 'The user_id_24 after insert is %', user_id_24;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_24)
   RETURNING id into company_user_id_24;
@@ -722,10 +722,10 @@ BEGIN
   VALUES('home', '56 Rangers Road', '', 'Hudson', 'NH', '03051', company_id, person_id_24);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 45760.0, '2010-06-07', 'FullTime', 'Active', now(), now(), person_id_24, company_id, '', '2015-09-01');
+  VALUES('', 45760.0, '2010-06-07', 'FullTime', 'Active', now(), now(), person_id_24, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(45760.0, '06/07/2010', now(), now(), company_id, person_id_24, '', null, null);
+  VALUES(45760.0, '06/07/2010', now(), now(), company_id, person_id_24, null, null, null);
 
 END;
 
@@ -736,15 +736,15 @@ DECLARE
   company_user_id_25 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KATHERINEPHILBRICK@fairviewhealthcare.com', 't', 'f', 'f', 'KATHERINE', 'PHILBRICK', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'katherinephilbrick@fairviewhealthcare.com', 't', 'f', 'f', 'Katherine', 'Philbrick', now(), now())
   RETURNING id into user_id_25;
-  raise notice 'The user_id_25 after insert is %', user_id;
+  raise notice 'The user_id_25 after insert is %', user_id_25;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_25)
   RETURNING id into company_user_id_25;
   raise notice 'The company_user_id_25 is %', company_user_id_25;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Katherine', 'S', 'Philbrick', '', 'self', 'ALeCc_hbvFzA49EbfjoyvUh5EFCTQpi8cadDoyYFNepzjqPLfrdgosWYyTCfPOxXx6w58CN56H5g', '1970-08-18', 'F', company_id, user_id_25, '')
+  VALUES('primary_contact', 'Katherine', 'S', 'Philbrick', '', 'self', 'ALeCc_gii_ghHNiN2inVMPHEfY5I2bGTVnTeq2P5H_WLNw9u5uFGx6U8R0ybCb0s6yXGONry-EB2', '1970-08-18', 'F', company_id, user_id_25, '')
   RETURNING id into person_id_25;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -754,10 +754,10 @@ BEGIN
   VALUES('home', '6038799356', person_id_25);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 25000.0, '2012-05-29', 'FullTime', 'Active', now(), now(), person_id_25, company_id, '', '2015-09-01');
+  VALUES('', 25000.0, '2012-05-29', 'FullTime', 'Active', now(), now(), person_id_25, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(25000.0, '05/29/2012', now(), now(), company_id, person_id_25, '', null, null);
+  VALUES(25000.0, '05/29/2012', now(), now(), company_id, person_id_25, null, null, null);
 
 END;
 
@@ -768,15 +768,15 @@ DECLARE
   company_user_id_26 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KRISTINMAFFEE@fairviewhealthcare.com', 't', 'f', 'f', 'KRISTIN', 'MAFFEE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kristinmaffee@fairviewhealthcare.com', 't', 'f', 'f', 'Kristin', 'Maffee', now(), now())
   RETURNING id into user_id_26;
-  raise notice 'The user_id_26 after insert is %', user_id;
+  raise notice 'The user_id_26 after insert is %', user_id_26;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_26)
   RETURNING id into company_user_id_26;
   raise notice 'The company_user_id_26 is %', company_user_id_26;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Kristin', '', 'Maffee', '', 'self', 'ALeCc_jrSzU8iyMS14uBV_tjMA_D8wCM4thvrpAaW1bEO5LQrLZxdBldV_Pqt3_KSS_q3GskSKCQ', '1959-06-29', 'F', company_id, user_id_26, '')
+  VALUES('primary_contact', 'Kristin', '', 'Maffee', '', 'self', 'ALeCc_jpORVKsxE5MRfzpA5Tb_-gN0R_ajqwVJLu6D1DZ7xq91Z9ETYIw6EsXImXUCWQaOqA9dqI', '1959-06-29', 'F', company_id, user_id_26, '')
   RETURNING id into person_id_26;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -786,10 +786,10 @@ BEGIN
   VALUES('home', '6033052974', person_id_26);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 31000.0, '2014-06-09', 'FullTime', 'Active', now(), now(), person_id_26, company_id, '', '2015-09-01');
+  VALUES('', 31000.0, '2014-06-09', 'FullTime', 'Active', now(), now(), person_id_26, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(31000.0, '06/09/2014', now(), now(), company_id, person_id_26, '', null, null);
+  VALUES(31000.0, '06/09/2014', now(), now(), company_id, person_id_26, null, null, null);
 
 END;
 
@@ -800,15 +800,15 @@ DECLARE
   company_user_id_27 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KARENTIERNEY@fairviewhealthcare.com', 't', 'f', 'f', 'KAREN', 'TIERNEY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'karentierney@fairviewhealthcare.com', 't', 'f', 'f', 'Karen', 'Tierney', now(), now())
   RETURNING id into user_id_27;
-  raise notice 'The user_id_27 after insert is %', user_id;
+  raise notice 'The user_id_27 after insert is %', user_id_27;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_27)
   RETURNING id into company_user_id_27;
   raise notice 'The company_user_id_27 is %', company_user_id_27;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Karen', '', 'Tierney', '', 'self', 'ALeCc_h-GcKSfHG6OvicVW2-rhr2zk6--6t0o-AqOYC5HNQ_nbbnrVASnyHdm2xp5NqV0NKI84oi', '1960-06-11', 'F', company_id, user_id_27, '')
+  VALUES('primary_contact', 'Karen', '', 'Tierney', '', 'self', 'ALeCc_ieOb2HBYV_HvjuRVwUa5ZVrHhm9hjUUA6gEoE_rvO0mushsfSHfjuc8TBbVFkglbKzuiy5', '1960-06-11', 'F', company_id, user_id_27, '')
   RETURNING id into person_id_27;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -818,10 +818,10 @@ BEGIN
   VALUES('home', '6035055348', person_id_27);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 47320.0, '2014-04-07', 'FullTime', 'Active', now(), now(), person_id_27, company_id, '', '2015-09-01');
+  VALUES('', 47320.0, '2014-04-07', 'FullTime', 'Active', now(), now(), person_id_27, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(47320.0, '04/07/2014', now(), now(), company_id, person_id_27, '', null, null);
+  VALUES(47320.0, '04/07/2014', now(), now(), company_id, person_id_27, null, null, null);
 
 END;
 
@@ -832,15 +832,15 @@ DECLARE
   company_user_id_28 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MARIADUBE@fairviewhealthcare.com', 't', 'f', 'f', 'MARIA', 'DUBE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'mariadube@fairviewhealthcare.com', 't', 'f', 'f', 'Maria', 'Dube', now(), now())
   RETURNING id into user_id_28;
-  raise notice 'The user_id_28 after insert is %', user_id;
+  raise notice 'The user_id_28 after insert is %', user_id_28;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_28)
   RETURNING id into company_user_id_28;
   raise notice 'The company_user_id_28 is %', company_user_id_28;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Maria', 'A', 'Dube', '', 'self', 'ALeCc_i8waTrAHkIhaWkQvCHpoRW6o757jL2mdA24aywgRS954P1Gd-tmiZHlrkTTCCRRPewERNO', '1965-12-18', 'F', company_id, user_id_28, '')
+  VALUES('primary_contact', 'Maria', 'A', 'Dube', '', 'self', 'ALeCc_hI4CQRnbZtsNILpRth7J3fOR4zPiGn4oBNcVPu8S3SXY_LOLLhgzgt9n4GnYd796nxPa3o', '1965-12-18', 'F', company_id, user_id_28, '')
   RETURNING id into person_id_28;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -850,10 +850,10 @@ BEGIN
   VALUES('home', '6032615090', person_id_28);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 60320.0, '2013-11-01', 'FullTime', 'Active', now(), now(), person_id_28, company_id, '', '2015-09-01');
+  VALUES('', 60320.0, '2013-11-01', 'FullTime', 'Active', now(), now(), person_id_28, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(60320.0, '11/01/2013', now(), now(), company_id, person_id_28, '', null, null);
+  VALUES(60320.0, '11/01/2013', now(), now(), company_id, person_id_28, null, null, null);
 
 END;
 
@@ -864,15 +864,15 @@ DECLARE
   company_user_id_29 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ROBYNBRODY@fairviewhealthcare.com', 't', 'f', 'f', 'ROBYN', 'BRODY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'robynbrody@fairviewhealthcare.com', 't', 'f', 'f', 'Robyn', 'Brody', now(), now())
   RETURNING id into user_id_29;
-  raise notice 'The user_id_29 after insert is %', user_id;
+  raise notice 'The user_id_29 after insert is %', user_id_29;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_29)
   RETURNING id into company_user_id_29;
   raise notice 'The company_user_id_29 is %', company_user_id_29;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Robyn', '', 'Brody', '', 'self', 'ALeCc_gm25RBD6RtBzzGGDA7uyDnLwflDLu8ML2ssr13tCl6UdZJFjFyRM4FKFJ-4l93c4Vw8Jav', '1975-02-23', 'F', company_id, user_id_29, '')
+  VALUES('primary_contact', 'Robyn', '', 'Brody', '', 'self', 'ALeCc_iMIuHJiIzPrgoSkZ-LdobGpZG_isbnhBnkT9jDLiBXd7ZlBwQuX03DsqKmEB58eodMfmtn', '1975-02-23', 'F', company_id, user_id_29, '')
   RETURNING id into person_id_29;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -882,10 +882,10 @@ BEGIN
   VALUES('home', '6038825261', person_id_29);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 47840.0, '2014-09-01', 'FullTime', 'Active', now(), now(), person_id_29, company_id, '', '2015-09-01');
+  VALUES('', 47840.0, '2014-09-01', 'FullTime', 'Active', now(), now(), person_id_29, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(47840.0, '09/01/2014', now(), now(), company_id, person_id_29, '', null, null);
+  VALUES(47840.0, '09/01/2014', now(), now(), company_id, person_id_29, null, null, null);
 
 END;
 
@@ -896,15 +896,15 @@ DECLARE
   company_user_id_30 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'JILLKRACKE@fairviewhealthcare.com', 't', 'f', 'f', 'JILL', 'KRACKE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jillkracke@fairviewhealthcare.com', 't', 'f', 'f', 'Jill', 'Kracke', now(), now())
   RETURNING id into user_id_30;
-  raise notice 'The user_id_30 after insert is %', user_id;
+  raise notice 'The user_id_30 after insert is %', user_id_30;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_30)
   RETURNING id into company_user_id_30;
   raise notice 'The company_user_id_30 is %', company_user_id_30;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Jill', '', 'Kracke', '', 'self', 'ALeCc_gonKdVNBPwALUeWuu-6JX1YvUTohHhmRoTyOVjLzozPPjS7QUS8cKtvJAWHy6R1at3Dv3A', '1989-05-31', 'F', company_id, user_id_30, '')
+  VALUES('primary_contact', 'Jill', '', 'Kracke', '', 'self', 'ALeCc_i7pClDiVctV36d9uPDplTGzUDkbbYeJfHloZZdrA8k4yslSrS_41jMkwnZZ8LeANlGhbXQ', '1989-05-31', 'F', company_id, user_id_30, '')
   RETURNING id into person_id_30;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -914,10 +914,10 @@ BEGIN
   VALUES('home', '7819562294', person_id_30);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 50000.0, '2015-07-12', 'FullTime', 'Active', now(), now(), person_id_30, company_id, '', '2015-09-01');
+  VALUES('', 50000.0, '2015-07-12', 'FullTime', 'Active', now(), now(), person_id_30, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(50000.0, '07/12/2015', now(), now(), company_id, person_id_30, '', null, null);
+  VALUES(50000.0, '07/12/2015', now(), now(), company_id, person_id_30, null, null, null);
 
 END;
 
@@ -928,9 +928,9 @@ DECLARE
   company_user_id_31 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'LISAWOOD@fairviewhealthcare.com', 't', 'f', 'f', 'LISA', 'WOOD', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'lisawood@fairviewhealthcare.com', 't', 'f', 'f', 'Lisa', 'Wood', now(), now())
   RETURNING id into user_id_31;
-  raise notice 'The user_id_31 after insert is %', user_id;
+  raise notice 'The user_id_31 after insert is %', user_id_31;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_31)
   RETURNING id into company_user_id_31;
@@ -943,10 +943,10 @@ BEGIN
   VALUES('home', '46 Union St', '', 'Milford', 'NH', '03055', company_id, person_id_31);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 24960.0, '2014-08-05', 'FullTime', 'Active', now(), now(), person_id_31, company_id, '', '2015-09-01');
+  VALUES('', 24960.0, '2014-08-05', 'FullTime', 'Active', now(), now(), person_id_31, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(24960.0, '08/05/2014', now(), now(), company_id, person_id_31, '', null, null);
+  VALUES(24960.0, '08/05/2014', now(), now(), company_id, person_id_31, null, null, null);
 
 END;
 
@@ -957,15 +957,15 @@ DECLARE
   company_user_id_32 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MELISSAPINARD@fairviewhealthcare.com', 't', 'f', 'f', 'MELISSA', 'PINARD', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'melissapinard@fairviewhealthcare.com', 't', 'f', 'f', 'Melissa', 'Pinard', now(), now())
   RETURNING id into user_id_32;
-  raise notice 'The user_id_32 after insert is %', user_id;
+  raise notice 'The user_id_32 after insert is %', user_id_32;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_32)
   RETURNING id into company_user_id_32;
   raise notice 'The company_user_id_32 is %', company_user_id_32;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Melissa', '', 'Pinard', '', 'self', 'ALeCc_hO0L3JJdMIZg3DJYlOoHfYfrMAPULAd1lTXxkRav8wSyi9vBFz6uq5v28YGZ8cXglPCwal', '1969-01-29', 'F', company_id, user_id_32, '')
+  VALUES('primary_contact', 'Melissa', '', 'Pinard', '', 'self', 'ALeCc_gNFvFRyb19vcHjiEVoAsLZu9HoM7U8ajVaSVIMSwLfR67oCehLQtEorv6vepA_XjI_kaQU', '1969-01-29', 'F', company_id, user_id_32, '')
   RETURNING id into person_id_32;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -975,10 +975,10 @@ BEGIN
   VALUES('home', '6038861727', person_id_32);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 70000.0, '2014-09-01', 'FullTime', 'Active', now(), now(), person_id_32, company_id, '', '2015-09-01');
+  VALUES('', 70000.0, '2014-09-01', 'FullTime', 'Active', now(), now(), person_id_32, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(70000.0, '09/01/2014', now(), now(), company_id, person_id_32, '', null, null);
+  VALUES(70000.0, '09/01/2014', now(), now(), company_id, person_id_32, null, null, null);
 
 END;
 
@@ -989,15 +989,15 @@ DECLARE
   company_user_id_33 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'LAURIEMARSTON@fairviewhealthcare.com', 't', 'f', 'f', 'LAURIE', 'MARSTON', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'lauriemarston@fairviewhealthcare.com', 't', 'f', 'f', 'Laurie', 'Marston', now(), now())
   RETURNING id into user_id_33;
-  raise notice 'The user_id_33 after insert is %', user_id;
+  raise notice 'The user_id_33 after insert is %', user_id_33;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_33)
   RETURNING id into company_user_id_33;
   raise notice 'The company_user_id_33 is %', company_user_id_33;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Laurie', 'M', 'Marston', '', 'self', 'ALeCc_i0mTI1hYGNRtX2gSICO33AzjIPMTaCibOSEN244UaKlAtQgyWNZFeOcDbg9c2rGk5l6VFe', '1960-01-05', 'F', company_id, user_id_33, '')
+  VALUES('primary_contact', 'Laurie', 'M', 'Marston', '', 'self', 'ALeCc_iERlyVfIHMTgBaoFHp5WAF4wigImuzNbImbqj3Xhd4KWmCYRan8dtc9wvPjKs7jcIobcwA', '1960-01-05', 'F', company_id, user_id_33, '')
   RETURNING id into person_id_33;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1007,10 +1007,10 @@ BEGIN
   VALUES('home', '6038827881', person_id_33);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 26956.8, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_33, company_id, '', '2015-09-01');
+  VALUES('', 26956.8, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_33, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(26956.8, '09/01/2008', now(), now(), company_id, person_id_33, '', null, null);
+  VALUES(26956.8, '09/01/2008', now(), now(), company_id, person_id_33, null, null, null);
 
 END;
 
@@ -1021,15 +1021,15 @@ DECLARE
   company_user_id_34 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MICHELLEDAVANZO@fairviewhealthcare.com', 't', 'f', 'f', 'MICHELLE', 'D''AVANZO', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'michelledavanzo@fairviewhealthcare.com', 't', 'f', 'f', 'Michelle', 'D''Avanzo', now(), now())
   RETURNING id into user_id_34;
-  raise notice 'The user_id_34 after insert is %', user_id;
+  raise notice 'The user_id_34 after insert is %', user_id_34;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_34)
   RETURNING id into company_user_id_34;
   raise notice 'The company_user_id_34 is %', company_user_id_34;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Michelle', 'M', 'D''Avanzo', '', 'self', 'ALeCc_gA6AcikpEXLO5hK5BIgx65Zur-HoQrDLhwkRGRUej7HTu6ky4oI9qEt9PTJuBBFZzjZBeL', '1969-11-09', 'F', company_id, user_id_34, '')
+  VALUES('primary_contact', 'Michelle', 'M', 'D''Avanzo', '', 'self', 'ALeCc_gJVOvvQw3wvSbzahlV0rMfv8tJ2WPx6gjKhBgckJ4n5_KWh1MULBJ0gt0dv6shCWn3rHho', '1969-11-09', 'F', company_id, user_id_34, '')
   RETURNING id into person_id_34;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1039,10 +1039,10 @@ BEGIN
   VALUES('home', '6035087134', person_id_34);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 27865.5, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_34, company_id, '1', '2015-09-01');
+  VALUES('', 27865.5, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_34, company_id, 1, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(null, '09/01/2008', now(), now(), company_id, person_id_34, '', 14.2900, 162.5000);
+  VALUES(null, '09/01/2008', now(), now(), company_id, person_id_34, null, 14.2900, 162.5000);
 
 END;
 
@@ -1053,9 +1053,9 @@ DECLARE
   company_user_id_35 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MEGHANLANDRY@fairviewhealthcare.com', 't', 'f', 'f', 'MEGHAN', 'LANDRY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'meghanlandry@fairviewhealthcare.com', 't', 'f', 'f', 'Meghan', 'Landry', now(), now())
   RETURNING id into user_id_35;
-  raise notice 'The user_id_35 after insert is %', user_id;
+  raise notice 'The user_id_35 after insert is %', user_id_35;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_35)
   RETURNING id into company_user_id_35;
@@ -1068,10 +1068,10 @@ BEGIN
   VALUES('home', '9 Lorri Road', '', 'Derry', 'NH', '03038', company_id, person_id_35);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 50000.0, '2014-07-14', 'FullTime', 'Active', now(), now(), person_id_35, company_id, '', '2015-09-01');
+  VALUES('', 50000.0, '2014-07-14', 'FullTime', 'Active', now(), now(), person_id_35, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(50000.0, '07/14/2014', now(), now(), company_id, person_id_35, '', null, null);
+  VALUES(50000.0, '07/14/2014', now(), now(), company_id, person_id_35, null, null, null);
 
 END;
 
@@ -1082,15 +1082,15 @@ DECLARE
   company_user_id_36 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'AMANDAWHITE@fairviewhealthcare.com', 't', 'f', 'f', 'AMANDA', 'WHITE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'amandawhite@fairviewhealthcare.com', 't', 'f', 'f', 'Amanda', 'White', now(), now())
   RETURNING id into user_id_36;
-  raise notice 'The user_id_36 after insert is %', user_id;
+  raise notice 'The user_id_36 after insert is %', user_id_36;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_36)
   RETURNING id into company_user_id_36;
   raise notice 'The company_user_id_36 is %', company_user_id_36;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Amanda', '', 'White', '', 'self', 'ALeCc_iYPbK06GGoo2mUP8u_EzlUKLenUdcvyqbKhqaN1t2IC8VN0_3iAq0YSQ_oo-pIgf5eXau7', '1989-02-17', 'F', company_id, user_id_36, '')
+  VALUES('primary_contact', 'Amanda', '', 'White', '', 'self', 'ALeCc_hZ6_z42Spag8GoBMdd_tXO4IXvWXVZJlSGwgrbVHX8Jrg_TzdZNfbTuWsRrYCx-laL7N0U', '1989-02-17', 'F', company_id, user_id_36, '')
   RETURNING id into person_id_36;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1100,10 +1100,10 @@ BEGIN
   VALUES('home', '6033056337', person_id_36);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 22912.5, '2013-02-14', 'FullTime', 'Active', now(), now(), person_id_36, company_id, '1', '2015-09-01');
+  VALUES('', 22912.5, '2013-02-14', 'FullTime', 'Active', now(), now(), person_id_36, company_id, 1, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(null, '02/14/2013', now(), now(), company_id, person_id_36, '', 11.7500, 162.5000);
+  VALUES(null, '02/14/2013', now(), now(), company_id, person_id_36, null, 11.7500, 162.5000);
 
 END;
 
@@ -1114,9 +1114,9 @@ DECLARE
   company_user_id_37 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ALANDUPONT@fairviewhealthcare.com', 't', 'f', 'f', 'ALAN', 'DUPONT', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'alandupont@fairviewhealthcare.com', 't', 'f', 'f', 'Alan', 'Dupont', now(), now())
   RETURNING id into user_id_37;
-  raise notice 'The user_id_37 after insert is %', user_id;
+  raise notice 'The user_id_37 after insert is %', user_id_37;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_37)
   RETURNING id into company_user_id_37;
@@ -1129,10 +1129,10 @@ BEGIN
   VALUES('home', '20 Blackstone Street', '', 'Hudson', 'NH', '03051', company_id, person_id_37);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 59987.0, '2012-06-25', 'FullTime', 'Active', now(), now(), person_id_37, company_id, '', '2015-09-01');
+  VALUES('', 59987.0, '2012-06-25', 'FullTime', 'Active', now(), now(), person_id_37, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(59987.0, '06/25/2012', now(), now(), company_id, person_id_37, '', null, null);
+  VALUES(59987.0, '06/25/2012', now(), now(), company_id, person_id_37, null, null, null);
 
 END;
 
@@ -1143,15 +1143,15 @@ DECLARE
   company_user_id_38 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KETLIECAMILLE@fairviewhealthcare.com', 't', 'f', 'f', 'KETLIE', 'CAMILLE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ketliecamille@fairviewhealthcare.com', 't', 'f', 'f', 'Ketlie', 'Camille', now(), now())
   RETURNING id into user_id_38;
-  raise notice 'The user_id_38 after insert is %', user_id;
+  raise notice 'The user_id_38 after insert is %', user_id_38;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_38)
   RETURNING id into company_user_id_38;
   raise notice 'The company_user_id_38 is %', company_user_id_38;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Ketlie', '', 'Camille', '', 'self', 'ALeCc_iiCng2XxDz7KK9TlPiMdBM7ZHQuEewwyraSo8nyOL4zkxqYccD69oXRF4gzseQkht-dV30', '1958-07-21', 'F', company_id, user_id_38, '')
+  VALUES('primary_contact', 'Ketlie', '', 'Camille', '', 'self', 'ALeCc_gW3VNTpczRDEAEVqTHvF70JrcnHQhckQ2HYESOWdfRHQfuSQ-A--kLPB1eYlP2hwBOiMQs', '1958-07-21', 'F', company_id, user_id_38, '')
   RETURNING id into person_id_38;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1161,10 +1161,10 @@ BEGIN
   VALUES('home', '8572880821', person_id_38);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 37498.5, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_38, company_id, '', '2015-09-01');
+  VALUES('', 37498.5, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_38, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(37498.5, '09/01/2008', now(), now(), company_id, person_id_38, '', null, null);
+  VALUES(37498.5, '09/01/2008', now(), now(), company_id, person_id_38, null, null, null);
 
 END;
 
@@ -1175,15 +1175,15 @@ DECLARE
   company_user_id_39 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'THERESABERRY@fairviewhealthcare.com', 't', 'f', 'f', 'THERESA', 'BERRY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'theresaberry@fairviewhealthcare.com', 't', 'f', 'f', 'Theresa', 'Berry', now(), now())
   RETURNING id into user_id_39;
-  raise notice 'The user_id_39 after insert is %', user_id;
+  raise notice 'The user_id_39 after insert is %', user_id_39;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_39)
   RETURNING id into company_user_id_39;
   raise notice 'The company_user_id_39 is %', company_user_id_39;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Theresa', 'A', 'Berry', '', 'self', 'ALeCc_gbA7yyHhP-1H3RQwl-VsJWCt-2PlRly9lmkrZjwLKttKg_rh3awnS9pyNJGLwzAl9BE11T', '1960-08-01', 'F', company_id, user_id_39, '')
+  VALUES('primary_contact', 'Theresa', 'A', 'Berry', '', 'self', 'ALeCc_hm4G4YcHLQ_-ots6qblS5S7LHGakmp7fy0_fzuYy1lT7eAiJzQQYWpLgnZjXDtE_26oZGt', '1960-08-01', 'F', company_id, user_id_39, '')
   RETURNING id into person_id_39;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1193,10 +1193,10 @@ BEGIN
   VALUES('home', '4135489068', person_id_39);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 90000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_39, company_id, '', '2015-09-01');
+  VALUES('', 90000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_39, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(90000.0, '09/01/2008', now(), now(), company_id, person_id_39, '', null, null);
+  VALUES(90000.0, '09/01/2008', now(), now(), company_id, person_id_39, null, null, null);
 
 END;
 
@@ -1207,15 +1207,15 @@ DECLARE
   company_user_id_40 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'RHONDABOUDREAU@fairviewhealthcare.com', 't', 'f', 'f', 'RHONDA', 'BOUDREAU', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'rhondaboudreau@fairviewhealthcare.com', 't', 'f', 'f', 'Rhonda', 'Boudreau', now(), now())
   RETURNING id into user_id_40;
-  raise notice 'The user_id_40 after insert is %', user_id;
+  raise notice 'The user_id_40 after insert is %', user_id_40;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_40)
   RETURNING id into company_user_id_40;
   raise notice 'The company_user_id_40 is %', company_user_id_40;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Rhonda', '', 'Boudreau', '', 'self', 'ALeCc_hmZXlNFB30ONovuOkbnfVKredyCOxpYUXxifd7WhrO6lYb3cD4hCHDUZZJTT-NAJcyxkNS', '1969-02-26', 'F', company_id, user_id_40, '')
+  VALUES('primary_contact', 'Rhonda', '', 'Boudreau', '', 'self', 'ALeCc_gFuxIWp1Kh8uoPG8vn11cWvK_KHp91WuiLe93sXwCwiSkDURdsaXw9zlfCVBfzC07-29iP', '1969-02-26', 'F', company_id, user_id_40, '')
   RETURNING id into person_id_40;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1225,10 +1225,10 @@ BEGIN
   VALUES('home', '6035664318', person_id_40);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 62000.0, '2014-07-15', 'FullTime', 'Active', now(), now(), person_id_40, company_id, '', '2015-09-01');
+  VALUES('', 62000.0, '2014-07-15', 'FullTime', 'Active', now(), now(), person_id_40, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(62000.0, '07/15/2014', now(), now(), company_id, person_id_40, '', null, null);
+  VALUES(62000.0, '07/15/2014', now(), now(), company_id, person_id_40, null, null, null);
 
 END;
 
@@ -1239,15 +1239,15 @@ DECLARE
   company_user_id_41 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DAWNTURCOTTE@fairviewhealthcare.com', 't', 'f', 'f', 'DAWN', 'TURCOTTE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dawnturcotte@fairviewhealthcare.com', 't', 'f', 'f', 'Dawn', 'Turcotte', now(), now())
   RETURNING id into user_id_41;
-  raise notice 'The user_id_41 after insert is %', user_id;
+  raise notice 'The user_id_41 after insert is %', user_id_41;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_41)
   RETURNING id into company_user_id_41;
   raise notice 'The company_user_id_41 is %', company_user_id_41;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Dawn', 'G', 'Turcotte', '', 'self', 'ALeCc_gg9EI-8k_ah07t1MOYDo6RcnH64nWO2od3JLg0BfK0pYxrEEuQX6fCiENaCTH97crUynk2', '1964-08-15', 'F', company_id, user_id_41, '')
+  VALUES('primary_contact', 'Dawn', 'G', 'Turcotte', '', 'self', 'ALeCc_grDM5S8DfOiax33k58DnVS35Z87VxMh_XgfhQ_aDvqPMRxSmCSrXpqs-N8BPWo4DtccaHg', '1964-08-15', 'F', company_id, user_id_41, '')
   RETURNING id into person_id_41;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1257,10 +1257,10 @@ BEGIN
   VALUES('home', '6033960668', person_id_41);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 20962.5, '2012-06-05', 'FullTime', 'Active', now(), now(), person_id_41, company_id, '1', '2015-09-01');
+  VALUES('', 20962.5, '2012-06-05', 'FullTime', 'Active', now(), now(), person_id_41, company_id, 1, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(null, '06/05/2012', now(), now(), company_id, person_id_41, '', 10.7500, 162.5000);
+  VALUES(null, '06/05/2012', now(), now(), company_id, person_id_41, null, 10.7500, 162.5000);
 
 END;
 
@@ -1271,9 +1271,9 @@ DECLARE
   company_user_id_42 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DEBRAMELVILLE@fairviewhealthcare.com', 't', 'f', 'f', 'DEBRA', 'MELVILLE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'debramelville@fairviewhealthcare.com', 't', 'f', 'f', 'Debra', 'Melville', now(), now())
   RETURNING id into user_id_42;
-  raise notice 'The user_id_42 after insert is %', user_id;
+  raise notice 'The user_id_42 after insert is %', user_id_42;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_42)
   RETURNING id into company_user_id_42;
@@ -1286,10 +1286,10 @@ BEGIN
   VALUES('home', '150 Wason Road', '', 'Hudson', 'NH', '03051', company_id, person_id_42);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 56285.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_42, company_id, '', '2015-09-01');
+  VALUES('', 56285.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_42, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(56285.0, '09/01/2008', now(), now(), company_id, person_id_42, '', null, null);
+  VALUES(56285.0, '09/01/2008', now(), now(), company_id, person_id_42, null, null, null);
 
 END;
 
@@ -1300,15 +1300,15 @@ DECLARE
   company_user_id_43 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DWAYNEBERNARD@fairviewhealthcare.com', 't', 'f', 'f', 'DWAYNE', 'BERNARD', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dwaynebernard@fairviewhealthcare.com', 't', 'f', 'f', 'Dwayne', 'Bernard', now(), now())
   RETURNING id into user_id_43;
-  raise notice 'The user_id_43 after insert is %', user_id;
+  raise notice 'The user_id_43 after insert is %', user_id_43;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_43)
   RETURNING id into company_user_id_43;
   raise notice 'The company_user_id_43 is %', company_user_id_43;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Dwayne', 'M', 'Bernard', '', 'self', 'ALeCc_hsz_sQ5bQIiWaFz6eHgSzbNMz27e21uCSjzvYiMM4X_KHSLtAZ08DRlMm0b34pPagRppMU', '1959-01-08', 'M', company_id, user_id_43, '')
+  VALUES('primary_contact', 'Dwayne', 'M', 'Bernard', '', 'self', 'ALeCc_jJA2BzzBomMK1DxK5-MtuzeTv6GIZHmpcVjsEMkiTmRBbwgRAtG8A-eRv2popJ-eDCCV9H', '1959-01-08', 'M', company_id, user_id_43, '')
   RETURNING id into person_id_43;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1318,10 +1318,10 @@ BEGIN
   VALUES('home', '6039358680', person_id_43);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 32000.0, '2014-09-26', 'FullTime', 'Active', now(), now(), person_id_43, company_id, '', '2015-09-01');
+  VALUES('', 32000.0, '2014-09-26', 'FullTime', 'Active', now(), now(), person_id_43, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(32000.0, '09/26/2014', now(), now(), company_id, person_id_43, '', null, null);
+  VALUES(32000.0, '09/26/2014', now(), now(), company_id, person_id_43, null, null, null);
 
 END;
 
@@ -1332,15 +1332,15 @@ DECLARE
   company_user_id_44 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DAVIDDILLAVOU@fairviewhealthcare.com', 't', 'f', 'f', 'DAVID', 'DILLAVOU', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'daviddillavou@fairviewhealthcare.com', 't', 'f', 'f', 'David', 'Dillavou', now(), now())
   RETURNING id into user_id_44;
-  raise notice 'The user_id_44 after insert is %', user_id;
+  raise notice 'The user_id_44 after insert is %', user_id_44;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_44)
   RETURNING id into company_user_id_44;
   raise notice 'The company_user_id_44 is %', company_user_id_44;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'David', 'A', 'Dillavou', '', 'self', 'ALeCc_hUlm08khWI8mxRJuwtEK4PZblRS7byo9EjTwT-Y5753HQgDBO35EQwOp8ktr8JnHBY62lj', '1986-03-23', 'M', company_id, user_id_44, '')
+  VALUES('primary_contact', 'David', 'A', 'Dillavou', '', 'self', 'ALeCc_gFobGiNQ8-5NBBdqbNXzNAdGWE1TB3G0xASHpbxlbOCfQqdgRAGwsB1V0Y0PhTd05shVs5', '1986-03-23', 'M', company_id, user_id_44, '')
   RETURNING id into person_id_44;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1350,10 +1350,10 @@ BEGIN
   VALUES('home', '6033655496', person_id_44);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 20000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_44, company_id, '', '2015-09-01');
+  VALUES('', 20000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_44, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(20000.0, '09/01/2008', now(), now(), company_id, person_id_44, '', null, null);
+  VALUES(20000.0, '09/01/2008', now(), now(), company_id, person_id_44, null, null, null);
 
 END;
 
@@ -1364,15 +1364,15 @@ DECLARE
   company_user_id_45 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'SYLVIECOTNOIR@fairviewhealthcare.com', 't', 'f', 'f', 'SYLVIE', 'COTNOIR', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'sylviecotnoir@fairviewhealthcare.com', 't', 'f', 'f', 'Sylvie', 'Cotnoir', now(), now())
   RETURNING id into user_id_45;
-  raise notice 'The user_id_45 after insert is %', user_id;
+  raise notice 'The user_id_45 after insert is %', user_id_45;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_45)
   RETURNING id into company_user_id_45;
   raise notice 'The company_user_id_45 is %', company_user_id_45;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Sylvie', '', 'Cotnoir', '', 'self', 'ALeCc_g-BS5nvGXRnsOjrqtEAZ6fcVE44PPS8OFbshbAJB04J9YEt2n2wuvHGwfrLLQVNdzzywy6', '1961-01-01', 'F', company_id, user_id_45, '')
+  VALUES('primary_contact', 'Sylvie', '', 'Cotnoir', '', 'self', 'ALeCc_gsuCD0jqUEEOcBbWX3lERhBEIZ6c6iFOWp60ZAWSOw2Y42wBN0o3IpeQymDfNPnMImB11F', '1961-01-01', 'F', company_id, user_id_45, '')
   RETURNING id into person_id_45;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1382,10 +1382,10 @@ BEGIN
   VALUES('home', '6035789081', person_id_45);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 62504.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_45, company_id, '', '2015-09-01');
+  VALUES('', 62504.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_45, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(62504.0, '09/01/2008', now(), now(), company_id, person_id_45, '', null, null);
+  VALUES(62504.0, '09/01/2008', now(), now(), company_id, person_id_45, null, null, null);
 
 END;
 
@@ -1396,9 +1396,9 @@ DECLARE
   company_user_id_46 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MARTINAHILL@fairviewhealthcare.com', 't', 'f', 'f', 'MARTINA', 'HILL', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'martinahill@fairviewhealthcare.com', 't', 'f', 'f', 'Martina', 'Hill', now(), now())
   RETURNING id into user_id_46;
-  raise notice 'The user_id_46 after insert is %', user_id;
+  raise notice 'The user_id_46 after insert is %', user_id_46;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_46)
   RETURNING id into company_user_id_46;
@@ -1408,10 +1408,10 @@ BEGIN
   RETURNING id into person_id_46;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 23400.0, '2014-12-09', 'FullTime', 'Active', now(), now(), person_id_46, company_id, '', '2015-09-01');
+  VALUES('', 23400.0, '2014-12-09', 'FullTime', 'Active', now(), now(), person_id_46, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(23400.0, '12/09/2014', now(), now(), company_id, person_id_46, '', null, null);
+  VALUES(23400.0, '12/09/2014', now(), now(), company_id, person_id_46, null, null, null);
 
 END;
 
@@ -1422,9 +1422,9 @@ DECLARE
   company_user_id_47 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ALYSONFORTIER@fairviewhealthcare.com', 't', 'f', 'f', 'ALYSON', 'FORTIER', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'alysonfortier@fairviewhealthcare.com', 't', 'f', 'f', 'Alyson', 'Fortier', now(), now())
   RETURNING id into user_id_47;
-  raise notice 'The user_id_47 after insert is %', user_id;
+  raise notice 'The user_id_47 after insert is %', user_id_47;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_47)
   RETURNING id into company_user_id_47;
@@ -1434,10 +1434,10 @@ BEGIN
   RETURNING id into person_id_47;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 24440.0, '2014-02-03', 'FullTime', 'Active', now(), now(), person_id_47, company_id, '', '2015-09-01');
+  VALUES('', 24440.0, '2014-02-03', 'FullTime', 'Active', now(), now(), person_id_47, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(24440.0, '02/03/2014', now(), now(), company_id, person_id_47, '', null, null);
+  VALUES(24440.0, '02/03/2014', now(), now(), company_id, person_id_47, null, null, null);
 
 END;
 
@@ -1448,9 +1448,9 @@ DECLARE
   company_user_id_48 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ALICIARINALDI@fairviewhealthcare.com', 't', 'f', 'f', 'ALICIA', 'RINALDI', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'aliciarinaldi@fairviewhealthcare.com', 't', 'f', 'f', 'Alicia', 'Rinaldi', now(), now())
   RETURNING id into user_id_48;
-  raise notice 'The user_id_48 after insert is %', user_id;
+  raise notice 'The user_id_48 after insert is %', user_id_48;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_48)
   RETURNING id into company_user_id_48;
@@ -1463,10 +1463,10 @@ BEGIN
   VALUES('home', '11 Oak Drive', '', 'Litchfield', 'NH', '03052', company_id, person_id_48);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 21060.0, '2015-06-22', 'FullTime', 'Active', now(), now(), person_id_48, company_id, '', '2015-09-01');
+  VALUES('', 21060.0, '2015-06-22', 'FullTime', 'Active', now(), now(), person_id_48, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(21060.0, '06/22/2015', now(), now(), company_id, person_id_48, '', null, null);
+  VALUES(21060.0, '06/22/2015', now(), now(), company_id, person_id_48, null, null, null);
 
 END;
 
@@ -1477,15 +1477,15 @@ DECLARE
   company_user_id_49 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'TIFFANYBROWN@fairviewhealthcare.com', 't', 'f', 'f', 'TIFFANY', 'BROWN', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'tiffanybrown@fairviewhealthcare.com', 't', 'f', 'f', 'Tiffany', 'Brown', now(), now())
   RETURNING id into user_id_49;
-  raise notice 'The user_id_49 after insert is %', user_id;
+  raise notice 'The user_id_49 after insert is %', user_id_49;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_49)
   RETURNING id into company_user_id_49;
   raise notice 'The company_user_id_49 is %', company_user_id_49;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Tiffany', '', 'Brown', '', 'self', 'ALeCc_jR0rM75wCWHCq9NVjkG5vBZFVsiYySQqp54gfznpFUsU9BGlRrLe7UaRtXi866omGUaFKi', '1972-09-09', 'F', company_id, user_id_49, '')
+  VALUES('primary_contact', 'Tiffany', '', 'Brown', '', 'self', 'ALeCc_ho7EpOK3ijlDW4v5bzhw_vQGKWXSp_K0hddczzT7WUXsuzl2UD6Q3iwiSPLHq92J8-K_BS', '1972-09-09', 'F', company_id, user_id_49, '')
   RETURNING id into person_id_49;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1495,10 +1495,10 @@ BEGIN
   VALUES('home', '6035833890', person_id_49);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 67600.0, '2015-09-20', 'FullTime', 'Active', now(), now(), person_id_49, company_id, '', '2015-09-20');
+  VALUES('', 67600.0, '2015-09-20', 'FullTime', 'Active', now(), now(), person_id_49, company_id, null, '2015-09-20');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(67600.0, '09/20/2015', now(), now(), company_id, person_id_49, '', null, null);
+  VALUES(67600.0, '09/20/2015', now(), now(), company_id, person_id_49, null, null, null);
 
 END;
 
@@ -1509,15 +1509,15 @@ DECLARE
   company_user_id_50 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DONGPHUONGNGUYEN@fairviewhealthcare.com', 't', 'f', 'f', 'DONGPHUONG', 'NGUYEN', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dongphuongnguyen@fairviewhealthcare.com', 't', 'f', 'f', 'Dongphuong', 'Nguyen', now(), now())
   RETURNING id into user_id_50;
-  raise notice 'The user_id_50 after insert is %', user_id;
+  raise notice 'The user_id_50 after insert is %', user_id_50;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_50)
   RETURNING id into company_user_id_50;
   raise notice 'The company_user_id_50 is %', company_user_id_50;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Dongphuong', '', 'Nguyen', '', 'self', 'ALeCc_jwgkGgpLU_2s5OaFO7cqwGRfMebIhTu8Wz1-8GMmOsqAguauYNGcYtsYL5_TJJaDvZ11bp', '1982-08-14', 'F', company_id, user_id_50, '')
+  VALUES('primary_contact', 'Dongphuong', '', 'Nguyen', '', 'self', 'ALeCc_j6g0bm-D5TDvVTemdRI3VU6ozNa3RhKmRwMxwnTKMQ8Mgh2wTRdMB-EFitbigkZglN6lC3', '1982-08-14', 'F', company_id, user_id_50, '')
   RETURNING id into person_id_50;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1527,10 +1527,10 @@ BEGIN
   VALUES('home', '6038914955', person_id_50);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 45760.0, '2012-09-01', 'FullTime', 'Active', now(), now(), person_id_50, company_id, '', '2015-09-01');
+  VALUES('', 45760.0, '2012-09-01', 'FullTime', 'Active', now(), now(), person_id_50, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(45760.0, '09/01/2012', now(), now(), company_id, person_id_50, '', null, null);
+  VALUES(45760.0, '09/01/2012', now(), now(), company_id, person_id_50, null, null, null);
 
 END;
 
@@ -1541,15 +1541,15 @@ DECLARE
   company_user_id_51 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ROSELYNNBENARD@fairviewhealthcare.com', 't', 'f', 'f', 'ROSELYNN', 'BENARD', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'roselynnbenard@fairviewhealthcare.com', 't', 'f', 'f', 'Roselynn', 'Benard', now(), now())
   RETURNING id into user_id_51;
-  raise notice 'The user_id_51 after insert is %', user_id;
+  raise notice 'The user_id_51 after insert is %', user_id_51;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_51)
   RETURNING id into company_user_id_51;
   raise notice 'The company_user_id_51 is %', company_user_id_51;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Roselynn', '', 'Benard', '', 'self', 'ALeCc_gVL3XA0OL9eWbdZ0Jwii6Fc-uUE08zMmUvb-u0BGuUtsdW3GWTrCdf4blru65cpP9dHco2', '1972-02-11', 'F', company_id, user_id_51, '')
+  VALUES('primary_contact', 'Roselynn', '', 'Benard', '', 'self', 'ALeCc_j-h1yZMm7dmb8bv1AOvSOlIjAGjdJU0waFUs3LkzgL3AzGdHQP_Qeq3ncRmXPGcOAxH6Eo', '1972-02-11', 'F', company_id, user_id_51, '')
   RETURNING id into person_id_51;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1559,10 +1559,10 @@ BEGIN
   VALUES('home', '6032752152', person_id_51);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 32000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_51, company_id, '', '2015-09-01');
+  VALUES('', 32000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_51, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(32000.0, '09/01/2008', now(), now(), company_id, person_id_51, '', null, null);
+  VALUES(32000.0, '09/01/2008', now(), now(), company_id, person_id_51, null, null, null);
 
 END;
 
@@ -1573,15 +1573,15 @@ DECLARE
   company_user_id_52 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'IRENEGILLEN@fairviewhealthcare.com', 't', 'f', 'f', 'IRENE', 'GILLEN', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'irenegillen@fairviewhealthcare.com', 't', 'f', 'f', 'Irene', 'Gillen', now(), now())
   RETURNING id into user_id_52;
-  raise notice 'The user_id_52 after insert is %', user_id;
+  raise notice 'The user_id_52 after insert is %', user_id_52;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_52)
   RETURNING id into company_user_id_52;
   raise notice 'The company_user_id_52 is %', company_user_id_52;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Irene', 'N', 'Gillen', '', 'self', 'ALeCc_hIfUr10KnfqrW4FAJtcEc72Sala5P6Huv5fJ37XPlw59jJ21itelpI4-kgFE9LX1-AtCZ6', '1964-12-29', 'F', company_id, user_id_52, '')
+  VALUES('primary_contact', 'Irene', 'N', 'Gillen', '', 'self', 'ALeCc_haEfABH5XNpexjBwf9fJJ5dn3TD33uXEVIlwRcmiyc9HqjnTItlED_14Kg9SLT51JiMYqq', '1964-12-29', 'F', company_id, user_id_52, '')
   RETURNING id into person_id_52;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1591,10 +1591,10 @@ BEGIN
   VALUES('home', '6034212969', person_id_52);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 54080.0, '2015-08-25', 'FullTime', 'Active', now(), now(), person_id_52, company_id, '1', '2015-10-01');
+  VALUES('', 54080.0, '2015-08-25', 'FullTime', 'Active', now(), now(), person_id_52, company_id, 1, '2015-10-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(null, '08/25/2015', now(), now(), company_id, person_id_52, '', 26.0000, 173.3333);
+  VALUES(null, '08/25/2015', now(), now(), company_id, person_id_52, null, 26.0000, 173.3333);
 
 END;
 
@@ -1605,15 +1605,15 @@ DECLARE
   company_user_id_53 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'RICHARDLEBOEUF@fairviewhealthcare.com', 't', 'f', 'f', 'RICHARD', 'LEBOEUF', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'richardleboeuf@fairviewhealthcare.com', 't', 'f', 'f', 'Richard', 'Leboeuf', now(), now())
   RETURNING id into user_id_53;
-  raise notice 'The user_id_53 after insert is %', user_id;
+  raise notice 'The user_id_53 after insert is %', user_id_53;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_53)
   RETURNING id into company_user_id_53;
   raise notice 'The company_user_id_53 is %', company_user_id_53;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Richard', 'M', 'Leboeuf', '', 'self', 'ALeCc_juQIYTFPPu_s_jo7bY3ear1ANySHzzIiT3TkJfG4WdooMWv2skLl3xS5yTJ0JnQhiA-LcQ', '1967-01-14', 'M', company_id, user_id_53, '')
+  VALUES('primary_contact', 'Richard', 'M', 'Leboeuf', '', 'self', 'ALeCc_h0tChEMxCvxPBxRXjPpSnCTZgg7JrjrP3hNWK-IZhHmWHUtX-IT2hPzelV4xzOltWVb60W', '1967-01-14', 'M', company_id, user_id_53, '')
   RETURNING id into person_id_53;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1623,10 +1623,10 @@ BEGIN
   VALUES('home', '9789753728', person_id_53);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 137966.4, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_53, company_id, '', '2015-09-01');
+  VALUES('', 137966.4, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_53, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(137966.4, '09/01/2008', now(), now(), company_id, person_id_53, '', null, null);
+  VALUES(137966.4, '09/01/2008', now(), now(), company_id, person_id_53, null, null, null);
 
 END;
 
@@ -1637,15 +1637,15 @@ DECLARE
   company_user_id_54 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KATHERINECONWAY@fairviewhealthcare.com', 't', 'f', 'f', 'KATHERINE', 'CONWAY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'katherineconway@fairviewhealthcare.com', 't', 'f', 'f', 'Katherine', 'Conway', now(), now())
   RETURNING id into user_id_54;
-  raise notice 'The user_id_54 after insert is %', user_id;
+  raise notice 'The user_id_54 after insert is %', user_id_54;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_54)
   RETURNING id into company_user_id_54;
   raise notice 'The company_user_id_54 is %', company_user_id_54;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Katherine', '', 'Conway', '', 'self', 'ALeCc_jsYaogs6JRF8FbgN353js9KWPUtRVVWZXBVsFbV1T7Fx9FcVk28Dlr_w-LVdN-AEArMdRI', '1992-06-19', 'F', company_id, user_id_54, '')
+  VALUES('primary_contact', 'Katherine', '', 'Conway', '', 'self', 'ALeCc_heOlEr-Y7CnhwVp-M731XGjVJqGQQx9pvN-wW3hIjmLvyHdu5dBIc4YXkwMqwJri0CJ1tD', '1992-06-19', 'F', company_id, user_id_54, '')
   RETURNING id into person_id_54;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1655,10 +1655,10 @@ BEGIN
   VALUES('home', '9786493479', person_id_54);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 20800.0, '2015-04-01', 'FullTime', 'Active', now(), now(), person_id_54, company_id, '', '2015-09-01');
+  VALUES('', 20800.0, '2015-04-01', 'FullTime', 'Active', now(), now(), person_id_54, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(20800.0, '04/01/2015', now(), now(), company_id, person_id_54, '', null, null);
+  VALUES(20800.0, '04/01/2015', now(), now(), company_id, person_id_54, null, null, null);
 
 END;
 
@@ -1669,9 +1669,9 @@ DECLARE
   company_user_id_55 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ROBERTMACKAY@fairviewhealthcare.com', 't', 'f', 'f', 'ROBERT', 'MACKAY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'robertmackay@fairviewhealthcare.com', 't', 'f', 'f', 'Robert', 'Mackay', now(), now())
   RETURNING id into user_id_55;
-  raise notice 'The user_id_55 after insert is %', user_id;
+  raise notice 'The user_id_55 after insert is %', user_id_55;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_55)
   RETURNING id into company_user_id_55;
@@ -1684,10 +1684,10 @@ BEGIN
   VALUES('home', '100 London Court', '', 'Merrimack', 'NH', '03054', company_id, person_id_55);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 24960.0, '2010-12-01', 'FullTime', 'Active', now(), now(), person_id_55, company_id, '', '2015-09-01');
+  VALUES('', 24960.0, '2010-12-01', 'FullTime', 'Active', now(), now(), person_id_55, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(24960.0, '12/01/2010', now(), now(), company_id, person_id_55, '', null, null);
+  VALUES(24960.0, '12/01/2010', now(), now(), company_id, person_id_55, null, null, null);
 
 END;
 
@@ -1698,9 +1698,9 @@ DECLARE
   company_user_id_56 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KYLESARGENT@fairviewhealthcare.com', 't', 'f', 'f', 'KYLE', 'SARGENT', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kylesargent@fairviewhealthcare.com', 't', 'f', 'f', 'Kyle', 'Sargent', now(), now())
   RETURNING id into user_id_56;
-  raise notice 'The user_id_56 after insert is %', user_id;
+  raise notice 'The user_id_56 after insert is %', user_id_56;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_56)
   RETURNING id into company_user_id_56;
@@ -1713,10 +1713,10 @@ BEGIN
   VALUES('home', '7 Cassandra Lane', '', 'Nashua', 'NH', '03064', company_id, person_id_56);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 17680.0, '2012-08-14', 'FullTime', 'Active', now(), now(), person_id_56, company_id, '', '2015-09-01');
+  VALUES('', 17680.0, '2012-08-14', 'FullTime', 'Active', now(), now(), person_id_56, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(17680.0, '08/14/2012', now(), now(), company_id, person_id_56, '', null, null);
+  VALUES(17680.0, '08/14/2012', now(), now(), company_id, person_id_56, null, null, null);
 
 END;
 
@@ -1727,15 +1727,15 @@ DECLARE
   company_user_id_57 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'JESSICAMORRELL@fairviewhealthcare.com', 't', 'f', 'f', 'JESSICA', 'MORRELL', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jessicamorrell@fairviewhealthcare.com', 't', 'f', 'f', 'Jessica', 'Morrell', now(), now())
   RETURNING id into user_id_57;
-  raise notice 'The user_id_57 after insert is %', user_id;
+  raise notice 'The user_id_57 after insert is %', user_id_57;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_57)
   RETURNING id into company_user_id_57;
   raise notice 'The company_user_id_57 is %', company_user_id_57;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Jessica', '', 'Morrell', '', 'self', 'ALeCc_gF12m38r6pLFOzdu-oOp4mmjqPpUN6d1voKRLXxoYtNBK6pUQLrI2s6WmBtAGm-qf-hHK_', '1987-01-02', 'F', company_id, user_id_57, '')
+  VALUES('primary_contact', 'Jessica', '', 'Morrell', '', 'self', 'ALeCc_h3VdwsN0a-04Tb2rxyAZiDf_82UZtuRaiMjI56YYSsyKV7W89Ez1Fl4LyQgL5m1YemNLhP', '1987-01-02', 'F', company_id, user_id_57, '')
   RETURNING id into person_id_57;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1745,10 +1745,10 @@ BEGIN
   VALUES('home', '6035664318', person_id_57);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 41860.0, '2014-06-12', 'FullTime', 'Active', now(), now(), person_id_57, company_id, '', '2015-09-01');
+  VALUES('', 41860.0, '2014-06-12', 'FullTime', 'Active', now(), now(), person_id_57, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(41860.0, '06/12/2014', now(), now(), company_id, person_id_57, '', null, null);
+  VALUES(41860.0, '06/12/2014', now(), now(), company_id, person_id_57, null, null, null);
 
 END;
 
@@ -1759,15 +1759,15 @@ DECLARE
   company_user_id_58 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'EMILYTEAGUE@fairviewhealthcare.com', 't', 'f', 'f', 'EMILY', 'TEAGUE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'emilyteague@fairviewhealthcare.com', 't', 'f', 'f', 'Emily', 'Teague', now(), now())
   RETURNING id into user_id_58;
-  raise notice 'The user_id_58 after insert is %', user_id;
+  raise notice 'The user_id_58 after insert is %', user_id_58;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_58)
   RETURNING id into company_user_id_58;
   raise notice 'The company_user_id_58 is %', company_user_id_58;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Emily', '', 'Teague', '', 'self', 'ALeCc_gXwqQwZPL-P8Pmr-CRhIXUIYJbygvm6iy3wnCXGrje5OYkdS0NXFd9u7Gvoux-XzwcLctM', '1987-10-01', 'F', company_id, user_id_58, '')
+  VALUES('primary_contact', 'Emily', '', 'Teague', '', 'self', 'ALeCc_icD2iJs3JkTgrgy6gALpKEZ2mqVPQLB9A_vq1jl85iQAzrAxQZ2A24rStUZMOBKt9m28zs', '1987-10-01', 'F', company_id, user_id_58, '')
   RETURNING id into person_id_58;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1777,10 +1777,10 @@ BEGIN
   VALUES('home', '6033150098', person_id_58);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 68000.0, '2015-05-11', 'FullTime', 'Active', now(), now(), person_id_58, company_id, '', '2015-09-01');
+  VALUES('', 68000.0, '2015-05-11', 'FullTime', 'Active', now(), now(), person_id_58, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(68000.0, '05/11/2015', now(), now(), company_id, person_id_58, '', null, null);
+  VALUES(68000.0, '05/11/2015', now(), now(), company_id, person_id_58, null, null, null);
 
 END;
 
@@ -1791,9 +1791,9 @@ DECLARE
   company_user_id_59 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'JULIABIZZARRO@fairviewhealthcare.com', 't', 'f', 'f', 'JULIA', 'BIZZARRO', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'juliabizzarro@fairviewhealthcare.com', 't', 'f', 'f', 'Julia', 'Bizzarro', now(), now())
   RETURNING id into user_id_59;
-  raise notice 'The user_id_59 after insert is %', user_id;
+  raise notice 'The user_id_59 after insert is %', user_id_59;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_59)
   RETURNING id into company_user_id_59;
@@ -1806,10 +1806,10 @@ BEGIN
   VALUES('home', '7 Cottage Ave', '', 'Nashua', 'NH', '03060', company_id, person_id_59);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 22360.0, '2014-11-02', 'FullTime', 'Active', now(), now(), person_id_59, company_id, '', '2015-09-01');
+  VALUES('', 22360.0, '2014-11-02', 'FullTime', 'Active', now(), now(), person_id_59, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(22360.0, '11/02/2014', now(), now(), company_id, person_id_59, '', null, null);
+  VALUES(22360.0, '11/02/2014', now(), now(), company_id, person_id_59, null, null, null);
 
 END;
 
@@ -1820,15 +1820,15 @@ DECLARE
   company_user_id_60 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MARKFOURNIER@fairviewhealthcare.com', 't', 'f', 'f', 'MARK', 'FOURNIER', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'markfournier@fairviewhealthcare.com', 't', 'f', 'f', 'Mark', 'Fournier', now(), now())
   RETURNING id into user_id_60;
-  raise notice 'The user_id_60 after insert is %', user_id;
+  raise notice 'The user_id_60 after insert is %', user_id_60;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_60)
   RETURNING id into company_user_id_60;
   raise notice 'The company_user_id_60 is %', company_user_id_60;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Mark', '', 'Fournier', '', 'self', 'ALeCc_gi6JKrOGuSSKyyofIyGa3KmSrAUxJ6Zh3ceFXlBlvs1WSU8gh5wTjrjfaNUVzfHIyfhDPe', '1980-11-02', 'M', company_id, user_id_60, '')
+  VALUES('primary_contact', 'Mark', '', 'Fournier', '', 'self', 'ALeCc_jGoL08lkfVx8jXJE3kS8-AeG1fJRwa-urfeH_LxFkwKXm4TqDxT7ViYJ3BeDqeFb-LVxMW', '1980-11-02', 'M', company_id, user_id_60, '')
   RETURNING id into person_id_60;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1838,10 +1838,10 @@ BEGIN
   VALUES('home', '6033211922', person_id_60);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 45760.0, '2014-08-27', 'FullTime', 'Active', now(), now(), person_id_60, company_id, '', '2015-09-01');
+  VALUES('', 45760.0, '2014-08-27', 'FullTime', 'Active', now(), now(), person_id_60, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(45760.0, '08/27/2014', now(), now(), company_id, person_id_60, '', null, null);
+  VALUES(45760.0, '08/27/2014', now(), now(), company_id, person_id_60, null, null, null);
 
 END;
 
@@ -1852,9 +1852,9 @@ DECLARE
   company_user_id_61 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DARIUSTAVALLAI@fairviewhealthcare.com', 't', 'f', 'f', 'DARIUS', 'TAVALLAI', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dariustavallai@fairviewhealthcare.com', 't', 'f', 'f', 'Darius', 'Tavallai', now(), now())
   RETURNING id into user_id_61;
-  raise notice 'The user_id_61 after insert is %', user_id;
+  raise notice 'The user_id_61 after insert is %', user_id_61;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_61)
   RETURNING id into company_user_id_61;
@@ -1867,10 +1867,10 @@ BEGIN
   VALUES('home', '19 Ichabod Dr', '', 'Merrimack', 'NH', '03054', company_id, person_id_61);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 17617.0, '2011-12-03', 'FullTime', 'Active', now(), now(), person_id_61, company_id, '', '2015-09-01');
+  VALUES('', 17617.0, '2011-12-03', 'FullTime', 'Active', now(), now(), person_id_61, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(17617.0, '12/03/2011', now(), now(), company_id, person_id_61, '', null, null);
+  VALUES(17617.0, '12/03/2011', now(), now(), company_id, person_id_61, null, null, null);
 
 END;
 
@@ -1881,15 +1881,15 @@ DECLARE
   company_user_id_62 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ASHLEYLEVISON@fairviewhealthcare.com', 't', 'f', 'f', 'ASHLEY', 'LEVISON', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ashleylevison@fairviewhealthcare.com', 't', 'f', 'f', 'Ashley', 'Levison', now(), now())
   RETURNING id into user_id_62;
-  raise notice 'The user_id_62 after insert is %', user_id;
+  raise notice 'The user_id_62 after insert is %', user_id_62;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_62)
   RETURNING id into company_user_id_62;
   raise notice 'The company_user_id_62 is %', company_user_id_62;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Ashley', '', 'Levison', '', 'self', 'ALeCc_jmKGu26YTeUMqPLzyC0f-rRNPq17jsczFgLEEwvRKvpRHMoC35cMUPAbN_YDbXwKVmytDO', '1988-05-02', 'F', company_id, user_id_62, '')
+  VALUES('primary_contact', 'Ashley', '', 'Levison', '', 'self', 'ALeCc_hV9J8sr-ZkwiD04y0bMOR31Rvq1-S-6G-UIT-wegWN0Z05HK8WRAF9grEimADekRxQ3z1N', '1988-05-02', 'F', company_id, user_id_62, '')
   RETURNING id into person_id_62;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1899,10 +1899,10 @@ BEGIN
   VALUES('home', '6035484392', person_id_62);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 27170.0, '2014-07-21', 'FullTime', 'Active', now(), now(), person_id_62, company_id, '', '2015-09-01');
+  VALUES('', 27170.0, '2014-07-21', 'FullTime', 'Active', now(), now(), person_id_62, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(27170.0, '07/21/2014', now(), now(), company_id, person_id_62, '', null, null);
+  VALUES(27170.0, '07/21/2014', now(), now(), company_id, person_id_62, null, null, null);
 
 END;
 
@@ -1913,15 +1913,15 @@ DECLARE
   company_user_id_63 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'SHANNONOHEARN@fairviewhealthcare.com', 't', 'f', 'f', 'SHANNON', 'O''HEARN', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'shannonohearn@fairviewhealthcare.com', 't', 'f', 'f', 'Shannon', 'O''Hearn', now(), now())
   RETURNING id into user_id_63;
-  raise notice 'The user_id_63 after insert is %', user_id;
+  raise notice 'The user_id_63 after insert is %', user_id_63;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_63)
   RETURNING id into company_user_id_63;
   raise notice 'The company_user_id_63 is %', company_user_id_63;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Shannon', '', 'O''Hearn', '', 'self', 'ALeCc_gqSS-ogfLQGM5sU_XbPljH_TD6iwd8_ZC5qDcxgeHFJcn8VP-kWUKUArX9l3ARCvqv8j_C', '1977-12-02', 'F', company_id, user_id_63, '')
+  VALUES('primary_contact', 'Shannon', '', 'O''Hearn', '', 'self', 'ALeCc_hRz3N7cq6hdcOrutxK-8OOH1v4FPUWtW6ERDHrjJFnNIaebn_pCr7NQWdmZaFUSjvyO2xH', '1977-12-02', 'F', company_id, user_id_63, '')
   RETURNING id into person_id_63;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1931,10 +1931,10 @@ BEGIN
   VALUES('home', '9785129683', person_id_63);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 58240.0, '2015-04-14', 'FullTime', 'Active', now(), now(), person_id_63, company_id, '', '2015-09-01');
+  VALUES('', 58240.0, '2015-04-14', 'FullTime', 'Active', now(), now(), person_id_63, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(58240.0, '04/14/2015', now(), now(), company_id, person_id_63, '', null, null);
+  VALUES(58240.0, '04/14/2015', now(), now(), company_id, person_id_63, null, null, null);
 
 END;
 
@@ -1945,15 +1945,15 @@ DECLARE
   company_user_id_64 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ARELIOUSTHOMAS@fairviewhealthcare.com', 't', 'f', 'f', 'ARELIOUS', 'THOMAS', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'areliousthomas@fairviewhealthcare.com', 't', 'f', 'f', 'Arelious', 'Thomas', now(), now())
   RETURNING id into user_id_64;
-  raise notice 'The user_id_64 after insert is %', user_id;
+  raise notice 'The user_id_64 after insert is %', user_id_64;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_64)
   RETURNING id into company_user_id_64;
   raise notice 'The company_user_id_64 is %', company_user_id_64;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Arelious', 'A', 'Thomas', '', 'self', 'ALeCc_jT93oj-beMKjy3nJWrmEmPLgqf303XZcDYvcidAft8KVRTtvN2DlL4rD2tUpNLXKvbYa2G', '1952-11-18', 'M', company_id, user_id_64, '')
+  VALUES('primary_contact', 'Arelious', 'A', 'Thomas', '', 'self', 'ALeCc_hc4zZTRXwxhz22q6V4Xq4AWcjIiQLVA1gEd6t3-JWQobraA49AtzWcCyL4Qq0b8A6obT6o', '1952-11-18', 'M', company_id, user_id_64, '')
   RETURNING id into person_id_64;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1963,10 +1963,10 @@ BEGIN
   VALUES('home', '6039435819', person_id_64);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 28662.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_64, company_id, '', '2015-09-01');
+  VALUES('', 28662.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_64, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(28662.0, '09/01/2008', now(), now(), company_id, person_id_64, '', null, null);
+  VALUES(28662.0, '09/01/2008', now(), now(), company_id, person_id_64, null, null, null);
 
 END;
 
@@ -1977,15 +1977,15 @@ DECLARE
   company_user_id_65 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ALETHEAHOCH@fairviewhealthcare.com', 't', 'f', 'f', 'ALETHEA', 'HOCH', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'aletheahoch@fairviewhealthcare.com', 't', 'f', 'f', 'Alethea', 'Hoch', now(), now())
   RETURNING id into user_id_65;
-  raise notice 'The user_id_65 after insert is %', user_id;
+  raise notice 'The user_id_65 after insert is %', user_id_65;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_65)
   RETURNING id into company_user_id_65;
   raise notice 'The company_user_id_65 is %', company_user_id_65;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Alethea', 'M', 'Hoch', '', 'self', 'ALeCc_ixauL-NNFA0mW9M_L54cd15BFhmhCzgSOQQrD-w8z8CDSjh86kCz1wkONvK0LIz2esURef', '1954-06-26', 'F', company_id, user_id_65, '')
+  VALUES('primary_contact', 'Alethea', 'M', 'Hoch', '', 'self', 'ALeCc_jewlmc-JEaHWyegO_hxiHq40jxGJ9n6KTX5aYaFnxp77gRyxVlPt9saZq2IFivs2YVcXd-', '1954-06-26', 'F', company_id, user_id_65, '')
   RETURNING id into person_id_65;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1995,10 +1995,10 @@ BEGIN
   VALUES('home', '6033203111', person_id_65);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 69222.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_65, company_id, '', '2015-09-01');
+  VALUES('', 69222.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_65, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(69222.0, '09/01/2008', now(), now(), company_id, person_id_65, '', null, null);
+  VALUES(69222.0, '09/01/2008', now(), now(), company_id, person_id_65, null, null, null);
 
 END;
 
@@ -2009,15 +2009,15 @@ DECLARE
   company_user_id_66 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ASHLEYCOLEMAN@fairviewhealthcare.com', 't', 'f', 'f', 'ASHLEY', 'COLEMAN', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ashleycoleman@fairviewhealthcare.com', 't', 'f', 'f', 'Ashley', 'Coleman', now(), now())
   RETURNING id into user_id_66;
-  raise notice 'The user_id_66 after insert is %', user_id;
+  raise notice 'The user_id_66 after insert is %', user_id_66;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_66)
   RETURNING id into company_user_id_66;
   raise notice 'The company_user_id_66 is %', company_user_id_66;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Ashley', '', 'Coleman', '', 'self', 'ALeCc_iSlQUghdeOzIESfPolXvth1QOoQHRXyFEqjPaYasP7QRc3WKL7Oq3uX3uLoT2HCC3a-hPd', '1986-09-22', 'F', company_id, user_id_66, '')
+  VALUES('primary_contact', 'Ashley', '', 'Coleman', '', 'self', 'ALeCc_iVxNuKlpipm5HRFRwPTqGQ1W9lqKs_VeUzaMaZdrHlsHx4J_0YST5hAyTNqMj12qEc6d0Z', '1986-09-22', 'F', company_id, user_id_66, '')
   RETURNING id into person_id_66;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2027,10 +2027,10 @@ BEGIN
   VALUES('home', '6034016987', person_id_66);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 47840.0, '2015-02-27', 'FullTime', 'Active', now(), now(), person_id_66, company_id, '', '2015-09-01');
+  VALUES('', 47840.0, '2015-02-27', 'FullTime', 'Active', now(), now(), person_id_66, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(47840.0, '02/27/2015', now(), now(), company_id, person_id_66, '', null, null);
+  VALUES(47840.0, '02/27/2015', now(), now(), company_id, person_id_66, null, null, null);
 
 END;
 
@@ -2041,9 +2041,9 @@ DECLARE
   company_user_id_67 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MELANIEPERRY@fairviewhealthcare.com', 't', 'f', 'f', 'MELANIE', 'PERRY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'melanieperry@fairviewhealthcare.com', 't', 'f', 'f', 'Melanie', 'Perry', now(), now())
   RETURNING id into user_id_67;
-  raise notice 'The user_id_67 after insert is %', user_id;
+  raise notice 'The user_id_67 after insert is %', user_id_67;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_67)
   RETURNING id into company_user_id_67;
@@ -2053,10 +2053,10 @@ BEGIN
   RETURNING id into person_id_67;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 68000.0, '2014-07-14', 'FullTime', 'Active', now(), now(), person_id_67, company_id, '', '2015-09-01');
+  VALUES('', 68000.0, '2014-07-14', 'FullTime', 'Active', now(), now(), person_id_67, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(68000.0, '07/14/2014', now(), now(), company_id, person_id_67, '', null, null);
+  VALUES(68000.0, '07/14/2014', now(), now(), company_id, person_id_67, null, null, null);
 
 END;
 
@@ -2067,9 +2067,9 @@ DECLARE
   company_user_id_68 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MELISSARUST@fairviewhealthcare.com', 't', 'f', 'f', 'MELISSA', 'RUST', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'melissarust@fairviewhealthcare.com', 't', 'f', 'f', 'Melissa', 'Rust', now(), now())
   RETURNING id into user_id_68;
-  raise notice 'The user_id_68 after insert is %', user_id;
+  raise notice 'The user_id_68 after insert is %', user_id_68;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_68)
   RETURNING id into company_user_id_68;
@@ -2082,10 +2082,10 @@ BEGIN
   VALUES('home', '85 Clark Rd', '', 'Shirley', 'MA', '01464', company_id, person_id_68);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 41800.0, '2014-07-14', 'FullTime', 'Active', now(), now(), person_id_68, company_id, '', '2015-09-01');
+  VALUES('', 41800.0, '2014-07-14', 'FullTime', 'Active', now(), now(), person_id_68, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(41800.0, '07/14/2014', now(), now(), company_id, person_id_68, '', null, null);
+  VALUES(41800.0, '07/14/2014', now(), now(), company_id, person_id_68, null, null, null);
 
 END;
 
@@ -2096,9 +2096,9 @@ DECLARE
   company_user_id_69 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DONALDRANKINS@fairviewhealthcare.com', 't', 'f', 'f', 'DONALD', 'RANKINS', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'donaldrankins@fairviewhealthcare.com', 't', 'f', 'f', 'Donald', 'Rankins', now(), now())
   RETURNING id into user_id_69;
-  raise notice 'The user_id_69 after insert is %', user_id;
+  raise notice 'The user_id_69 after insert is %', user_id_69;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_69)
   RETURNING id into company_user_id_69;
@@ -2111,10 +2111,10 @@ BEGIN
   VALUES('home', '58 North Short St', '', 'Andover', 'NH', '03216', company_id, person_id_69);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 56992.0, '2011-04-04', 'FullTime', 'Active', now(), now(), person_id_69, company_id, '', '2015-09-01');
+  VALUES('', 56992.0, '2011-04-04', 'FullTime', 'Active', now(), now(), person_id_69, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(56992.0, '04/04/2011', now(), now(), company_id, person_id_69, '', null, null);
+  VALUES(56992.0, '04/04/2011', now(), now(), company_id, person_id_69, null, null, null);
 
 END;
 
@@ -2125,15 +2125,15 @@ DECLARE
   company_user_id_70 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'TODDGROGG@fairviewhealthcare.com', 't', 'f', 'f', 'TODD', 'GROGG', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'toddgrogg@fairviewhealthcare.com', 't', 'f', 'f', 'Todd', 'Grogg', now(), now())
   RETURNING id into user_id_70;
-  raise notice 'The user_id_70 after insert is %', user_id;
+  raise notice 'The user_id_70 after insert is %', user_id_70;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_70)
   RETURNING id into company_user_id_70;
   raise notice 'The company_user_id_70 is %', company_user_id_70;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Todd', 'J', 'Grogg', '', 'self', 'ALeCc_gNvZ_ddn6Fyycyi_6vr-Akk9Z3bAQ8hzZJugQy-9K3N6K0M1ej3MP4KMHlxC1KNEoCvaTt', '1966-05-06', 'M', company_id, user_id_70, '')
+  VALUES('primary_contact', 'Todd', 'J', 'Grogg', '', 'self', 'ALeCc_hRc-xcbfi-Go9bHC9Ekm6f6agqnPt-WRHjtUGO8Vi473JfGWIJMoCTgQmpXIfWa1AeC_BW', '1966-05-06', 'M', company_id, user_id_70, '')
   RETURNING id into person_id_70;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2143,10 +2143,10 @@ BEGIN
   VALUES('home', '6039137939', person_id_70);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 24668.8, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_70, company_id, '', '2015-09-01');
+  VALUES('', 24668.8, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_70, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(24668.8, '09/01/2008', now(), now(), company_id, person_id_70, '', null, null);
+  VALUES(24668.8, '09/01/2008', now(), now(), company_id, person_id_70, null, null, null);
 
 END;
 
@@ -2157,9 +2157,9 @@ DECLARE
   company_user_id_71 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'JENNYXAYACHACK@fairviewhealthcare.com', 't', 'f', 'f', 'JENNY', 'XAYACHACK', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jennyxayachack@fairviewhealthcare.com', 't', 'f', 'f', 'Jenny', 'Xayachack', now(), now())
   RETURNING id into user_id_71;
-  raise notice 'The user_id_71 after insert is %', user_id;
+  raise notice 'The user_id_71 after insert is %', user_id_71;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_71)
   RETURNING id into company_user_id_71;
@@ -2169,10 +2169,10 @@ BEGIN
   RETURNING id into person_id_71;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 48214.4, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_71, company_id, '1', '2015-09-01');
+  VALUES('', 48214.4, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_71, company_id, 1, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(null, '09/01/2008', now(), now(), company_id, person_id_71, '', 23.1800, 173.3333);
+  VALUES(null, '09/01/2008', now(), now(), company_id, person_id_71, null, 23.1800, 173.3333);
 
 END;
 
@@ -2183,15 +2183,15 @@ DECLARE
   company_user_id_72 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CINDYBOUCHER@fairviewhealthcare.com', 't', 'f', 'f', 'CINDY', 'BOUCHER', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'cindyboucher@fairviewhealthcare.com', 't', 'f', 'f', 'Cindy', 'Boucher', now(), now())
   RETURNING id into user_id_72;
-  raise notice 'The user_id_72 after insert is %', user_id;
+  raise notice 'The user_id_72 after insert is %', user_id_72;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_72)
   RETURNING id into company_user_id_72;
   raise notice 'The company_user_id_72 is %', company_user_id_72;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Cindy', 'A', 'Boucher', '', 'self', 'ALeCc_hl_V-GVVjIKOj5ZnH-xu4yWv4a0VuAaJfVF8yNGRKW_yyLD0gpUFREnuKH-j8JtZfR78xl', '1957-02-15', 'F', company_id, user_id_72, '')
+  VALUES('primary_contact', 'Cindy', 'A', 'Boucher', '', 'self', 'ALeCc_hn5CavLkp51bR6wTEEjsjQ9wIWLQPOqwF1AhYmlhHB0fzeP1y1stP3ggDAvhesMRK1JwLR', '1957-02-15', 'F', company_id, user_id_72, '')
   RETURNING id into person_id_72;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2201,10 +2201,10 @@ BEGIN
   VALUES('home', '6038648134', person_id_72);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 25313.6, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_72, company_id, '', '2015-09-01');
+  VALUES('', 25313.6, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_72, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(25313.6, '09/01/2008', now(), now(), company_id, person_id_72, '', null, null);
+  VALUES(25313.6, '09/01/2008', now(), now(), company_id, person_id_72, null, null, null);
 
 END;
 
@@ -2215,15 +2215,15 @@ DECLARE
   company_user_id_73 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MARYSCAFIDI@fairviewhealthcare.com', 't', 'f', 'f', 'MARY', 'SCAFIDI', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'maryscafidi@fairviewhealthcare.com', 't', 'f', 'f', 'Mary', 'Scafidi', now(), now())
   RETURNING id into user_id_73;
-  raise notice 'The user_id_73 after insert is %', user_id;
+  raise notice 'The user_id_73 after insert is %', user_id_73;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_73)
   RETURNING id into company_user_id_73;
   raise notice 'The company_user_id_73 is %', company_user_id_73;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Mary', '', 'Scafidi', '', 'self', 'ALeCc_h8CafVCxTDoInWaRBYuBub6uxeSIhQ0jZyObF6M35MuKajUZLHvFjXufePt0KQ8VHVJr1u', '1959-01-18', 'F', company_id, user_id_73, '')
+  VALUES('primary_contact', 'Mary', '', 'Scafidi', '', 'self', 'ALeCc_jJLdUmSLhZEJiVbGEafpAs2OGvOG4mlxTFVt-Wd3soPMqadFj05XLqh_UKN-AzUNV_3L3L', '1959-01-18', 'F', company_id, user_id_73, '')
   RETURNING id into person_id_73;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2233,10 +2233,10 @@ BEGIN
   VALUES('home', '6034949588', person_id_73);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 21000.0, '2014-02-18', 'FullTime', 'Active', now(), now(), person_id_73, company_id, '', '2015-09-01');
+  VALUES('', 21000.0, '2014-02-18', 'FullTime', 'Active', now(), now(), person_id_73, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(21000.0, '02/18/2014', now(), now(), company_id, person_id_73, '', null, null);
+  VALUES(21000.0, '02/18/2014', now(), now(), company_id, person_id_73, null, null, null);
 
 END;
 
@@ -2247,15 +2247,15 @@ DECLARE
   company_user_id_74 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ALFREDOSANCHEZ@fairviewhealthcare.com', 't', 'f', 'f', 'ALFREDO', 'SANCHEZ', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'alfredosanchez@fairviewhealthcare.com', 't', 'f', 'f', 'Alfredo', 'Sanchez', now(), now())
   RETURNING id into user_id_74;
-  raise notice 'The user_id_74 after insert is %', user_id;
+  raise notice 'The user_id_74 after insert is %', user_id_74;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_74)
   RETURNING id into company_user_id_74;
   raise notice 'The company_user_id_74 is %', company_user_id_74;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Alfredo', '', 'Sanchez', '', 'self', 'ALeCc_hTPMwQu06wDHb0T7DdCHbcNyE_L_TMgpkp-g1uyJnQlMWkJDtjhIjzRZjtM3_QgnjoDp8B', '1980-04-05', 'M', company_id, user_id_74, '')
+  VALUES('primary_contact', 'Alfredo', '', 'Sanchez', '', 'self', 'ALeCc_jbUdDAFym-TT0lYwmGAb6xwvfPjd-zizYEk-wHtjm4qTm2O0KVuEnBswincXFv9BOG_e_s', '1980-04-05', 'M', company_id, user_id_74, '')
   RETURNING id into person_id_74;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2265,10 +2265,10 @@ BEGIN
   VALUES('home', '6038205144', person_id_74);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 22588.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_74, company_id, '', '2015-09-01');
+  VALUES('', 22588.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_74, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(22588.0, '09/01/2008', now(), now(), company_id, person_id_74, '', null, null);
+  VALUES(22588.0, '09/01/2008', now(), now(), company_id, person_id_74, null, null, null);
 
 END;
 
@@ -2279,9 +2279,9 @@ DECLARE
   company_user_id_75 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'BRUNILDAMEJIA@fairviewhealthcare.com', 't', 'f', 'f', 'BRUNILDA', 'MEJIA', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'brunildamejia@fairviewhealthcare.com', 't', 'f', 'f', 'Brunilda', 'Mejia', now(), now())
   RETURNING id into user_id_75;
-  raise notice 'The user_id_75 after insert is %', user_id;
+  raise notice 'The user_id_75 after insert is %', user_id_75;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_75)
   RETURNING id into company_user_id_75;
@@ -2294,10 +2294,10 @@ BEGIN
   VALUES('home', '21 Longview Terrace', '', 'Methuen', 'MA', '01844', company_id, person_id_75);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 66019.2, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_75, company_id, '', '2015-09-01');
+  VALUES('', 66019.2, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_75, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(66019.2, '09/01/2008', now(), now(), company_id, person_id_75, '', null, null);
+  VALUES(66019.2, '09/01/2008', now(), now(), company_id, person_id_75, null, null, null);
 
 END;
 
@@ -2308,9 +2308,9 @@ DECLARE
   company_user_id_76 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'JAMESHAYES@fairviewhealthcare.com', 't', 'f', 'f', 'JAMES', 'HAYES', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jameshayes@fairviewhealthcare.com', 't', 'f', 'f', 'James', 'Hayes', now(), now())
   RETURNING id into user_id_76;
-  raise notice 'The user_id_76 after insert is %', user_id;
+  raise notice 'The user_id_76 after insert is %', user_id_76;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_76)
   RETURNING id into company_user_id_76;
@@ -2323,10 +2323,10 @@ BEGIN
   VALUES('home', '12 pheasant St', '', 'Litchfield', 'NH', '03052', company_id, person_id_76);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 20800.0, '2011-07-05', 'FullTime', 'Active', now(), now(), person_id_76, company_id, '', '2015-09-01');
+  VALUES('', 20800.0, '2011-07-05', 'FullTime', 'Active', now(), now(), person_id_76, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(20800.0, '07/05/2011', now(), now(), company_id, person_id_76, '', null, null);
+  VALUES(20800.0, '07/05/2011', now(), now(), company_id, person_id_76, null, null, null);
 
 END;
 
@@ -2337,15 +2337,15 @@ DECLARE
   company_user_id_77 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'SHERIMELLO@fairviewhealthcare.com', 't', 'f', 'f', 'SHERI', 'MELLO', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'sherimello@fairviewhealthcare.com', 't', 'f', 'f', 'Sheri', 'Mello', now(), now())
   RETURNING id into user_id_77;
-  raise notice 'The user_id_77 after insert is %', user_id;
+  raise notice 'The user_id_77 after insert is %', user_id_77;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_77)
   RETURNING id into company_user_id_77;
   raise notice 'The company_user_id_77 is %', company_user_id_77;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Sheri', '', 'Mello', '', 'self', 'ALeCc_jDuwj4FW9QGJKadVC5eW9qko8cZxXx0yXzLMiWkfsGVARKfNiVXwbgocaqzd_TkB1tMjvN', '1979-09-04', 'F', company_id, user_id_77, '')
+  VALUES('primary_contact', 'Sheri', '', 'Mello', '', 'self', 'ALeCc_iT3wdSm2hJLhNqZULv30O-4EearRoJy4dFEXMrE7ohj5gNL5AbA3XcVW4iQ8zRR6vG3KkY', '1979-09-04', 'F', company_id, user_id_77, '')
   RETURNING id into person_id_77;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2355,10 +2355,10 @@ BEGIN
   VALUES('home', '5089338479', person_id_77);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 21840.0, '2014-11-08', 'FullTime', 'Active', now(), now(), person_id_77, company_id, '', '2015-09-01');
+  VALUES('', 21840.0, '2014-11-08', 'FullTime', 'Active', now(), now(), person_id_77, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(21840.0, '11/08/2014', now(), now(), company_id, person_id_77, '', null, null);
+  VALUES(21840.0, '11/08/2014', now(), now(), company_id, person_id_77, null, null, null);
 
 END;
 
@@ -2369,15 +2369,15 @@ DECLARE
   company_user_id_78 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CHARLOTTELAVOIE@fairviewhealthcare.com', 't', 'f', 'f', 'CHARLOTTE', 'LAVOIE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'charlottelavoie@fairviewhealthcare.com', 't', 'f', 'f', 'Charlotte', 'Lavoie', now(), now())
   RETURNING id into user_id_78;
-  raise notice 'The user_id_78 after insert is %', user_id;
+  raise notice 'The user_id_78 after insert is %', user_id_78;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_78)
   RETURNING id into company_user_id_78;
   raise notice 'The company_user_id_78 is %', company_user_id_78;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Charlotte', '', 'Lavoie', '', 'self', 'ALeCc_g0QkBQzKjkzbxOBZ4l4x2DvYC1o6o1gD-I3-lAIILwJDVjXpCsIvcgTuvS5joR5i28x3SH', '1955-09-02', 'F', company_id, user_id_78, '')
+  VALUES('primary_contact', 'Charlotte', '', 'Lavoie', '', 'self', 'ALeCc_hEr1-T-SaWzQl-i9knVyMZuF5lhT2JDFIOGGOshDBU6xfZ4uhV0CoDYqGUQqyX0VYSsMSJ', '1955-09-02', 'F', company_id, user_id_78, '')
   RETURNING id into person_id_78;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2387,10 +2387,10 @@ BEGIN
   VALUES('home', '6034000668', person_id_78);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 45000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_78, company_id, '', '2015-09-01');
+  VALUES('', 45000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_78, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(45000.0, '09/01/2008', now(), now(), company_id, person_id_78, '', null, null);
+  VALUES(45000.0, '09/01/2008', now(), now(), company_id, person_id_78, null, null, null);
 
 END;
 
@@ -2401,15 +2401,15 @@ DECLARE
   company_user_id_79 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CLARETTAMALIN@fairviewhealthcare.com', 't', 'f', 'f', 'CLARETTA', 'MALIN', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'clarettamalin@fairviewhealthcare.com', 't', 'f', 'f', 'Claretta', 'Malin', now(), now())
   RETURNING id into user_id_79;
-  raise notice 'The user_id_79 after insert is %', user_id;
+  raise notice 'The user_id_79 after insert is %', user_id_79;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_79)
   RETURNING id into company_user_id_79;
   raise notice 'The company_user_id_79 is %', company_user_id_79;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Claretta', '', 'Malin', '', 'self', 'ALeCc_jW9Cevm7byeueXU_dSgR5-2myuqjf7CKMSZwX-GIqJaWg1IzHaRI1Zxggxm7NXIRo1yI0s', '1953-07-21', 'F', company_id, user_id_79, '')
+  VALUES('primary_contact', 'Claretta', '', 'Malin', '', 'self', 'ALeCc_hSgqhwxuRR506mNnGn2NbF76J1RpG0Kso34x3ncWrfMxxhGsG48xatN8lbgltwh0pSzVPq', '1953-07-21', 'F', company_id, user_id_79, '')
   RETURNING id into person_id_79;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2419,10 +2419,10 @@ BEGIN
   VALUES('home', '6038799077', person_id_79);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 38480.0, '2011-02-14', 'FullTime', 'Active', now(), now(), person_id_79, company_id, '', '2015-09-01');
+  VALUES('', 38480.0, '2011-02-14', 'FullTime', 'Active', now(), now(), person_id_79, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(38480.0, '02/14/2011', now(), now(), company_id, person_id_79, '', null, null);
+  VALUES(38480.0, '02/14/2011', now(), now(), company_id, person_id_79, null, null, null);
 
 END;
 
@@ -2433,15 +2433,15 @@ DECLARE
   company_user_id_80 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CONRADDUPONT@fairviewhealthcare.com', 't', 'f', 'f', 'CONRAD', 'DUPONT', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'conraddupont@fairviewhealthcare.com', 't', 'f', 'f', 'Conrad', 'Dupont', now(), now())
   RETURNING id into user_id_80;
-  raise notice 'The user_id_80 after insert is %', user_id;
+  raise notice 'The user_id_80 after insert is %', user_id_80;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_80)
   RETURNING id into company_user_id_80;
   raise notice 'The company_user_id_80 is %', company_user_id_80;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Conrad', '', 'Dupont', '', 'self', 'ALeCc_iadu_h0ZRZOwU6Qdy8qfRhbkg_doNfs-tavZwtFDUtiFoaeCL9JyyGKJh2lsmCW5ZgKPGc', '1962-12-10', 'M', company_id, user_id_80, '')
+  VALUES('primary_contact', 'Conrad', '', 'Dupont', '', 'self', 'ALeCc_ha71207td4O7_8prrdRJ49aTyUCZwOalBTRflUPQ-K9nbAEpNjVzt13-abzP9silsDIXf5', '1962-12-10', 'M', company_id, user_id_80, '')
   RETURNING id into person_id_80;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2451,10 +2451,10 @@ BEGIN
   VALUES('home', '6033206059', person_id_80);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 27000.0, '2014-06-09', 'FullTime', 'Active', now(), now(), person_id_80, company_id, '', '2015-09-01');
+  VALUES('', 27000.0, '2014-06-09', 'FullTime', 'Active', now(), now(), person_id_80, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(27000.0, '06/09/2014', now(), now(), company_id, person_id_80, '', null, null);
+  VALUES(27000.0, '06/09/2014', now(), now(), company_id, person_id_80, null, null, null);
 
 END;
 
@@ -2465,9 +2465,9 @@ DECLARE
   company_user_id_81 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'LASHANDRALONG@fairviewhealthcare.com', 't', 'f', 'f', 'LASHANDRA', 'LONG', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'lashandralong@fairviewhealthcare.com', 't', 'f', 'f', 'Lashandra', 'Long', now(), now())
   RETURNING id into user_id_81;
-  raise notice 'The user_id_81 after insert is %', user_id;
+  raise notice 'The user_id_81 after insert is %', user_id_81;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_81)
   RETURNING id into company_user_id_81;
@@ -2480,10 +2480,10 @@ BEGIN
   VALUES('home', '31 Arlington St #2', '', 'Nashua', 'NH', '03060', company_id, person_id_81);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 21242.0, '2014-08-04', 'FullTime', 'Active', now(), now(), person_id_81, company_id, '', '2015-09-01');
+  VALUES('', 21242.0, '2014-08-04', 'FullTime', 'Active', now(), now(), person_id_81, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(21242.0, '08/04/2014', now(), now(), company_id, person_id_81, '', null, null);
+  VALUES(21242.0, '08/04/2014', now(), now(), company_id, person_id_81, null, null, null);
 
 END;
 
@@ -2494,15 +2494,15 @@ DECLARE
   company_user_id_82 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'JILLFAVEREAU@fairviewhealthcare.com', 't', 'f', 'f', 'JILL', 'FAVEREAU', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jillfavereau@fairviewhealthcare.com', 't', 'f', 'f', 'Jill', 'Favereau', now(), now())
   RETURNING id into user_id_82;
-  raise notice 'The user_id_82 after insert is %', user_id;
+  raise notice 'The user_id_82 after insert is %', user_id_82;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_82)
   RETURNING id into company_user_id_82;
   raise notice 'The company_user_id_82 is %', company_user_id_82;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Jill', '', 'Favereau', '', 'self', 'ALeCc_gm9Pp7PxjPkQWkonQ0_KYnOQHogXVZQvgY5gZU9Ti3ssARJwwuhayvE1ecnusiE8TAyt1Q', '1972-07-03', 'F', company_id, user_id_82, '')
+  VALUES('primary_contact', 'Jill', '', 'Favereau', '', 'self', 'ALeCc_jlKjRLJsMKjy0zUtXzF8XSYokaeLiqoA_GBtIa6wdYkM-58oM7j3nZx3eYjPmfjSseFQyY', '1972-07-03', 'F', company_id, user_id_82, '')
   RETURNING id into person_id_82;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2512,10 +2512,10 @@ BEGIN
   VALUES('home', '6039654870', person_id_82);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 58240.0, '2010-11-22', 'FullTime', 'Active', now(), now(), person_id_82, company_id, '', '2015-09-01');
+  VALUES('', 58240.0, '2010-11-22', 'FullTime', 'Active', now(), now(), person_id_82, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(58240.0, '11/22/2010', now(), now(), company_id, person_id_82, '', null, null);
+  VALUES(58240.0, '11/22/2010', now(), now(), company_id, person_id_82, null, null, null);
 
 END;
 
@@ -2526,15 +2526,15 @@ DECLARE
   company_user_id_83 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MARIANNECLAUSS@fairviewhealthcare.com', 't', 'f', 'f', 'MARIANNE', 'CLAUSS', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'marianneclauss@fairviewhealthcare.com', 't', 'f', 'f', 'Marianne', 'Clauss', now(), now())
   RETURNING id into user_id_83;
-  raise notice 'The user_id_83 after insert is %', user_id;
+  raise notice 'The user_id_83 after insert is %', user_id_83;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_83)
   RETURNING id into company_user_id_83;
   raise notice 'The company_user_id_83 is %', company_user_id_83;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Marianne', '', 'Clauss', '', 'self', 'ALeCc_iBUuQBhCODzrIZ0HkKOC9HyRR6aqwVwZryUBtGq7f5-6Ht5ISf7v7XIbzDRrTE88TQWqCA', '1966-05-04', 'F', company_id, user_id_83, '')
+  VALUES('primary_contact', 'Marianne', '', 'Clauss', '', 'self', 'ALeCc_ie3yvbhanQOx2lOyQVqOgA-GTFfKndHMkMTeeJ5avGR0j5Derf9HCq8o-_aUFqm4DppMgi', '1966-05-04', 'F', company_id, user_id_83, '')
   RETURNING id into person_id_83;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2544,10 +2544,10 @@ BEGIN
   VALUES('home', '6034868424', person_id_83);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 43680.0, '2014-06-12', 'FullTime', 'Active', now(), now(), person_id_83, company_id, '', '2015-09-01');
+  VALUES('', 43680.0, '2014-06-12', 'FullTime', 'Active', now(), now(), person_id_83, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(43680.0, '06/12/2014', now(), now(), company_id, person_id_83, '', null, null);
+  VALUES(43680.0, '06/12/2014', now(), now(), company_id, person_id_83, null, null, null);
 
 END;
 
@@ -2558,9 +2558,9 @@ DECLARE
   company_user_id_84 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DENISEPARADISE@fairviewhealthcare.com', 't', 'f', 'f', 'DENISE', 'PARADISE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'deniseparadise@fairviewhealthcare.com', 't', 'f', 'f', 'Denise', 'Paradise', now(), now())
   RETURNING id into user_id_84;
-  raise notice 'The user_id_84 after insert is %', user_id;
+  raise notice 'The user_id_84 after insert is %', user_id_84;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_84)
   RETURNING id into company_user_id_84;
@@ -2573,10 +2573,10 @@ BEGIN
   VALUES('home', '6 Joseph Avenue', '', 'Hudson', 'NH', '03051', company_id, person_id_84);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 92705.6, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_84, company_id, '', '2015-09-01');
+  VALUES('', 92705.6, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_84, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(92705.6, '09/01/2008', now(), now(), company_id, person_id_84, '', null, null);
+  VALUES(92705.6, '09/01/2008', now(), now(), company_id, person_id_84, null, null, null);
 
 END;
 
@@ -2587,15 +2587,15 @@ DECLARE
   company_user_id_85 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'RICHARDRAFFERTY@fairviewhealthcare.com', 't', 'f', 'f', 'RICHARD', 'RAFFERTY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'richardrafferty@fairviewhealthcare.com', 't', 'f', 'f', 'Richard', 'Rafferty', now(), now())
   RETURNING id into user_id_85;
-  raise notice 'The user_id_85 after insert is %', user_id;
+  raise notice 'The user_id_85 after insert is %', user_id_85;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_85)
   RETURNING id into company_user_id_85;
   raise notice 'The company_user_id_85 is %', company_user_id_85;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Richard', 'J', 'Rafferty', '', 'self', 'ALeCc_i33EJKZyrf1XBPf6YFMrzg4p6_Q5BzEa7V3kJo2Gqn7YKMGu8GQPMgRdvbcyFi79KGt_kn', '1952-10-29', 'M', company_id, user_id_85, '')
+  VALUES('primary_contact', 'Richard', 'J', 'Rafferty', '', 'self', 'ALeCc_jDCoeprcTIr-l03UXI0gsQf-B_kDJ3h0wEKlMQz1UR90LdTyA84Vqu6ZwcvhZ4P46qSSMR', '1952-10-29', 'M', company_id, user_id_85, '')
   RETURNING id into person_id_85;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2605,10 +2605,10 @@ BEGIN
   VALUES('home', '6037317719', person_id_85);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 70000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_85, company_id, '', '2015-09-01');
+  VALUES('', 70000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_85, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(70000.0, '09/01/2008', now(), now(), company_id, person_id_85, '', null, null);
+  VALUES(70000.0, '09/01/2008', now(), now(), company_id, person_id_85, null, null, null);
 
 END;
 
@@ -2619,9 +2619,9 @@ DECLARE
   company_user_id_86 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KALILAMSON@fairviewhealthcare.com', 't', 'f', 'f', 'KALI', 'LAMSON', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kalilamson@fairviewhealthcare.com', 't', 'f', 'f', 'Kali', 'Lamson', now(), now())
   RETURNING id into user_id_86;
-  raise notice 'The user_id_86 after insert is %', user_id;
+  raise notice 'The user_id_86 after insert is %', user_id_86;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_86)
   RETURNING id into company_user_id_86;
@@ -2634,10 +2634,10 @@ BEGIN
   VALUES('home', '310 Brook Village Rd', '', 'Nashua', 'NH', '03062', company_id, person_id_86);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 46000.0, '2014-06-09', 'FullTime', 'Active', now(), now(), person_id_86, company_id, '', '2015-09-01');
+  VALUES('', 46000.0, '2014-06-09', 'FullTime', 'Active', now(), now(), person_id_86, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(46000.0, '06/09/2014', now(), now(), company_id, person_id_86, '', null, null);
+  VALUES(46000.0, '06/09/2014', now(), now(), company_id, person_id_86, null, null, null);
 
 END;
 
@@ -2648,9 +2648,9 @@ DECLARE
   company_user_id_87 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'STEPHANIEPEREZ@fairviewhealthcare.com', 't', 'f', 'f', 'STEPHANIE', 'PEREZ', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'stephanieperez@fairviewhealthcare.com', 't', 'f', 'f', 'Stephanie', 'Perez', now(), now())
   RETURNING id into user_id_87;
-  raise notice 'The user_id_87 after insert is %', user_id;
+  raise notice 'The user_id_87 after insert is %', user_id_87;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_87)
   RETURNING id into company_user_id_87;
@@ -2663,10 +2663,10 @@ BEGIN
   VALUES('home', '218 Pheasant Run Rd', '', 'Hudson', 'NH', '03051', company_id, person_id_87);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 18439.2, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_87, company_id, '1', '2015-09-01');
+  VALUES('', 18439.2, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_87, company_id, 1, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(null, '09/01/2008', now(), now(), company_id, person_id_87, '', 11.8200, 130.0000);
+  VALUES(null, '09/01/2008', now(), now(), company_id, person_id_87, null, 11.8200, 130.0000);
 
 END;
 
@@ -2677,15 +2677,15 @@ DECLARE
   company_user_id_88 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ELEANORKNOWLTON@fairviewhealthcare.com', 't', 'f', 'f', 'ELEANOR', 'KNOWLTON', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'eleanorknowlton@fairviewhealthcare.com', 't', 'f', 'f', 'Eleanor', 'Knowlton', now(), now())
   RETURNING id into user_id_88;
-  raise notice 'The user_id_88 after insert is %', user_id;
+  raise notice 'The user_id_88 after insert is %', user_id_88;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_88)
   RETURNING id into company_user_id_88;
   raise notice 'The company_user_id_88 is %', company_user_id_88;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Eleanor', '', 'Knowlton', '', 'self', 'ALeCc_jXxivT7xd-t594151-ZKRDOoZNm5EMLACQO-tRIWSxoYddF_N-aWQzObFk3xrnOPfsjfJ3', '1956-02-09', 'F', company_id, user_id_88, '')
+  VALUES('primary_contact', 'Eleanor', '', 'Knowlton', '', 'self', 'ALeCc_hOdiADgcEqHX63H5HK5zmvw-4HX3xGFP-69SSw74cVO3KnAeCIoXpYn9px9x63aonVyiy6', '1956-02-09', 'F', company_id, user_id_88, '')
   RETURNING id into person_id_88;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2695,10 +2695,10 @@ BEGIN
   VALUES('home', '8576361697', person_id_88);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 19012.0, '2010-06-30', 'FullTime', 'Active', now(), now(), person_id_88, company_id, '', '2015-09-01');
+  VALUES('', 19012.0, '2010-06-30', 'FullTime', 'Active', now(), now(), person_id_88, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(19012.0, '06/30/2010', now(), now(), company_id, person_id_88, '', null, null);
+  VALUES(19012.0, '06/30/2010', now(), now(), company_id, person_id_88, null, null, null);
 
 END;
 
@@ -2709,15 +2709,15 @@ DECLARE
   company_user_id_89 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'SHEILALAMB@fairviewhealthcare.com', 't', 'f', 'f', 'SHEILA', 'LAMB', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'sheilalamb@fairviewhealthcare.com', 't', 'f', 'f', 'Sheila', 'Lamb', now(), now())
   RETURNING id into user_id_89;
-  raise notice 'The user_id_89 after insert is %', user_id;
+  raise notice 'The user_id_89 after insert is %', user_id_89;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_89)
   RETURNING id into company_user_id_89;
   raise notice 'The company_user_id_89 is %', company_user_id_89;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Sheila', 'M', 'Lamb', '', 'self', 'ALeCc_inKAVmeQpynjrgdZgadlUfYSTKZEyPbpdHHzy5s4DXHgIHl21z_q8dOZG4uBY7u4pv0iGA', '1959-09-07', 'F', company_id, user_id_89, '')
+  VALUES('primary_contact', 'Sheila', 'M', 'Lamb', '', 'self', 'ALeCc_iYGkXsK45NVpgm9H2Ix4CO1uyq0pU07dFBDagKTmpMZsUNzDfPEziH8plf_Ns0MNdzivFF', '1959-09-07', 'F', company_id, user_id_89, '')
   RETURNING id into person_id_89;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2727,10 +2727,10 @@ BEGIN
   VALUES('home', '9783928752', person_id_89);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 58240.0, '2015-08-06', 'FullTime', 'Active', now(), now(), person_id_89, company_id, '1', '2015-10-01');
+  VALUES('', 58240.0, '2015-08-06', 'FullTime', 'Active', now(), now(), person_id_89, company_id, 1, '2015-10-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(null, '08/06/2015', now(), now(), company_id, person_id_89, '', 28.0000, 173.3333);
+  VALUES(null, '08/06/2015', now(), now(), company_id, person_id_89, null, 28.0000, 173.3333);
 
 END;
 
@@ -2741,15 +2741,15 @@ DECLARE
   company_user_id_90 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CATHYRILEY@fairviewhealthcare.com', 't', 'f', 'f', 'CATHY', 'RILEY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'cathyriley@fairviewhealthcare.com', 't', 'f', 'f', 'Cathy', 'Riley', now(), now())
   RETURNING id into user_id_90;
-  raise notice 'The user_id_90 after insert is %', user_id;
+  raise notice 'The user_id_90 after insert is %', user_id_90;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_90)
   RETURNING id into company_user_id_90;
   raise notice 'The company_user_id_90 is %', company_user_id_90;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Cathy', '', 'Riley', '', 'self', 'ALeCc_jy3u81-SNAouz5Xyo_34_SBd06wIkTt2J6vgBpfXMRH_6vFOfSuKDT6ChwoSMC3ATYFfIA', '1959-02-22', 'F', company_id, user_id_90, '')
+  VALUES('primary_contact', 'Cathy', '', 'Riley', '', 'self', 'ALeCc_irSYkbZzHHeIG92D7KFpnrfZK5z_VeLFl8WnT1lBhvMUHLiuuy68hV2CR7r2on8SFJ3Kjn', '1959-02-22', 'F', company_id, user_id_90, '')
   RETURNING id into person_id_90;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2759,10 +2759,10 @@ BEGIN
   VALUES('home', '6032332736', person_id_90);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 20800.0, '2014-09-14', 'FullTime', 'Active', now(), now(), person_id_90, company_id, '', '2015-09-01');
+  VALUES('', 20800.0, '2014-09-14', 'FullTime', 'Active', now(), now(), person_id_90, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(20800.0, '09/14/2014', now(), now(), company_id, person_id_90, '', null, null);
+  VALUES(20800.0, '09/14/2014', now(), now(), company_id, person_id_90, null, null, null);
 
 END;
 
@@ -2773,15 +2773,15 @@ DECLARE
   company_user_id_91 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ROBERTACARRIGG@fairviewhealthcare.com', 't', 'f', 'f', 'ROBERTA', 'CARRIGG', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'robertacarrigg@fairviewhealthcare.com', 't', 'f', 'f', 'Roberta', 'Carrigg', now(), now())
   RETURNING id into user_id_91;
-  raise notice 'The user_id_91 after insert is %', user_id;
+  raise notice 'The user_id_91 after insert is %', user_id_91;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_91)
   RETURNING id into company_user_id_91;
   raise notice 'The company_user_id_91 is %', company_user_id_91;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Roberta', 'A', 'Carrigg', '', 'self', 'ALeCc_guJwr-kjxlMO4ChWbjV1ImJphtUp4HOqREo4zTPsnASNmumWE04yyIQDjr4KrBMEckOfhq', '1958-03-07', 'F', company_id, user_id_91, '')
+  VALUES('primary_contact', 'Roberta', 'A', 'Carrigg', '', 'self', 'ALeCc_hzdQQh9UGg4aztO_tLwWUPs6vlyKYd9I6ZanfDBz30KQTLJkItu2Pdbnq30i2EdPSkiosg', '1958-03-07', 'F', company_id, user_id_91, '')
   RETURNING id into person_id_91;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2791,10 +2791,10 @@ BEGIN
   VALUES('home', '0000000000', person_id_91);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 27040.0, '2013-06-10', 'FullTime', 'Active', now(), now(), person_id_91, company_id, '', '2015-09-01');
+  VALUES('', 27040.0, '2013-06-10', 'FullTime', 'Active', now(), now(), person_id_91, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(27040.0, '06/10/2013', now(), now(), company_id, person_id_91, '', null, null);
+  VALUES(27040.0, '06/10/2013', now(), now(), company_id, person_id_91, null, null, null);
 
 END;
 
@@ -2805,9 +2805,9 @@ DECLARE
   company_user_id_92 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ANNPLOURDE@fairviewhealthcare.com', 't', 'f', 'f', 'ANN', 'PLOURDE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'annplourde@fairviewhealthcare.com', 't', 'f', 'f', 'Ann', 'Plourde', now(), now())
   RETURNING id into user_id_92;
-  raise notice 'The user_id_92 after insert is %', user_id;
+  raise notice 'The user_id_92 after insert is %', user_id_92;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_92)
   RETURNING id into company_user_id_92;
@@ -2820,10 +2820,10 @@ BEGIN
   VALUES('home', '18 School Street', '', 'Salem', 'NH', '03079', company_id, person_id_92);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 76169.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_92, company_id, '', '2015-09-01');
+  VALUES('', 76169.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_92, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(76169.0, '09/01/2008', now(), now(), company_id, person_id_92, '', null, null);
+  VALUES(76169.0, '09/01/2008', now(), now(), company_id, person_id_92, null, null, null);
 
 END;
 
@@ -2834,15 +2834,15 @@ DECLARE
   company_user_id_93 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KATHRYNMASTERSON@fairviewhealthcare.com', 't', 'f', 'f', 'KATHRYN', 'MASTERSON', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kathrynmasterson@fairviewhealthcare.com', 't', 'f', 'f', 'Kathryn', 'Masterson', now(), now())
   RETURNING id into user_id_93;
-  raise notice 'The user_id_93 after insert is %', user_id;
+  raise notice 'The user_id_93 after insert is %', user_id_93;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_93)
   RETURNING id into company_user_id_93;
   raise notice 'The company_user_id_93 is %', company_user_id_93;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Kathryn', '', 'Masterson', '', 'self', 'ALeCc_iKL0v66xFf3EOCBc7Fq9TO32JkAPOsBuEPMlyCwB3e4PoTI5ToB5qki0M2JBcC8hDJsclA', '1950-11-05', 'F', company_id, user_id_93, '')
+  VALUES('primary_contact', 'Kathryn', '', 'Masterson', '', 'self', 'ALeCc_jU3HGAo6w7vuHnt8f3AouEu_yRBoH5Q2NnB8iA91uVQPda9OiEGiOHnGu5qr_-gM9hwGPy', '1950-11-05', 'F', company_id, user_id_93, '')
   RETURNING id into person_id_93;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2852,10 +2852,10 @@ BEGIN
   VALUES('home', '6039210228', person_id_93);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 40000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_93, company_id, '', '2015-09-01');
+  VALUES('', 40000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_93, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(40000.0, '09/01/2008', now(), now(), company_id, person_id_93, '', null, null);
+  VALUES(40000.0, '09/01/2008', now(), now(), company_id, person_id_93, null, null, null);
 
 END;
 
@@ -2866,9 +2866,9 @@ DECLARE
   company_user_id_94 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'SARAHST_JOHN@fairviewhealthcare.com', 't', 'f', 'f', 'SARAH', 'ST JOHN', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'sarahst_john@fairviewhealthcare.com', 't', 'f', 'f', 'Sarah', 'St John', now(), now())
   RETURNING id into user_id_94;
-  raise notice 'The user_id_94 after insert is %', user_id;
+  raise notice 'The user_id_94 after insert is %', user_id_94;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_94)
   RETURNING id into company_user_id_94;
@@ -2881,10 +2881,10 @@ BEGIN
   VALUES('home', '88 3/4 Palm Street', '', 'Nasua', 'NH', '03060', company_id, person_id_94);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 19851.0, '2013-07-26', 'FullTime', 'Active', now(), now(), person_id_94, company_id, '', '2015-09-01');
+  VALUES('', 19851.0, '2013-07-26', 'FullTime', 'Active', now(), now(), person_id_94, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(19851.0, '07/26/2013', now(), now(), company_id, person_id_94, '', null, null);
+  VALUES(19851.0, '07/26/2013', now(), now(), company_id, person_id_94, null, null, null);
 
 END;
 
@@ -2895,15 +2895,15 @@ DECLARE
   company_user_id_95 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DIANAHALL@fairviewhealthcare.com', 't', 'f', 'f', 'DIANA', 'HALL', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dianahall@fairviewhealthcare.com', 't', 'f', 'f', 'Diana', 'Hall', now(), now())
   RETURNING id into user_id_95;
-  raise notice 'The user_id_95 after insert is %', user_id;
+  raise notice 'The user_id_95 after insert is %', user_id_95;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_95)
   RETURNING id into company_user_id_95;
   raise notice 'The company_user_id_95 is %', company_user_id_95;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Diana', '', 'Hall', '', 'self', 'ALeCc_hMAEPWEGgqLoiB4Sco-1U0laejbh49oyUrqLdt04cdnfRPoJ3UJBsEM9u7B1YwRARoFw7w', '1970-12-02', 'F', company_id, user_id_95, '')
+  VALUES('primary_contact', 'Diana', '', 'Hall', '', 'self', 'ALeCc_iA93nxjNMi0F4UMp0HEbgCR02DpxHlze3GQrfO2HObjoo7C9RMWoVgDNUFBKhS3xIARaKR', '1970-12-02', 'F', company_id, user_id_95, '')
   RETURNING id into person_id_95;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2913,10 +2913,10 @@ BEGIN
   VALUES('home', '6037933476', person_id_95);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 20716.0, '2010-04-27', 'FullTime', 'Active', now(), now(), person_id_95, company_id, '', '2015-09-01');
+  VALUES('', 20716.0, '2010-04-27', 'FullTime', 'Active', now(), now(), person_id_95, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(20716.0, '04/27/2010', now(), now(), company_id, person_id_95, '', null, null);
+  VALUES(20716.0, '04/27/2010', now(), now(), company_id, person_id_95, null, null, null);
 
 END;
 
@@ -2927,9 +2927,9 @@ DECLARE
   company_user_id_96 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ROSEFOURNIER@fairviewhealthcare.com', 't', 'f', 'f', 'ROSE', 'FOURNIER', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'rosefournier@fairviewhealthcare.com', 't', 'f', 'f', 'Rose', 'Fournier', now(), now())
   RETURNING id into user_id_96;
-  raise notice 'The user_id_96 after insert is %', user_id;
+  raise notice 'The user_id_96 after insert is %', user_id_96;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_96)
   RETURNING id into company_user_id_96;
@@ -2939,10 +2939,10 @@ BEGIN
   RETURNING id into person_id_96;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 32344.0, '2013-09-09', 'FullTime', 'Active', now(), now(), person_id_96, company_id, '', '2015-09-01');
+  VALUES('', 32344.0, '2013-09-09', 'FullTime', 'Active', now(), now(), person_id_96, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(32344.0, '09/09/2013', now(), now(), company_id, person_id_96, '', null, null);
+  VALUES(32344.0, '09/09/2013', now(), now(), company_id, person_id_96, null, null, null);
 
 END;
 
@@ -2953,9 +2953,9 @@ DECLARE
   company_user_id_97 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'PAULINEPOISSON-LEVESQUE@fairviewhealthcare.com', 't', 'f', 'f', 'PAULINE', 'POISSON-LEVESQUE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'paulinepoisson-levesque@fairviewhealthcare.com', 't', 'f', 'f', 'Pauline', 'Poisson-Levesque', now(), now())
   RETURNING id into user_id_97;
-  raise notice 'The user_id_97 after insert is %', user_id;
+  raise notice 'The user_id_97 after insert is %', user_id_97;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_97)
   RETURNING id into company_user_id_97;
@@ -2968,10 +2968,10 @@ BEGIN
   VALUES('home', '6 Autumn Leaf Dr', 'Apt 2', 'Nashua', 'NH', '03062', company_id, person_id_97);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 37167.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_97, company_id, '', '2015-09-01');
+  VALUES('', 37167.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_97, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(37167.0, '09/01/2008', now(), now(), company_id, person_id_97, '', null, null);
+  VALUES(37167.0, '09/01/2008', now(), now(), company_id, person_id_97, null, null, null);
 
 END;
 
@@ -2982,15 +2982,15 @@ DECLARE
   company_user_id_98 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'JAMESBUSH@fairviewhealthcare.com', 't', 'f', 'f', 'JAMES', 'BUSH', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jamesbush@fairviewhealthcare.com', 't', 'f', 'f', 'James', 'Bush', now(), now())
   RETURNING id into user_id_98;
-  raise notice 'The user_id_98 after insert is %', user_id;
+  raise notice 'The user_id_98 after insert is %', user_id_98;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_98)
   RETURNING id into company_user_id_98;
   raise notice 'The company_user_id_98 is %', company_user_id_98;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'James', '', 'Bush', '', 'self', 'ALeCc_h7r3qxWn_fWpQ8DYwGD6gkh1AlAcPlc4GXxdC79ur7muJfFIF9NJwVpN12cKfSMG0dMCFx', '1989-01-09', 'M', company_id, user_id_98, '')
+  VALUES('primary_contact', 'James', '', 'Bush', '', 'self', 'ALeCc_iljZggmqbVVJv1YrYifZWX-x23e9ZBXrG1B8aCiagzOtkjleFv_wPwh_bhQNdNYTdU-wvj', '1989-01-09', 'M', company_id, user_id_98, '')
   RETURNING id into person_id_98;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3000,10 +3000,10 @@ BEGIN
   VALUES('home', '6034403317', person_id_98);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 21450.0, '2014-06-12', 'FullTime', 'Active', now(), now(), person_id_98, company_id, '', '2015-09-01');
+  VALUES('', 21450.0, '2014-06-12', 'FullTime', 'Active', now(), now(), person_id_98, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(21450.0, '06/12/2014', now(), now(), company_id, person_id_98, '', null, null);
+  VALUES(21450.0, '06/12/2014', now(), now(), company_id, person_id_98, null, null, null);
 
 END;
 
@@ -3014,15 +3014,15 @@ DECLARE
   company_user_id_99 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'JANETMAXFIELD@fairviewhealthcare.com', 't', 'f', 'f', 'JANET', 'MAXFIELD', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'janetmaxfield@fairviewhealthcare.com', 't', 'f', 'f', 'Janet', 'Maxfield', now(), now())
   RETURNING id into user_id_99;
-  raise notice 'The user_id_99 after insert is %', user_id;
+  raise notice 'The user_id_99 after insert is %', user_id_99;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_99)
   RETURNING id into company_user_id_99;
   raise notice 'The company_user_id_99 is %', company_user_id_99;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Janet', '', 'Maxfield', '', 'self', 'ALeCc_jNGQ3ZXMZlo6cDj1Tqgu0oc-fxrQmB-QTh8FjiRhCi6GCXBKxMwcW4j3R7NC-50TUHOt2_', '1964-08-26', 'F', company_id, user_id_99, '')
+  VALUES('primary_contact', 'Janet', '', 'Maxfield', '', 'self', 'ALeCc_hGxmjPJHPZC7xkEQ-ksbDQ9WuCCB4Kb_gyNSWl556Ab07_4DOUEN2FeC-VFbVpmjzse_Kr', '1964-08-26', 'F', company_id, user_id_99, '')
   RETURNING id into person_id_99;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3032,10 +3032,10 @@ BEGIN
   VALUES('home', '6033055088', person_id_99);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 31616.0, '2014-07-14', 'FullTime', 'Active', now(), now(), person_id_99, company_id, '', '2015-09-01');
+  VALUES('', 31616.0, '2014-07-14', 'FullTime', 'Active', now(), now(), person_id_99, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(31616.0, '07/14/2014', now(), now(), company_id, person_id_99, '', null, null);
+  VALUES(31616.0, '07/14/2014', now(), now(), company_id, person_id_99, null, null, null);
 
 END;
 
@@ -3046,9 +3046,9 @@ DECLARE
   company_user_id_100 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CHRISTOPHERGRENIER@fairviewhealthcare.com', 't', 'f', 'f', 'CHRISTOPHER', 'GRENIER', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'christophergrenier@fairviewhealthcare.com', 't', 'f', 'f', 'Christopher', 'Grenier', now(), now())
   RETURNING id into user_id_100;
-  raise notice 'The user_id_100 after insert is %', user_id;
+  raise notice 'The user_id_100 after insert is %', user_id_100;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_100)
   RETURNING id into company_user_id_100;
@@ -3058,10 +3058,10 @@ BEGIN
   RETURNING id into person_id_100;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 23533.0, '2015-07-15', 'FullTime', 'Active', now(), now(), person_id_100, company_id, '', '2015-10-01');
+  VALUES('', 23533.0, '2015-07-15', 'FullTime', 'Active', now(), now(), person_id_100, company_id, null, '2015-10-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(23533.0, '07/15/2015', now(), now(), company_id, person_id_100, '', null, null);
+  VALUES(23533.0, '07/15/2015', now(), now(), company_id, person_id_100, null, null, null);
 
 END;
 
@@ -3072,15 +3072,15 @@ DECLARE
   company_user_id_101 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'PATRICIALAVOIE@fairviewhealthcare.com', 't', 'f', 'f', 'PATRICIA', 'LAVOIE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'patricialavoie@fairviewhealthcare.com', 't', 'f', 'f', 'Patricia', 'Lavoie', now(), now())
   RETURNING id into user_id_101;
-  raise notice 'The user_id_101 after insert is %', user_id;
+  raise notice 'The user_id_101 after insert is %', user_id_101;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_101)
   RETURNING id into company_user_id_101;
   raise notice 'The company_user_id_101 is %', company_user_id_101;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Patricia', 'A', 'Lavoie', '', 'self', 'ALeCc_ixIKmpHe5-K4O1Z9p0ZyDm53Wn5Lc158Uls0dA0rvHK8unoBd4YdcCo-csoH1h7_NabQaW', '1965-06-09', 'F', company_id, user_id_101, '')
+  VALUES('primary_contact', 'Patricia', 'A', 'Lavoie', '', 'self', 'ALeCc_jBjfSHNNVb2hizKRVwphTd3cc8NeMg7mIfN4TON9O5XIktWhoDJCxuFNBVRpGvtRchpltW', '1965-06-09', 'F', company_id, user_id_101, '')
   RETURNING id into person_id_101;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3090,10 +3090,10 @@ BEGIN
   VALUES('home', '6032047878', person_id_101);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 21000.0, '2013-05-29', 'FullTime', 'Active', now(), now(), person_id_101, company_id, '', '2015-09-01');
+  VALUES('', 21000.0, '2013-05-29', 'FullTime', 'Active', now(), now(), person_id_101, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(21000.0, '05/29/2013', now(), now(), company_id, person_id_101, '', null, null);
+  VALUES(21000.0, '05/29/2013', now(), now(), company_id, person_id_101, null, null, null);
 
 END;
 
@@ -3104,15 +3104,15 @@ DECLARE
   company_user_id_102 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ANNAGELINAS@fairviewhealthcare.com', 't', 'f', 'f', 'ANNA', 'GELINAS', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'annagelinas@fairviewhealthcare.com', 't', 'f', 'f', 'Anna', 'Gelinas', now(), now())
   RETURNING id into user_id_102;
-  raise notice 'The user_id_102 after insert is %', user_id;
+  raise notice 'The user_id_102 after insert is %', user_id_102;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_102)
   RETURNING id into company_user_id_102;
   raise notice 'The company_user_id_102 is %', company_user_id_102;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Anna', 'M', 'Gelinas', '', 'self', 'ALeCc_hzDVZS6_0bTp04Vx8GaZ7hQ_BzW66ghc1gtXYVYnXT3kcp0Xmmwe0xmalinvMraZ70lnLC', '1972-10-03', 'F', company_id, user_id_102, '')
+  VALUES('primary_contact', 'Anna', 'M', 'Gelinas', '', 'self', 'ALeCc_hQTm3oKJhmJxVhQVDe2w9bA42akmsJtKKTOu05NL44eXFt90E1sPvYquZfou5qlvH3_Hqq', '1972-10-03', 'F', company_id, user_id_102, '')
   RETURNING id into person_id_102;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3122,10 +3122,10 @@ BEGIN
   VALUES('home', '6038806149', person_id_102);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 37689.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_102, company_id, '', '2015-09-01');
+  VALUES('', 37689.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_102, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(37689.0, '09/01/2008', now(), now(), company_id, person_id_102, '', null, null);
+  VALUES(37689.0, '09/01/2008', now(), now(), company_id, person_id_102, null, null, null);
 
 END;
 
@@ -3136,15 +3136,15 @@ DECLARE
   company_user_id_103 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'HOLLYMATTHEW@fairviewhealthcare.com', 't', 'f', 'f', 'HOLLY', 'MATTHEW', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'hollymatthew@fairviewhealthcare.com', 't', 'f', 'f', 'Holly', 'Matthew', now(), now())
   RETURNING id into user_id_103;
-  raise notice 'The user_id_103 after insert is %', user_id;
+  raise notice 'The user_id_103 after insert is %', user_id_103;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_103)
   RETURNING id into company_user_id_103;
   raise notice 'The company_user_id_103 is %', company_user_id_103;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Holly', '', 'Matthew', '', 'self', 'ALeCc_jeMCRM6btq15lWSQJ_298UMoFpnq02BpQLUrNvvuceRjcbaER9JpdvJK4xZnM0N9zOVWyO', '1971-05-20', 'F', company_id, user_id_103, '')
+  VALUES('primary_contact', 'Holly', '', 'Matthew', '', 'self', 'ALeCc_jFGNlpt4SDdRqjUrSqvOrZlgS5p3BFlxwpT9nT4Ni4kNjermB7k7jJhDB2514kHtuP6xDT', '1971-05-20', 'F', company_id, user_id_103, '')
   RETURNING id into person_id_103;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3154,10 +3154,10 @@ BEGIN
   VALUES('home', '6038827389', person_id_103);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 17550.0, '2012-08-01', 'FullTime', 'Active', now(), now(), person_id_103, company_id, '', '2015-09-01');
+  VALUES('', 17550.0, '2012-08-01', 'FullTime', 'Active', now(), now(), person_id_103, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(17550.0, '08/01/2012', now(), now(), company_id, person_id_103, '', null, null);
+  VALUES(17550.0, '08/01/2012', now(), now(), company_id, person_id_103, null, null, null);
 
 END;
 
@@ -3168,15 +3168,15 @@ DECLARE
   company_user_id_104 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MICHELLEDODGE@fairviewhealthcare.com', 't', 'f', 'f', 'MICHELLE', 'DODGE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'michelledodge@fairviewhealthcare.com', 't', 'f', 'f', 'Michelle', 'Dodge', now(), now())
   RETURNING id into user_id_104;
-  raise notice 'The user_id_104 after insert is %', user_id;
+  raise notice 'The user_id_104 after insert is %', user_id_104;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_104)
   RETURNING id into company_user_id_104;
   raise notice 'The company_user_id_104 is %', company_user_id_104;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Michelle', 'L', 'Dodge', '', 'self', 'ALeCc_gcNV5vFvueqVg8drkYmmAikqYrq9iEXQmzoHXDUCim2A_vIZ-bwAIGFCf1L79sUFwSGLBc', '1968-09-21', 'F', company_id, user_id_104, '')
+  VALUES('primary_contact', 'Michelle', 'L', 'Dodge', '', 'self', 'ALeCc_jaigg1hYmM6azy549lsDjYpdXDsCTzl1TMr8y9c2qEGXtHmOg2JrOuZMLWMPH6cUzBTsJY', '1968-09-21', 'F', company_id, user_id_104, '')
   RETURNING id into person_id_104;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3186,10 +3186,10 @@ BEGIN
   VALUES('home', '6034247660', person_id_104);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 64542.4, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_104, company_id, '', '2015-09-01');
+  VALUES('', 64542.4, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_104, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(64542.4, '09/01/2008', now(), now(), company_id, person_id_104, '', null, null);
+  VALUES(64542.4, '09/01/2008', now(), now(), company_id, person_id_104, null, null, null);
 
 END;
 
@@ -3200,15 +3200,15 @@ DECLARE
   company_user_id_105 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ELIZABETHFAHEY@fairviewhealthcare.com', 't', 'f', 'f', 'ELIZABETH', 'FAHEY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'elizabethfahey@fairviewhealthcare.com', 't', 'f', 'f', 'Elizabeth', 'Fahey', now(), now())
   RETURNING id into user_id_105;
-  raise notice 'The user_id_105 after insert is %', user_id;
+  raise notice 'The user_id_105 after insert is %', user_id_105;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_105)
   RETURNING id into company_user_id_105;
   raise notice 'The company_user_id_105 is %', company_user_id_105;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Elizabeth', 'A', 'Fahey', '', 'self', 'ALeCc_hIV2fZOSe38qKj4ND7gBAy8kEjGRzaz2KnkNlu3pfWyV4EpW9UCow2_7nvqX5Bg9gE4_ju', '1954-10-28', 'F', company_id, user_id_105, '')
+  VALUES('primary_contact', 'Elizabeth', 'A', 'Fahey', '', 'self', 'ALeCc_ipb-YwQW7oTZO60rvXntIDzNggVrHW32B7Cxvz_plsUFoPuuuz9aloN5bXZomguZPkuLfY', '1954-10-28', 'F', company_id, user_id_105, '')
   RETURNING id into person_id_105;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3218,10 +3218,10 @@ BEGIN
   VALUES('home', '6035981307', person_id_105);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 24024.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_105, company_id, '', '2015-09-01');
+  VALUES('', 24024.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_105, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(24024.0, '09/01/2008', now(), now(), company_id, person_id_105, '', null, null);
+  VALUES(24024.0, '09/01/2008', now(), now(), company_id, person_id_105, null, null, null);
 
 END;
 
@@ -3232,15 +3232,15 @@ DECLARE
   company_user_id_106 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'THERESACRONIN@fairviewhealthcare.com', 't', 'f', 'f', 'THERESA', 'CRONIN', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'theresacronin@fairviewhealthcare.com', 't', 'f', 'f', 'Theresa', 'Cronin', now(), now())
   RETURNING id into user_id_106;
-  raise notice 'The user_id_106 after insert is %', user_id;
+  raise notice 'The user_id_106 after insert is %', user_id_106;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_106)
   RETURNING id into company_user_id_106;
   raise notice 'The company_user_id_106 is %', company_user_id_106;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Theresa', '', 'Cronin', '', 'self', 'ALeCc_i7_RFngphwpd3Nz7QnMR2p-r1yu-K-ZTAlatlaIzvq4ShLSc9JuCE2H6UE_rRSv6czcK3n', '1949-12-05', 'F', company_id, user_id_106, '')
+  VALUES('primary_contact', 'Theresa', '', 'Cronin', '', 'self', 'ALeCc_inmf-bUZu8jRZq1TfxmAwqCuGhdWZKRcQv6U-euGT0vxEfrfPdxeB2Hel6Jwg9papPgQay', '1949-12-05', 'F', company_id, user_id_106, '')
   RETURNING id into person_id_106;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3250,10 +3250,10 @@ BEGIN
   VALUES('home', '6038864214', person_id_106);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 25000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_106, company_id, '', '2015-09-01');
+  VALUES('', 25000.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_106, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(25000.0, '09/01/2008', now(), now(), company_id, person_id_106, '', null, null);
+  VALUES(25000.0, '09/01/2008', now(), now(), company_id, person_id_106, null, null, null);
 
 END;
 
@@ -3264,9 +3264,9 @@ DECLARE
   company_user_id_107 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'RICHARDFORD@fairviewhealthcare.com', 't', 'f', 'f', 'RICHARD', 'FORD', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'richardford@fairviewhealthcare.com', 't', 'f', 'f', 'Richard', 'Ford', now(), now())
   RETURNING id into user_id_107;
-  raise notice 'The user_id_107 after insert is %', user_id;
+  raise notice 'The user_id_107 after insert is %', user_id_107;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_107)
   RETURNING id into company_user_id_107;
@@ -3276,10 +3276,10 @@ BEGIN
   RETURNING id into person_id_107;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 20800.0, '2006-06-05', 'FullTime', 'Active', now(), now(), person_id_107, company_id, '', '2015-09-01');
+  VALUES('', 20800.0, '2006-06-05', 'FullTime', 'Active', now(), now(), person_id_107, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(20800.0, '06/05/2006', now(), now(), company_id, person_id_107, '', null, null);
+  VALUES(20800.0, '06/05/2006', now(), now(), company_id, person_id_107, null, null, null);
 
 END;
 
@@ -3290,15 +3290,15 @@ DECLARE
   company_user_id_108 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'BRENDAMARQUIS@fairviewhealthcare.com', 't', 'f', 'f', 'BRENDA', 'MARQUIS', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'brendamarquis@fairviewhealthcare.com', 't', 'f', 'f', 'Brenda', 'Marquis', now(), now())
   RETURNING id into user_id_108;
-  raise notice 'The user_id_108 after insert is %', user_id;
+  raise notice 'The user_id_108 after insert is %', user_id_108;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_108)
   RETURNING id into company_user_id_108;
   raise notice 'The company_user_id_108 is %', company_user_id_108;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Brenda', 'C', 'Marquis', '', 'self', 'ALeCc_jky9ZK08ZVNzJchBe6sJ-ATY07hZQimmuW2H7nx20PQpjcn9SDnQqF2knXDbOeA0YK80yj', '1953-12-16', 'F', company_id, user_id_108, '')
+  VALUES('primary_contact', 'Brenda', 'C', 'Marquis', '', 'self', 'ALeCc_g8V7-QdYB2riLKoxQSW3edoT1mZYsy_1mMdeEw6-3nPSbiffpCBv09zmG-Pk-t3g41b6jQ', '1953-12-16', 'F', company_id, user_id_108, '')
   RETURNING id into person_id_108;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3308,10 +3308,10 @@ BEGIN
   VALUES('home', '6035952792', person_id_108);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 28294.5, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_108, company_id, '', '2015-09-01');
+  VALUES('', 28294.5, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_108, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(28294.5, '09/01/2008', now(), now(), company_id, person_id_108, '', null, null);
+  VALUES(28294.5, '09/01/2008', now(), now(), company_id, person_id_108, null, null, null);
 
 END;
 
@@ -3322,15 +3322,15 @@ DECLARE
   company_user_id_109 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'MARIAMIRANDA@fairviewhealthcare.com', 't', 'f', 'f', 'MARIA', 'MIRANDA', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'mariamiranda@fairviewhealthcare.com', 't', 'f', 'f', 'Maria', 'Miranda', now(), now())
   RETURNING id into user_id_109;
-  raise notice 'The user_id_109 after insert is %', user_id;
+  raise notice 'The user_id_109 after insert is %', user_id_109;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_109)
   RETURNING id into company_user_id_109;
   raise notice 'The company_user_id_109 is %', company_user_id_109;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Maria', '', 'Miranda', '', 'self', 'ALeCc_hiW2VnfsZi2eETCSjiZVS8DywrPbKdwpKRE_iMdEQBOhitixjbkbhd0onm3AuAAiv2nIBr', '1991-10-15', 'F', company_id, user_id_109, '')
+  VALUES('primary_contact', 'Maria', '', 'Miranda', '', 'self', 'ALeCc_iiMgNWVuTH0-M1cVaaJel7-jzlPf-PpoSGaft174_WDgiyGiYYUsyrGU09Q0rcjsmrg8tR', '1991-10-15', 'F', company_id, user_id_109, '')
   RETURNING id into person_id_109;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3340,10 +3340,10 @@ BEGIN
   VALUES('home', '6038207625', person_id_109);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 24960.0, '2015-03-01', 'FullTime', 'Active', now(), now(), person_id_109, company_id, '', '2015-09-01');
+  VALUES('', 24960.0, '2015-03-01', 'FullTime', 'Active', now(), now(), person_id_109, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(24960.0, '03/01/2015', now(), now(), company_id, person_id_109, '', null, null);
+  VALUES(24960.0, '03/01/2015', now(), now(), company_id, person_id_109, null, null, null);
 
 END;
 
@@ -3354,15 +3354,15 @@ DECLARE
   company_user_id_110 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'HEATHERBRESEE@fairviewhealthcare.com', 't', 'f', 'f', 'HEATHER', 'BRESEE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'heatherbresee@fairviewhealthcare.com', 't', 'f', 'f', 'Heather', 'Bresee', now(), now())
   RETURNING id into user_id_110;
-  raise notice 'The user_id_110 after insert is %', user_id;
+  raise notice 'The user_id_110 after insert is %', user_id_110;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_110)
   RETURNING id into company_user_id_110;
   raise notice 'The company_user_id_110 is %', company_user_id_110;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Heather', '', 'Bresee', '', 'self', 'ALeCc_hAMAZO0tUw5G_zKnudmB3Tf-m3l0YDHvWNt0OnMa7wVfuqqHQlUwhk7Ge8n-dhaFsqw8c8', '1988-04-14', 'F', company_id, user_id_110, '')
+  VALUES('primary_contact', 'Heather', '', 'Bresee', '', 'self', 'ALeCc_jdz6IKn1Ntvdc-U1PDmZXCPUHPWHJ2Mn_4tQmdTPb4ks8iRvhnIKI003gOsIBWIqlstGnA', '1988-04-14', 'F', company_id, user_id_110, '')
   RETURNING id into person_id_110;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3372,10 +3372,10 @@ BEGIN
   VALUES('home', '6038099915', person_id_110);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 24375.0, '2012-08-10', 'FullTime', 'Active', now(), now(), person_id_110, company_id, '1', '2015-09-01');
+  VALUES('', 24375.0, '2012-08-10', 'FullTime', 'Active', now(), now(), person_id_110, company_id, 1, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(null, '08/10/2012', now(), now(), company_id, person_id_110, '', 12.5000, 162.5000);
+  VALUES(null, '08/10/2012', now(), now(), company_id, person_id_110, null, 12.5000, 162.5000);
 
 END;
 
@@ -3386,15 +3386,15 @@ DECLARE
   company_user_id_111 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'JESSICASMITH@fairviewhealthcare.com', 't', 'f', 'f', 'JESSICA', 'SMITH', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jessicasmith@fairviewhealthcare.com', 't', 'f', 'f', 'Jessica', 'Smith', now(), now())
   RETURNING id into user_id_111;
-  raise notice 'The user_id_111 after insert is %', user_id;
+  raise notice 'The user_id_111 after insert is %', user_id_111;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_111)
   RETURNING id into company_user_id_111;
   raise notice 'The company_user_id_111 is %', company_user_id_111;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Jessica', '', 'Smith', '', 'self', 'ALeCc_i6sz_o6ssenCQfNhZAUL89SF_qTVeYfiaB689jFeq0z8JUMexOWZwVnl5rTzwuM8_mUtse', '1988-05-31', 'F', company_id, user_id_111, '')
+  VALUES('primary_contact', 'Jessica', '', 'Smith', '', 'self', 'ALeCc_idZ7oACFx36BwHLsEilHp0qM8KmYkifOLi1iIsBXSNG8_0PVG_MWsHxp5-UkjxcUxExggF', '1988-05-31', 'F', company_id, user_id_111, '')
   RETURNING id into person_id_111;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3404,10 +3404,10 @@ BEGIN
   VALUES('home', '6034409908', person_id_111);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 16770.0, '2014-09-08', 'FullTime', 'Active', now(), now(), person_id_111, company_id, '', '2015-09-01');
+  VALUES('', 16770.0, '2014-09-08', 'FullTime', 'Active', now(), now(), person_id_111, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(16770.0, '09/08/2014', now(), now(), company_id, person_id_111, '', null, null);
+  VALUES(16770.0, '09/08/2014', now(), now(), company_id, person_id_111, null, null, null);
 
 END;
 
@@ -3418,15 +3418,15 @@ DECLARE
   company_user_id_112 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'SHELLYBEAUCAGE@fairviewhealthcare.com', 't', 'f', 'f', 'SHELLY', 'BEAUCAGE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'shellybeaucage@fairviewhealthcare.com', 't', 'f', 'f', 'Shelly', 'Beaucage', now(), now())
   RETURNING id into user_id_112;
-  raise notice 'The user_id_112 after insert is %', user_id;
+  raise notice 'The user_id_112 after insert is %', user_id_112;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_112)
   RETURNING id into company_user_id_112;
   raise notice 'The company_user_id_112 is %', company_user_id_112;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Shelly', 'A', 'Beaucage', '', 'self', 'ALeCc_jvEOLY7EgVImfFhBCSQ0y4CTlBRFACMnP6k2JUhyZLGkl6F1MDZAHFoI1k9NRJBQvhf1B5', '1969-10-15', 'F', company_id, user_id_112, '')
+  VALUES('primary_contact', 'Shelly', 'A', 'Beaucage', '', 'self', 'ALeCc_icYtvrxFRpEnvTf-c6ZYZuI4GYeW6DcC5RfxicltdDOWZJiBkfNPx8RepJZ4o5zZEwqVLP', '1969-10-15', 'F', company_id, user_id_112, '')
   RETURNING id into person_id_112;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3436,10 +3436,10 @@ BEGIN
   VALUES('home', '6036893731', person_id_112);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 40539.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_112, company_id, '', '2015-09-01');
+  VALUES('', 40539.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_112, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(40539.0, '09/01/2008', now(), now(), company_id, person_id_112, '', null, null);
+  VALUES(40539.0, '09/01/2008', now(), now(), company_id, person_id_112, null, null, null);
 
 END;
 
@@ -3450,9 +3450,9 @@ DECLARE
   company_user_id_113 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'CRISTIANECHATFIELD@fairviewhealthcare.com', 't', 'f', 'f', 'CRISTIANE', 'CHATFIELD', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'cristianechatfield@fairviewhealthcare.com', 't', 'f', 'f', 'Cristiane', 'Chatfield', now(), now())
   RETURNING id into user_id_113;
-  raise notice 'The user_id_113 after insert is %', user_id;
+  raise notice 'The user_id_113 after insert is %', user_id_113;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_113)
   RETURNING id into company_user_id_113;
@@ -3465,10 +3465,10 @@ BEGIN
   VALUES('home', '4 Torrey Rd', '', 'Nashua', 'NH', '06063', company_id, person_id_113);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 28080.0, '2014-04-07', 'FullTime', 'Active', now(), now(), person_id_113, company_id, '', '2015-09-01');
+  VALUES('', 28080.0, '2014-04-07', 'FullTime', 'Active', now(), now(), person_id_113, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(28080.0, '04/07/2014', now(), now(), company_id, person_id_113, '', null, null);
+  VALUES(28080.0, '04/07/2014', now(), now(), company_id, person_id_113, null, null, null);
 
 END;
 
@@ -3479,9 +3479,9 @@ DECLARE
   company_user_id_114 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'DANILLEDEFRANZO@fairviewhealthcare.com', 't', 'f', 'f', 'DANILLE', 'DEFRANZO', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'danilledefranzo@fairviewhealthcare.com', 't', 'f', 'f', 'Danille', 'Defranzo', now(), now())
   RETURNING id into user_id_114;
-  raise notice 'The user_id_114 after insert is %', user_id;
+  raise notice 'The user_id_114 after insert is %', user_id_114;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_114)
   RETURNING id into company_user_id_114;
@@ -3491,10 +3491,10 @@ BEGIN
   RETURNING id into person_id_114;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 23712.0, '2015-01-20', 'FullTime', 'Active', now(), now(), person_id_114, company_id, '', '2015-09-01');
+  VALUES('', 23712.0, '2015-01-20', 'FullTime', 'Active', now(), now(), person_id_114, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(23712.0, '01/20/2015', now(), now(), company_id, person_id_114, '', null, null);
+  VALUES(23712.0, '01/20/2015', now(), now(), company_id, person_id_114, null, null, null);
 
 END;
 
@@ -3505,25 +3505,25 @@ DECLARE
   company_user_id_115 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KELLYMCNALLY@fairviewhealthcare.com', 't', 'f', 'f', 'KELLY', 'MCNALLY', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kellymcnally@fairviewhealthcare.com', 't', 'f', 'f', 'Kelly', 'Mcnally', now(), now())
   RETURNING id into user_id_115;
-  raise notice 'The user_id_115 after insert is %', user_id;
+  raise notice 'The user_id_115 after insert is %', user_id_115;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_115)
   RETURNING id into company_user_id_115;
   raise notice 'The company_user_id_115 is %', company_user_id_115;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Kelly', '', 'Mcnally', '', 'self', 'ALeCc_h-Dut6B9qT0o5JUcD4sVV5yL5g6wB1ROyT37o21cfNfiHaGx953FCw8cOhDOw3hMG9e2NI', '1989-09-01', 'F', company_id, user_id_115, '')
+  VALUES('primary_contact', 'Kelly', '', 'Mcnally', '', 'self', 'ALeCc_ixkcXVQemD_MY3aFdhFa5RFQjxB42cfERHY6JeNSz-NI5h6TxaQzjthJYP5JBEKV6oJfYK', '1989-09-01', 'F', company_id, user_id_115, '')
   RETURNING id into person_id_115;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
   VALUES('home', '7 Sanborn Rd', '', 'Derry', 'NH', '03038', company_id, person_id_115);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 22880.0, '2015-02-01', 'FullTime', 'Active', now(), now(), person_id_115, company_id, '', '2015-09-01');
+  VALUES('', 22880.0, '2015-02-01', 'FullTime', 'Active', now(), now(), person_id_115, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(22880.0, '02/01/2015', now(), now(), company_id, person_id_115, '', null, null);
+  VALUES(22880.0, '02/01/2015', now(), now(), company_id, person_id_115, null, null, null);
 
 END;
 
@@ -3534,9 +3534,9 @@ DECLARE
   company_user_id_116 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'AMANDAGLAZIER@fairviewhealthcare.com', 't', 'f', 'f', 'AMANDA', 'GLAZIER', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'amandaglazier@fairviewhealthcare.com', 't', 'f', 'f', 'Amanda', 'Glazier', now(), now())
   RETURNING id into user_id_116;
-  raise notice 'The user_id_116 after insert is %', user_id;
+  raise notice 'The user_id_116 after insert is %', user_id_116;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_116)
   RETURNING id into company_user_id_116;
@@ -3546,10 +3546,10 @@ BEGIN
   RETURNING id into person_id_116;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 31200.0, '2015-05-01', 'FullTime', 'Active', now(), now(), person_id_116, company_id, '', '2015-09-01');
+  VALUES('', 31200.0, '2015-05-01', 'FullTime', 'Active', now(), now(), person_id_116, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(31200.0, '05/01/2015', now(), now(), company_id, person_id_116, '', null, null);
+  VALUES(31200.0, '05/01/2015', now(), now(), company_id, person_id_116, null, null, null);
 
 END;
 
@@ -3560,9 +3560,9 @@ DECLARE
   company_user_id_117 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'AUBREYGUILLOTTE@fairviewhealthcare.com', 't', 'f', 'f', 'AUBREY', 'GUILLOTTE', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'aubreyguillotte@fairviewhealthcare.com', 't', 'f', 'f', 'Aubrey', 'Guillotte', now(), now())
   RETURNING id into user_id_117;
-  raise notice 'The user_id_117 after insert is %', user_id;
+  raise notice 'The user_id_117 after insert is %', user_id_117;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_117)
   RETURNING id into company_user_id_117;
@@ -3572,10 +3572,10 @@ BEGIN
   RETURNING id into person_id_117;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 20800.0, '2015-05-08', 'FullTime', 'Active', now(), now(), person_id_117, company_id, '', '2015-09-01');
+  VALUES('', 20800.0, '2015-05-08', 'FullTime', 'Active', now(), now(), person_id_117, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(20800.0, '05/08/2015', now(), now(), company_id, person_id_117, '', null, null);
+  VALUES(20800.0, '05/08/2015', now(), now(), company_id, person_id_117, null, null, null);
 
 END;
 
@@ -3586,15 +3586,15 @@ DECLARE
   company_user_id_118 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'KARENFOTHERGILL@fairviewhealthcare.com', 't', 'f', 'f', 'KAREN', 'FOTHERGILL', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'karenfothergill@fairviewhealthcare.com', 't', 'f', 'f', 'Karen', 'Fothergill', now(), now())
   RETURNING id into user_id_118;
-  raise notice 'The user_id_118 after insert is %', user_id;
+  raise notice 'The user_id_118 after insert is %', user_id_118;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_118)
   RETURNING id into company_user_id_118;
   raise notice 'The company_user_id_118 is %', company_user_id_118;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Karen', '', 'Fothergill', '', 'self', 'ALeCc_jpvMtjW9fTKcm8lJo_3WcH2ir8S7GqPqLZeGpxGo7uk_SVDTukZwX4xOjYIKAcrOJm1RQl', '1954-07-18', 'F', company_id, user_id_118, '')
+  VALUES('primary_contact', 'Karen', '', 'Fothergill', '', 'self', 'ALeCc_h2C3MNl1dsmLsjhfbc3fOROXdO7-u2bf1KKQE5FmwhMbB4MIAL89sevQzrj2LnMgHWrvJM', '1954-07-18', 'F', company_id, user_id_118, '')
   RETURNING id into person_id_118;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3604,10 +3604,10 @@ BEGIN
   VALUES('home', '6032619901', person_id_118);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 20000.0, '2014-06-24', 'FullTime', 'Active', now(), now(), person_id_118, company_id, '', '2015-09-01');
+  VALUES('', 20000.0, '2014-06-24', 'FullTime', 'Active', now(), now(), person_id_118, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(20000.0, '06/24/2014', now(), now(), company_id, person_id_118, '', null, null);
+  VALUES(20000.0, '06/24/2014', now(), now(), company_id, person_id_118, null, null, null);
 
 END;
 
@@ -3618,9 +3618,9 @@ DECLARE
   company_user_id_119 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'NICHOLECURRAN@fairviewhealthcare.com', 't', 'f', 'f', 'NICHOLE', 'CURRAN', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'nicholecurran@fairviewhealthcare.com', 't', 'f', 'f', 'Nichole', 'Curran', now(), now())
   RETURNING id into user_id_119;
-  raise notice 'The user_id_119 after insert is %', user_id;
+  raise notice 'The user_id_119 after insert is %', user_id_119;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_119)
   RETURNING id into company_user_id_119;
@@ -3630,10 +3630,10 @@ BEGIN
   RETURNING id into person_id_119;
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 21060.0, '2014-08-04', 'FullTime', 'Active', now(), now(), person_id_119, company_id, '', '2015-09-01');
+  VALUES('', 21060.0, '2014-08-04', 'FullTime', 'Active', now(), now(), person_id_119, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(21060.0, '08/04/2014', now(), now(), company_id, person_id_119, '', null, null);
+  VALUES(21060.0, '08/04/2014', now(), now(), company_id, person_id_119, null, null, null);
 
 END;
 
@@ -3644,15 +3644,15 @@ DECLARE
   company_user_id_120 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'TRACIESEIDL@fairviewhealthcare.com', 't', 'f', 'f', 'TRACIE', 'SEIDL', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'tracieseidl@fairviewhealthcare.com', 't', 'f', 'f', 'Tracie', 'Seidl', now(), now())
   RETURNING id into user_id_120;
-  raise notice 'The user_id_120 after insert is %', user_id;
+  raise notice 'The user_id_120 after insert is %', user_id_120;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_120)
   RETURNING id into company_user_id_120;
   raise notice 'The company_user_id_120 is %', company_user_id_120;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Tracie', 'M', 'Seidl', '', 'self', 'ALeCc_hyJ8qLYAWviMMCfz3-81ALk9kXtmk2iIH_WV4Eo-gv0jZt1ugP6aXcbMsKLLjyEy5o6Fb9', '1973-09-17', 'F', company_id, user_id_120, '')
+  VALUES('primary_contact', 'Tracie', 'M', 'Seidl', '', 'self', 'ALeCc_jUbvPHwPcFsMeZz4MjczSgp_XkS58rM9rijcl8Ktb5hUemd6Nk8IV_EFUw6pwG5SHnX0Yi', '1973-09-17', 'F', company_id, user_id_120, '')
   RETURNING id into person_id_120;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3662,10 +3662,10 @@ BEGIN
   VALUES('home', '6037655785', person_id_120);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 47132.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_120, company_id, '', '2015-09-01');
+  VALUES('', 47132.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_120, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(47132.0, '09/01/2008', now(), now(), company_id, person_id_120, '', null, null);
+  VALUES(47132.0, '09/01/2008', now(), now(), company_id, person_id_120, null, null, null);
 
 END;
 
@@ -3676,15 +3676,15 @@ DECLARE
   company_user_id_121 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ROSEMARYSAMPSON@fairviewhealthcare.com', 't', 'f', 'f', 'ROSEMARY', 'SAMPSON', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'rosemarysampson@fairviewhealthcare.com', 't', 'f', 'f', 'Rosemary', 'Sampson', now(), now())
   RETURNING id into user_id_121;
-  raise notice 'The user_id_121 after insert is %', user_id;
+  raise notice 'The user_id_121 after insert is %', user_id_121;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_121)
   RETURNING id into company_user_id_121;
   raise notice 'The company_user_id_121 is %', company_user_id_121;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Rosemary', '', 'Sampson', '', 'self', 'ALeCc_ijgS2VfeJaCkgMaueSxWwWU-xEgSI56GBfNzTJuIxvxZHommKPtRYYdAJNLVoWu64909y5', '1962-05-02', 'F', company_id, user_id_121, '')
+  VALUES('primary_contact', 'Rosemary', '', 'Sampson', '', 'self', 'ALeCc_izVEdL3RFdaJL3-2tMUWXb9SnnVNt-azQPqiJLVlpGbAqWUYHvxcAW10NWqw73qnYacRCN', '1962-05-02', 'F', company_id, user_id_121, '')
   RETURNING id into person_id_121;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3694,10 +3694,10 @@ BEGIN
   VALUES('home', '6033157382', person_id_121);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 70000.0, '2013-12-30', 'FullTime', 'Active', now(), now(), person_id_121, company_id, '', '2015-09-01');
+  VALUES('', 70000.0, '2013-12-30', 'FullTime', 'Active', now(), now(), person_id_121, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(70000.0, '12/30/2013', now(), now(), company_id, person_id_121, '', null, null);
+  VALUES(70000.0, '12/30/2013', now(), now(), company_id, person_id_121, null, null, null);
 
 END;
 
@@ -3708,15 +3708,15 @@ DECLARE
   company_user_id_122 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ELIZABETHNGUGI@fairviewhealthcare.com', 't', 'f', 'f', 'ELIZABETH', 'NGUGI', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'elizabethngugi@fairviewhealthcare.com', 't', 'f', 'f', 'Elizabeth', 'Ngugi', now(), now())
   RETURNING id into user_id_122;
-  raise notice 'The user_id_122 after insert is %', user_id;
+  raise notice 'The user_id_122 after insert is %', user_id_122;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_122)
   RETURNING id into company_user_id_122;
   raise notice 'The company_user_id_122 is %', company_user_id_122;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Elizabeth', '', 'Ngugi', '', 'self', 'ALeCc_iV-T-65osNVk5pQ1vyjKY2TtAiLWTQ0TdtGsWY5j_JE0q-JkFvS6RjgslnTQ0to8TJl3Tv', '1973-03-05', 'F', company_id, user_id_122, '')
+  VALUES('primary_contact', 'Elizabeth', '', 'Ngugi', '', 'self', 'ALeCc_hfpmBm_ShGEEAUi6ms8TxhaxVC7vcOzas8mrSCcjlbwMSQ4UMOHv1Yahy_wSoRAGWIQ2Kg', '1973-03-05', 'F', company_id, user_id_122, '')
   RETURNING id into person_id_122;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3726,10 +3726,10 @@ BEGIN
   VALUES('home', '6033157994', person_id_122);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 45011.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_122, company_id, '', '2015-09-01');
+  VALUES('', 45011.0, '2008-09-01', 'FullTime', 'Active', now(), now(), person_id_122, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(45011.0, '09/01/2008', now(), now(), company_id, person_id_122, '', null, null);
+  VALUES(45011.0, '09/01/2008', now(), now(), company_id, person_id_122, null, null, null);
 
 END;
 
@@ -3740,15 +3740,15 @@ DECLARE
   company_user_id_123 int; 
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
-  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'BONNIEDORAN@fairviewhealthcare.com', 't', 'f', 'f', 'BONNIE', 'DORAN', now(), now())
+  VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'bonniedoran@fairviewhealthcare.com', 't', 'f', 'f', 'Bonnie', 'Doran', now(), now())
   RETURNING id into user_id_123;
-  raise notice 'The user_id_123 after insert is %', user_id;
+  raise notice 'The user_id_123 after insert is %', user_id_123;
   INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)
   VALUES('employee', 'f', company_id, user_id_123)
   RETURNING id into company_user_id_123;
   raise notice 'The company_user_id_123 is %', company_user_id_123;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Bonnie', 'L', 'Doran', '', 'self', 'ALeCc_jO9vAaDZ-x7jy8ZHEaVEP17M2bl8gqbwhScPfKeusSP-RB959p05PFFH4-Jt1ZfkaND8-W', '1956-07-27', 'F', company_id, user_id_123, '')
+  VALUES('primary_contact', 'Bonnie', 'L', 'Doran', '', 'self', 'ALeCc_hn8tIjJVm-o-bzEeOhj2ehaXC2vLDg0zMTnRpDiBQIIsGZOfu3S3RBq5SJZvUr0zvSE2Iy', '1956-07-27', 'F', company_id, user_id_123, '')
   RETURNING id into person_id_123;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3758,13 +3758,13 @@ BEGIN
   VALUES('home', '6033154000', person_id_123);
 
   INSERT INTO app_employeeprofile(job_title, annual_base_salary, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, pay_rate_id, benefit_start_date)
-  VALUES('', 37440.0, '2012-02-15', 'FullTime', 'Active', now(), now(), person_id_123, company_id, '', '2015-09-01');
+  VALUES('', 37440.0, '2012-02-15', 'FullTime', 'Active', now(), now(), person_id_123, company_id, null, '2015-09-01');
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
-  VALUES(37440.0, '02/15/2012', now(), now(), company_id, person_id_123, '', null, null);
+  VALUES(37440.0, '02/15/2012', now(), now(), company_id, person_id_123, null, null, null);
 
 END;
 
-raise notice 'There are 124 users created '
+raise notice 'There are 124 users created ';
 END
 $$

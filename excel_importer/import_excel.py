@@ -45,7 +45,7 @@ def main(argv):
     if len(args) <= 0:
         usage()
         sys.exit(2)
-    company_users = CompanyUsers(40, 'fairviewhealthcare.com')
+    company_users = CompanyUsers(23, 'fairviewhealthcare.com')
     data_provider = UsersDataProvider(company_users)
     for excel_path in args:
         Logger.debug("here is the input excel: {}".format(excel_path))

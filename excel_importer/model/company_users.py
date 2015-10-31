@@ -10,6 +10,16 @@ class CompanyUsers(object):
         self.company_id = company_id
         self.company_domain = company_domain
         self.member_id_users = {}
+        self._email_list = []
+
+    def _get_unique_email(self, email, counter=0):
+        if not email in self._email_list:
+            self._email_list.append(email)
+            return email
+        else:
+            counter += 1
+            email = '{}{}'.format(email, counter)
+            return self._get_unique_email(email, counter)
 
     def _get_user_key(self, person):
         if isinstance(person.birth_date, unicode):
@@ -24,7 +34,8 @@ class CompanyUsers(object):
         the_user = User()
         the_user.first_name = first_name
         the_user.last_name = last_name
-        the_user.email = "{0}{1}@{2}".format(first_name.replace(" ", "_"), last_name.replace(" ", "_"), self.company_domain)
+        email_user_name = self._get_unique_email('{0}{1}'.format(first_name.replace(" ", "_"), last_name.replace(" ", "_")))
+        the_user.email = "{0}@{1}".format(email_user_name, self.company_domain)
         return the_user
 
     def _merge_info(self, existing, new):
