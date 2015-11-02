@@ -26,7 +26,7 @@ psql proddb
 
 4. The generated sql file is at /excel_importer/serialized_users.sql
 
-5. Within the psql console, do \i <path_to_serializerd_user.sql>
+5. Within the psql console, do \i {path_to_serializerd_user.sql}
 
 ## How to use
 Repeat the steps in "Testing" section above starting from step 2 
