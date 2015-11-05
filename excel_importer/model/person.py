@@ -17,5 +17,6 @@ class Person(Base):
         self.member_id = None
         self.employee_profile = None
         self.employee_compensation = None
+        self.id = ''
     
 

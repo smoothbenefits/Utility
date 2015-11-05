@@ -6,3 +6,4 @@ class EmployeeCompensation(Base):
         self.salary_type = ''
         self.effective_date = ''
         self.hours = ''
+        self.id = ''

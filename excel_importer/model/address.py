@@ -8,3 +8,4 @@ class Address(Base):
         self.city = None
         self.state = None
         self.zipcode = None
+        self.id = ''

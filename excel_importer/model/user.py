@@ -8,3 +8,4 @@ class User(Base):
         self.email = None
         self.family_members = []
         self.person = None
+        self.id = ""

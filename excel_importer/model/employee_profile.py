@@ -8,3 +8,4 @@ class EmployeeProfile(Base):
         self.employment_status = ''
         self.pay_rate = ''
         self.benefit_start_date = ''
+        self.id = ''
