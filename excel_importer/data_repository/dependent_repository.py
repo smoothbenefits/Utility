@@ -5,20 +5,22 @@ from phone_repository import PhoneRepository
 from employee_profile_repository import EmployeeProfileRepository
 from employee_compensation_repository import EmployeeCompensationRepository
 
-class PersonRepository(Repository):
+class DependentRepository(Repository):
     def __init__(self, cursor, user_id):
-        super(PersonRepository, self).__init__(cursor)
+        super(DependentRepository, self).__init__(cursor)
         self.user_id = user_id
 
     def _get_sql_string(self):
-        return 'select id, first_name, middle_name, last_name, relationship, gender, birth_date, ssn, email from app_person where user_id=\'{}\' and person_type=\'primary_contact\''.format(self.user_id)
+        return 'select id, first_name, middle_name, last_name, relationship, gender, birth_date, ssn, email from app_person where user_id=\'{}\' and person_type=\'family\''.format(self.user_id)
 
     def _get_model_populated_with_data(self, data):
+        members = []
         if not data:
-            return None
-        cur_person = Person()
-        row = data[0]
-        if row:
+            return members
+        for row in data:
+            if not row:
+                continue
+            cur_person = Person()
             cur_person.id = row[0]
             cur_person.first_name = row[1]
             cur_person.middle_name = row[2]
@@ -37,6 +39,5 @@ class PersonRepository(Repository):
             cur_person.employee_profile = profile_repo.get_model()
             comp_repo = EmployeeCompensationRepository(self.cursor, cur_person.id)
             cur_person.employee_compensation = comp_repo.get_model()
-            return cur_person
-        else:
-            return None
+            members.append(cur_person)
+        return members

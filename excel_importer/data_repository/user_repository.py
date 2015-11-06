@@ -1,6 +1,7 @@
 from model.user import User
 from repository import Repository
 from person_repository import PersonRepository
+from dependent_repository import DependentRepository
 class UserRepository(Repository):
     def __init__(self, cursor, user_id):
         super(UserRepository, self).__init__(cursor)
@@ -22,6 +23,10 @@ class UserRepository(Repository):
             cur_user.id = self.user_id
             pr = PersonRepository(self.cursor, self.user_id)
             cur_user.person = pr.get_model()
+            dep_repo = DependentRepository(self.cursor, self.user_id)
+            members = dep_repo.get_model()
+            for member in members:
+                cur_user.family_members.append(member)
             return cur_user
         else:
             return None
