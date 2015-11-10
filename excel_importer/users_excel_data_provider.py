@@ -2,7 +2,7 @@ from openpyxl import load_workbook
 from parser.row_parser import RowParser
 from model.excel_type import ExcelType
 
-class UsersDataProvider(object):
+class UsersExcelDataProvider(object):
     def __init__(self, company_users):
         self.company_users = company_users
 
