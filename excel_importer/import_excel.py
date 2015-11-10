@@ -9,9 +9,12 @@ from model.company_users import CompanyUsers
 from users_excel_data_provider import UsersExcelDataProvider
 from users_db_data_provider import UsersDBDataProvider
 from serializer.sql.company_users_serializer import CompanyUsersSerializer
+from company_benefits_provider import CompanyBenefitsProvider
+from model.company_benefits import CompanyBenefits
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
 Logger = logging.getLogger("import_excel")
+company_id = 23
 
 def usage():
     print "import_excel.py [options] [arguments]\n"
@@ -57,11 +60,20 @@ def main(argv):
     if len(args) <= 0:
         usage()
         sys.exit(2)
-    company_users = CompanyUsers(23, 'fairviewhealthcare.com')
+    company_users = CompanyUsers(company_id, 'fairviewhealthcare.com')
     data_provider = None
     if db_based:
         data_provider = UsersDBDataProvider(company_users, db_name)
         data_provider.process()
+        company_benefits = CompanyBenefits(company_id)
+        benefit_provider = CompanyBenefitsProvider(company_id, company_benefits, db_name)
+        benefit_provider.process()
+        company_users.benefits = company_benefits
+        for plan in company_benefits.medicals.values():
+            print "{}, {}, {}, {}, {} \n".format(plan.id, plan.name, plan.type, plan.mandatory_pcp, plan.pcp_link)
+            print "  options:\n"
+            for option in plan.options:
+                print "{}, {}, {}, {}\n".format(option.id, option.total_cost_per_period, option.employee_cost_per_period, option.benefit_option_type)
     else:
         data_provider = UsersExcelDataProvider(company_users)
         for excel_path in args:

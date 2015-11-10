@@ -11,6 +11,7 @@ class CompanyUsers(object):
         self.company_domain = company_domain
         self.member_id_users = {}
         self._email_list = []
+        self.benefits = None
 
     def _get_unique_email(self, email, counter=0):
         if not email in self._email_list:
