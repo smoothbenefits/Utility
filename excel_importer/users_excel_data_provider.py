@@ -3,10 +3,7 @@ from parser.row_parser import RowParser
 from model.excel_type import ExcelType
 
 class UsersExcelDataProvider(object):
-    def __init__(self, company_users):
-        self.company_users = company_users
-
-    def process(self, excel_file):
+    def provide(self, excel_file, company_users):
         work_book = load_workbook(excel_file, read_only=True, data_only=True, keep_vba=True)
         work_sheet = work_book.active
         # initialize parsers
@@ -18,7 +15,7 @@ class UsersExcelDataProvider(object):
             if not row:
                 continue
             row_parsed = row_parser.parse_data(row)
-            self.company_users.merge_with_excel_data(row_parsed, self._get_excel_type(excel_file))
+            company_users.merge_with_excel_data(row_parsed, self._get_excel_type(excel_file))
 
     def _find_header_row(self, work_sheet):
         header_row = None

@@ -100,7 +100,16 @@ class CompanyUsers(object):
                 self.member_id_users[person.member_id[:-2]] = cur_user
 
         self._populate_dependent(row.get(ModelType.DEPENDENT, None), cur_user)
-        
+    
+    def merge_with_db_data(self, users):
+        for user in users:
+            if user.person and user.person.birth_date:
+                key = self._get_user_key(user.person)
+                cur_user = self.users.get(key)
+                if cur_user:
+                    self._merge_info(cur_user, user)
+                else:
+                    self.users[key] = user
 
     def get_all_users(self):
         return self.users.values()

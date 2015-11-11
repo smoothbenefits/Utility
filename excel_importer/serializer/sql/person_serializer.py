@@ -28,6 +28,8 @@ class PersonSerializer(object):
         if not person:
             return
 
+        if not person.middle_name:
+            person.middle_name = ''
         file.write('  INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)\n')
         file.write('  VALUES(\'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', \'{}\', company_id, {}, \'\')\n'.format(person.person_type, person.first_name.lower().title().replace('\'', '\'\''), person.middle_name.lower().title().replace('\'', '\'\''), person.last_name.lower().title().replace('\'', '\'\''), person.email.replace('\'', ''), PersonSerializer.get_relationship(person.relationship), Serializer.get_encrypted(person.ssn), Serializer.get_date_string(person.birth_date), PersonSerializer.get_gender(person.gender), user_id_string))
         file.write('  RETURNING id into {};\n\n'.format(person_id_string))

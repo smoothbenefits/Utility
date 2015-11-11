@@ -1,8 +1,13 @@
 from person_serializer import PersonSerializer
+import logging
+Logger = logging.getLogger("import_excel")
 
 class UserSerializer(object):
     @staticmethod
     def serialize(user, file, id):
+        if user.id:
+            Logger.debug("user {} already have id of {}".format(user.email, user.id))
+            return
         user_id_string = 'user_id_{}'.format(id)
         person_id_string = 'person_id_{}'.format(id)
         family_member_dictionary = {}
