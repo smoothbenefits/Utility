@@ -21,5 +21,10 @@ class PersonSerializer(object):
                 f.write("compensation: {}, {}, {}, {}, {}\n".format(person.employee_compensation.id, person.employee_compensation.annual_base_salary, person.employee_compensation.hours, person.employee_compensation.hourly_rate, person.employee_compensation.effective_date))
             else:
                 f.write("No employee compensation\n")
+            if person.medical_enrollment:
+                if person.medical_enrollment.benefit_plan:
+                    f.write("Person Medical Selection: {}, {}, {}, {}\n".format(person.medical_enrollment.benefit_plan.id, person.medical_enrollment.benefit_plan.name, person.medical_enrollment.benefit_name, person.medical_enrollment.pcp_number))
+                else:
+                    f.write("Person Medical Selection No Plan: {}, {}\n".format(person.medical_enrollment.benefit_name, person.medical_enrollment.pcp_number))
         else:
             f.write("No person\n")

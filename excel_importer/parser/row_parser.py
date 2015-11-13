@@ -35,4 +35,5 @@ class RowParser(object):
         row_parsed[ModelType.PERSON].employee_compensation = self._employee_compensation_parser.parse_data_row(excel_row)
         row_parsed[ModelType.DEPENDENT] = self._dependent_parser.parse_data_row(excel_row)
         row_parsed[ModelType.HEALTH_SELECTION] = self._medical_selection.parse_data_row(excel_row)
+        row_parsed[ModelType.PERSON].medical_enrollment = row_parsed[ModelType.HEALTH_SELECTION]
         return row_parsed

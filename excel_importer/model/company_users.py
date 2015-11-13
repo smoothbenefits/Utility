@@ -71,24 +71,28 @@ class CompanyUsers(object):
             return
         self._merge_with_family(c_user, dependent)
 
-    def _populate_medical(self, health_selection, c_user):
-        if not self.benefits or not self.benefits.medicals or not health_selection or not health_selection.benefit_name:
+    def _map_with_company(self, health_selection):
+        if not self.benefits or not self.benefits.medicals or not health_selection:
             return
+        # we need to match benefit_name with id
+        for medical in self.benefits.medicals.values():
+            if '1000/3000' in medical.name and \
+                '$1000 HRA' in health_selection.benefit_name:
+                health_selection.benefit_plan = medical
+                break
 
-        if health_selection:
-            # we need to match benefit_name with id
-            for medical in self.benefits.medicals.values():
-                if '1000/3000' in medical.name and \
-                    '$1000 HRA' in health_selection.benefit_name:
-                    health_selection.benefit_plan = medical
-                    break
+            if '$5000' in medical.name and \
+                '$5000' in health_selection.benefit_name:
+                health_selection.benefit_plan = medical
+                break
 
-                if '$5000' in medical.name and \
-                    '$5000' in health_selection.benefit_name:
-                    health_selection.benefit_plan = medical
-                    break
-            
-            c_user.medical_selection = health_selection
+    def _populate_medical(self, health_selection, c_user):
+        self._map_with_company(health_selection)
+        self._map_with_company(c_user.person.medical_enrollment)
+        for member in c_user.family_members:
+            self._map_with_company(member.medical_enrollment)    
+        
+        c_user.medical_selection = health_selection
 
     def merge_with_excel_data(self, row, excel_type):
         cur_user = None
