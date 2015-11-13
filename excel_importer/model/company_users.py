@@ -71,6 +71,24 @@ class CompanyUsers(object):
             return
         self._merge_with_family(c_user, dependent)
 
+    def _populate_medical(self, health_selection, c_user):
+        if not self.benefits or not self.benefits.medicals or not health_selection or not health_selection.benefit_name:
+            return
+
+        if health_selection:
+            # we need to match benefit_name with id
+            for medical in self.benefits.medicals.values():
+                if '1000/3000' in medical.name and \
+                    '$1000 HRA' in health_selection.benefit_name:
+                    health_selection.benefit_plan = medical
+                    break
+
+                if '$5000' in medical.name and \
+                    '$5000' in health_selection.benefit_name:
+                    health_selection.benefit_plan = medical
+                    break
+            
+            c_user.medical_selection = health_selection
 
     def merge_with_excel_data(self, row, excel_type):
         cur_user = None
@@ -100,6 +118,7 @@ class CompanyUsers(object):
                 self.member_id_users[person.member_id[:-2]] = cur_user
 
         self._populate_dependent(row.get(ModelType.DEPENDENT, None), cur_user)
+        self._populate_medical(row.get(ModelType.HEALTH_SELECTION, None), cur_user)
     
     def merge_with_db_data(self, users):
         for user in users:

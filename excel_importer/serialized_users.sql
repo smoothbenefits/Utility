@@ -18,7 +18,7 @@ BEGIN
   RETURNING id into company_user_id_5;
   raise notice 'The company_user_id_5 is %', company_user_id_5;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Kristin', '', 'Maffee', '', 'self', 'ALeCc_i7sNZbwQEqlJl_73Mo2jvPz5Ldmp0zlZW83FcmPryIXvFipAvN50mdZzP0HALyEqtruJ1l', '1959-06-02', 'F', company_id, user_id_5, '')
+  VALUES('primary_contact', 'Kristin', '', 'Maffee', '', 'self', 'ALeCc_iVacE_WynG_110qfJr-4sT-UDMLIYLfhnogZd-L_SbtUd2htljhaFNtX8alzM4qr0rt-j4', '1959-06-02', 'F', company_id, user_id_5, '')
   RETURNING id into person_id_5;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -50,7 +50,7 @@ BEGIN
   RETURNING id into company_user_id_32;
   raise notice 'The company_user_id_32 is %', company_user_id_32;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Alfredo', '', 'Santiago-Sanchez', '', 'self', 'ALeCc_jUUztglxOv-LWk2gJDU9QtLT_VQJZM2mzu9iuCpjqlUt0RZlZea04KUR2kz88WnKAz71JN', '1980-04-05', 'M', company_id, user_id_32, '')
+  VALUES('primary_contact', 'Alfredo', '', 'Santiago-Sanchez', '', 'self', 'ALeCc_j5pqnjfhxuZdo3slee1JvCiuMmPLwhvmwOHzQsnH2lnYOCYFhjubA-ChVobxi_8FYbesJZ', '1980-04-05', 'M', company_id, user_id_32, '')
   RETURNING id into person_id_32;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -82,7 +82,7 @@ BEGIN
   RETURNING id into company_user_id_34;
   raise notice 'The company_user_id_34 is %', company_user_id_34;
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Michelle', 'M', 'D''Avanzo', '', 'self', 'ALeCc_h-pQ_r55_rxua5_Y7h4pdPSgJxSG3kgeAu6nNmCmt2fTa3TvqRgsTSum9Tpcxxm1oobk-5', '1967-11-09', 'F', company_id, user_id_34, '')
+  VALUES('primary_contact', 'Michelle', 'M', 'D''Avanzo', '', 'self', 'ALeCc_iME9fb0TDqC7ZuKS_HVoVm0QpoVh0BD4ECn0w3Ff2y7HD4fhtLYDIMWRZGejCtx0DSsfTL', '1967-11-09', 'F', company_id, user_id_34, '')
   RETURNING id into person_id_34;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
