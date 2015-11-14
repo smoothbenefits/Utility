@@ -81,6 +81,8 @@ def main(argv):
         Logger.debug("here is the input excel: {}".format(excel_path))
         data_provider.provide(excel_path, company_users)
 
+    company_users.post_parse_processing()
+
     if not output:
         output = "serialized_users.sql"
 

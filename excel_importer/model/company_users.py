@@ -78,7 +78,14 @@ class CompanyUsers(object):
         # we need to match benefit_name with id
         for medical in self.benefits.medicals.values():
             if '1000/3000' in medical.name and \
-                '$1000 HRA' in health_selection.benefit_name:
+                '$1000 HRA' in health_selection.benefit_name and \
+                'Benefit' not in health_selection.benefit_name:
+                health_selection.benefit_plan = medical
+                break
+
+            if '2000/4000' in medical.name and \
+                '$1000 HRA' in health_selection.benefit_name and \
+                'Benefit' in health_selection.benefit_name:
                 health_selection.benefit_plan = medical
                 break
 
@@ -158,10 +165,12 @@ class CompanyUsers(object):
                     if member.medical_enrollment:
                         member.medical_enrollment.option = found_option
 
+    def post_parse_processing(self):
+        self.prepare_enrollment = True
+        for user in self.users.values():
+            self._update_medical_enrollment(user)
 
     def get_all_users(self):
         if not self.prepare_enrollment:
-            self.prepare_enrollment = True
-            for user in self.users.values():
-                self._update_medical_enrollment(user)
+            raise Exception("Did not run post processing step!")
         return self.users.values()
