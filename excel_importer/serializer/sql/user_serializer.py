@@ -24,6 +24,7 @@ class UserSerializer(object):
         for id_string in family_member_dictionary.keys():
             file.write('  {} int;\n'.format(id_string))
         file.write('  company_user_id_{} int; \n'.format(id))
+        file.write('  {} int;\n'.format(health_selection_id))
         file.write('BEGIN\n')
         if user.id:
             file.write('  {} := {};\n'.format(user_id_string, user.id))
