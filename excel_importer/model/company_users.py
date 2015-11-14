@@ -152,6 +152,7 @@ class CompanyUsers(object):
                 found_option = self._get_option_by_option_type(user.medical_selection.benefit_plan.options, 'individual_plus_family')
 
             if found_option:
+                user.medical_selection.option = found_option
                 user.person.medical_enrollment.option = found_option
                 for member in user.family_members:
                     if member.medical_enrollment:

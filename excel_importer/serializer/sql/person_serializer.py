@@ -25,7 +25,7 @@ class PersonSerializer(object):
 
 
     @staticmethod
-    def serialize(person, file, user_id_string, person_id_string):
+    def serialize(person, file, user_id_string, person_id_string, health_selection_id):
         if not person:
             return
 
@@ -39,5 +39,5 @@ class PersonSerializer(object):
         PhoneSerializer.serialize(person.phone, file, person_id_string)
         EmployeeProfileSerializer.serialize(person.employee_profile, file, person_id_string)
         EmployeeCompensationSerializer.serialize(person.employee_compensation, file, person_id_string)
-        HealthEnrollmentSerializer.serialize(person.medical_enrollment, file, person_id_string)
+        HealthEnrollmentSerializer.serialize(person.medical_enrollment, file, person_id_string, health_selection_id)
 
