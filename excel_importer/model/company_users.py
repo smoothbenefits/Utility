@@ -12,6 +12,7 @@ class CompanyUsers(object):
         self.member_id_users = {}
         self._email_list = []
         self.benefits = None
+        self.prepare_enrollment = False
 
     def _get_unique_email(self, email, counter=0):
         if not email in self._email_list:
@@ -90,8 +91,8 @@ class CompanyUsers(object):
         self._map_with_company(health_selection)
         self._map_with_company(c_user.person.medical_enrollment)
         for member in c_user.family_members:
-            self._map_with_company(member.medical_enrollment)    
-        
+            self._map_with_company(member.medical_enrollment) 
+
         c_user.medical_selection = health_selection
 
     def merge_with_excel_data(self, row, excel_type):
@@ -134,5 +135,32 @@ class CompanyUsers(object):
                 else:
                     self.users[key] = user
 
+    def _get_option_by_option_type(self, options, option_type):
+        for option in options:
+            if option_type.lower() in option.benefit_option_type.lower():
+                return option
+
+    def _update_medical_enrollment(self, user):
+        if user.medical_selection and user.medical_selection.benefit_plan:
+            # we need to figure out what option we should assign to the person
+            found_option = None
+            if not user.family_members:
+                found_option = self._get_option_by_option_type(user.medical_selection.benefit_plan.options, 'individual')
+            elif len(user.family_members) == 1:
+                found_option = self._get_option_by_option_type(user.medical_selection.benefit_plan.options, 'individual_plus_one')
+            else:
+                found_option = self._get_option_by_option_type(user.medical_selection.benefit_plan.options, 'individual_plus_family')
+
+            if found_option:
+                user.person.medical_enrollment.option = found_option
+                for member in user.family_members:
+                    if member.medical_enrollment:
+                        member.medical_enrollment.option = found_option
+
+
     def get_all_users(self):
+        if not self.prepare_enrollment:
+            self.prepare_enrollment = True
+            for user in self.users.values():
+                self._update_medical_enrollment(user)
         return self.users.values()

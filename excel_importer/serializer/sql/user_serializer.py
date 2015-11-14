@@ -1,4 +1,5 @@
 from person_serializer import PersonSerializer
+from benefits.medical_selection_serializer import MedicalSelectionSerializer
 import logging
 Logger = logging.getLogger("import_excel")
 
@@ -34,5 +35,6 @@ class UserSerializer(object):
         PersonSerializer.serialize(user.person, file, user_id_string, person_id_string)
         for id_string in family_member_dictionary.keys():
             PersonSerializer.serialize(family_member_dictionary[id_string], file, user_id_string, id_string)
+        MedicalSelectionSerializer.serialize(user.medical_selection, file, user_id_string)
         file.write('END;\n')
         file.write('\n')

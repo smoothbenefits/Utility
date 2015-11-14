@@ -47,7 +47,7 @@ address: 5 Tsiennato Rd, Derry, NH, 03038
 phone: 6032312889
 profile: 177, Active, 2014-07-14
 compensation: 178, 50000.00, 40, None, 2014-07-14 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, E13699
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, E13699, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, E13699
 ---------------------------------------------------------------------
@@ -57,7 +57,7 @@ address: 105 SPIT BROOK RD, NASHUA, NH, 03062.0
 phone: 8179832986
 profile: 178, Active, 2014-09-04
 compensation: 179, 23712.00, 38, None, 2014-09-04 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA128700
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA128700, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA128700
 ---------------------------------------------------------------------
@@ -67,7 +67,7 @@ address: 75 Island Dr, Merrimack, NH, 03054
 phone: 7819562294
 profile: 206, Active, 2015-07-12
 compensation: 207, 50000.00, 40, None, 2015-07-12 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, 714273.0
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, 714273.0, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, 714273.0
 ---------------------------------------------------------------------
@@ -77,7 +77,7 @@ address: PO Box 159, Nashua, NH, 03063
 phone: 603-305-2974
 profile: , Active Member, 06/09/2014
 compensation: , 31000.0, 40, , 06/09/2014
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, E12436
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, E12436, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, E12436
 ---------------------------------------------------------------------
@@ -87,14 +87,14 @@ address: 7 Charles Bancroft Hwy, Litchfield, NH, 03052
 phone: 6035217174
 profile: 181, Active, 2015-03-31
 compensation: 182, 54080.00, 40, None, 2015-03-31 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, G99011
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, G99011, individual_plus_one
 Family Members:
 person: 439, Stephane, Veilleux, 1969-02-22, ALeCc_gUL6rPow-rNv5lX046TkXBPXqLy2XeBFM7DJT6TjPwH9GC1Jd_yqv6YuUGqk59_TBUcfSg, M
 address: 7 CHARLES BANCROFT HWY, LITCHFIELD, NH, 03052.0
 phone: 6035217174
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, G99011
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, G99011, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, G99011
 ---------------------------------------------------------------------
 user: 387, Diane, Zacher, dianezacher@fairviewhealthcare.com
@@ -103,7 +103,7 @@ address: 33 Anvil Dr, Nashua, NH, 03060
 phone: 6039307795
 profile: 182, Active, 2013-12-11
 compensation: 183, 25324.00, 35, None, 2013-12-11 00:00:00-05:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA23226
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA23226, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA23226
 ---------------------------------------------------------------------
@@ -113,7 +113,7 @@ address: 14 Windham Dr, Concord, NH, 03301
 phone: 6038607924
 profile: 183, Active, 2008-09-01
 compensation: 184, 46342.40, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA161866
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA161866, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA161866
 ---------------------------------------------------------------------
@@ -123,14 +123,14 @@ address: 208 Kinsley Street, Nashua, NH, 03060
 phone: 6038207625
 profile: 285, Active, 2015-03-01
 compensation: 286, 24960.00, 40, None, 2015-03-01 00:00:00-05:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, S51601
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, S51601, individual_plus_one
 Family Members:
 person: 583, Reinaliz Guadalupe, Roig-Miranda, 2013-10-14, ALeCc_ipnZtsks1G9A81uRKClutWkmmLejaBQZCLErf1IysolI3rlh7eKUZRrn4EXZ3BSiDk7MyR, F
 address: 205 KINSLEY ST, NASHUA, NH, 03060.0
 phone: 6038207625
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, FCH031
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, FCH031, individual_plus_one
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, FCH031
 ---------------------------------------------------------------------
 user: 389, Catherine, Lajoie, catherinelajoie@fairviewhealthcare.com
@@ -149,14 +149,14 @@ address: 29 A Shadowbrook Dr, Hudson, NH, 03051
 phone: 6038094297
 profile: 186, Active, 2008-09-01
 compensation: 187, 62400.00, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, LH0088
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, LH0088, individual_plus_one
 Family Members:
 person: 445, Matthew, Kraus, 1978-02-16, ALeCc_hgu6wrH8w7LPS0lcIgrbrERbYxxsEi14xK7CtWKqI3OQYUb7R2UWCnCSJtBZSYpW7rtO_n, M
 address: 29A SHADOWBROOK DR, HUDSON, NH, 03051.0
 phone: 6038094297
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 694219.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 694219.0, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 694219.0
 ---------------------------------------------------------------------
 user: 465, Denise, Paradise, deniseparadise@fairviewhealthcare.com
@@ -185,7 +185,7 @@ address: 43A ABBOTT ST, NASHUA, NH, 03064.0
 phone: 5089338479
 profile: 253, Active, 2014-11-08
 compensation: 254, 21840.00, 40, None, 2014-11-08 00:00:00-05:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA280862
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA280862, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA280862
 ---------------------------------------------------------------------
@@ -205,7 +205,7 @@ address: 28 WASHINGTON CIR, HILLSBOROUGH, NH, 03244.0
 phone: 6033450151
 profile: 193, Active, 2014-01-15
 compensation: 194, 55000.00, 40, None, 2014-01-15 00:00:00-05:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 692614.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 692614.0, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 692614.0
 ---------------------------------------------------------------------
@@ -215,7 +215,7 @@ address: 86-9 Sargent Station Rd, Weare, NH, 03281
 phone: 6035666314
 profile: 194, Active, 2008-09-01
 compensation: 195, 42577.60, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, D60815
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, D60815, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, D60815
 ---------------------------------------------------------------------
@@ -225,26 +225,26 @@ address: 17 Quill Lane, Salem, NH, 03079
 phone: 0000000000
 profile: 196, Active, 2013-03-01
 compensation: 197, 16770.00, 35, None, 2013-03-01 00:00:00-05:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA186074
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA186074, individual_plus_family
 Family Members:
 person: 458, Joshua, Hutchings, 1990-01-02, ALeCc_hSrDH0-21hBP9ObUN7VlwsekV6H0oojb12d-qC0cm2Q9_gpXy1pM5ey7RpG1lFQyjqxZ9E, M
 address: 17 QUILL LN, NORTH SALEM, NH, 03073.0
 phone: 0000000000
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA39509
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA39509, individual_plus_family
 person: 457, Kelly, Hutchings, 1999-02-03, ALeCc_j4QdPV_B_COgBmtvDzIoeCAm7gKe1cxQDYxD6ZOiYb9199PxwOF_cKWP2NCM9t48IoBrxe, F
 address: 17 QUILL LN, NORTH SALEM, NH, 03073.0
 phone: 0000000000
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1997
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1997, individual_plus_family
 person: 456, Cynthia, Hutchings, 1952-06-11, ALeCc_gmQ9jIHchGkoJBxs9HroBoY_M5ZnWfcgE8vho44zFawF_ZZ7Rrhux9KHQQTnKnLN95h2AE, F
 address: 17 QUILL LN, NORTH SALEM, NH, 03073.0
 phone: 9788571137
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, C65863
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, C65863, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA39509
 ---------------------------------------------------------------------
 user: 492, Jessica, Smith, jessicasmith@fairviewhealthcare.com
@@ -253,7 +253,7 @@ address: 2 Rega St, Hudson, NH, 03051
 phone: 6034409908
 profile: 287, Active, 2014-09-08
 compensation: 288, 16770.00, 30, None, 2014-09-08 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA95114
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA95114, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA95114
 ---------------------------------------------------------------------
@@ -263,7 +263,7 @@ address: 66 Farmwood Drive, Nashua, NH, 03062
 phone: 
 profile: 197, Active, 2014-06-09
 compensation: 198, 21000.00, 40, None, 2014-06-09 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 400094.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 400094.0, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 400094.0
 ---------------------------------------------------------------------
@@ -283,7 +283,7 @@ address: 1301 Bodwell Rd, Manchester, NH, 03109
 phone: 6035401487
 profile: 199, Active, 2008-09-01
 compensation: 200, 44283.20, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 691861.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 691861.0, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 691861.0
 ---------------------------------------------------------------------
@@ -313,26 +313,26 @@ address: 110b Pelham Rd, Hudson, NH, 03051
 phone: 6036893731
 profile: 288, Active, 2008-09-01
 compensation: 289, 40539.00, 35, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85774
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85774, individual_plus_family
 Family Members:
 person: 589, Justin, Saucier, 1990-03-08, ALeCc_iiaURPjHocgY5bFq8fq-D5lnnoxt9b-WdiSFcXOaoEz-cDkf_qePyE8wOJ0pfmjxmgh7gv, M
 address: 110B PELHAM RD, HUDSON, NH, 03051.0
 phone: 6036893731
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85774
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85774, individual_plus_family
 person: 588, Britney, Beaucage, 1995-05-31, ALeCc_gLXv_BCFjR2t9bbhyH9qMu0NqvB4GAumbJAm3VxbNNzVSjBI6HB-Et78OumQuQNWF0fo4h, F
 address: 1108 PELHAM RD, HUDSON, NH, 03051.0
 phone: 6039214039
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85774
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85774, individual_plus_family
 person: 587, Paige, Beaucage, 1993-01-22, ALeCc_j-YcrShkqG8ttYSmzXVLYYIEDavO8Vl_yPZLe31iaHw12i-zkAG_5tn0HZUtV4ywq-ccCa, F
 address: 110B PELHAM RD, HUDSON, NH, 03051.0
 phone: 6038090084
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85774
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85774, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85774
 ---------------------------------------------------------------------
 user: 407, Kristin, Maffee, kristinmaffee@fairviewhealthcare.com
@@ -349,14 +349,14 @@ address: PO BOX 303, NASHUA, NH, 03061.0
 phone: 6032615090
 profile: 204, Active, 2013-11-01
 compensation: 205, 60320.00, 35, None, 2013-11-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Higher Benefit, AA97577
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Higher Benefit, AA97577, individual_plus_one
 Family Members:
 person: 467, Hannah, Tomaszewski, 1990-04-07, ALeCc_hFVLjmMamlkeMBgUCRZUrCLvuI2GqLJ6Cd8o4HScN2znKZJERyt5Wwxie1cisXG9xhAZ6H, F
 address: PO BOX 303, NASHUA, NH, 03061.0
 phone: 6032615090
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, AA111351
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, AA111351, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, AA111351
 ---------------------------------------------------------------------
 user: 410, Robyn, Brody, robynbrody@fairviewhealthcare.com
@@ -365,7 +365,7 @@ address: 148R Webster Street, Hudson, NH, 03051
 phone: 6038825261
 profile: 205, Active, 2014-09-01
 compensation: 206, 47840.00, 40, None, 2014-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA23226
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA23226, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA23226
 ---------------------------------------------------------------------
@@ -385,38 +385,38 @@ address: 6 Wende Dr, Hudson, NH, 03051
 phone: 6038861727
 profile: 208, Active, 2014-09-01
 compensation: 209, 70000.00, 35, None, 2014-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA151118
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA151118, individual_plus_family
 Family Members:
 person: 476, Samuel, Pinard, 2005-07-01, ALeCc_h9dPZJwEaKhunHUwKQG8TNE9Aw7g6EVVOwEJS9yucbJEL4URqrBbbpnAupgbcSdW4mUA8N, M
 address: 15 TESSIER ST, HUDSON, NH, 03051.0
 phone: 6038861727
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F61546
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F61546, individual_plus_family
 person: 475, Jacob, Pinard, 2003-10-07, ALeCc_hRxygwG-QxQHi_dfaLjHOZ2EmSvUuhwraxUACvPzLpDXRw6WNXqy8wSwBuOH3N86Cyk4fN, M
 address: 15 TESSIER ST, HUDSON, NH, 03051.0
 phone: 6038861727
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F61546
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F61546, individual_plus_family
 person: 474, Matthew, Pinard, 2005-07-01, ALeCc_jqpI778Cc6zhwSzHz7Dc7Le26eXy-sUZD7QbH9lUp9aaIRH-KlniZdSBRB5__7l_-452BX, M
 address: 15 TESSIER ST, HUDSON, NH, 03051.0
 phone: 6038861727
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F61546
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F61546, individual_plus_family
 person: 473, Steven, Pinard, 1967-07-25, ALeCc_gv8ZTD8MSHZbSyqhQv0zdl2r2oGrZfnJO2EFMo6Rgld-Opeam_YQ66vy-StjHTAEVHlsaA, M
 address: 15 TESSIER ST, HUDSON, NH, 03051.0
 phone: 603
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA151118
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA151118, individual_plus_family
 person: 472, Brandon, Pinard, 1993-12-10, ALeCc_iKtHhxe8PpUrKouxfzx2g25ZNdsB9KmiMEppYMr02Oxqj74wvDfvb7VgbJh-1NX7CkgHqF, M
 address: 15 TESSIER ST, HUDSON, NH, 03051.0
 phone: 6038861727
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 710725.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 710725.0, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F61546
 ---------------------------------------------------------------------
 user: 414, Laurie, Marston, lauriemarston@fairviewhealthcare.com
@@ -425,14 +425,14 @@ address: 11 DUGOUT RD, HUDSON, NH, 03051
 phone: 6038827881
 profile: 209, Active, 2008-09-01
 compensation: 210, 26956.80, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA276742
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA276742, individual_plus_one
 Family Members:
 person: 478, Donald, Marston, 1958-07-22, ALeCc_jr_QWu4K2uSUipwOt2DmghSdxG6Gd03OWUom9aReMtPGD4hHsON6zKNt7D01pf8QJA9szH, M
 address: 11 DUGOUT RD, HUDSON, NH, 03051.0
 phone: 6038827881
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA276742
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA276742, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA276742
 ---------------------------------------------------------------------
 user: , ALFREDO, SANTIAGO-SANCHEZ, ALFREDOSANTIAGO-SANCHEZ@fairviewhealthcare.com
@@ -441,7 +441,7 @@ address: 82 Ledge St Apt 4, Nashua, NH, 03060
 phone: 603-820-5144
 profile: , Active Member, 09/01/2008
 compensation: , 22588.0, 40, , 09/01/2008
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA19803
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA19803, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA19803
 ---------------------------------------------------------------------
@@ -459,7 +459,7 @@ address: 27 Troutbrook Dr, Nashua, NH, 03062
 phone: 603-508-7134
 profile: , Active Member, 09/01/2008
 compensation: , 27865.5, 37.5, , 09/01/2008
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, C66071
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, C66071, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, C66071
 ---------------------------------------------------------------------
@@ -479,7 +479,7 @@ address: 7 Todd Road, Nashua, NH, 03064
 phone: 6033056337
 profile: 212, Active, 2013-02-14
 compensation: 213, 22912.5, 162.5000, 11.7500, 2013-02-14 00:00:00-05:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NA1039
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NA1039, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NA1039
 ---------------------------------------------------------------------
@@ -499,7 +499,7 @@ address: 19 Paul Street, Nashua, NH, 03060
 phone: 8572880821
 profile: 214, Active, 2008-09-01
 compensation: 215, 37498.50, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Higher Benefit, LH0144
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Higher Benefit, LH0144, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Higher Benefit, LH0144
 ---------------------------------------------------------------------
@@ -509,7 +509,7 @@ address: 48 Mountain Rd, Erving, MA, 01344
 phone: 4135489068
 profile: 215, Active, 2008-09-01
 compensation: 216, 90000.00, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 66446.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 66446.0, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 66446.0
 ---------------------------------------------------------------------
@@ -519,7 +519,7 @@ address: 34 Growing Road, Hudson, NH, 03051
 phone: 6035664318
 profile: 216, Active, 2014-07-15
 compensation: 217, 62000.00, 40, None, 2014-07-15 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA159668
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA159668, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA159668
 ---------------------------------------------------------------------
@@ -529,7 +529,7 @@ address: 30 Library St Apt 2, Hudson, NH, 03051
 phone: 6033055088
 profile: 275, Active, 2014-07-14
 compensation: 276, 31616.00, 40, None, 2014-07-14 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NA1039
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NA1039, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NA1039
 ---------------------------------------------------------------------
@@ -549,7 +549,7 @@ address: 7 Colson Rd, Hudson, NH, 03051
 phone: 6033655496
 profile: 220, Active, 2008-09-01
 compensation: 221, 20000.00, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA275111
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA275111, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA275111
 ---------------------------------------------------------------------
@@ -559,7 +559,7 @@ address: 41 Almont St, Nashua, NH, 03060
 phone: 6035789081
 profile: 221, Active, 2008-09-01
 compensation: 222, 62504.00, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA39535
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA39535, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA39535
 ---------------------------------------------------------------------
@@ -599,14 +599,14 @@ address: 74 Gebig Road, Nottingham, NH, 03290
 phone: 6035833890
 profile: 225, Active, 2015-09-20
 compensation: 226, 67600.00, 40, None, 2015-09-20 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA13537
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA13537, individual_plus_one
 Family Members:
 person: 495, Delaney, Brown, 2002-04-07, ALeCc_i-kRZonQcTMFLoXgXHE_M3Xg6TLKHJs_3ZRU6IZcWn-ltPkwDA67VhBNyPwcLuUPWINeEU, F
 address: 74 GEBING RD, NOTTINGHAM, NH, 03290.0
 phone: 6035833890
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA280977
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA280977, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA280977
 ---------------------------------------------------------------------
 user: 431, Dongphuong, Nguyen, dongphuongnguyen@fairviewhealthcare.com
@@ -615,26 +615,26 @@ address: 52 Dogwood Cir, Pelham, NH, 03076
 phone: 6038914955
 profile: 226, Active, 2012-09-01
 compensation: 227, 45760.00, 35, None, 2012-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA228218
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA228218, individual_plus_family
 Family Members:
 person: 499, Bryanna, Nguyen, 2011-11-18, ALeCc_iVmlu8BgX70NjzGBcJn0NSj6WS0ohLmwaYg_eQ2oUblgZDro94Iydrlm3fWbvA5EGkSQlZ, F
 address: 52 DOODWOOD CIR, PELHAM, NH, 03076.0
 phone: 6038914955
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH032
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH032, individual_plus_family
 person: 498, D, Nguyen, 1978-09-19, ALeCc_hOpxqH88ikM7tzgsL-02NSYXkmi8gEGpbnfehpwFG5dR4OmqjLLfuLMeRe1I72K-D1TBwa, M
 address: 52 DOODWOOD CIR, PELHAM, NH, 03076.0
 phone: 6038914955
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA228218
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA228218, individual_plus_family
 person: 497, Bryan, Nguyen, 2008-11-25, ALeCc_iRnu9ZD294-Pgen1FI1JTffjiaYZc35RW-oBRQW58hjc6WSQdGfJ3PVauvH9uIr8oDBYuJ, M
 address: 52 DOODWOOD CIR, PELHAM, NH, 03076.0
 phone: 6038914955
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH032
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH032, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH032
 ---------------------------------------------------------------------
 user: 432, Roselynn, Benard, roselynnbenard@fairviewhealthcare.com
@@ -643,14 +643,14 @@ address: 33 Stonehenge Rd, Londonderry, NH, 03053
 phone: 6032752152
 profile: 227, Active, 2008-09-01
 compensation: 228, 32000.00, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, C72875
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, C72875, individual_plus_one
 Family Members:
 person: 501, Nicholas, Benard, 1995-02-06, ALeCc_hJ1nTOxJCo3fmHFUKJp4GnwRlclCjqffr1NM3-LIy3QrrqwmjlYpk6fWYNrZhSuCMyZWnw, M
 address: PO BOX 308, LONDONDERRY, NH, 03053.0
 phone: 6032752152
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NH1759
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NH1759, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NH1759
 ---------------------------------------------------------------------
 user: 433, Irene, Gillen, irenegillen@fairviewhealthcare.com
@@ -659,14 +659,14 @@ address: 93 Walnut Rd, Derry, NH, 03038
 phone: 6034212969
 profile: 228, Active, 2015-08-25
 compensation: 229, 54080.0, 173.3333, 26.0000, 2015-08-25 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA159668
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA159668, individual_plus_one
 Family Members:
 person: 503, Kyle, Gillen, 2000-05-26, ALeCc_hNMXD-MS7DRjlAupsgQBCf4_ktOEaHuJN2LMFIhk0Soj-zYX4LMdfpcJ6acTokjfBV-aNS, M
 address: 93 WALNUT HILL RD, DERRY, NH, 03038.0
 phone: 6034212969
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, PRK003
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, PRK003, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, PRK003
 ---------------------------------------------------------------------
 user: 477, Rose, Fournier, rosefournier@fairviewhealthcare.com
@@ -685,7 +685,7 @@ address: PO BOX 1216, Pepperell, MA, 01463
 phone: 6035664318
 profile: 233, Active, 2014-06-12
 compensation: 234, 41860.00, 35, None, 2014-06-12 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, 64020.0
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, 64020.0, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, 64020.0
 ---------------------------------------------------------------------
@@ -695,7 +695,7 @@ address: 28 Chestnut Rd, Tyngsboro, MA, 01879
 phone: 9786493479
 profile: 230, Active, 2015-04-01
 compensation: 231, 20800.00, 40, None, 2015-04-01 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, HV0047
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, HV0047, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, HV0047
 ---------------------------------------------------------------------
@@ -715,14 +715,14 @@ address: 27 Clifton Avenue, Salem, NH, 03079
 phone: 6034016987
 profile: 242, Active, 2015-02-27
 compensation: 243, 47840.00, 40, None, 2015-02-27 00:00:00-05:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 61699.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 61699.0, individual_plus_one
 Family Members:
 person: 525, Isabella, Coleman, 2015-09-10, ALeCc_hVxZTeknQt3l06wgIwavgh_5OkP3S_8S9G-iPLiZtPNPday5sEKrtIO3NLC8Pnhlg0u79T, F
 address: 27 CLIFTON AVE, SALEM, NH, 03079.0
 phone: 6034016987
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA138066
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA138066, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA138066
 ---------------------------------------------------------------------
 user: 437, Kyle, Sargent, kylesargent@fairviewhealthcare.com
@@ -741,7 +741,7 @@ address: 14 Heather Court, Nashua, NH, 03062
 phone: 6033960668
 profile: 217, Active, 2012-06-05
 compensation: 218, 20962.5, 162.5000, 10.7500, 2012-06-05 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH034
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH034, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH034
 ---------------------------------------------------------------------
@@ -761,26 +761,26 @@ address: 20A DUGOUT RD, HUDSON, NH, 03051.0
 phone: 6033211922
 profile: 236, Active, 2014-08-27
 compensation: 237, 45760.00, 40, None, 2014-08-27 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F43395
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F43395, individual_plus_family
 Family Members:
 person: 518, Noah, Fournier, 2014-11-14, ALeCc_iGgsD6C5DrLBWv6HMMFaovAtopJAKC1-N-fDWvREUvu38BO7bxpB0konDTEmglKsqa_DKp, M
 address: 20A DUGOUT RD, HUDSON, NH, 03051.0
 phone: 6033211922
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 201678.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 201678.0, individual_plus_family
 person: 517, Ethan, Fournier, 2011-09-03, ALeCc_jXBxUJPCg_MKSO3nQxeh81medcvyUgngOgEGX0zLnJB90RCXAibXUye2X5F0EYWNfl2_6j, M
 address: 20A DUGOUT RD, HUDSON, NH, 03051.0
 phone: 6033211922
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 201678.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 201678.0, individual_plus_family
 person: 516, Jessica, Fournier, 1976-03-31, ALeCc_hES5GV-77nYAp3ADniPzrANMXWt4ok5M2doKFIT_RPzbAvEfNuRn754mtIsrzih5-FZ8UW, F
 address: 20A DUGOUT RD, HUDSON, NH, 03051.0
 phone: 6033211922
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA151118
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA151118, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 201678.0
 ---------------------------------------------------------------------
 user: 442, Darius, Tavallai, dariustavallai@fairviewhealthcare.com
@@ -799,7 +799,7 @@ address: 3 Watercrest Dr, Londonberry, NH, 03053
 phone: 6035484392
 profile: 238, Active, 2014-07-21
 compensation: 239, 27170.00, 38, None, 2014-07-21 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, G70568
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, G70568, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, G70568
 ---------------------------------------------------------------------
@@ -819,7 +819,7 @@ address: 90 Tolles St, Nashua, NH, 03064
 phone: 6038975852
 profile: 190, Active, 2014-10-12
 compensation: 191, 24440.00, 40, None, 2014-10-12 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA151118
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA151118, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA151118
 ---------------------------------------------------------------------
@@ -829,7 +829,7 @@ address: 6 Page Rd, Litchfield, NH, 03052
 phone: 6039435819
 profile: 240, Active, 2008-09-01
 compensation: 241, 28662.00, 35, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1696
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1696, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1696
 ---------------------------------------------------------------------
@@ -839,7 +839,7 @@ address: 7 Oliver Drive, Hudson, NH, 03061
 phone: 6038799356
 profile: 201, Active, 2012-05-29
 compensation: 202, 25000.00, 40, None, 2012-05-29 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, D60815
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, D60815, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, D60815
 ---------------------------------------------------------------------
@@ -849,7 +849,7 @@ address: 201 Chester Road, Candia, NH, 03034
 phone: 6033203111
 profile: 241, Active, 2008-09-01
 compensation: 242, 69222.00, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, D60815
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, D60815, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, D60815
 ---------------------------------------------------------------------
@@ -859,7 +859,7 @@ address: 8 Metropolitan Ave, Nashua, NH, 03064
 phone: 6035952792
 profile: 284, Active, 2008-09-01
 compensation: 285, 28294.50, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, F43395
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, F43395, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, F43395
 ---------------------------------------------------------------------
@@ -869,7 +869,7 @@ address: 133 Conant Road, Nashua, NH, 03062
 phone: 6038099915
 profile: 286, Active, 2012-08-10
 compensation: 287, 24375.0, 162.5000, 12.5000, 2012-08-10 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA145464
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA145464, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA145464
 ---------------------------------------------------------------------
@@ -899,7 +899,7 @@ address: 31 Congress St #5, Nashua, NH, 03062
 phone: 6039137939
 profile: 246, Active, 2008-09-01
 compensation: 247, 24668.80, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA148091
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA148091, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA148091
 ---------------------------------------------------------------------
@@ -919,7 +919,7 @@ address: 23b Chandler Ct, Hudson, NH, 03051
 phone: 9788088398
 profile: 185, Active, 2014-08-04
 compensation: 186, 54080.00, 40, None, 2014-08-04 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, F43395
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, F43395, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, F43395
 ---------------------------------------------------------------------
@@ -929,7 +929,7 @@ address: 6 PAGE RD APT 19, LITCHFIELD, NH, 03052.0
 phone: 6038648134
 profile: 248, Active, 2008-09-01
 compensation: 249, 25313.60, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA  Higher Benefit, AA128700
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA  Higher Benefit, AA128700, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA  Higher Benefit, AA128700
 ---------------------------------------------------------------------
@@ -969,20 +969,20 @@ address: 11 Willow Ln, Amherst, NH, 03031
 phone: 6034000668
 profile: 254, Active, 2008-09-01
 compensation: 255, 45000.00, 32, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA96670
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA96670, individual_plus_family
 Family Members:
 person: 539, Paul, Lavoie, 1950-09-05, ALeCc_iCGglKkeETZGRlMy3mjTJ0NJSdyRqkMJxcEJ0p4fu9tDFgnMLiSTmYyyQi_23TXzJwLHIo, M
 address: 11 WILLOW LN, AMHERST, NH, 03031.0
 phone: 6034000668
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F85122
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F85122, individual_plus_family
 person: 538, Andrew, Lavoie, 1987-07-01, ALeCc_hImIGeoYlAFGrM67ckQ6D0FBx5avxQ-6vVwmLCzf8qCZ8VhSFTNSAQPV8P5BwslML9ZZf8, M
 address: 11 WILLOW LN, AMHERST, NH, 03031.0
 phone: 6034000668
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 714980.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 714980.0, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 714980.0
 ---------------------------------------------------------------------
 user: 460, Claretta, Malin, clarettamalin@fairviewhealthcare.com
@@ -991,7 +991,7 @@ address: 3 Barisano Way, Nashua, NH, 03063
 phone: 6038799077
 profile: 255, Active, 2011-02-14
 compensation: 256, 38480.00, 35, None, 2011-02-14 00:00:00-05:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA333498
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA333498, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA333498
 ---------------------------------------------------------------------
@@ -1001,7 +1001,7 @@ address: 53 River Road, Hudson, NH, 03051
 phone: 6034949588
 profile: 249, Active, 2014-02-18
 compensation: 250, 21000.00, 40, None, 2014-02-18 00:00:00-05:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, H59937
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, H59937, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, H59937
 ---------------------------------------------------------------------
@@ -1011,7 +1011,7 @@ address: 1 BEACON ST, NASHUA, NH, 03064.0
 phone: 6033206059
 profile: 256, Active, 2014-06-09
 compensation: 257, 27000.00, 40, None, 2014-06-09 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA272739
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA272739, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA272739
 ---------------------------------------------------------------------
@@ -1021,26 +1021,26 @@ address: 17 Mockingbird Hill Road, Windham, NH, 03087
 phone: 6039654870
 profile: 258, Active, 2010-11-22
 compensation: 259, 58240.00, 40, None, 2010-11-22 00:00:00-05:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F57533
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F57533, individual_plus_family
 Family Members:
 person: 546, Leah, Favereau, 2005-12-24, ALeCc_hS13S_AD1bn1cg-S4vkBAdGQq7Ym8dx2VhBTTsdlmfnwe6dFvpf1BhkC5SRXslueSAGiCB, F
 address: 8 HIDDEN VALLEY RD, WINDHAM, NH, 03087.0
 phone: 6039654870
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F73883
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F73883, individual_plus_family
 person: 545, Anthony, Favereau, 2001-04-16, ALeCc_hfKGKL-0o5MF2xKAvCCM1WXWBtc1P3_SwchJmS0OxLurLrM9uASFAWrY0Ti-sznFwaC2yU, M
 address: 8 HIDDEN VALLEY RD, WINDHAM, NH, 03087.0
 phone: 6039654870
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F73883
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F73883, individual_plus_family
 person: 544, Clifford, Favereau, 1968-06-15, ALeCc_gEQ7jrdzrqgLPFWX54bkh4s1M7dHQhuvsZT6vh1fkBI7Zmqk8hLnn8iJsAr-xP30gqfN7F, M
 address: 8 HIDDEN VALLEY RD, WINDHAM, NH, 03087.0
 phone: 6039654870
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA145464
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA145464, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F73883
 ---------------------------------------------------------------------
 user: 464, Marianne, Clauss, marianneclauss@fairviewhealthcare.com
@@ -1049,7 +1049,7 @@ address: 61 Croteau Court, Manchester, NH, 03104
 phone: 6034868424
 profile: 259, Active, 2014-06-12
 compensation: 260, 43680.00, 35, None, 2014-06-12 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Higher Benefit, AA128700
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Higher Benefit, AA128700, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Higher Benefit, AA128700
 ---------------------------------------------------------------------
@@ -1059,7 +1059,7 @@ address: 10-1 Cabernet Drive, Concord, NH, 03303
 phone: 6037317719
 profile: 172, Active, 2008-08-13
 compensation: 172, 70000.00, 40, None, 2008-08-13 08:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, AA85794
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, AA85794, individual_plus_one
 Family Members:
 person: 423, Lawrence, Hahn, 1956-02-13, ALeCc_hdIxGMn05rKcNh7EOiWfTXv8_WrmKNpI4gBiiAItZNgH4Q_ORXlPirNnUKDvi6azpQB7Jp, M
 address: 10-1 Cabernet Drive, Concord, NH, 03303
@@ -1102,7 +1102,7 @@ address: 6 Emerald Drive, Merrimack, NH, 03054
 phone: 8576361697
 profile: 264, Active, 2010-06-30
 compensation: 265, 19012.00, 35, None, 2010-06-30 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA125738
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA125738, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA125738
 ---------------------------------------------------------------------
@@ -1112,26 +1112,26 @@ address: 49 Lake Shore Dr, Westford, MA, 01886
 phone: 9783928752
 profile: 265, Active, 2015-08-06
 compensation: 266, 58240.0, 173.3333, 28.0000, 2015-08-06 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 20684.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 20684.0, individual_plus_family
 Family Members:
 person: 556, Daniel, Lamb, 1962-01-26, ALeCc_hyaif2HLPwt-BOJFhzVGtoBYwX-cChBIEOgeZiGHAV73arVJR1tFmvGrM2Y_wP6C86iUVT, M
 address: 49 LAKE SHORE DR, WESTFORD, MA, 01886.0
 phone: 9783928752
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1031
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1031, individual_plus_family
 person: 555, Ethan, Lamb, 1996-04-02, ALeCc_iCb1dfK2tn6abZVVjBDv7fy7MeG07IE9XRpLeGrVOmEAyzuH-hK3Biq73FcFdIfEWzo7gU, M
 address: 49 LAKE SHORE DR, WESTFORD, MA, 01886.0
 phone: 9783928752
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 20684.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 20684.0, individual_plus_family
 person: 554, Ainsley, Lamb, 1998-07-17, ALeCc_i3Ym82L-Eck0iEmeq5cVMzUOYpUhvxlOSEsOtHOk2arhfiBptDq73nPm2hqrnL77OSB92Z, F
 address: 49 LAKE SHORE DR, WESTFORD, MA, 01886.0
 phone: 9783928752
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1031
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1031, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1031
 ---------------------------------------------------------------------
 user: 392, Kristine, Nutter, kristinenutter@fairviewhealthcare.com
@@ -1150,14 +1150,14 @@ address: 9 Chatham Street, Hudson, NH, 03051
 phone: 6032332736
 profile: 266, Active, 2014-09-14
 compensation: 267, 20800.00, 40, None, 2014-09-14 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA280862
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA280862, individual_plus_one
 Family Members:
 person: 558, William, Riley, 1953-04-19, ALeCc_h9LSTTAEjhzpopK1I0-tK1QFPLMD_1N4jqlbCKPJvBKYycg4Ou78HH0JGg4utGgcYJFNp1, M
 address: 9 CHATHAM ST, HUDSON, NH, 03051.0
 phone: 6032332736
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA275111
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA275111, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA275111
 ---------------------------------------------------------------------
 user: 472, Roberta, Carrigg, robertacarrigg@fairviewhealthcare.com
@@ -1166,7 +1166,7 @@ address: 27 Sunrise Trail, Nashua, NH, 03060
 phone: 0000000000
 profile: 267, Active, 2013-06-10
 compensation: 268, 27040.00, 40, None, 2013-06-10 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Higher Benefit, E98023
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Higher Benefit, E98023, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Higher Benefit, E98023
 ---------------------------------------------------------------------
@@ -1186,7 +1186,7 @@ address: 70 Joppa Rd, Merrimack, NH, 03054
 phone: 6039210228
 profile: 269, Active, 2008-09-01
 compensation: 270, 40000.00, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA323197
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA323197, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA323197
 ---------------------------------------------------------------------
@@ -1196,7 +1196,7 @@ address: 32 Grove Avenue, Manchester, NH, 03109
 phone: 6039358680
 profile: 219, Active, 2014-09-26
 compensation: 220, 32000.00, 40, None, 2014-09-26 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA148119
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA148119, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA148119
 ---------------------------------------------------------------------
@@ -1216,7 +1216,7 @@ address: 6 JAMES WAY, HUDSON, NH, 03051.0
 phone: 6037933476
 profile: 271, Active, 2010-04-27
 compensation: 272, 20716.00, 40, None, 2010-04-27 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, AA52384
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, AA52384, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, AA52384
 ---------------------------------------------------------------------
@@ -1226,32 +1226,32 @@ address: 177 Trout Brook Rd, Dracut, MA, 01826
 phone: 9789753728
 profile: 229, Active, 2008-09-01
 compensation: 230, 137966.40, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, AA159743
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, AA159743, individual_plus_family
 Family Members:
 person: 508, Justin, Leboeuf, 1996-05-24, ALeCc_iZnVsM-CovZLvSa7At6EDr4hCQwHK5zpZ7Of52ZXrmgZXV9jtFZRPSJxReyEjTbg9O1UUQ, M
 address: 177 TROUT BROOK RD, DRACUT, MA, 01826.0
 phone: 9789753728
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 20413.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 20413.0, individual_plus_family
 person: 507, Nancy, Leboeuf, 1968-06-16, ALeCc_hBqzgHlWJqiNjMn6U_iqqeAb91IcR-m2tnEDXf4NqgjZC4tds8M3-LpAgs5n6k_-YyiR2-, F
 address: 177 TROUT BROOK RD, DRACUT, MA, 01826.0
 phone: 9789753728
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 69464.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 69464.0, individual_plus_family
 person: 506, Ryan, Leboeuf, 1998-04-04, ALeCc_jYCnA9V1QWmPumoxCO0D-Jc8DzC3tzoQblkrnBXWp4bisO4198m9rHldJmMC0I0kpCg31J, M
 address: 177 TROUT BROOK RD, DRACUT, MA, 01826.0
 phone: 9789753728
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 20413.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 20413.0, individual_plus_family
 person: 505, Lyndsey, Leboeuf, 1994-11-01, ALeCc_gydWebmmY3gfklFjmQYDJ2A0qm50hH6s4to1LyjdxUahBkEU_WkSpsiTZzjJJRthMsyLWi, F
 address: 177 TROUT BROOK RD, DRACUT, MA, 01826.0
 phone: 9789753728
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 20413.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 20413.0, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA Benefit, 20413.0
 ---------------------------------------------------------------------
 user: 450, Donald, Rankins, donaldrankins@fairviewhealthcare.com
@@ -1270,7 +1270,7 @@ address: 15 Hawkstead Hollow, Nashua, NH, 03063
 phone: 6034403317
 profile: 274, Active, 2014-06-12
 compensation: 275, 21450.00, 40, None, 2014-06-12 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA123876
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA123876, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA123876
 ---------------------------------------------------------------------
@@ -1290,26 +1290,26 @@ address: 72 Cleveland Hill Road, Brookline, NH, 03033
 phone: 6032047878
 profile: 277, Active, 2013-05-29
 compensation: 278, 21000.00, 35, None, 2013-05-29 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA333498
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA333498, individual_plus_family
 Family Members:
 person: 572, Molly, Lavoie, 1998-11-25, ALeCc_ipIkTMP4u0dcS9kDpdhf64SWP-zLjohx_2RRLEGEj4YiPXEZmHVMmMeWyaokiB8AeYA9Qx, F
 address: 72 CLEVELAND HILL RD, BROOKLINE, NH, 03033.0
 phone: 6032047878
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA12613
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA12613, individual_plus_family
 person: 571, Raymond, Lavoie, 1964-07-28, ALeCc_gwwcBOl3WpY7D2N7Tb0NMY5i37k6NWwpeg5HItab-22a3jf78bD0Cl_lqQ333J5nyOWX4D, M
 address: 72 CLEVELAND HILL RD, BROOKLINE, NH, 03033.0
 phone: 6032047878
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, C66065
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, C66065, individual_plus_family
 person: 570, Jessica, Lavoie, 1996-05-03, ALeCc_hTklhear_ub8UB3unv4R92BPFnzf6My2VH4STcrKJAfXmpwrugxv_TXgCQyLlHbojCSW7m, F
 address: 72 CLEVELAND HILL RD, BROOKLINE, NH, 03033.0
 phone: 6032047878
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA333498
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA333498, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA12613
 ---------------------------------------------------------------------
 user: 483, Anna, Gelinas, annagelinas@fairviewhealthcare.com
@@ -1318,7 +1318,7 @@ address: 27 Cross St, Nashua, NH, 03064
 phone: 6038806149
 profile: 278, Active, 2008-09-01
 compensation: 279, 37689.00, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA97575
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA97575, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA97575
 ---------------------------------------------------------------------
@@ -1328,7 +1328,7 @@ address: 25 CHEYENNE DR, NASHUA, NH, 03063
 phone: 6038827389
 profile: 279, Active, 2012-08-01
 compensation: 280, 17550.00, 40, None, 2012-08-01 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, G00063
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, G00063, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, G00063
 ---------------------------------------------------------------------
@@ -1338,14 +1338,14 @@ address: 14 Arcadian Lane, Litchfield, NH, 03052
 phone: 6034247660
 profile: 280, Active, 2008-09-01
 compensation: 281, 64542.40, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA138916
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA138916, individual_plus_one
 Family Members:
 person: 576, Kent, Dodge, 1957-10-03, ALeCc_g0Vx9FIpGwAzEay4HLvKQgNsCAhtpU3jbLpS_6JbA1ekB_SuwdWIFUz48mtymTyfl1Nyy4, M
 address: 14 ARCADIAN LN, LITCHFIELD, NH, 03052.0
 phone: 6034247660
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F43395
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F43395, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F43395
 ---------------------------------------------------------------------
 user: 486, Elizabeth, Fahey, elizabethfahey@fairviewhealthcare.com
@@ -1354,14 +1354,14 @@ address: 17 Radcliffe Dr, Hudson, NH, 03051
 phone: 6035981307
 profile: 281, Active, 2008-09-01
 compensation: 282, 24024.00, 40, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA276742
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA276742, individual_plus_one
 Family Members:
 person: 578, Michael, Fahey, 1953-02-09, ALeCc_hEOySPGbQ7sv3mEV_TQ1sj0Kj4JdUtJpLtxI_woQZfhwwR4_bbsLT-P_fRlIcAUVsBCQ9M, M
 address: 17 RADCLIFFE DR, HUDSON, NH, 03051.0
 phone: 6035981307
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 7525.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 7525.0, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 7525.0
 ---------------------------------------------------------------------
 user: 487, Theresa, Cronin, theresacronin@fairviewhealthcare.com
@@ -1370,7 +1370,7 @@ address: 7 Heidi Lane, Nashua, NH, 03062
 phone: 6038864214
 profile: 282, Active, 2008-09-01
 compensation: 283, 25000.00, 38, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA19803
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA19803, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA19803
 ---------------------------------------------------------------------
@@ -1390,7 +1390,7 @@ address: 90 Longwood Ave #2, Manchester, NH, 03109
 phone: 6033150098
 profile: 234, Active, 2015-05-11
 compensation: 235, 68000.00, 40, None, 2015-05-11 00:00:00-04:00
-Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA132022
+Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA132022, individual
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA132022
 ---------------------------------------------------------------------
@@ -1410,7 +1410,7 @@ address: 7 High Plain Ave, Litchfield, NH, 03052
 phone: 6035055348
 profile: 203, Active, 2014-04-07
 compensation: 204, 47320.00, 35, None, 2014-04-07 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F43395
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F43395, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F43395
 ---------------------------------------------------------------------
@@ -1460,7 +1460,7 @@ address: 7 Sanborn Rd, Derry, NH, 03038
 phone: 
 profile: 291, Active, 2015-02-01
 compensation: 292, 22880.00, 40, None, 2015-02-01 00:00:00-05:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA7125
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA7125, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA7125
 ---------------------------------------------------------------------
@@ -1490,7 +1490,7 @@ address: PO BOX 496, AMHERST, NH, 03031.0
 phone: 6032619901
 profile: 294, Active, 2014-06-24
 compensation: 295, 20000.00, 40, None, 2014-06-24 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH034
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH034, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH034
 ---------------------------------------------------------------------
@@ -1510,20 +1510,20 @@ address: 8 Fairmont Street, Nashua, NH, 03064
 phone: 6037655785
 profile: 296, Active, 2008-09-01
 compensation: 297, 47132.00, 35, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NH22665
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NH22665, individual_plus_family
 Family Members:
 person: 599, Shayne, Seidl, 1997-01-11, ALeCc_j5btreNY3OrWqFjF9_9R4J7BAIGiqt5Zn-LHKVvtKpHL9gocKG6J-NuhKeuOmqpByiU_dG, M
 address: 8 FAIRMOUNT ST, NASHUA, NH, 03064.0
 phone: 6037655785
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA18476
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA18476, individual_plus_family
 person: 598, Michael, Seidl, 1973-03-29, ALeCc_gxT5XoRm_1gdOzcBYKM_dnnJpRxrPxy4T77-de8AdTXZPX7EYljbgb_HveKdzQVj-k0e-0, M
 address: 8 FAIRMOUNT ST, NASHUA, NH, 03064.0
 phone: 6037655785
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 61828.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 61828.0, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA18476
 ---------------------------------------------------------------------
 user: 502, Rosemary, Sampson, rosemarysampson@fairviewhealthcare.com
@@ -1532,7 +1532,7 @@ address: 77 Cadogan Way, Nashua, NH, 03062
 phone: 6033157382
 profile: 297, Active, 2013-12-30
 compensation: 298, 70000.00, 40, None, 2013-12-30 00:00:00-05:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, B73073
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, B73073, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, B73073
 ---------------------------------------------------------------------
@@ -1542,7 +1542,7 @@ address: 16 Walnut Street, Hudson, NH, 03051
 phone: 9785129683
 profile: 239, Active, 2015-04-14
 compensation: 240, 58240.00, 40, None, 2015-04-14 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 65085.0
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 65085.0, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 65085.0
 ---------------------------------------------------------------------
@@ -1552,7 +1552,7 @@ address: 216 Elmwood Drive, Hudson, NH, 03051
 phone: 6033157994
 profile: 298, Active, 2008-09-01
 compensation: 299, 45011.00, 35, None, 2008-09-01 00:00:00-04:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, S51601
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, S51601, individual
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, S51601
 ---------------------------------------------------------------------
@@ -1562,24 +1562,24 @@ address: 29 BEACON DR, MERRIMACK, NH, 03054.0
 phone: 6033154000
 profile: 299, Active, 2012-02-15
 compensation: 300, 37440.00, 40, None, 2012-02-15 00:00:00-05:00
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85791
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85791, individual_plus_family
 Family Members:
 person: 605, Jonathan, Smith, 1952-12-27, ALeCc_i0tG-Uu5xRohvJJ7I5mE2950SRC0cLbUaO5MJUBiEJWz61NUO-r2Bab0CQs6oNkeY6hluJ, M
 address: 29 BEACON DR, MERRIMACK, NH, 03054.0
 phone: 6033154000
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85791
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85791, individual_plus_family
 person: 604, Carly, Doran, 1990-04-30, ALeCc_itWkpJ3DAdvmeSxkUnSHcnwpCYiQ5FrZ-XMclJDbdFKT4k7nkMwGwA849rESLtDuoMfqpq, F
 address: 29 BEACON DR, MERRIMACK, NH, 03054.0
 phone: 6033154000
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85791
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85791, individual_plus_family
 person: 603, Sadie, Doran, 1994-08-11, ALeCc_hXxrW3tR6jlrwvL85RhC39VDiwfIaJnP7JG7csELrYNSjNoVTyuR7REW81zzRjjJBuM5ma, F
 address: 29 BEACON DR, MERRIMACK, NH, 03054.0
 phone: 6033154000
 profile: , , 
 compensation: , , , , 
-Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85791
+Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85791, individual_plus_family
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85791
