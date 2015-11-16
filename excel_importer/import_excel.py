@@ -5,7 +5,7 @@ from openpyxl.compat import range
 from openpyxl.cell import get_column_letter
 import sys, getopt
 import logging
-from model.company_users import CompanyUsers
+from model.fairview_users import FairviewUsers
 from users_excel_data_provider import UsersExcelDataProvider
 from users_db_data_provider import UsersDBDataProvider
 from serializer.sql.company_users_serializer import CompanyUsersSerializer
@@ -66,7 +66,7 @@ def main(argv):
     if len(args) <= 0:
         usage()
         sys.exit(2)
-    company_users = CompanyUsers(company_id, 'fairviewhealthcare.com')
+    company_users = FairviewUsers(company_id, 'fairviewhealthcare.com')
     data_provider = None
     if db_based and db_name:
         data_provider = UsersDBDataProvider(db_name)
