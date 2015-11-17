@@ -18,5 +18,6 @@ class Person(Base):
         self.employee_profile = None
         self.employee_compensation = None
         self.id = ''
+        self.medical_enrollment = None
     
 

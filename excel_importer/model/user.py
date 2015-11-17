@@ -9,3 +9,4 @@ class User(Base):
         self.family_members = []
         self.person = None
         self.id = ""
+        self.medical_selection = None
