@@ -28,6 +28,79 @@ Dentals:
 301, 60.02, 46.8866666667, individual_plus_one
 302, 102.87, 64.9133333333, individual_plus_family
 
+Supplemental Life Insurance Plan:
+---------------------------------------------------------------------------
+id: 12, name: 'Assurant Voluntary Life',  use_employee_age_for_spouse: False
+  Insurance rates:
+    employee:
+      Non-Tobacco
+        age_min: None, age_max: 19, rate: 0.21, benefit_reduction_percentage:None
+        age_min: 20, age_max: 24, rate: 0.21, benefit_reduction_percentage:None
+        age_min: 25, age_max: 29, rate: 0.24, benefit_reduction_percentage:None
+        age_min: 30, age_max: 34, rate: 0.28, benefit_reduction_percentage:None
+        age_min: 35, age_max: 39, rate: 0.34, benefit_reduction_percentage:None
+        age_min: 40, age_max: 44, rate: 0.56, benefit_reduction_percentage:None
+        age_min: 45, age_max: 49, rate: 0.79, benefit_reduction_percentage:None
+        age_min: 50, age_max: 54, rate: 1.38, benefit_reduction_percentage:None
+        age_min: 55, age_max: 59, rate: 2.49, benefit_reduction_percentage:None
+        age_min: 60, age_max: 64, rate: 3.60, benefit_reduction_percentage:None
+        age_min: 65, age_max: 69, rate: 5.97, benefit_reduction_percentage:None
+        age_min: 70, age_max: 74, rate: 11.41, benefit_reduction_percentage:33.00
+        age_min: 75, age_max: 79, rate: 17.35, benefit_reduction_percentage:33.00
+        age_min: 80, age_max: 84, rate: 17.35, benefit_reduction_percentage:33.00
+        age_min: 85, age_max: None, rate: 17.35, benefit_reduction_percentage:33.00
+      Tobacco
+        age_min: None, age_max: 19, rate: 0.31, benefit_reduction_percentage:None
+        age_min: 20, age_max: 24, rate: 0.31, benefit_reduction_percentage:None
+        age_min: 25, age_max: 29, rate: 0.35, benefit_reduction_percentage:None
+        age_min: 30, age_max: 34, rate: 0.45, benefit_reduction_percentage:None
+        age_min: 35, age_max: 39, rate: 0.62, benefit_reduction_percentage:None
+        age_min: 40, age_max: 44, rate: 1.00, benefit_reduction_percentage:None
+        age_min: 45, age_max: 49, rate: 1.58, benefit_reduction_percentage:None
+        age_min: 50, age_max: 54, rate: 2.66, benefit_reduction_percentage:None
+        age_min: 55, age_max: 59, rate: 3.75, benefit_reduction_percentage:None
+        age_min: 60, age_max: 64, rate: 5.61, benefit_reduction_percentage:None
+        age_min: 65, age_max: 69, rate: 9.38, benefit_reduction_percentage:None
+        age_min: 70, age_max: 74, rate: 16.47, benefit_reduction_percentage:33.00
+        age_min: 75, age_max: 79, rate: 28.89, benefit_reduction_percentage:33.00
+        age_min: 80, age_max: 84, rate: 28.89, benefit_reduction_percentage:33.00
+        age_min: 85, age_max: None, rate: 28.89, benefit_reduction_percentage:33.00
+    spouse:
+      Non-Tobacco
+        age_min: None, age_max: 19, rate: 0.24, benefit_reduction_percentage:None
+        age_min: 20, age_max: 24, rate: 0.24, benefit_reduction_percentage:None
+        age_min: 25, age_max: 29, rate: 0.28, benefit_reduction_percentage:None
+        age_min: 30, age_max: 34, rate: 0.35, benefit_reduction_percentage:None
+        age_min: 35, age_max: 39, rate: 0.51, benefit_reduction_percentage:None
+        age_min: 40, age_max: 44, rate: 0.73, benefit_reduction_percentage:None
+        age_min: 45, age_max: 49, rate: 1.14, benefit_reduction_percentage:None
+        age_min: 50, age_max: 54, rate: 1.87, benefit_reduction_percentage:None
+        age_min: 55, age_max: 59, rate: 2.87, benefit_reduction_percentage:None
+        age_min: 60, age_max: 64, rate: 4.90, benefit_reduction_percentage:None
+        age_min: 65, age_max: 69, rate: 8.37, benefit_reduction_percentage:None
+        age_min: 70, age_max: 74, rate: 14.91, benefit_reduction_percentage:33.00
+        age_min: 75, age_max: 79, rate: 29.87, benefit_reduction_percentage:33.00
+        age_min: 80, age_max: 84, rate: 29.87, benefit_reduction_percentage:33.00
+        age_min: 85, age_max: None, rate: 29.87, benefit_reduction_percentage:33.00
+      Tobacco
+        age_min: None, age_max: 19, rate: 0.24, benefit_reduction_percentage:None
+        age_min: 20, age_max: 24, rate: 0.24, benefit_reduction_percentage:None
+        age_min: 25, age_max: 29, rate: 0.28, benefit_reduction_percentage:None
+        age_min: 30, age_max: 34, rate: 0.35, benefit_reduction_percentage:None
+        age_min: 35, age_max: 39, rate: 0.51, benefit_reduction_percentage:None
+        age_min: 40, age_max: 44, rate: 0.73, benefit_reduction_percentage:None
+        age_min: 45, age_max: 49, rate: 1.14, benefit_reduction_percentage:None
+        age_min: 50, age_max: 54, rate: 1.87, benefit_reduction_percentage:None
+        age_min: 55, age_max: 59, rate: 2.87, benefit_reduction_percentage:None
+        age_min: 60, age_max: 64, rate: 4.90, benefit_reduction_percentage:None
+        age_min: 65, age_max: 69, rate: 8.37, benefit_reduction_percentage:None
+        age_min: 70, age_max: 74, rate: 14.91, benefit_reduction_percentage:33.00
+        age_min: 75, age_max: 79, rate: 29.87, benefit_reduction_percentage:33.00
+        age_min: 80, age_max: 84, rate: 29.87, benefit_reduction_percentage:33.00
+        age_min: 85, age_max: None, rate: 29.87, benefit_reduction_percentage:33.00
+    child:
+      Unknown
+        age_min: None, age_max: None, rate: 1.19, benefit_reduction_percentage:None
 
 USERS:
 ---------------------------------------------------------------------

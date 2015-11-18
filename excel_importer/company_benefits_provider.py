@@ -1,4 +1,5 @@
 from data_repository.health_plan_repository import HealthPlanRepository
+from data_repository.supplemental_life_insurance_repository import SupplementalLifeInsuranceRepository
 import psycopg2
 
 class CompanyBenefitsProvider(object):
@@ -15,4 +16,7 @@ class CompanyBenefitsProvider(object):
         comp_benefits.medicals = types.get('Medical', None)
         comp_benefits.dentals = types.get('Dental', None)
         comp_benefits.visions = types.get('Vision', None)
+
+        suppl_repo = SupplementalLifeInsuranceRepository(cur, self.company_id)
+        comp_benefits.supplemental_life_insurance = suppl_repo.get_model()
 

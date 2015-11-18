@@ -1,3 +1,5 @@
+from life_insurance_text_serializer import LifeInsuranceTextSerializer
+
 class CompanyBenefitsTextSerializer(object):
     @staticmethod
     def serialize_health_plans(plans, f):
@@ -26,5 +28,9 @@ class CompanyBenefitsTextSerializer(object):
         if benefits.visions:
             f.write("Visions:\n")
             CompanyBenefitsTextSerializer.serialize_health_plans(benefits.visions.values(), f)
-            
+
+        if benefits.supplemental_life_insurance:
+            f.write("Supplemental Life Insurance Plan:\n")
+            f.write("---------------------------------------------------------------------------\n")
+            LifeInsuranceTextSerializer.serialize(benefits.supplemental_life_insurance, f)        
 
