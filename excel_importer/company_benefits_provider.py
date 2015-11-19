@@ -1,5 +1,7 @@
 from data_repository.health_plan_repository import HealthPlanRepository
 from data_repository.supplemental_life_insurance_repository import SupplementalLifeInsuranceRepository
+from data_repository.std_plan_repository import StdPlanRepository
+from data_repository.ltd_plan_repository import LtdPlanRepository
 import psycopg2
 
 class CompanyBenefitsProvider(object):
@@ -19,4 +21,8 @@ class CompanyBenefitsProvider(object):
 
         suppl_repo = SupplementalLifeInsuranceRepository(cur, self.company_id)
         comp_benefits.supplemental_life_insurance = suppl_repo.get_model()
+        std_repo = StdPlanRepository(cur, self.company_id)
+        comp_benefits.std_plan = std_repo.get_model()
+        ltd_repo = LtdPlanRepository(cur, self.company_id)
+        comp_benefits.ltd_plan = ltd_repo.get_model()
 

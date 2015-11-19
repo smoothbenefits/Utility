@@ -5,3 +5,5 @@ class CompanyBenefits(object):
         self.dentals = None
         self.visions = None
         self.supplemental_life_insurance = None
+        self.std_plan = None
+        self.ltd_plan = None

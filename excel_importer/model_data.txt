@@ -101,6 +101,44 @@ id: 12, name: 'Assurant Voluntary Life',  use_employee_age_for_spouse: False
     child:
       Unknown
         age_min: None, age_max: None, rate: 1.19, benefit_reduction_percentage:None
+STD Plan:
+---------------------------------------------------------------------------
+id: 8, name: 'Assurant Short Term Disability' elimination_period_in_days: 14, duration_in_weeks: 91, percentage_of_salary: 60.00, max_benefit_weekly: 1000.00, employer_contribution_percentage: 0.00, paid_by: None, user_amount_required: True, benefit_amount_step: 50.0000
+  Age based rates:
+        age_min: -1, age_max: 19, rate: 0.2829000000
+        age_min: 20, age_max: 24, rate: 0.2829000000
+        age_min: 25, age_max: 29, rate: 0.2663000000
+        age_min: 30, age_max: 34, rate: 0.2880000000
+        age_min: 35, age_max: 39, rate: 0.2372000000
+        age_min: 40, age_max: 44, rate: 0.1701000000
+        age_min: 45, age_max: 49, rate: 0.2105000000
+        age_min: 50, age_max: 54, rate: 0.2232000000
+        age_min: 55, age_max: 59, rate: 0.2506000000
+        age_min: 60, age_max: 64, rate: 0.2834000000
+        age_min: 65, age_max: 69, rate: 0.3185000000
+        age_min: 70, age_max: 74, rate: 0.3185000000
+        age_min: 75, age_max: 79, rate: 0.3185000000
+        age_min: 80, age_max: 84, rate: 0.3185000000
+        age_min: 85, age_max: 200, rate: 0.3185000000
+LTD Plan:
+---------------------------------------------------------------------------
+id: 13, name: 'Assurant Voluntary Long-Term Disability' elimination_period_in_months: 3, duration_in_years: 24, percentage_of_salary: 60.00, max_benefit_monthly: 5000.00, employer_contribution_percentage: 0.00, paid_by: None, user_amount_required: True, benefit_amount_step: 100.0000
+  Age based rates:
+        age_min: -1, age_max: 19, rate: 0.0186000000
+        age_min: 20, age_max: 24, rate: 0.0186000000
+        age_min: 25, age_max: 29, rate: 0.0186000000
+        age_min: 30, age_max: 34, rate: 0.0202000000
+        age_min: 35, age_max: 39, rate: 0.0236000000
+        age_min: 40, age_max: 44, rate: 0.0304000000
+        age_min: 45, age_max: 49, rate: 0.0506000000
+        age_min: 50, age_max: 54, rate: 0.0827000000
+        age_min: 55, age_max: 59, rate: 0.1156000000
+        age_min: 60, age_max: 64, rate: 0.1485000000
+        age_min: 65, age_max: 69, rate: 0.1485000000
+        age_min: 70, age_max: 74, rate: 0.1485000000
+        age_min: 75, age_max: 79, rate: 0.1485000000
+        age_min: 80, age_max: 84, rate: 0.1485000000
+        age_min: 85, age_max: 200, rate: 0.1485000000
 
 USERS:
 ---------------------------------------------------------------------
