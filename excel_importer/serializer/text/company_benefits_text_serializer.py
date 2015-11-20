@@ -1,4 +1,5 @@
-from life_insurance_text_serializer import LifeInsuranceTextSerializer
+from basic_life_insurance_text_serializer import BasicLifeInsuranceTextSerializer
+from supplemental_life_insurance_text_serializer import SupplementalLifeInsuranceTextSerializer
 from std_plan_text_serializer import StdPlanTextSerializer
 from ltd_plan_text_serializer import LtdPlanTextSerializer
 
@@ -30,11 +31,16 @@ class CompanyBenefitsTextSerializer(object):
         if benefits.visions:
             f.write("Visions:\n")
             CompanyBenefitsTextSerializer.serialize_health_plans(benefits.visions.values(), f)
+        
+        if benefits.basic_life_insurance:
+            f.write("Basic Life Insurance Plan:\n")
+            f.write("---------------------------------------------------------------------------\n")
+            BasicLifeInsuranceTextSerializer.serialize(benefits.basic_life_insurance, f)
 
         if benefits.supplemental_life_insurance:
             f.write("Supplemental Life Insurance Plan:\n")
             f.write("---------------------------------------------------------------------------\n")
-            LifeInsuranceTextSerializer.serialize(benefits.supplemental_life_insurance, f)
+            SupplementalLifeInsuranceTextSerializer.serialize(benefits.supplemental_life_insurance, f)
 
         if benefits.std_plan:
             f.write("STD Plan:\n")

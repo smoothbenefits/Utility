@@ -1,4 +1,3 @@
-from decimal import *
 from model.benefits.supplemental_life_insurance import SupplementalLifeInsurance
 from model.benefits.supplemental_life_insurance_rate import SupplementalLifeInsuranceRate
 from repository import Repository

@@ -1,4 +1,4 @@
-class LifeInsuranceTextSerializer(object):
+class SupplementalLifeInsuranceTextSerializer(object):
     @staticmethod
     def serialize_rates(plan_rates, f):
         for condition in plan_rates.keys():
@@ -12,8 +12,8 @@ class LifeInsuranceTextSerializer(object):
         f.write('id: {}, name: \'{}\',  use_employee_age_for_spouse: {}\n'.format(life_insurance.id, life_insurance.name, life_insurance.use_employee_age_for_spouse))
         f.write('  Insurance rates:\n')
         f.write('    employee:\n')
-        LifeInsuranceTextSerializer.serialize_rates(life_insurance.employee_rates, f)
+        SupplementalLifeInsuranceTextSerializer.serialize_rates(life_insurance.employee_rates, f)
         f.write('    spouse:\n')
-        LifeInsuranceTextSerializer.serialize_rates(life_insurance.spouse_rates, f)
+        SupplementalLifeInsuranceTextSerializer.serialize_rates(life_insurance.spouse_rates, f)
         f.write('    child:\n')
-        LifeInsuranceTextSerializer.serialize_rates(life_insurance.child_rates, f)
+        SupplementalLifeInsuranceTextSerializer.serialize_rates(life_insurance.child_rates, f)
