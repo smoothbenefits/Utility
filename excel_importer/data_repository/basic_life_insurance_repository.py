@@ -1,3 +1,4 @@
+from decimal import *
 from model.benefits.basic_life_insurance import BasicLifeInsurance
 from repository import Repository
 class BasicLifeInsuranceRepository(Repository):
@@ -23,7 +24,7 @@ class BasicLifeInsuranceRepository(Repository):
         row = data[0]
         plan.id = row[0]
         plan.name = row[1]
-        plan.total_cost_per_period = row[2]
-        plan.employee_cost_per_period = row[3]
+        plan.total_cost_per_period = Decimal(row[2])
+        plan.employee_cost_per_period = Decimal(row[3])
         plan.salary_multiplier = row[4]
         return plan

@@ -28,6 +28,10 @@ Dentals:
 301, 60.02, 46.8866666667, individual_plus_one
 302, 102.87, 64.9133333333, individual_plus_family
 
+Basic Life Insurance Plan:
+---------------------------------------------------------------------------
+id: 20, name: 'Assurant Basic Life and AD&D',  total_cost_per_period: 6.95, employee_cost_per_period: 0E-10, salary_multiplier:1
+
 Supplemental Life Insurance Plan:
 ---------------------------------------------------------------------------
 id: 12, name: 'Assurant Voluntary Life',  use_employee_age_for_spouse: False
