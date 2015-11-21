@@ -1,4 +1,5 @@
 class ModelType(object):
     PERSON = 'person'
     DEPENDENT = 'dependent'
-    HEALTH_SELECTION = 'benefit'
+    MEDICAL_SELECTION = 'medical'
+    ASSURANT_SELECTION = 'assurant'

@@ -82,12 +82,20 @@ class FairviewUsers(CompanyUsers):
                 break
 
     def _populate_medical(self, health_selection, c_user):
+        if not health_selection:
+            return
         self._map_with_company(health_selection)
         self._map_with_company(c_user.person.medical_enrollment)
         for member in c_user.family_members:
             self._map_with_company(member.medical_enrollment) 
 
         c_user.medical_selection = health_selection
+
+    def _populate_other_benefits(self, assurant_selection, c_user):
+        if not assurant_selection or not assurant_selection.selection_name:
+            return
+        print "assurant benefit: {}".format(assurant_selection.selection_name)
+
 
 
     def merge_with_excel_data(self, row, excel_type):
@@ -118,7 +126,8 @@ class FairviewUsers(CompanyUsers):
                 self.member_id_users[person.member_id[:-2]] = cur_user
 
         self._populate_dependent(row.get(ModelType.DEPENDENT, None), cur_user)
-        self._populate_medical(row.get(ModelType.HEALTH_SELECTION, None), cur_user)
+        self._populate_medical(row.get(ModelType.MEDICAL_SELECTION, None), cur_user)
+        self._populate_other_benefits(row.get(ModelType.ASSURANT_SELECTION, None), cur_user)
 
     def _get_option_by_option_type(self, options, option_type):
         for option in options:

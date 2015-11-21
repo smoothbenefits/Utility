@@ -6,6 +6,7 @@ from employee_profile_parser import EmployeeProfileParser
 from employee_compensation_parser import EmployeeCompensationParser
 from dependent_parser import DependentParser
 from medical_benefit_selection_parser import MedicalBenefitSelectionParser
+from assurant_benefit_selection_parser import AssurantBenefitSelectionParser
 
 class RowParser(object):
     def __init__(self):
@@ -16,6 +17,7 @@ class RowParser(object):
         self._employee_compensation_parser = EmployeeCompensationParser()
         self._dependent_parser = DependentParser()
         self._medical_selection = MedicalBenefitSelectionParser()
+        self._assurant_selection_parser = AssurantBenefitSelectionParser()
 
     def initialize(self, excel_header_row):
         self._address_parser.initialize_column_mapping(excel_header_row)
@@ -25,6 +27,7 @@ class RowParser(object):
         self._employee_compensation_parser.initialize_column_mapping(excel_header_row)
         self._dependent_parser.initialize_column_mapping(excel_header_row)
         self._medical_selection.initialize_column_mapping(excel_header_row)
+        self._assurant_selection_parser.initialize_column_mapping(excel_header_row)
 
     def parse_data(self, excel_row):
         row_parsed = {}
@@ -34,6 +37,7 @@ class RowParser(object):
         row_parsed[ModelType.PERSON].employee_profile = self._employee_profile_parser.parse_data_row(excel_row)
         row_parsed[ModelType.PERSON].employee_compensation = self._employee_compensation_parser.parse_data_row(excel_row)
         row_parsed[ModelType.DEPENDENT] = self._dependent_parser.parse_data_row(excel_row)
-        row_parsed[ModelType.HEALTH_SELECTION] = self._medical_selection.parse_data_row(excel_row)
-        row_parsed[ModelType.PERSON].medical_enrollment = row_parsed[ModelType.HEALTH_SELECTION]
+        row_parsed[ModelType.MEDICAL_SELECTION] = self._medical_selection.parse_data_row(excel_row)
+        row_parsed[ModelType.PERSON].medical_enrollment = row_parsed[ModelType.MEDICAL_SELECTION]
+        row_parsed[ModelType.ASSURANT_SELECTION] = self._assurant_selection_parser.parse_data_row(excel_row)
         return row_parsed
