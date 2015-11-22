@@ -6,3 +6,4 @@ class AssurantBenefitSelection(Base):
         self.benefit_amount = ''
         self.guarantee_issue = ''
         self.original_effective_date = ''
+        self.option = ''

@@ -26,5 +26,8 @@ class PersonSerializer(object):
                     f.write("Person Medical Selection: {}, {}, {}, {}, {}\n".format(person.medical_enrollment.benefit_plan.id, person.medical_enrollment.benefit_plan.name, person.medical_enrollment.benefit_name, person.medical_enrollment.pcp_number, person.medical_enrollment.option.benefit_option_type))
                 else:
                     f.write("Person Medical Selection No Plan: {}, {}\n".format(person.medical_enrollment.benefit_name, person.medical_enrollment.pcp_number))
+
+            if person.dental_enrollment:
+                f.write("Person Dental Enrollment: {}, {}, {}, {}\n".format(person.dental_enrollment.company_plan.id, person.dental_enrollment.company_plan.name, person.dental_enrollment.selection_name, person.dental_enrollment.option.benefit_option_type))
         else:
             f.write("No person\n")

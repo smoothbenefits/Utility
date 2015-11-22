@@ -10,6 +10,50 @@ class FairviewUsers(CompanyUsers):
         self.company_domain = company_domain
         self.member_id_users = {}
         self._email_list = []
+        self._benefit_selection_mapping = {
+            'DEN-EE': self._set_dental_selection,
+            'V EE DEN': self._set_dental_selection,
+            'V FF DEN': self._set_dental_selection,
+            'DEN-FAM': self._set_dental_selection,
+            'EE LIF': self._set_basic_life_selection,
+            'EE ADD': self._set_basic_life_selection,
+            'V EE LIF': self._set_supplemental_life_selection,
+            'V SP LIF': self._set_supplemental_life_selection,
+            'V CH LIF': self._set_supplemental_life_selection,
+            'V EE ADD': self._set_supplemental_life_selection,
+            'V STD': self._set_std_selection,
+            'V LTD': self._set_ltd_selection
+        }
+
+    def _set_dental_selection(self, selection, c_user):
+        if selection.selection_name and self.benefits.dentals and self.benefits.dentals.values():
+            selection.company_plan = self.benefits.dentals.values()[0]
+        if not c_user.dental_selection or not c_user.dental_selection.company_plan:
+            c_user.dental_selection = selection
+
+    def _set_basic_life_selection(self, selection, c_user):
+        if selection.selection_name and self.benefits.basic_life_insurance:
+            selection.company_plan = self.benefits.basic_life_insurance
+        if not c_user.basic_life_selection or not c_user.basic_life_selection.company_plan:
+            c_user.basic_life_selection = selection
+
+    def _set_supplemental_life_selection(self, selection, c_user):
+        if selection.selection_name and self.benefits.supplemental_life_insurance:
+            selection.company_plan = self.benefits.supplemental_life_insurance
+        if not c_user.supplemental_life_selection or not c_user.supplemental_life_selection.company_plan:
+            c_user.supplemental_life_selection = selection
+
+    def _set_std_selection(self, selection, c_user):
+        if selection.selection_name and self.benefits.std_plan:
+            selection.company_plan = self.benefits.std_plan
+        if not c_user.std_selection or not c_user.std_selection.company_plan:
+            c_user.std_selection = selection
+
+    def _set_ltd_selection(self, selection, c_user):
+        if selection.selection_name and self.benefits.ltd_plan:
+            selection.company_plan = self.benefits.ltd_plan
+        if not c_user.ltd_selection or not c_user.ltd_selection.company_plan:
+            c_user.ltd_selection = selection
 
     def _get_unique_email(self, email, counter=0):
         if not email in self._email_list:
@@ -91,12 +135,13 @@ class FairviewUsers(CompanyUsers):
 
         c_user.medical_selection = health_selection
 
+
     def _populate_other_benefits(self, assurant_selection, c_user):
         if not assurant_selection or not assurant_selection.selection_name:
             return
-        print "assurant benefit: {}".format(assurant_selection.selection_name)
-
-
+        functor = self._benefit_selection_mapping.get(assurant_selection.selection_name, None)
+        if functor:
+            functor(assurant_selection, c_user)
 
     def merge_with_excel_data(self, row, excel_type):
         cur_user = None
@@ -134,27 +179,40 @@ class FairviewUsers(CompanyUsers):
             if option_type.lower() in option.benefit_option_type.lower():
                 return option
 
+    def _find_option_based_on_family(self, options, user):
+        found_option = None
+        if not user.family_members:
+            found_option = self._get_option_by_option_type(options, 'individual')
+        elif len(user.family_members) == 1:
+            found_option = self._get_option_by_option_type(options, 'individual_plus_one')
+        else:
+            found_option = self._get_option_by_option_type(options, 'individual_plus_family')
+
+        return found_option
+
     def _update_medical_enrollment(self, user):
         if user.medical_selection and user.medical_selection.benefit_plan:
             # we need to figure out what option we should assign to the person
-            found_option = None
-            if not user.family_members:
-                found_option = self._get_option_by_option_type(user.medical_selection.benefit_plan.options, 'individual')
-            elif len(user.family_members) == 1:
-                found_option = self._get_option_by_option_type(user.medical_selection.benefit_plan.options, 'individual_plus_one')
-            else:
-                found_option = self._get_option_by_option_type(user.medical_selection.benefit_plan.options, 'individual_plus_family')
+            found_option = self._find_option_based_on_family(user.medical_selection.benefit_plan.options, user)
 
-            if found_option:
-                user.medical_selection.option = found_option
-                user.person.medical_enrollment.option = found_option
-                for member in user.family_members:
-                    if member.medical_enrollment:
-                        member.medical_enrollment.option = found_option
+            user.medical_selection.option = found_option
+            user.person.medical_enrollment.option = found_option
+            for member in user.family_members:
+                if member.medical_enrollment:
+                    member.medical_enrollment.option = found_option
+
+    def _update_dental_enrollment(self, user):
+        if user.dental_selection and user.dental_selection.company_plan:
+            found_option = self._find_option_based_on_family(user.dental_selection.company_plan.options, user)
+            user.dental_selection.option = found_option
+            user.person.dental_enrollment = user.dental_selection
+            for member in user.family_members:
+                member.dental_enrollment = user.dental_selection
 
     def post_parse_processing(self):
         self.prepare_enrollment = True
         for user in self.users.values():
             self._update_medical_enrollment(user)
+            self._update_dental_enrollment(user)
 
     
