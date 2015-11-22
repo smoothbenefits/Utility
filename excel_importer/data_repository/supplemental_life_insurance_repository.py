@@ -15,7 +15,8 @@ class SupplementalLifeInsuranceRepository(Repository):
                     sr.rate,
                     sr.benefit_reduction_percentage,
                     sr.bind_type,
-                    sc.name
+                    sc.name, 
+                    sc.id
                     from app_supplementallifeinsuranceplan sp
                     join app_compsuppllifeinsuranceplan csp on csp.supplemental_life_insurance_plan_id = sp.id
                     join app_supplementallifeinsuranceplanrate sr on sr.supplemental_life_insurance_plan_id = sp.id
@@ -43,7 +44,7 @@ class SupplementalLifeInsuranceRepository(Repository):
                 plan.id = row[0]
                 plan.name = row[1]
                 plan.use_employee_age_for_spouse = row[2]
-            condition = row[8]
+            condition = row[9]
             if row[7] == 'self':
                 self._append_rate(plan.employee_rates, condition, row)
             elif row[7] == 'spouse':

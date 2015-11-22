@@ -8,3 +8,4 @@ class CompanyBenefits(object):
         self.supplemental_life_insurance = None
         self.std_plan = None
         self.ltd_plan = None
+        self.hra_plan = None

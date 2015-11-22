@@ -1,6 +1,7 @@
 from model.company_users import CompanyUsers
 from model_type import ModelType
 from excel_type import ExcelType
+from model.benefits.health_benefit_selection import HealthBenefitSelection
 from user import User
 import datetime
 
@@ -40,8 +41,14 @@ class FairviewUsers(CompanyUsers):
     def _set_supplemental_life_selection(self, selection, c_user):
         if selection.selection_name and self.benefits.supplemental_life_insurance:
             selection.company_plan = self.benefits.supplemental_life_insurance
-        if not c_user.supplemental_life_selection or not c_user.supplemental_life_selection.company_plan:
-            c_user.supplemental_life_selection = selection
+        if 'EE LIF' in selection.selection_name and not c_user.supplemental_life_selection['self']:
+            c_user.supplemental_life_selection['self'] = selection
+        elif 'SP' in selection.selection_name and not c_user.supplemental_life_selection['spouse']:
+            c_user.supplemental_life_selection['spouse'] = selection
+        elif 'CH' in selection.selection_name and not c_user.supplemental_life_selection['child']:
+            c_user.supplemental_life_selection['child'] = selection
+        elif 'EE ADD' in selection.selection_name and not c_user.supplemental_life_selection['ADD']:
+            c_user.supplemental_life_selection['ADD'] = selection
 
     def _set_std_selection(self, selection, c_user):
         if selection.selection_name and self.benefits.std_plan:
@@ -134,6 +141,9 @@ class FairviewUsers(CompanyUsers):
             self._map_with_company(member.medical_enrollment) 
 
         c_user.medical_selection = health_selection
+        if 'HRA' in health_selection.benefit_name and self.benefits.hra_plan and not c_user.hra_selection:
+            c_user.hra_selection = HealthBenefitSelection()
+            c_user.hra_selection.benefit_plan = self.benefits.hra_plan
 
 
     def _populate_other_benefits(self, assurant_selection, c_user):

@@ -9,6 +9,7 @@ DECLARE
   person_id_1 int;
   company_user_id_1 int; 
   usercompanybenefitplanoption_id_1 int;
+  usercompanybenefitplanoption_id_1_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'tinaleclair@fairviewhealthcare.com', 't', 'f', 'f', 'Tina', 'Leclair', now(), now())
@@ -22,8 +23,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_1)
   RETURNING id into usercompanybenefitplanoption_id_1;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_1)
+  RETURNING id into usercompanybenefitplanoption_id_1_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Tina', '', 'Leclair', '', 'self', 'ALeCc_juayLrc80rXKSXYs4PP063CCskQlH7dwcor01pFVxqNiSofCtqAkVBOh_TxhwX48SvVmgL', '1983-02-06', 'F', company_id, user_id_1, '')
+  VALUES('primary_contact', 'Tina', '', 'Leclair', '', 'self', 'ALeCc_gnVFGz_StIRw3XXI1IvavmwaMt16foogiAuW_Xg7ez1LpJVyDOslQvMeweI_ysVxBFLYFQ', '1983-02-06', 'F', company_id, user_id_1, '')
   RETURNING id into person_id_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -41,6 +46,14 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('E13699', person_id_1, usercompanybenefitplanoption_id_1);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_1, usercompanybenefitplanoption_id_1_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(50000.0, now(), now(), 20, person_id_1, user_id_1);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_1);
 END;
 
 
@@ -49,6 +62,7 @@ DECLARE
   person_id_2 int;
   company_user_id_2 int; 
   usercompanybenefitplanoption_id_2 int;
+  usercompanybenefitplanoption_id_2_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'selinafletcher@fairviewhealthcare.com', 't', 'f', 'f', 'Selina', 'Fletcher', now(), now())
@@ -62,8 +76,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_2)
   RETURNING id into usercompanybenefitplanoption_id_2;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_2)
+  RETURNING id into usercompanybenefitplanoption_id_2_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Selina', '', 'Fletcher', '', 'self', 'ALeCc_hQCX8A-SkIivTE3jghZba4qmx8j12J3PSMDF10ncwY1gIWEAjwf50C14FoZbX2MsRI22oi', '1978-12-11', 'F', company_id, user_id_2, '')
+  VALUES('primary_contact', 'Selina', '', 'Fletcher', '', 'self', 'ALeCc_i6Pxt5zpFOhZK1mC31UYQMU4eao8WX7PU7-Apc7aUBzZJ5m3fM3xhcoTabQ6wjrkMsVwUo', '1978-12-11', 'F', company_id, user_id_2, '')
   RETURNING id into person_id_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -81,6 +99,12 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA128700', person_id_2, usercompanybenefitplanoption_id_2);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_2, usercompanybenefitplanoption_id_2_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(24000.0, now(), now(), 20, person_id_2, user_id_2);
+
 END;
 
 
@@ -89,6 +113,7 @@ DECLARE
   person_id_3 int;
   company_user_id_3 int; 
   usercompanybenefitplanoption_id_3 int;
+  usercompanybenefitplanoption_id_3_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'susantrubacz@fairviewhealthcare.com', 't', 'f', 'f', 'Susan', 'Trubacz', now(), now())
@@ -100,6 +125,10 @@ BEGIN
   raise notice 'The company_user_id_3 is %', company_user_id_3;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_3);
+
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_3)
+  RETURNING id into usercompanybenefitplanoption_id_3_dental;
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Susan', '', 'Trubacz', '', 'self', '', '1990-10-09', 'F', company_id, user_id_3, '')
@@ -114,6 +143,15 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(21450.0, '03/02/2015', now(), now(), company_id, person_id_3, null, null, null);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_3, usercompanybenefitplanoption_id_3_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(22000.0, now(), now(), 20, person_id_3, user_id_3);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_3, 0, 250.0);
+
 END;
 
 
@@ -122,6 +160,7 @@ DECLARE
   person_id_4 int;
   company_user_id_4 int; 
   usercompanybenefitplanoption_id_4 int;
+  usercompanybenefitplanoption_id_4_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'theresewarrington@fairviewhealthcare.com', 't', 'f', 'f', 'Therese', 'Warrington', now(), now())
@@ -133,6 +172,9 @@ BEGIN
   raise notice 'The company_user_id_4 is %', company_user_id_4;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_4);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_4);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Therese', '', 'Warrington', '', 'self', '', '1962-09-28', 'F', company_id, user_id_4, '')
@@ -147,6 +189,12 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(19721.0, '02/09/2015', now(), now(), company_id, person_id_4, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(20000.0, now(), now(), 20, person_id_4, user_id_4);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_4, 3, 3, null, 20000.0, null);
+
 END;
 
 
@@ -155,6 +203,7 @@ DECLARE
   person_id_5 int;
   company_user_id_5 int; 
   usercompanybenefitplanoption_id_5 int;
+  usercompanybenefitplanoption_id_5_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kristinmaffee@fairviewhealthcare.com', 't', 'f', 'f', 'Kristin', 'Maffee', now(), now())
@@ -168,8 +217,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_5)
   RETURNING id into usercompanybenefitplanoption_id_5;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_5)
+  RETURNING id into usercompanybenefitplanoption_id_5_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Kristin', '', 'Maffee', '', 'self', 'ALeCc_j6upF8TZrT5OB677dmfwGs_EsbgAW61MwTp3y70lqbty-DF9czpDZUarbwnNl2T5umsltQ', '1959-06-02', 'F', company_id, user_id_5, '')
+  VALUES('primary_contact', 'Kristin', '', 'Maffee', '', 'self', 'ALeCc_jzKLTn6hQzjwSZzWRK0w-RtZNu0L2z_AtqDTWdOgF3HiSiPVzRRfZPqieT6ILGGbCd5r5n', '1959-06-02', 'F', company_id, user_id_5, '')
   RETURNING id into person_id_5;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -187,6 +240,14 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('E12436', person_id_5, usercompanybenefitplanoption_id_5);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_5, usercompanybenefitplanoption_id_5_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(31000.0, now(), now(), 20, person_id_5, user_id_5);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_5);
 END;
 
 
@@ -196,6 +257,7 @@ DECLARE
   family_member_id_6_0 int;
   company_user_id_6 int; 
   usercompanybenefitplanoption_id_6 int;
+  usercompanybenefitplanoption_id_6_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jereneveilleux@fairviewhealthcare.com', 't', 'f', 'f', 'Jerene', 'Veilleux', now(), now())
@@ -209,8 +271,12 @@ BEGIN
   VALUES(now(), now(), 295, user_id_6)
   RETURNING id into usercompanybenefitplanoption_id_6;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_6)
+  RETURNING id into usercompanybenefitplanoption_id_6_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Jerene', '', 'Veilleux', '', 'self', 'ALeCc_g6sU7khuKOKL7x5rgvGVttc8oLZE3oBK009cR9TSFu0wj3p5zZTD0kFLKsGJ-ttf6ceC2C', '1967-06-21', 'F', company_id, user_id_6, '')
+  VALUES('primary_contact', 'Jerene', '', 'Veilleux', '', 'self', 'ALeCc_i0tel1RbtNTCx3qNEIpexu2chI6r3X3zcD919rlVthihAww3yC3nnVOLBD1OrcU4GkDg3Y', '1967-06-21', 'F', company_id, user_id_6, '')
   RETURNING id into person_id_6;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -228,8 +294,22 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('G99011', person_id_6, usercompanybenefitplanoption_id_6);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_6, usercompanybenefitplanoption_id_6_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(55000.0, now(), now(), 20, person_id_6, user_id_6);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(100000.0, 50000.0, null, 0, 0, 0, now(), now(), 12, person_id_6, 3, 3, null, null, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_6, 0, 350.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_6);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Stephane', '', 'Veilleux', '', 'spouse', 'ALeCc_g5z54smo9ZBGA6uf9A-moy1McGRqN8vvNZ9v4ySL_tbSrwncVSczlycNsctPudDi2uPFzf', '1969-02-22', 'M', company_id, user_id_6, '')
+  VALUES('family', 'Stephane', '', 'Veilleux', '', 'spouse', 'ALeCc_g_00_Z2XFX1f-_bGnntW9eNr24unk6gxLyAIsosoBUEPsyW9HQlQE2Ie45RSou-V--bsBn', '1969-02-22', 'M', company_id, user_id_6, '')
   RETURNING id into family_member_id_6_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -241,6 +321,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('G99011', family_member_id_6_0, usercompanybenefitplanoption_id_6);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_6_0, usercompanybenefitplanoption_id_6_dental);
+
 END;
 
 
@@ -249,6 +332,7 @@ DECLARE
   person_id_7 int;
   company_user_id_7 int; 
   usercompanybenefitplanoption_id_7 int;
+  usercompanybenefitplanoption_id_7_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dianezacher@fairviewhealthcare.com', 't', 'f', 'f', 'Diane', 'Zacher', now(), now())
@@ -262,8 +346,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_7)
   RETURNING id into usercompanybenefitplanoption_id_7;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_7)
+  RETURNING id into usercompanybenefitplanoption_id_7_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Diane', '', 'Zacher', '', 'self', 'ALeCc_hCrNarDSKgvYkyIsUoo5rWKstT9mh2jPlRSicpmHEC9mhnq5qOewTQqC9Dr8JZA-Isb0IU', '1956-10-03', 'F', company_id, user_id_7, '')
+  VALUES('primary_contact', 'Diane', '', 'Zacher', '', 'self', 'ALeCc_h_2ZjRYig_zuFM1SIJoagaxibpYcOSW4ZO9RRxuIn-xdYPJg8d4QoqPQe01na1lVA30hn9', '1956-10-03', 'F', company_id, user_id_7, '')
   RETURNING id into person_id_7;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -281,6 +369,15 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA23226', person_id_7, usercompanybenefitplanoption_id_7);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_7, usercompanybenefitplanoption_id_7_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(26000.0, now(), now(), 20, person_id_7, user_id_7);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_7, 0, 100.0);
+
 END;
 
 
@@ -289,6 +386,7 @@ DECLARE
   person_id_8 int;
   company_user_id_8 int; 
   usercompanybenefitplanoption_id_8 int;
+  usercompanybenefitplanoption_id_8_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'emilyinglis@fairviewhealthcare.com', 't', 'f', 'f', 'Emily', 'Inglis', now(), now())
@@ -302,8 +400,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_8)
   RETURNING id into usercompanybenefitplanoption_id_8;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_8)
+  RETURNING id into usercompanybenefitplanoption_id_8_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Emily', 'S', 'Inglis', '', 'self', 'ALeCc_gQcfnbc4Sq5QUG9mGuLEo1gtjyvCypRwZ6C_qBUL0u3D6QKyYWMyvGdC43IczHfaV1B0tE', '1987-06-05', 'F', company_id, user_id_8, '')
+  VALUES('primary_contact', 'Emily', 'S', 'Inglis', '', 'self', 'ALeCc_jiEvtj1qKm_fFqlX9B_y0o1uMgPTvofXLuXHfjmAUnrHxx9HpojqwjJeoSf5rA2Gvxq9Bw', '1987-06-05', 'F', company_id, user_id_8, '')
   RETURNING id into person_id_8;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -321,6 +423,23 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA161866', person_id_8, usercompanybenefitplanoption_id_8);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_8, usercompanybenefitplanoption_id_8_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(47000.0, now(), now(), 20, person_id_8, user_id_8);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(100000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_8, 3, 3, null, null, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_8, 0, 550.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_8, 0, 1600.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_8);
 END;
 
 
@@ -329,6 +448,7 @@ DECLARE
   person_id_9 int;
   company_user_id_9 int; 
   usercompanybenefitplanoption_id_9 int;
+  usercompanybenefitplanoption_id_9_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'catherinelajoie@fairviewhealthcare.com', 't', 'f', 'f', 'Catherine', 'Lajoie', now(), now())
@@ -340,6 +460,9 @@ BEGIN
   raise notice 'The company_user_id_9 is %', company_user_id_9;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_9);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_9);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Catherine', '', 'Lajoie', '', 'self', '', '1974-04-27', 'F', company_id, user_id_9, '')
@@ -354,6 +477,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(41860.0, '06/12/2014', now(), now(), company_id, person_id_9, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(42000.0, now(), now(), 20, person_id_9, user_id_9);
+
 END;
 
 
@@ -362,6 +488,7 @@ DECLARE
   person_id_10 int;
   company_user_id_10 int; 
   usercompanybenefitplanoption_id_10 int;
+  usercompanybenefitplanoption_id_10_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'robinluciano@fairviewhealthcare.com', 't', 'f', 'f', 'Robin', 'Luciano', now(), now())
@@ -375,8 +502,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_10)
   RETURNING id into usercompanybenefitplanoption_id_10;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_10)
+  RETURNING id into usercompanybenefitplanoption_id_10_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Robin', '', 'Luciano', '', 'self', 'ALeCc_jhK3c9SydzPqX2S7ZFopTVstpGRNRGEYNs3YqYGhxjfzVN1ryyf0fI6kY_K8psjU8Sc-cb', '1974-12-14', 'F', company_id, user_id_10, '')
+  VALUES('primary_contact', 'Robin', '', 'Luciano', '', 'self', 'ALeCc_hW8xvz7r6lX2bU1fPX7GuTYuKzH6uiFjQUX74lak1KOQ_w3vo4FQuOwA4vUycph2RNCUEo', '1974-12-14', 'F', company_id, user_id_10, '')
   RETURNING id into person_id_10;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -394,6 +525,15 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F43395', person_id_10, usercompanybenefitplanoption_id_10);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_10, usercompanybenefitplanoption_id_10_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(55000.0, now(), now(), 20, person_id_10, user_id_10);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_10, 0, 400.0);
+
 END;
 
 
@@ -403,6 +543,7 @@ DECLARE
   family_member_id_11_0 int;
   company_user_id_11 int; 
   usercompanybenefitplanoption_id_11 int;
+  usercompanybenefitplanoption_id_11_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'angelakraus@fairviewhealthcare.com', 't', 'f', 'f', 'Angela', 'Kraus', now(), now())
@@ -416,8 +557,12 @@ BEGIN
   VALUES(now(), now(), 295, user_id_11)
   RETURNING id into usercompanybenefitplanoption_id_11;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_11)
+  RETURNING id into usercompanybenefitplanoption_id_11_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Angela', 'J', 'Kraus', '', 'self', 'ALeCc_gALOW42INrXmHdBngCRG5nKy8msY773V7VM5HaRvBm-7qVWQJMdW-RNJoOQ8Qzl_6O_DdG', '1980-08-21', 'F', company_id, user_id_11, '')
+  VALUES('primary_contact', 'Angela', 'J', 'Kraus', '', 'self', 'ALeCc_i2uvbT9NfwJm7fd7LI4h2wBkA7Ve3iGFfqSs7IqarfjATcIUcs8520HydzhcRNZ8wXm_4f', '1980-08-21', 'F', company_id, user_id_11, '')
   RETURNING id into person_id_11;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -435,8 +580,25 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('LH0088', person_id_11, usercompanybenefitplanoption_id_11);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_11, usercompanybenefitplanoption_id_11_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(125000.0, now(), now(), 20, person_id_11, user_id_11);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(250000.0, 50000.0, 10000.0, 0, 0, 0, now(), now(), 12, person_id_11, 3, 3, null, 250000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_11, 0, 700.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_11, 0, 3100.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_11);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Matthew', '', 'Kraus', '', 'spouse', 'ALeCc_iK5ZQW4K45FIB63tLeoYBwlXoVKfZVCjpgvJt2lYXZlHZGAOyq5NwpJa_Str92l_YB5h_W', '1978-02-16', 'M', company_id, user_id_11, '')
+  VALUES('family', 'Matthew', '', 'Kraus', '', 'spouse', 'ALeCc_gDCFHKShwg67btjzH7n13-munzUTiPzcA6kGY10F4SmlVBPwZoMsqA1IIpmo9XuEJj14lF', '1978-02-16', 'M', company_id, user_id_11, '')
   RETURNING id into family_member_id_11_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -448,6 +610,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('694219.0', family_member_id_11_0, usercompanybenefitplanoption_id_11);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_11_0, usercompanybenefitplanoption_id_11_dental);
+
 END;
 
 
@@ -456,6 +621,7 @@ DECLARE
   person_id_12 int;
   company_user_id_12 int; 
   usercompanybenefitplanoption_id_12 int;
+  usercompanybenefitplanoption_id_12_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kristinenutter@fairviewhealthcare.com', 't', 'f', 'f', 'Kristine', 'Nutter', now(), now())
@@ -467,6 +633,9 @@ BEGIN
   raise notice 'The company_user_id_12 is %', company_user_id_12;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_12);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_12);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Kristine', '', 'Nutter', '', 'self', '', '1967-04-21', 'F', company_id, user_id_12, '')
@@ -481,6 +650,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(58552.0, '09/01/2008', now(), now(), company_id, person_id_12, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(118000.0, now(), now(), 20, person_id_12, user_id_12);
+
 END;
 
 
@@ -489,6 +661,7 @@ DECLARE
   person_id_13 int;
   company_user_id_13 int; 
   usercompanybenefitplanoption_id_13 int;
+  usercompanybenefitplanoption_id_13_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'tashavancelette@fairviewhealthcare.com', 't', 'f', 'f', 'Tasha', 'Vancelette', now(), now())
@@ -500,6 +673,9 @@ BEGIN
   raise notice 'The company_user_id_13 is %', company_user_id_13;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_13);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_13);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Tasha', '', 'Vancelette', '', 'self', '', '1974-01-21', 'F', company_id, user_id_13, '')
@@ -514,6 +690,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(20280.0, '08/14/2014', now(), now(), company_id, person_id_13, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_13, user_id_13);
+
 END;
 
 
@@ -522,6 +701,7 @@ DECLARE
   person_id_14 int;
   company_user_id_14 int; 
   usercompanybenefitplanoption_id_14 int;
+  usercompanybenefitplanoption_id_14_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'alyssamackay@fairviewhealthcare.com', 't', 'f', 'f', 'Alyssa', 'Mackay', now(), now())
@@ -533,6 +713,9 @@ BEGIN
   raise notice 'The company_user_id_14 is %', company_user_id_14;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_14);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_14);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Alyssa', '', 'Mackay', '', 'self', '', '1988-05-07', 'F', company_id, user_id_14, '')
@@ -547,6 +730,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(46000.0, '09/01/2013', now(), now(), company_id, person_id_14, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(46000.0, now(), now(), 20, person_id_14, user_id_14);
+
 END;
 
 
@@ -555,6 +741,7 @@ DECLARE
   person_id_15 int;
   company_user_id_15 int; 
   usercompanybenefitplanoption_id_15 int;
+  usercompanybenefitplanoption_id_15_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'brittanyshay@fairviewhealthcare.com', 't', 'f', 'f', 'Brittany', 'Shay', now(), now())
@@ -568,8 +755,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_15)
   RETURNING id into usercompanybenefitplanoption_id_15;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_15)
+  RETURNING id into usercompanybenefitplanoption_id_15_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Brittany', '', 'Shay', '', 'self', 'ALeCc_hPMNrLBZpkLNu-xXh-bKZ8wKyaNtNh8N8ftn8l7RpgndvA8rD1E5P0BjwzcTYRVDgN6e8u', '1990-07-12', 'F', company_id, user_id_15, '')
+  VALUES('primary_contact', 'Brittany', '', 'Shay', '', 'self', 'ALeCc_hpTTJb3kXRmLoGTxfKZoBXPQ1NOma5y17hvPjstfItK0547zF1B2IIZlRPob6Bw-e01-sD', '1990-07-12', 'F', company_id, user_id_15, '')
   RETURNING id into person_id_15;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -587,6 +778,17 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA151118', person_id_15, usercompanybenefitplanoption_id_15);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_15, usercompanybenefitplanoption_id_15_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(25000.0, now(), now(), 20, person_id_15, user_id_15);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_15, 0, 300.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_15);
 END;
 
 
@@ -595,6 +797,7 @@ DECLARE
   person_id_16 int;
   company_user_id_16 int; 
   usercompanybenefitplanoption_id_16 int;
+  usercompanybenefitplanoption_id_16_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'maureenamadi@fairviewhealthcare.com', 't', 'f', 'f', 'Maureen', 'Amadi', now(), now())
@@ -607,6 +810,9 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_16);
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_16);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Maureen', '', 'Amadi', '', 'self', '', '1974-06-27', 'F', company_id, user_id_16, '')
   RETURNING id into person_id_16;
@@ -617,6 +823,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(20962.0, '05/05/2011', now(), now(), company_id, person_id_16, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_16, user_id_16);
+
 END;
 
 
@@ -625,6 +834,7 @@ DECLARE
   person_id_17 int;
   company_user_id_17 int; 
   usercompanybenefitplanoption_id_17 int;
+  usercompanybenefitplanoption_id_17_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'katiepicard@fairviewhealthcare.com', 't', 'f', 'f', 'Katie', 'Picard', now(), now())
@@ -636,6 +846,9 @@ BEGIN
   raise notice 'The company_user_id_17 is %', company_user_id_17;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_17);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_17);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Katie', '', 'Picard', '', 'self', '', '1997-10-09', 'F', company_id, user_id_17, '')
@@ -650,6 +863,12 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(18720.0, '08/18/2014', now(), now(), company_id, person_id_17, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(19000.0, now(), now(), 20, person_id_17, user_id_17);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_17, 3, 3, null, null, null);
+
 END;
 
 
@@ -658,6 +877,7 @@ DECLARE
   person_id_18 int;
   company_user_id_18 int; 
   usercompanybenefitplanoption_id_18 int;
+  usercompanybenefitplanoption_id_18_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'daniellequinn@fairviewhealthcare.com', 't', 'f', 'f', 'Danielle', 'Quinn', now(), now())
@@ -671,8 +891,12 @@ BEGIN
   VALUES(now(), now(), 288, user_id_18)
   RETURNING id into usercompanybenefitplanoption_id_18;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_18)
+  RETURNING id into usercompanybenefitplanoption_id_18_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Danielle', '', 'Quinn', '', 'self', 'ALeCc_iBjbvrMork0NigTtvDhb8sVLdqlgGeAfmgPfUuYIm4DK46YmMS_QDU0-dJKi2p7UiDMOTW', '1980-06-16', 'F', company_id, user_id_18, '')
+  VALUES('primary_contact', 'Danielle', '', 'Quinn', '', 'self', 'ALeCc_grv2D-2KCQLWMKVtqIyzrzI32He0r3HQ_nNW7TFqG9N1Fgf2uPCb3hu2VqDord82MHjV_J', '1980-06-16', 'F', company_id, user_id_18, '')
   RETURNING id into person_id_18;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -690,6 +914,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('692614.0', person_id_18, usercompanybenefitplanoption_id_18);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_18, usercompanybenefitplanoption_id_18_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(110000.0, now(), now(), 20, person_id_18, user_id_18);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, 10000.0, null, 0, 0, 0, now(), now(), 12, person_id_18, 3, 3, null, null, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_18, 0, 600.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_18);
 END;
 
 
@@ -698,6 +936,7 @@ DECLARE
   person_id_19 int;
   company_user_id_19 int; 
   usercompanybenefitplanoption_id_19 int;
+  usercompanybenefitplanoption_id_19_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'carolynbeaulieu@fairviewhealthcare.com', 't', 'f', 'f', 'Carolyn', 'Beaulieu', now(), now())
@@ -711,8 +950,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_19)
   RETURNING id into usercompanybenefitplanoption_id_19;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_19)
+  RETURNING id into usercompanybenefitplanoption_id_19_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Carolyn', 'S', 'Beaulieu', '', 'self', 'ALeCc_iQb1pgEGhAYULyVElXfgCFSBhNKYUB5M3SYJEVjqkS8Mbf1-hMKEnz-o7Ie9lmK-ncNTuK', '1953-08-27', 'F', company_id, user_id_19, '')
+  VALUES('primary_contact', 'Carolyn', 'S', 'Beaulieu', '', 'self', 'ALeCc_g0jwA8DEgKYS66bHGiQGH-Rc-Neu1ie8SVCd5bGwJPl2-d9r-QCr30uIYEUyL1KH9JvxtJ', '1953-08-27', 'F', company_id, user_id_19, '')
   RETURNING id into person_id_19;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -730,6 +973,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('D60815', person_id_19, usercompanybenefitplanoption_id_19);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_19, usercompanybenefitplanoption_id_19_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(43000.0, now(), now(), 20, person_id_19, user_id_19);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_19, 3, 3, null, 20000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_19, 0, 500.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_19);
 END;
 
 
@@ -738,6 +995,7 @@ DECLARE
   person_id_20 int;
   company_user_id_20 int; 
   usercompanybenefitplanoption_id_20 int;
+  usercompanybenefitplanoption_id_20_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'carlawholey@fairviewhealthcare.com', 't', 'f', 'f', 'Carla', 'Wholey', now(), now())
@@ -750,6 +1008,9 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_20);
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_20);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Carla', '', 'Wholey', '', 'self', '', '1963-06-08', 'F', company_id, user_id_20, '')
   RETURNING id into person_id_20;
@@ -759,6 +1020,15 @@ BEGIN
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(45760.0, '03/03/2011', now(), now(), company_id, person_id_20, null, null, null);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(46000.0, now(), now(), 20, person_id_20, user_id_20);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_20, 0, 400.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_20, 0, 1700.0);
 
 END;
 
@@ -771,6 +1041,7 @@ DECLARE
   family_member_id_21_2 int;
   company_user_id_21 int; 
   usercompanybenefitplanoption_id_21 int;
+  usercompanybenefitplanoption_id_21_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'roberthutchings@fairviewhealthcare.com', 't', 'f', 'f', 'Robert', 'Hutchings', now(), now())
@@ -784,8 +1055,12 @@ BEGIN
   VALUES(now(), now(), 296, user_id_21)
   RETURNING id into usercompanybenefitplanoption_id_21;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_21)
+  RETURNING id into usercompanybenefitplanoption_id_21_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Robert', '', 'Hutchings', '', 'self', 'ALeCc_grX9T20fX9R26kOEZIzkWJzgH1BCwZiNF6wZ5k2MH6XkDWdwhfsDghp-giWofK3wmczD5F', '1952-03-14', 'M', company_id, user_id_21, '')
+  VALUES('primary_contact', 'Robert', '', 'Hutchings', '', 'self', 'ALeCc_h53OQ5IhWSllz1q7iTcAnDmACnaydWePvzV5DP2LssB2v0tpDfkz33wcP5EUFekIyQJDRN', '1952-03-14', 'M', company_id, user_id_21, '')
   RETURNING id into person_id_21;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -803,8 +1078,16 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA186074', person_id_21, usercompanybenefitplanoption_id_21);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_21, usercompanybenefitplanoption_id_21_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(17000.0, now(), now(), 20, person_id_21, user_id_21);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_21);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Kelly', '', 'Hutchings', '', 'dependent', 'ALeCc_iZRK_QJ3VEsT24ML4zHo56UsZDQKeBmlqWw0c86y04GeHiJqq0CRzFWwv_gqTUtVUNi48A', '1999-02-03', 'F', company_id, user_id_21, '')
+  VALUES('family', 'Kelly', '', 'Hutchings', '', 'dependent', 'ALeCc_hB99Se3TX3x380hG11dYgE8yt_dyd5QVMGC1OItv1DA0p6kUcYy50-cmG3Piil6e6L3fCO', '1999-02-03', 'F', company_id, user_id_21, '')
   RETURNING id into family_member_id_21_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -816,8 +1099,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA1997', family_member_id_21_1, usercompanybenefitplanoption_id_21);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_21_1, usercompanybenefitplanoption_id_21_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Cynthia', '', 'Hutchings', '', 'spouse', 'ALeCc_hoPeApi3d3cnT-U71N8INoQqo4UQOF68MjNVARbEU530PNrlhIoUxq4JN_yLNx6F8aARx0', '1952-06-11', 'F', company_id, user_id_21, '')
+  VALUES('family', 'Cynthia', '', 'Hutchings', '', 'spouse', 'ALeCc_jFdw5sxKKhs0hk_7akjeOd7vT0t9eR_PfEdcRDwVjwYBkt7VQ-FAZoK72LlKp9ZCCd7ma2', '1952-06-11', 'F', company_id, user_id_21, '')
   RETURNING id into family_member_id_21_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -829,8 +1115,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('C65863', family_member_id_21_0, usercompanybenefitplanoption_id_21);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_21_0, usercompanybenefitplanoption_id_21_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Joshua', '', 'Hutchings', '', 'dependent', 'ALeCc_hGFuLcBK7FI_IxuBJtlpZKXmPyyUIEHIxdWKT_xIlH7RwNRlRwK2uH8VszLRUjf_H_4wFg', '1990-01-02', 'M', company_id, user_id_21, '')
+  VALUES('family', 'Joshua', '', 'Hutchings', '', 'dependent', 'ALeCc_ifQxhIyDtA5j4zexqpCwbNuyMlkqQ4KAT6yZ5PUFVXlsiS2MRKjBhAOmNm6PS2XG_FHP76', '1990-01-02', 'M', company_id, user_id_21, '')
   RETURNING id into family_member_id_21_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -842,6 +1131,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA39509', family_member_id_21_2, usercompanybenefitplanoption_id_21);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_21_2, usercompanybenefitplanoption_id_21_dental);
+
 END;
 
 
@@ -850,6 +1142,7 @@ DECLARE
   person_id_22 int;
   company_user_id_22 int; 
   usercompanybenefitplanoption_id_22 int;
+  usercompanybenefitplanoption_id_22_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'darlenecross@fairviewhealthcare.com', 't', 'f', 'f', 'Darlene', 'Cross', now(), now())
@@ -863,8 +1156,11 @@ BEGIN
   VALUES(now(), now(), 294, user_id_22)
   RETURNING id into usercompanybenefitplanoption_id_22;
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_22);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Darlene', '', 'Cross', '', 'self', 'ALeCc_hYueHXqMdP0Yz4Eh3lbLwHnj7TliIcYlnr4z2fJPoz18I4oQRxXBtXodgSEP8SA2MKo6zK', '1962-05-25', 'F', company_id, user_id_22, '')
+  VALUES('primary_contact', 'Darlene', '', 'Cross', '', 'self', 'ALeCc_ioDApRfDkSYqrhu9IlPo2xWafwjT92BhCDdDHsMmKFOn0p-6Tu_P2Tl8NIzVdvkIL3BWdu', '1962-05-25', 'F', company_id, user_id_22, '')
   RETURNING id into person_id_22;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -879,6 +1175,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('400094.0', person_id_22, usercompanybenefitplanoption_id_22);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_22, user_id_22);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_22);
 END;
 
 
@@ -887,6 +1188,7 @@ DECLARE
   person_id_23 int;
   company_user_id_23 int; 
   usercompanybenefitplanoption_id_23 int;
+  usercompanybenefitplanoption_id_23_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'christinecarpenter@fairviewhealthcare.com', 't', 'f', 'f', 'Christine', 'Carpenter', now(), now())
@@ -898,6 +1200,9 @@ BEGIN
   raise notice 'The company_user_id_23 is %', company_user_id_23;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_23);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_23);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Christine', '', 'Carpenter', '', 'self', '', '1968-05-06', 'F', company_id, user_id_23, '')
@@ -912,6 +1217,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(37440.0, '05/11/2015', now(), now(), company_id, person_id_23, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(38000.0, now(), now(), 20, person_id_23, user_id_23);
+
 END;
 
 
@@ -920,6 +1228,7 @@ DECLARE
   person_id_24 int;
   company_user_id_24 int; 
   usercompanybenefitplanoption_id_24 int;
+  usercompanybenefitplanoption_id_24_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'stephaniesaouma@fairviewhealthcare.com', 't', 'f', 'f', 'Stephanie', 'Saouma', now(), now())
@@ -933,8 +1242,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_24)
   RETURNING id into usercompanybenefitplanoption_id_24;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_24)
+  RETURNING id into usercompanybenefitplanoption_id_24_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Stephanie', 'A', 'Saouma', '', 'self', 'ALeCc_jpQkV6F2gpMEot2VnztBzSvG1yER5mDhBKT5102CPQuyCf5p58oap-lpOhnoc8aikwR65x', '1967-06-02', 'F', company_id, user_id_24, '')
+  VALUES('primary_contact', 'Stephanie', 'A', 'Saouma', '', 'self', 'ALeCc_ib5qH9IjdvJoUmCdz3zdwL6CgOeFzi8jNQdc2wmC25Ni82AZgW3M3i6RXdtukaM5zY8dho', '1967-06-02', 'F', company_id, user_id_24, '')
   RETURNING id into person_id_24;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -952,6 +1265,17 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('691861.0', person_id_24, usercompanybenefitplanoption_id_24);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_24, usercompanybenefitplanoption_id_24_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(45000.0, now(), now(), 20, person_id_24, user_id_24);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(40000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_24, 3, 3, null, null, null);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_24);
 END;
 
 
@@ -960,6 +1284,7 @@ DECLARE
   person_id_25 int;
   company_user_id_25 int; 
   usercompanybenefitplanoption_id_25 int;
+  usercompanybenefitplanoption_id_25_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'carlawholey1@fairviewhealthcare.com', 't', 'f', 'f', 'Carla', 'Wholey', now(), now())
@@ -971,6 +1296,9 @@ BEGIN
   raise notice 'The company_user_id_25 is %', company_user_id_25;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_25);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_25);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Carla', '', 'Wholey', '', 'self', '', '1989-02-27', 'F', company_id, user_id_25, '')
@@ -985,6 +1313,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(45760.0, '06/07/2010', now(), now(), company_id, person_id_25, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(46000.0, now(), now(), 20, person_id_25, user_id_25);
+
 END;
 
 
@@ -993,6 +1324,7 @@ DECLARE
   person_id_26 int;
   company_user_id_26 int; 
   usercompanybenefitplanoption_id_26 int;
+  usercompanybenefitplanoption_id_26_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'katherinephilbrick@fairviewhealthcare.com', 't', 'f', 'f', 'Katherine', 'Philbrick', now(), now())
@@ -1006,8 +1338,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_26)
   RETURNING id into usercompanybenefitplanoption_id_26;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_26)
+  RETURNING id into usercompanybenefitplanoption_id_26_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Katherine', 'S', 'Philbrick', '', 'self', 'ALeCc_j4d5cI1nzTjuwJH69bJ-hpL9_eRRxzIblZYimOaQmEb3T9Mpb--UJGPdrrVm2gOM3P1llD', '1970-08-18', 'F', company_id, user_id_26, '')
+  VALUES('primary_contact', 'Katherine', 'S', 'Philbrick', '', 'self', 'ALeCc_jng1Z52KEVbFnKdUukfDh_s3BwhsHYFlO-fY7rmcy79Jc-yIstH3LKHMTIgAZaa_hTNUAB', '1970-08-18', 'F', company_id, user_id_26, '')
   RETURNING id into person_id_26;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1025,6 +1361,14 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('D60815', person_id_26, usercompanybenefitplanoption_id_26);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_26, usercompanybenefitplanoption_id_26_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(25000.0, now(), now(), 20, person_id_26, user_id_26);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_26);
 END;
 
 
@@ -1034,6 +1378,7 @@ DECLARE
   family_member_id_27_0 int;
   company_user_id_27 int; 
   usercompanybenefitplanoption_id_27 int;
+  usercompanybenefitplanoption_id_27_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'mariadube@fairviewhealthcare.com', 't', 'f', 'f', 'Maria', 'Dube', now(), now())
@@ -1047,8 +1392,12 @@ BEGIN
   VALUES(now(), now(), 289, user_id_27)
   RETURNING id into usercompanybenefitplanoption_id_27;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_27)
+  RETURNING id into usercompanybenefitplanoption_id_27_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Maria', 'A', 'Dube', '', 'self', 'ALeCc_iO3kuFC-Ch0ZaDiVJNmwZoVzCxsSxiGIfLOU0rpVbmMi9fgBN0oHNviNfWiuXtC5lLFaXC', '1965-12-18', 'F', company_id, user_id_27, '')
+  VALUES('primary_contact', 'Maria', 'A', 'Dube', '', 'self', 'ALeCc_hs7GttJdqoEng4tY1cpwvk43OvG4UgoH13g6ETdG8aD1OzCw9-kEYFMI2LBtWxadNkhi9p', '1965-12-18', 'F', company_id, user_id_27, '')
   RETURNING id into person_id_27;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1066,8 +1415,25 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA97577', person_id_27, usercompanybenefitplanoption_id_27);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_27, usercompanybenefitplanoption_id_27_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(61000.0, now(), now(), 20, person_id_27, user_id_27);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(120000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_27, 3, 3, null, 120000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_27, 0, 700.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_27, 0, 3000.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_27);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Hannah', '', 'Tomaszewski', '', 'dependent', 'ALeCc_hLs6DNe0tEn7f55dgAJqncGU1Hc5xw7OvalrZ_79ABIwlXT79816hI0R0h5WpjVAOYrM9M', '1990-04-07', 'F', company_id, user_id_27, '')
+  VALUES('family', 'Hannah', '', 'Tomaszewski', '', 'dependent', 'ALeCc_hcYFRE7WHiTcYUDkxcxoY_-aQKrMuojI_Q5AYBjn-GDD5BSF_W3qIJDE4j2b7iSee9NUSq', '1990-04-07', 'F', company_id, user_id_27, '')
   RETURNING id into family_member_id_27_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1079,6 +1445,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA111351', family_member_id_27_0, usercompanybenefitplanoption_id_27);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_27_0, usercompanybenefitplanoption_id_27_dental);
+
 END;
 
 
@@ -1087,6 +1456,7 @@ DECLARE
   person_id_28 int;
   company_user_id_28 int; 
   usercompanybenefitplanoption_id_28 int;
+  usercompanybenefitplanoption_id_28_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'robynbrody@fairviewhealthcare.com', 't', 'f', 'f', 'Robyn', 'Brody', now(), now())
@@ -1100,8 +1470,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_28)
   RETURNING id into usercompanybenefitplanoption_id_28;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_28)
+  RETURNING id into usercompanybenefitplanoption_id_28_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Robyn', '', 'Brody', '', 'self', 'ALeCc_hXwIZMazTC6msuCBY61uiMps3U7dD-jOyuV2Qls7Z3RFzJUWs-2JbwRFdQR9NFDz7spvnb', '1975-02-23', 'F', company_id, user_id_28, '')
+  VALUES('primary_contact', 'Robyn', '', 'Brody', '', 'self', 'ALeCc_hgceGH15oComBn5QLXGThvs6fZE59P6FjPdb2kYAwCulxA3QTqlBqgkSnfapMN2NPgXUyU', '1975-02-23', 'F', company_id, user_id_28, '')
   RETURNING id into person_id_28;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1119,6 +1493,23 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA23226', person_id_28, usercompanybenefitplanoption_id_28);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_28, usercompanybenefitplanoption_id_28_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(48000.0, now(), now(), 20, person_id_28, user_id_28);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(130000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_28, 3, 3, null, 130000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_28, 0, 550.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_28, 0, 2400.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_28);
 END;
 
 
@@ -1127,6 +1518,7 @@ DECLARE
   person_id_29 int;
   company_user_id_29 int; 
   usercompanybenefitplanoption_id_29 int;
+  usercompanybenefitplanoption_id_29_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jillkracke@fairviewhealthcare.com', 't', 'f', 'f', 'Jill', 'Kracke', now(), now())
@@ -1140,8 +1532,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_29)
   RETURNING id into usercompanybenefitplanoption_id_29;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_29)
+  RETURNING id into usercompanybenefitplanoption_id_29_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Jill', '', 'Kracke', '', 'self', 'ALeCc_iXDQSpSVRsDZwEDXhYRRoOmt9NjPgliv2KQjXsNPaftjexRz0W8FKvf0icm7I1btKSO-Ow', '1989-05-31', 'F', company_id, user_id_29, '')
+  VALUES('primary_contact', 'Jill', '', 'Kracke', '', 'self', 'ALeCc_hopDr1RXem-5_J0wUyp7JreOg5sBrYKNBvIRd3XYuT_yILDShHUhTIlo7P0y5cfU_LKshz', '1989-05-31', 'F', company_id, user_id_29, '')
   RETURNING id into person_id_29;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1159,6 +1555,12 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('714273.0', person_id_29, usercompanybenefitplanoption_id_29);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_29, usercompanybenefitplanoption_id_29_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(50000.0, now(), now(), 20, person_id_29, user_id_29);
+
 END;
 
 
@@ -1167,6 +1569,7 @@ DECLARE
   person_id_30 int;
   company_user_id_30 int; 
   usercompanybenefitplanoption_id_30 int;
+  usercompanybenefitplanoption_id_30_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'lisawood@fairviewhealthcare.com', 't', 'f', 'f', 'Lisa', 'Wood', now(), now())
@@ -1178,6 +1581,9 @@ BEGIN
   raise notice 'The company_user_id_30 is %', company_user_id_30;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_30);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_30);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Lisa', '', 'Wood', '', 'self', '', '1967-12-26', 'F', company_id, user_id_30, '')
@@ -1192,6 +1598,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(24960.0, '08/05/2014', now(), now(), company_id, person_id_30, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(25000.0, now(), now(), 20, person_id_30, user_id_30);
+
 END;
 
 
@@ -1205,6 +1614,7 @@ DECLARE
   family_member_id_31_1 int;
   company_user_id_31 int; 
   usercompanybenefitplanoption_id_31 int;
+  usercompanybenefitplanoption_id_31_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'melissapinard@fairviewhealthcare.com', 't', 'f', 'f', 'Melissa', 'Pinard', now(), now())
@@ -1218,8 +1628,12 @@ BEGIN
   VALUES(now(), now(), 296, user_id_31)
   RETURNING id into usercompanybenefitplanoption_id_31;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_31)
+  RETURNING id into usercompanybenefitplanoption_id_31_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Melissa', '', 'Pinard', '', 'self', 'ALeCc_jVtdRQ0MWomxGPYVOZpkum5ZIs0n0UbmLUf-O305BqPIcu7WLDNv0VHwWsl0bvVSH1n9ft', '1969-01-29', 'F', company_id, user_id_31, '')
+  VALUES('primary_contact', 'Melissa', '', 'Pinard', '', 'self', 'ALeCc_gNhuMWpOGV6NNz9k2vOIwJvyzw_AlVCpcCuSc7tEgYOuSCT2iQHlkZw1ldFZgMQkUmA7Pi', '1969-01-29', 'F', company_id, user_id_31, '')
   RETURNING id into person_id_31;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1237,8 +1651,19 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA151118', person_id_31, usercompanybenefitplanoption_id_31);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_31, usercompanybenefitplanoption_id_31_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(140000.0, now(), now(), 20, person_id_31, user_id_31);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(50000.0, 25000.0, 10000.0, 0, 0, 0, now(), now(), 12, person_id_31, 3, 3, null, 50000.0, null);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_31);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Samuel', '', 'Pinard', '', 'dependent', 'ALeCc_he-dFH_tZ0mEtvOUNysmz_UmRu3poX9-feXcrDzelnbWESDS-QJuqGFHikUhUMI8iDTv0l', '2005-07-01', 'M', company_id, user_id_31, '')
+  VALUES('family', 'Samuel', '', 'Pinard', '', 'dependent', 'ALeCc_jlZgIAmoKFAG0Ax2gsMncI0ewT8IClhewX14K5xBwGLlOqu6IrDnyVdk5IjhpciCxf5c-8', '2005-07-01', 'M', company_id, user_id_31, '')
   RETURNING id into family_member_id_31_4;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1250,8 +1675,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F61546', family_member_id_31_4, usercompanybenefitplanoption_id_31);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_31_4, usercompanybenefitplanoption_id_31_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Jacob', '', 'Pinard', '', 'dependent', 'ALeCc_j7yhjMlgghQpFtT3yojR-yDHROdE3B-mI2BLNoBQdJF6deYj3mqA167jQoEJJDF8Zmg9hI', '2003-10-07', 'M', company_id, user_id_31, '')
+  VALUES('family', 'Jacob', '', 'Pinard', '', 'dependent', 'ALeCc_hT7WKYMVfZSt3jcwSlgF-dnEroX7Aeeiys8Owdxug13Ias5lGX4NOjpcEmmCnlwCj-C-WI', '2003-10-07', 'M', company_id, user_id_31, '')
   RETURNING id into family_member_id_31_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1263,8 +1691,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F61546', family_member_id_31_2, usercompanybenefitplanoption_id_31);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_31_2, usercompanybenefitplanoption_id_31_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Matthew', '', 'Pinard', '', 'dependent', 'ALeCc_hGgdlJ6nMwwyW0GjrqpTuZ8Rv6LvgR29W0Y5Rsa5fthT0et5OsPETbeV0SX0korSPQahmU', '2005-07-01', 'M', company_id, user_id_31, '')
+  VALUES('family', 'Matthew', '', 'Pinard', '', 'dependent', 'ALeCc_iCBLgnjxiK2KhWSPuBkmWsGNzoLVAx3fArv7Z8RN-p4g_siDJZqRGqm1ZRTjxxWj5e7ou-', '2005-07-01', 'M', company_id, user_id_31, '')
   RETURNING id into family_member_id_31_3;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1276,8 +1707,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F61546', family_member_id_31_3, usercompanybenefitplanoption_id_31);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_31_3, usercompanybenefitplanoption_id_31_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Steven', '', 'Pinard', '', 'spouse', 'ALeCc_hJOlPQQxj-dZ0xs7ac86oBiYoEECZ9DFaTJ0mClz2nIM_whbbOL5UdLm4AhyW27UDo_7sd', '1967-07-25', 'M', company_id, user_id_31, '')
+  VALUES('family', 'Steven', '', 'Pinard', '', 'spouse', 'ALeCc_gSZDTpri21MK2Gtw2xLAr7WdUMghv3Gm7y-eaeyGhPlL4yLJ8CmblFrEAnYLTpt3BezS1K', '1967-07-25', 'M', company_id, user_id_31, '')
   RETURNING id into family_member_id_31_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1289,8 +1723,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA151118', family_member_id_31_0, usercompanybenefitplanoption_id_31);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_31_0, usercompanybenefitplanoption_id_31_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Brandon', '', 'Pinard', '', 'dependent', 'ALeCc_ikjUcuK0NDl9eoVPIsVmnHOCJWykdcFzNCR9LrR_H8OoBojvA5sSgYHgozugS9zDxoEeg9', '1993-12-10', 'M', company_id, user_id_31, '')
+  VALUES('family', 'Brandon', '', 'Pinard', '', 'dependent', 'ALeCc_gaFgvMHFBBqm7ln6enSnn5wSV5L2zL8P6EywwZHeKXmSC5MBULDKOyXOA_BfuTsgkevZ6F', '1993-12-10', 'M', company_id, user_id_31, '')
   RETURNING id into family_member_id_31_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1302,6 +1739,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('710725.0', family_member_id_31_1, usercompanybenefitplanoption_id_31);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_31_1, usercompanybenefitplanoption_id_31_dental);
+
 END;
 
 
@@ -1311,6 +1751,7 @@ DECLARE
   family_member_id_32_0 int;
   company_user_id_32 int; 
   usercompanybenefitplanoption_id_32 int;
+  usercompanybenefitplanoption_id_32_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'lauriemarston@fairviewhealthcare.com', 't', 'f', 'f', 'Laurie', 'Marston', now(), now())
@@ -1324,8 +1765,12 @@ BEGIN
   VALUES(now(), now(), 295, user_id_32)
   RETURNING id into usercompanybenefitplanoption_id_32;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_32)
+  RETURNING id into usercompanybenefitplanoption_id_32_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Laurie', 'M', 'Marston', '', 'self', 'ALeCc_hiB_aT4CGLbhacIa30iUdHIaFgeEzcCvgn5LrWvESy2npozDVRw0W4mK1aNt2wqBVeCXV-', '1960-01-05', 'F', company_id, user_id_32, '')
+  VALUES('primary_contact', 'Laurie', 'M', 'Marston', '', 'self', 'ALeCc_hWH_ePNAX61f3SKEd2VTB9GflNI0VQAB1fT66s013tkccBAG6SdfeHbPhWHKfIsn-TQYfr', '1960-01-05', 'F', company_id, user_id_32, '')
   RETURNING id into person_id_32;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1343,8 +1788,19 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA276742', person_id_32, usercompanybenefitplanoption_id_32);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_32, usercompanybenefitplanoption_id_32_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(27000.0, now(), now(), 20, person_id_32, user_id_32);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_32, 0, 300.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_32);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Donald', '', 'Marston', '', 'spouse', 'ALeCc_hR7Z30WIsqmaKcvIo-X0k51AXueRWyn7X1qXNABXgFoWtjDLGDyinAAO5N585gY0RUKGMQ', '1958-07-22', 'M', company_id, user_id_32, '')
+  VALUES('family', 'Donald', '', 'Marston', '', 'spouse', 'ALeCc_imjDn7Gy1tHLoUoupE6dpVGqnpan1QUvFLRnjBVq_gKinYCCYF5XlVU0fp69FNvVpIYFBf', '1958-07-22', 'M', company_id, user_id_32, '')
   RETURNING id into family_member_id_32_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1356,6 +1812,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA276742', family_member_id_32_0, usercompanybenefitplanoption_id_32);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_32_0, usercompanybenefitplanoption_id_32_dental);
+
 END;
 
 
@@ -1364,6 +1823,7 @@ DECLARE
   person_id_33 int;
   company_user_id_33 int; 
   usercompanybenefitplanoption_id_33 int;
+  usercompanybenefitplanoption_id_33_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'alfredosantiago-sanchez@fairviewhealthcare.com', 't', 'f', 'f', 'Alfredo', 'Santiago-Sanchez', now(), now())
@@ -1377,8 +1837,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_33)
   RETURNING id into usercompanybenefitplanoption_id_33;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_33)
+  RETURNING id into usercompanybenefitplanoption_id_33_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Alfredo', '', 'Santiago-Sanchez', '', 'self', 'ALeCc_g1AiTTJ8RUk-MCqp6raekbKK31FjeEhPYx5r1YPHlGGhOtmqmUh3fpvq7c_HsUWBgulwlk', '1980-04-05', 'M', company_id, user_id_33, '')
+  VALUES('primary_contact', 'Alfredo', '', 'Santiago-Sanchez', '', 'self', 'ALeCc_iiVilQJxOGOphTtsySrOartI8E98dqgicUDX-_IzSZRx983IACkSpg33INFv5EVT3nirPG', '1980-04-05', 'M', company_id, user_id_33, '')
   RETURNING id into person_id_33;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1396,6 +1860,18 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA19803', person_id_33, usercompanybenefitplanoption_id_33);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_33, usercompanybenefitplanoption_id_33_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(23000.0, now(), now(), 20, person_id_33, user_id_33);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(100000.0, 25000.0, null, 0, 0, 0, now(), now(), 12, person_id_33, 3, 3, null, 100000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_33, 0, 250.0);
+
 END;
 
 
@@ -1404,6 +1880,7 @@ DECLARE
   person_id_34 int;
   company_user_id_34 int; 
   usercompanybenefitplanoption_id_34 int;
+  usercompanybenefitplanoption_id_34_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'karentierney@fairviewhealthcare.com', 't', 'f', 'f', 'Karen', 'Tierney', now(), now())
@@ -1417,8 +1894,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_34)
   RETURNING id into usercompanybenefitplanoption_id_34;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_34)
+  RETURNING id into usercompanybenefitplanoption_id_34_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Karen', '', 'Tierney', '', 'self', 'ALeCc_jzCzoEeOajcAl0WOKIZf7ELBY6DhAswX_dobfqNvJGScEMntJYuQCHXrgNglRv6Y8KWFd7', '1960-06-11', 'F', company_id, user_id_34, '')
+  VALUES('primary_contact', 'Karen', '', 'Tierney', '', 'self', 'ALeCc_ha53P4vS0jH_sRZ1vdWzmVIv-i-pEPyf7tcprLNMiV9m9iE6wZPAMQYqgZfpsBzP8khzmz', '1960-06-11', 'F', company_id, user_id_34, '')
   RETURNING id into person_id_34;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1436,6 +1917,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F43395', person_id_34, usercompanybenefitplanoption_id_34);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_34, usercompanybenefitplanoption_id_34_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(48000.0, now(), now(), 20, person_id_34, user_id_34);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_34, 0, 550.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_34, 0, 2000.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_34);
 END;
 
 
@@ -1444,6 +1939,7 @@ DECLARE
   person_id_35 int;
   company_user_id_35 int; 
   usercompanybenefitplanoption_id_35 int;
+  usercompanybenefitplanoption_id_35_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'michelledavanzo@fairviewhealthcare.com', 't', 'f', 'f', 'Michelle', 'D''Avanzo', now(), now())
@@ -1457,8 +1953,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_35)
   RETURNING id into usercompanybenefitplanoption_id_35;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_35)
+  RETURNING id into usercompanybenefitplanoption_id_35_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Michelle', 'M', 'D''Avanzo', '', 'self', 'ALeCc_gXx0WPgaMKSGbRDZEq3OygstPaAb-3EmjGuf4ZFZZ3BegekUrUtyK8xfdoQocLFeWWz3oe', '1967-11-09', 'F', company_id, user_id_35, '')
+  VALUES('primary_contact', 'Michelle', 'M', 'D''Avanzo', '', 'self', 'ALeCc_jEFmQ51-NH3U9PqEn2LKJ1LXKDw_hJ_wOEkHhrm7A3RQSWSU_PrUN2FqDTMF_Z1g_ceIme', '1967-11-09', 'F', company_id, user_id_35, '')
   RETURNING id into person_id_35;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1476,6 +1976,14 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('C66071', person_id_35, usercompanybenefitplanoption_id_35);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_35, usercompanybenefitplanoption_id_35_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(28000.0, now(), now(), 20, person_id_35, user_id_35);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_35);
 END;
 
 
@@ -1484,6 +1992,7 @@ DECLARE
   person_id_36 int;
   company_user_id_36 int; 
   usercompanybenefitplanoption_id_36 int;
+  usercompanybenefitplanoption_id_36_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'meghanlandry@fairviewhealthcare.com', 't', 'f', 'f', 'Meghan', 'Landry', now(), now())
@@ -1495,6 +2004,9 @@ BEGIN
   raise notice 'The company_user_id_36 is %', company_user_id_36;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_36);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_36);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Meghan', '', 'Landry', '', 'self', '', '1983-11-25', 'F', company_id, user_id_36, '')
@@ -1509,6 +2021,15 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(50000.0, '07/14/2014', now(), now(), company_id, person_id_36, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(50000.0, now(), now(), 20, person_id_36, user_id_36);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(100000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_36, 3, 3, null, 100000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_36, 0, 500.0);
+
 END;
 
 
@@ -1517,6 +2038,7 @@ DECLARE
   person_id_37 int;
   company_user_id_37 int; 
   usercompanybenefitplanoption_id_37 int;
+  usercompanybenefitplanoption_id_37_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'amandawhite@fairviewhealthcare.com', 't', 'f', 'f', 'Amanda', 'White', now(), now())
@@ -1530,8 +2052,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_37)
   RETURNING id into usercompanybenefitplanoption_id_37;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_37)
+  RETURNING id into usercompanybenefitplanoption_id_37_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Amanda', '', 'White', '', 'self', 'ALeCc_i0J-2r7glPZzABDQxpbF2yj6Ziyccup6T04XHXkJA94rEIgiKKWtRdMmt3dcDPhs53DGWp', '1989-02-17', 'F', company_id, user_id_37, '')
+  VALUES('primary_contact', 'Amanda', '', 'White', '', 'self', 'ALeCc_gRGbWbxaeQJI4kk2StF_Kc-Xy0yshBi9zsYajF01i1WcNOiaxpPVwp4JP4XQKQToEbFSVb', '1989-02-17', 'F', company_id, user_id_37, '')
   RETURNING id into person_id_37;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1549,6 +2075,14 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('NA1039', person_id_37, usercompanybenefitplanoption_id_37);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_37, usercompanybenefitplanoption_id_37_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(23000.0, now(), now(), 20, person_id_37, user_id_37);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_37);
 END;
 
 
@@ -1557,6 +2091,7 @@ DECLARE
   person_id_38 int;
   company_user_id_38 int; 
   usercompanybenefitplanoption_id_38 int;
+  usercompanybenefitplanoption_id_38_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'alandupont@fairviewhealthcare.com', 't', 'f', 'f', 'Alan', 'Dupont', now(), now())
@@ -1568,6 +2103,10 @@ BEGIN
   raise notice 'The company_user_id_38 is %', company_user_id_38;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_38);
+
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_38)
+  RETURNING id into usercompanybenefitplanoption_id_38_dental;
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Alan', 'W', 'Dupont', '', 'self', '', '1955-10-19', 'M', company_id, user_id_38, '')
@@ -1582,6 +2121,12 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(59987.0, '06/25/2012', now(), now(), company_id, person_id_38, null, null, null);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_38, usercompanybenefitplanoption_id_38_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(120000.0, now(), now(), 20, person_id_38, user_id_38);
+
 END;
 
 
@@ -1590,6 +2135,7 @@ DECLARE
   person_id_39 int;
   company_user_id_39 int; 
   usercompanybenefitplanoption_id_39 int;
+  usercompanybenefitplanoption_id_39_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ketliecamille@fairviewhealthcare.com', 't', 'f', 'f', 'Ketlie', 'Camille', now(), now())
@@ -1603,8 +2149,12 @@ BEGIN
   VALUES(now(), now(), 288, user_id_39)
   RETURNING id into usercompanybenefitplanoption_id_39;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_39)
+  RETURNING id into usercompanybenefitplanoption_id_39_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Ketlie', '', 'Camille', '', 'self', 'ALeCc_jwRDeI6xnoi4FXG4PFzR7AR7E0zVEasDqcv_OKpAh9FDyH8XPxpmx_RmyWkXPKARk1Dvm3', '1958-07-21', 'F', company_id, user_id_39, '')
+  VALUES('primary_contact', 'Ketlie', '', 'Camille', '', 'self', 'ALeCc_irhryBVgGUmGoKYDB8t-S_x04ZuSPL4KIFPb-3KmzmOduY_jv9uSBu-lwcdYsGPKhN7Ggj', '1958-07-21', 'F', company_id, user_id_39, '')
   RETURNING id into person_id_39;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1622,6 +2172,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('LH0144', person_id_39, usercompanybenefitplanoption_id_39);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_39, usercompanybenefitplanoption_id_39_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(38000.0, now(), now(), 20, person_id_39, user_id_39);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_39, 3, 3, null, null, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_39, 0, 300.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_39);
 END;
 
 
@@ -1630,6 +2194,7 @@ DECLARE
   person_id_40 int;
   company_user_id_40 int; 
   usercompanybenefitplanoption_id_40 int;
+  usercompanybenefitplanoption_id_40_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'theresaberry@fairviewhealthcare.com', 't', 'f', 'f', 'Theresa', 'Berry', now(), now())
@@ -1643,8 +2208,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_40)
   RETURNING id into usercompanybenefitplanoption_id_40;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_40)
+  RETURNING id into usercompanybenefitplanoption_id_40_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Theresa', 'A', 'Berry', '', 'self', 'ALeCc_gUg5mxmUxATlhx4-C6Du8HLD00tvI3WHZEPZaej87RUNDnF1N-z_dGFwD1TPGGwEa1KIhP', '1960-08-01', 'F', company_id, user_id_40, '')
+  VALUES('primary_contact', 'Theresa', 'A', 'Berry', '', 'self', 'ALeCc_j577KiFvmY_ymJB2EiwU5-OZsmOzm0aoz79-zshh_b0n_UVzWI2i_H_OO8byleIU1rY4Dr', '1960-08-01', 'F', company_id, user_id_40, '')
   RETURNING id into person_id_40;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1662,6 +2231,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('66446.0', person_id_40, usercompanybenefitplanoption_id_40);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_40, usercompanybenefitplanoption_id_40_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(180000.0, now(), now(), 20, person_id_40, user_id_40);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_40, 0, 1000.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_40, 0, 4500.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_40);
 END;
 
 
@@ -1670,6 +2253,7 @@ DECLARE
   person_id_41 int;
   company_user_id_41 int; 
   usercompanybenefitplanoption_id_41 int;
+  usercompanybenefitplanoption_id_41_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'rhondaboudreau@fairviewhealthcare.com', 't', 'f', 'f', 'Rhonda', 'Boudreau', now(), now())
@@ -1683,8 +2267,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_41)
   RETURNING id into usercompanybenefitplanoption_id_41;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_41)
+  RETURNING id into usercompanybenefitplanoption_id_41_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Rhonda', '', 'Boudreau', '', 'self', 'ALeCc_if2nAlrYy-Gzybrfo9cZQDsuyeus6DWsfRj1z7sEXn-gd2Rl45-gojHIpo9Y5QTZHvs9kC', '1969-02-26', 'F', company_id, user_id_41, '')
+  VALUES('primary_contact', 'Rhonda', '', 'Boudreau', '', 'self', 'ALeCc_gQNLvLKMDPpUX2almBeWRBdRBUDHxPLKe65GbBSIM1WDhzogXgxS2HoZaVTtkJmcT2DMvr', '1969-02-26', 'F', company_id, user_id_41, '')
   RETURNING id into person_id_41;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1702,6 +2290,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA159668', person_id_41, usercompanybenefitplanoption_id_41);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_41, usercompanybenefitplanoption_id_41_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(62000.0, now(), now(), 20, person_id_41, user_id_41);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(40000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_41, 3, 3, null, 40000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_41, 0, 700.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_41);
 END;
 
 
@@ -1710,6 +2312,7 @@ DECLARE
   person_id_42 int;
   company_user_id_42 int; 
   usercompanybenefitplanoption_id_42 int;
+  usercompanybenefitplanoption_id_42_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'debramelville@fairviewhealthcare.com', 't', 'f', 'f', 'Debra', 'Melville', now(), now())
@@ -1721,6 +2324,9 @@ BEGIN
   raise notice 'The company_user_id_42 is %', company_user_id_42;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_42);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_42);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Debra', '', 'Melville', '', 'self', '', '1961-09-18', 'F', company_id, user_id_42, '')
@@ -1735,6 +2341,15 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(56285.0, '09/01/2008', now(), now(), company_id, person_id_42, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(113000.0, now(), now(), 20, person_id_42, user_id_42);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_42, 3, 3, null, 20000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_42, 0, 200.0);
+
 END;
 
 
@@ -1743,6 +2358,7 @@ DECLARE
   person_id_43 int;
   company_user_id_43 int; 
   usercompanybenefitplanoption_id_43 int;
+  usercompanybenefitplanoption_id_43_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dwaynebernard@fairviewhealthcare.com', 't', 'f', 'f', 'Dwayne', 'Bernard', now(), now())
@@ -1756,8 +2372,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_43)
   RETURNING id into usercompanybenefitplanoption_id_43;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_43)
+  RETURNING id into usercompanybenefitplanoption_id_43_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Dwayne', 'M', 'Bernard', '', 'self', 'ALeCc_hjqNASpPHpxbWhHMgLt_QEyaVYKiHw3GAR-Nl9_YxJ5Jp7mhDDv9qDPHbN3PHbBJtcgrVy', '1959-01-08', 'M', company_id, user_id_43, '')
+  VALUES('primary_contact', 'Dwayne', 'M', 'Bernard', '', 'self', 'ALeCc_hiTJ37ZOKNvP2P6yl_mpdr0up6cjwLAXD-TyCQNZcQ42OhAv8x0Tfso6ZluXBVj3DtSGaX', '1959-01-08', 'M', company_id, user_id_43, '')
   RETURNING id into person_id_43;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1775,6 +2395,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA148119', person_id_43, usercompanybenefitplanoption_id_43);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_43, usercompanybenefitplanoption_id_43_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(32000.0, now(), now(), 20, person_id_43, user_id_43);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_43, 3, 3, null, 20000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_43, 0, 350.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_43);
 END;
 
 
@@ -1783,6 +2417,7 @@ DECLARE
   person_id_44 int;
   company_user_id_44 int; 
   usercompanybenefitplanoption_id_44 int;
+  usercompanybenefitplanoption_id_44_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'daviddillavou@fairviewhealthcare.com', 't', 'f', 'f', 'David', 'Dillavou', now(), now())
@@ -1796,8 +2431,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_44)
   RETURNING id into usercompanybenefitplanoption_id_44;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_44)
+  RETURNING id into usercompanybenefitplanoption_id_44_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'David', 'A', 'Dillavou', '', 'self', 'ALeCc_jyet0OSlsGK66tPIG_DgPyWW6VncTzc5cU_Ltkh4EszHS6q9AfCR9K6t3CVD91ofSWHdkR', '1986-03-23', 'M', company_id, user_id_44, '')
+  VALUES('primary_contact', 'David', 'A', 'Dillavou', '', 'self', 'ALeCc_jowatqC5JZgUk_EvP4kMVy5DQDO8Mk-B-ytueNTHpaK6UA70wX4KTXdElcb1dTojRY5X8j', '1986-03-23', 'M', company_id, user_id_44, '')
   RETURNING id into person_id_44;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1815,6 +2454,12 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA275111', person_id_44, usercompanybenefitplanoption_id_44);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_44, usercompanybenefitplanoption_id_44_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(20000.0, now(), now(), 20, person_id_44, user_id_44);
+
 END;
 
 
@@ -1823,6 +2468,7 @@ DECLARE
   person_id_45 int;
   company_user_id_45 int; 
   usercompanybenefitplanoption_id_45 int;
+  usercompanybenefitplanoption_id_45_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'sylviecotnoir@fairviewhealthcare.com', 't', 'f', 'f', 'Sylvie', 'Cotnoir', now(), now())
@@ -1836,8 +2482,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_45)
   RETURNING id into usercompanybenefitplanoption_id_45;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_45)
+  RETURNING id into usercompanybenefitplanoption_id_45_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Sylvie', '', 'Cotnoir', '', 'self', 'ALeCc_hdY4pB0euVG50TCf74qjPodoBuQ_-jlT0ugp1gscNnEnl_gVChmfexQWT7kw4RAofKV-Wf', '1961-01-01', 'F', company_id, user_id_45, '')
+  VALUES('primary_contact', 'Sylvie', '', 'Cotnoir', '', 'self', 'ALeCc_iSPiKQEib5hwOyvolnyrmBMBFVkXRj49rr21xMbbPbJ1k2brDd4avs96adsMy4FfBLWlBE', '1961-01-01', 'F', company_id, user_id_45, '')
   RETURNING id into person_id_45;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1855,6 +2505,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA39535', person_id_45, usercompanybenefitplanoption_id_45);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_45, usercompanybenefitplanoption_id_45_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(126000.0, now(), now(), 20, person_id_45, user_id_45);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_45, 0, 550.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_45, 0, 2500.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_45);
 END;
 
 
@@ -1863,6 +2527,7 @@ DECLARE
   person_id_46 int;
   company_user_id_46 int; 
   usercompanybenefitplanoption_id_46 int;
+  usercompanybenefitplanoption_id_46_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'martinahill@fairviewhealthcare.com', 't', 'f', 'f', 'Martina', 'Hill', now(), now())
@@ -1875,6 +2540,9 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_46);
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_46);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Martina', '', 'Hill', '', 'self', '', '1995-06-02', 'F', company_id, user_id_46, '')
   RETURNING id into person_id_46;
@@ -1885,6 +2553,18 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(23400.0, '12/09/2014', now(), now(), company_id, person_id_46, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(24000.0, now(), now(), 20, person_id_46, user_id_46);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(120000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_46, 3, 3, null, null, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_46, 0, 200.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_46, 0, 800.0);
+
 END;
 
 
@@ -1893,6 +2573,7 @@ DECLARE
   person_id_47 int;
   company_user_id_47 int; 
   usercompanybenefitplanoption_id_47 int;
+  usercompanybenefitplanoption_id_47_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'alysonfortier@fairviewhealthcare.com', 't', 'f', 'f', 'Alyson', 'Fortier', now(), now())
@@ -1905,6 +2586,9 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_47);
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_47);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Alyson', '', 'Fortier', '', 'self', '', '1995-02-10', 'F', company_id, user_id_47, '')
   RETURNING id into person_id_47;
@@ -1915,6 +2599,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(24440.0, '02/03/2014', now(), now(), company_id, person_id_47, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(25000.0, now(), now(), 20, person_id_47, user_id_47);
+
 END;
 
 
@@ -1923,6 +2610,7 @@ DECLARE
   person_id_48 int;
   company_user_id_48 int; 
   usercompanybenefitplanoption_id_48 int;
+  usercompanybenefitplanoption_id_48_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'aliciarinaldi@fairviewhealthcare.com', 't', 'f', 'f', 'Alicia', 'Rinaldi', now(), now())
@@ -1934,6 +2622,9 @@ BEGIN
   raise notice 'The company_user_id_48 is %', company_user_id_48;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_48);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_48);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Alicia', '', 'Rinaldi', '', 'self', '', '1989-06-29', 'F', company_id, user_id_48, '')
@@ -1948,6 +2639,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(21060.0, '06/22/2015', now(), now(), company_id, person_id_48, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(22000.0, now(), now(), 20, person_id_48, user_id_48);
+
 END;
 
 
@@ -1957,6 +2651,7 @@ DECLARE
   family_member_id_49_0 int;
   company_user_id_49 int; 
   usercompanybenefitplanoption_id_49 int;
+  usercompanybenefitplanoption_id_49_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'tiffanybrown@fairviewhealthcare.com', 't', 'f', 'f', 'Tiffany', 'Brown', now(), now())
@@ -1970,8 +2665,12 @@ BEGIN
   VALUES(now(), now(), 295, user_id_49)
   RETURNING id into usercompanybenefitplanoption_id_49;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_49)
+  RETURNING id into usercompanybenefitplanoption_id_49_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Tiffany', '', 'Brown', '', 'self', 'ALeCc_go9G4e-SfTotz9palnbpu6eIWxjYwu7jYZjD_gDGs8UlStBdpVqQcp-lCY0SDHyyWcj8iU', '1972-09-09', 'F', company_id, user_id_49, '')
+  VALUES('primary_contact', 'Tiffany', '', 'Brown', '', 'self', 'ALeCc_iSxTBof4yr3jXqOtt8TWyepCOLtyZMzp-K2T2jhwj2kV4XGeai__LzafBejf6JN6C1Zr8d', '1972-09-09', 'F', company_id, user_id_49, '')
   RETURNING id into person_id_49;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -1989,8 +2688,16 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA13537', person_id_49, usercompanybenefitplanoption_id_49);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_49, usercompanybenefitplanoption_id_49_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(136000.0, now(), now(), 20, person_id_49, user_id_49);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_49);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Delaney', '', 'Brown', '', 'dependent', 'ALeCc_hK-S0Z2ddgSH4YnGUCWiIAnvEyp2N1hLvJFuXYVVW70ftbRWZY_MTgGJ7PNcXXD4OdX_dW', '2002-04-07', 'F', company_id, user_id_49, '')
+  VALUES('family', 'Delaney', '', 'Brown', '', 'dependent', 'ALeCc_jcnfHm0bev2iVixrDbjYuFERnEHXVZ2W6MP4TdRTmlmePBk-zZzxWsldFFnHLA7IndmuXg', '2002-04-07', 'F', company_id, user_id_49, '')
   RETURNING id into family_member_id_49_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2001,6 +2708,9 @@ BEGIN
 
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA280977', family_member_id_49_0, usercompanybenefitplanoption_id_49);
+
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_49_0, usercompanybenefitplanoption_id_49_dental);
 
 END;
 
@@ -2013,6 +2723,7 @@ DECLARE
   family_member_id_50_2 int;
   company_user_id_50 int; 
   usercompanybenefitplanoption_id_50 int;
+  usercompanybenefitplanoption_id_50_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dongphuongnguyen@fairviewhealthcare.com', 't', 'f', 'f', 'Dongphuong', 'Nguyen', now(), now())
@@ -2026,8 +2737,12 @@ BEGIN
   VALUES(now(), now(), 296, user_id_50)
   RETURNING id into usercompanybenefitplanoption_id_50;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_50)
+  RETURNING id into usercompanybenefitplanoption_id_50_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Dongphuong', '', 'Nguyen', '', 'self', 'ALeCc_gJV-kWidVWOcib8S2C1N0L1pQ8ZDz86dPHv6eRUc3ia1bVF_HsegkKZuIsl9fwOAII6wJs', '1982-08-14', 'F', company_id, user_id_50, '')
+  VALUES('primary_contact', 'Dongphuong', '', 'Nguyen', '', 'self', 'ALeCc_gDfdb0ZNWj6z98oE790YF4EWCAFerdCSQVJhG2dPMSGfnTI3F8KkB5lhiXQO1Amo065iro', '1982-08-14', 'F', company_id, user_id_50, '')
   RETURNING id into person_id_50;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2045,8 +2760,16 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA228218', person_id_50, usercompanybenefitplanoption_id_50);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_50, usercompanybenefitplanoption_id_50_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(46000.0, now(), now(), 20, person_id_50, user_id_50);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_50);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Bryan', '', 'Nguyen', '', 'dependent', 'ALeCc_jw-DqYR4DmZJ4E4TfZF_EWz4lxcvdwHwpFbvwxzS0cNhyJioidJxCzTqBP0X2HYxSVZRXH', '2008-11-25', 'M', company_id, user_id_50, '')
+  VALUES('family', 'Bryan', '', 'Nguyen', '', 'dependent', 'ALeCc_jur494ujgrFe37KRtRI5K5kFPgmMNgGljuIxZrVOfoYPsbYPY5IZqHghGNMxKKdenOy9Fh', '2008-11-25', 'M', company_id, user_id_50, '')
   RETURNING id into family_member_id_50_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2058,8 +2781,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('FCH032', family_member_id_50_1, usercompanybenefitplanoption_id_50);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_50_1, usercompanybenefitplanoption_id_50_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'D', '', 'Nguyen', '', 'spouse', 'ALeCc_jPvRtTCAYt7eUsThj0z5aDcNzNX9zIPI3oqwOpRJnpkArg-O6ieLlmMsGmCyVNOUlQsc56', '1978-09-19', 'M', company_id, user_id_50, '')
+  VALUES('family', 'D', '', 'Nguyen', '', 'spouse', 'ALeCc_hIVUcYbVPQP3gaJnx-VzglPm-XeGJr6eMbUVE7lG79z0dHV2NbTZTankQG1BHnTWvYj6bj', '1978-09-19', 'M', company_id, user_id_50, '')
   RETURNING id into family_member_id_50_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2071,8 +2797,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA228218', family_member_id_50_0, usercompanybenefitplanoption_id_50);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_50_0, usercompanybenefitplanoption_id_50_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Bryanna', '', 'Nguyen', '', 'dependent', 'ALeCc_gScVwACbcKpkh9FIj-DqmjZXq9OGTefo6M70EiIQdi8zZcW0u04dndoTTrK08eUSeXBrW8', '2011-11-18', 'F', company_id, user_id_50, '')
+  VALUES('family', 'Bryanna', '', 'Nguyen', '', 'dependent', 'ALeCc_gPtZqDM7Wmpk5r9HN1XADYxuNlCmfAzt2YepvZTWoWbFpC2IWeXThVSR1XhmFIa4NoLxeB', '2011-11-18', 'F', company_id, user_id_50, '')
   RETURNING id into family_member_id_50_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2084,6 +2813,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('FCH032', family_member_id_50_2, usercompanybenefitplanoption_id_50);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_50_2, usercompanybenefitplanoption_id_50_dental);
+
 END;
 
 
@@ -2093,6 +2825,7 @@ DECLARE
   family_member_id_51_0 int;
   company_user_id_51 int; 
   usercompanybenefitplanoption_id_51 int;
+  usercompanybenefitplanoption_id_51_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'roselynnbenard@fairviewhealthcare.com', 't', 'f', 'f', 'Roselynn', 'Benard', now(), now())
@@ -2106,8 +2839,12 @@ BEGIN
   VALUES(now(), now(), 295, user_id_51)
   RETURNING id into usercompanybenefitplanoption_id_51;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_51)
+  RETURNING id into usercompanybenefitplanoption_id_51_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Roselynn', '', 'Benard', '', 'self', 'ALeCc_ismEN5Kl-uUNKclUH6gbVnbkhhm3Lol2fB7Bi2wbGYAf_k2YVoy0wIKE-aKzW4didezFIt', '1972-02-11', 'F', company_id, user_id_51, '')
+  VALUES('primary_contact', 'Roselynn', '', 'Benard', '', 'self', 'ALeCc_jSIArrwH0jBj24FbGmnvFxAR8znKxg8KFtXNUXQSLxPATLLnpWB4NOf9wF-naaFi0vYUdZ', '1972-02-11', 'F', company_id, user_id_51, '')
   RETURNING id into person_id_51;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2125,8 +2862,22 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('C72875', person_id_51, usercompanybenefitplanoption_id_51);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_51, usercompanybenefitplanoption_id_51_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(32000.0, now(), now(), 20, person_id_51, user_id_51);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(30000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_51, 3, 3, null, 30000.0, null);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_51, 0, 1300.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_51);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Nicholas', '', 'Benard', '', 'dependent', 'ALeCc_iFe2pBLu_565KKegWJ5qMwJnjNN3gA3ZkBf7Ue-eE8NxnKMjgOC6I4fTE6jVc1z3TUtcPZ', '1995-02-06', 'M', company_id, user_id_51, '')
+  VALUES('family', 'Nicholas', '', 'Benard', '', 'dependent', 'ALeCc_gMbW0-rRcZOPGhRCRXKisBrBhZvz-E_o-2WdyFp3kKPX6uZsbYuhNIp2Cj5RL6N_3Rlz49', '1995-02-06', 'M', company_id, user_id_51, '')
   RETURNING id into family_member_id_51_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2138,6 +2889,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('NH1759', family_member_id_51_0, usercompanybenefitplanoption_id_51);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_51_0, usercompanybenefitplanoption_id_51_dental);
+
 END;
 
 
@@ -2147,6 +2901,7 @@ DECLARE
   family_member_id_52_0 int;
   company_user_id_52 int; 
   usercompanybenefitplanoption_id_52 int;
+  usercompanybenefitplanoption_id_52_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'irenegillen@fairviewhealthcare.com', 't', 'f', 'f', 'Irene', 'Gillen', now(), now())
@@ -2160,8 +2915,12 @@ BEGIN
   VALUES(now(), now(), 295, user_id_52)
   RETURNING id into usercompanybenefitplanoption_id_52;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_52)
+  RETURNING id into usercompanybenefitplanoption_id_52_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Irene', 'N', 'Gillen', '', 'self', 'ALeCc_hVAKYdPA7vY8HQl5j5OmHmXJaWmvGruyMunP4fj9ZxSI6Rorx1SHFUWetE-eCxr3KYvP4O', '1964-12-29', 'F', company_id, user_id_52, '')
+  VALUES('primary_contact', 'Irene', 'N', 'Gillen', '', 'self', 'ALeCc_hDb4OU4mVTjAtNqdurn2332OQCGqt12MeVcVP-gZZleNk4deJJblRGZHrqA8w54KkO8flB', '1964-12-29', 'F', company_id, user_id_52, '')
   RETURNING id into person_id_52;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2179,8 +2938,16 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA159668', person_id_52, usercompanybenefitplanoption_id_52);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_52, usercompanybenefitplanoption_id_52_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(55000.0, now(), now(), 20, person_id_52, user_id_52);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_52);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Kyle', '', 'Gillen', '', 'dependent', 'ALeCc_jbYOTzFw5Oap8_Ht7AHcywsf-IdgKIsLXK0EUPHnP3_u8AY-v3EUDJbXFUm8pr8FS0W_cA', '2000-05-26', 'M', company_id, user_id_52, '')
+  VALUES('family', 'Kyle', '', 'Gillen', '', 'dependent', 'ALeCc_ggm_58Pa60Hw7hurrsIwNG4O3J1nkTIwDrBzjV8oZwuq3AdNRG6J89wYTSMiRTnI3SSUeN', '2000-05-26', 'M', company_id, user_id_52, '')
   RETURNING id into family_member_id_52_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2191,6 +2958,9 @@ BEGIN
 
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('PRK003', family_member_id_52_0, usercompanybenefitplanoption_id_52);
+
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_52_0, usercompanybenefitplanoption_id_52_dental);
 
 END;
 
@@ -2204,6 +2974,7 @@ DECLARE
   family_member_id_53_1 int;
   company_user_id_53 int; 
   usercompanybenefitplanoption_id_53 int;
+  usercompanybenefitplanoption_id_53_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'richardleboeuf@fairviewhealthcare.com', 't', 'f', 'f', 'Richard', 'Leboeuf', now(), now())
@@ -2217,8 +2988,12 @@ BEGIN
   VALUES(now(), now(), 290, user_id_53)
   RETURNING id into usercompanybenefitplanoption_id_53;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_53)
+  RETURNING id into usercompanybenefitplanoption_id_53_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Richard', 'M', 'Leboeuf', '', 'self', 'ALeCc_gSGFqlnxP2OwKa_6m2ZXiY5G4LUTQiNwmtLHzbLTrbXU82yCKmI3Ljsj2UX-C9ivzIp9H4', '1967-01-14', 'M', company_id, user_id_53, '')
+  VALUES('primary_contact', 'Richard', 'M', 'Leboeuf', '', 'self', 'ALeCc_g1RH2ZgBj7thQKGY83Yac6X9C6F-gVXsfGtJ_qut-ZCC_gl4qfjhZR7eH6lj_kBJfmXNtd', '1967-01-14', 'M', company_id, user_id_53, '')
   RETURNING id into person_id_53;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2236,8 +3011,22 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA159743', person_id_53, usercompanybenefitplanoption_id_53);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_53, usercompanybenefitplanoption_id_53_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(225000.0, now(), now(), 20, person_id_53, user_id_53);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_53, 0, 1000.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_53, 0, 5000.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_53);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Lyndsey', '', 'Leboeuf', '', 'dependent', 'ALeCc_h8nyESKX26IXaw0IF65tXTaU9munUENcn_Cc8XyooC8CuERojz6H4n6biC-BliKSK7feWg', '1994-11-01', 'F', company_id, user_id_53, '')
+  VALUES('family', 'Lyndsey', '', 'Leboeuf', '', 'dependent', 'ALeCc_i5CStzswaweUAr-5BbgilFpXB2yKDRtdpICSsBKOJbZZ_0ebenlw7U6pE-86bJU76p1cIu', '1994-11-01', 'F', company_id, user_id_53, '')
   RETURNING id into family_member_id_53_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2249,8 +3038,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('20413.0', family_member_id_53_2, usercompanybenefitplanoption_id_53);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_53_2, usercompanybenefitplanoption_id_53_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Ryan', '', 'Leboeuf', '', 'dependent', 'ALeCc_geo6NZz57fHGyvwuhv-u1S-lqpD9GWtoceCkXWENIlL9tI2ACZKUqt0A96WFCzwICpFKLr', '1998-04-04', 'M', company_id, user_id_53, '')
+  VALUES('family', 'Ryan', '', 'Leboeuf', '', 'dependent', 'ALeCc_hIC8ROdKNyFd8yDJLDos64rHWLH64eMUSb6laRUafYrExSZn8Qg-mi07FvhOVrnH8gwHwk', '1998-04-04', 'M', company_id, user_id_53, '')
   RETURNING id into family_member_id_53_3;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2262,8 +3054,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('20413.0', family_member_id_53_3, usercompanybenefitplanoption_id_53);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_53_3, usercompanybenefitplanoption_id_53_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Nancy', '', 'Leboeuf', '', 'spouse', 'ALeCc_i6O7umfuhFIUYw9prvgNmq_rDB4Ppy_QICZmpQueqDPW1392VzDP2tA9PaK-0Zuzn12CG7', '1968-06-16', 'F', company_id, user_id_53, '')
+  VALUES('family', 'Nancy', '', 'Leboeuf', '', 'spouse', 'ALeCc_gAeP0Rdk9LKD0XSWrNR2W7cXv4DYAkhGOdKs5ZyNSJYYUdR4qyhQwF4gCpFA7nCj0CXf8C', '1968-06-16', 'F', company_id, user_id_53, '')
   RETURNING id into family_member_id_53_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2275,8 +3070,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('69464.0', family_member_id_53_0, usercompanybenefitplanoption_id_53);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_53_0, usercompanybenefitplanoption_id_53_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Justin', '', 'Leboeuf', '', 'dependent', 'ALeCc_iyV9h_NhQtsYgXUmR9xsVAVWqL-b6S1_yKGzT95-bmlZ57rUMyQVRomNfe3LcncIXFm6Y4', '1996-05-24', 'M', company_id, user_id_53, '')
+  VALUES('family', 'Justin', '', 'Leboeuf', '', 'dependent', 'ALeCc_hpbNvAc2UnB5RNcrqU1dn74YU5fV8XhkTJyP-fQ0ZkDNwkewiOPBhDckavEhzVMx6v0Q6y', '1996-05-24', 'M', company_id, user_id_53, '')
   RETURNING id into family_member_id_53_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2288,6 +3086,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('20413.0', family_member_id_53_1, usercompanybenefitplanoption_id_53);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_53_1, usercompanybenefitplanoption_id_53_dental);
+
 END;
 
 
@@ -2296,6 +3097,7 @@ DECLARE
   person_id_54 int;
   company_user_id_54 int; 
   usercompanybenefitplanoption_id_54 int;
+  usercompanybenefitplanoption_id_54_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'katherineconway@fairviewhealthcare.com', 't', 'f', 'f', 'Katherine', 'Conway', now(), now())
@@ -2309,8 +3111,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_54)
   RETURNING id into usercompanybenefitplanoption_id_54;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_54)
+  RETURNING id into usercompanybenefitplanoption_id_54_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Katherine', '', 'Conway', '', 'self', 'ALeCc_iBgw9-NS57GXFrg0Y38_hIFqLngXfnRSo5HCubzLbEkD9JckdS-6BCccORpG9JNhNtjPdq', '1992-06-19', 'F', company_id, user_id_54, '')
+  VALUES('primary_contact', 'Katherine', '', 'Conway', '', 'self', 'ALeCc_i83C_pa_-rxITBV0pefXGU7-KviGa5T5MHVOwQEmJgnK36tf6MMuP4kGexe-0QHjsdBvae', '1992-06-19', 'F', company_id, user_id_54, '')
   RETURNING id into person_id_54;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2328,6 +3134,15 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('HV0047', person_id_54, usercompanybenefitplanoption_id_54);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_54, usercompanybenefitplanoption_id_54_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_54, user_id_54);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(100000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_54, 3, 3, null, 100000.0, null);
+
 END;
 
 
@@ -2336,6 +3151,7 @@ DECLARE
   person_id_55 int;
   company_user_id_55 int; 
   usercompanybenefitplanoption_id_55 int;
+  usercompanybenefitplanoption_id_55_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'robertmackay@fairviewhealthcare.com', 't', 'f', 'f', 'Robert', 'Mackay', now(), now())
@@ -2347,6 +3163,9 @@ BEGIN
   raise notice 'The company_user_id_55 is %', company_user_id_55;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_55);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_55);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Robert', '', 'Mackay', '', 'self', '', '1956-01-27', 'M', company_id, user_id_55, '')
@@ -2361,6 +3180,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(24960.0, '12/01/2010', now(), now(), company_id, person_id_55, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(25000.0, now(), now(), 20, person_id_55, user_id_55);
+
 END;
 
 
@@ -2370,6 +3192,7 @@ DECLARE
   family_member_id_56_0 int;
   company_user_id_56 int; 
   usercompanybenefitplanoption_id_56 int;
+  usercompanybenefitplanoption_id_56_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ashleycoleman@fairviewhealthcare.com', 't', 'f', 'f', 'Ashley', 'Coleman', now(), now())
@@ -2383,8 +3206,12 @@ BEGIN
   VALUES(now(), now(), 295, user_id_56)
   RETURNING id into usercompanybenefitplanoption_id_56;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_56)
+  RETURNING id into usercompanybenefitplanoption_id_56_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Ashley', '', 'Coleman', '', 'self', 'ALeCc_hNuvzmu_6Xf9hPsbzMXSCYH6Uw2JT5cOQxqZ6sEIqw37bHv8zc3UxZL1TscPtsntYfxuwd', '1986-09-22', 'F', company_id, user_id_56, '')
+  VALUES('primary_contact', 'Ashley', '', 'Coleman', '', 'self', 'ALeCc_hoh_elH1OUk7kPPkZeNBddzz3ESUgNUCZkCqB0tXGis_H9NRUEkD5MvG0DTmjoh8X1_uuq', '1986-09-22', 'F', company_id, user_id_56, '')
   RETURNING id into person_id_56;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2402,8 +3229,16 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('61699.0', person_id_56, usercompanybenefitplanoption_id_56);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_56, usercompanybenefitplanoption_id_56_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(48000.0, now(), now(), 20, person_id_56, user_id_56);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_56);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Isabella', '', 'Coleman', '', 'dependent', 'ALeCc_iQqStysHEZUzExiXAm3cpI1TteV6o6evLpfUX18f-uPhVv8hccG4vIIAjg7DsMN_T5vHZg', '2015-09-10', 'F', company_id, user_id_56, '')
+  VALUES('family', 'Isabella', '', 'Coleman', '', 'dependent', 'ALeCc_irIowayFFmZq0t6mEvx4evTyOveOMl1xPCGXm260ULBMY7SLBltJ7EJHzEo9TmI6OZT20I', '2015-09-10', 'F', company_id, user_id_56, '')
   RETURNING id into family_member_id_56_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2415,6 +3250,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA138066', family_member_id_56_0, usercompanybenefitplanoption_id_56);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_56_0, usercompanybenefitplanoption_id_56_dental);
+
 END;
 
 
@@ -2423,6 +3261,7 @@ DECLARE
   person_id_57 int;
   company_user_id_57 int; 
   usercompanybenefitplanoption_id_57 int;
+  usercompanybenefitplanoption_id_57_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kylesargent@fairviewhealthcare.com', 't', 'f', 'f', 'Kyle', 'Sargent', now(), now())
@@ -2434,6 +3273,9 @@ BEGIN
   raise notice 'The company_user_id_57 is %', company_user_id_57;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_57);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_57);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Kyle', 'J', 'Sargent', '', 'self', '', '1991-08-07', 'M', company_id, user_id_57, '')
@@ -2448,6 +3290,12 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(17680.0, '08/14/2012', now(), now(), company_id, person_id_57, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(18000.0, now(), now(), 20, person_id_57, user_id_57);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_57, 3, 3, null, 20000.0, null);
+
 END;
 
 
@@ -2456,6 +3304,7 @@ DECLARE
   person_id_58 int;
   company_user_id_58 int; 
   usercompanybenefitplanoption_id_58 int;
+  usercompanybenefitplanoption_id_58_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jessicamorrell@fairviewhealthcare.com', 't', 'f', 'f', 'Jessica', 'Morrell', now(), now())
@@ -2469,8 +3318,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_58)
   RETURNING id into usercompanybenefitplanoption_id_58;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_58)
+  RETURNING id into usercompanybenefitplanoption_id_58_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Jessica', '', 'Morrell', '', 'self', 'ALeCc_jPXt6XlP2gx4g01E_l7Dhgb_V-3cadXz9VNxPKnA5BJhHttytH73H-tFVxNPXMoTetXtyc', '1987-01-02', 'F', company_id, user_id_58, '')
+  VALUES('primary_contact', 'Jessica', '', 'Morrell', '', 'self', 'ALeCc_iZbh8Mj2eupYkevLQzyb-ffSBUmt4CZIezjwXmigdpjHYT7PbJSMIMPU3DivOuA-gvJiTu', '1987-01-02', 'F', company_id, user_id_58, '')
   RETURNING id into person_id_58;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2488,6 +3341,15 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('64020.0', person_id_58, usercompanybenefitplanoption_id_58);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_58, usercompanybenefitplanoption_id_58_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(42000.0, now(), now(), 20, person_id_58, user_id_58);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_58, 0, 250.0);
+
 END;
 
 
@@ -2496,6 +3358,7 @@ DECLARE
   person_id_59 int;
   company_user_id_59 int; 
   usercompanybenefitplanoption_id_59 int;
+  usercompanybenefitplanoption_id_59_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'emilyteague@fairviewhealthcare.com', 't', 'f', 'f', 'Emily', 'Teague', now(), now())
@@ -2509,8 +3372,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_59)
   RETURNING id into usercompanybenefitplanoption_id_59;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_59)
+  RETURNING id into usercompanybenefitplanoption_id_59_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Emily', '', 'Teague', '', 'self', 'ALeCc_jelpUdAqvbPDFiAJGwZ2ajKw2FzC9vsDb0pCaVjcqCRjgqE7IXBaRHWKDHKtSf29U9Abo_', '1987-10-01', 'F', company_id, user_id_59, '')
+  VALUES('primary_contact', 'Emily', '', 'Teague', '', 'self', 'ALeCc_jCaR0nRTacP1FpQBGBXVgceV5fz061WlSyssnRwtV1cL8u-Rqz4NUdpeFNYOtR27nfzHUX', '1987-10-01', 'F', company_id, user_id_59, '')
   RETURNING id into person_id_59;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2528,6 +3395,12 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA132022', person_id_59, usercompanybenefitplanoption_id_59);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_59, usercompanybenefitplanoption_id_59_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(136000.0, now(), now(), 20, person_id_59, user_id_59);
+
 END;
 
 
@@ -2536,6 +3409,7 @@ DECLARE
   person_id_60 int;
   company_user_id_60 int; 
   usercompanybenefitplanoption_id_60 int;
+  usercompanybenefitplanoption_id_60_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'juliabizzarro@fairviewhealthcare.com', 't', 'f', 'f', 'Julia', 'Bizzarro', now(), now())
@@ -2547,6 +3421,9 @@ BEGIN
   raise notice 'The company_user_id_60 is %', company_user_id_60;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_60);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_60);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Julia', '', 'Bizzarro', '', 'self', '', '1992-09-09', 'F', company_id, user_id_60, '')
@@ -2561,6 +3438,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(22360.0, '11/02/2014', now(), now(), company_id, person_id_60, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(23000.0, now(), now(), 20, person_id_60, user_id_60);
+
 END;
 
 
@@ -2572,6 +3452,7 @@ DECLARE
   family_member_id_61_2 int;
   company_user_id_61 int; 
   usercompanybenefitplanoption_id_61 int;
+  usercompanybenefitplanoption_id_61_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'markfournier@fairviewhealthcare.com', 't', 'f', 'f', 'Mark', 'Fournier', now(), now())
@@ -2585,8 +3466,12 @@ BEGIN
   VALUES(now(), now(), 296, user_id_61)
   RETURNING id into usercompanybenefitplanoption_id_61;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_61)
+  RETURNING id into usercompanybenefitplanoption_id_61_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Mark', '', 'Fournier', '', 'self', 'ALeCc_ivpTSxHxdKkBzM8FgRO9bfjGtRuy56sk6k9FN8Q4Gtd0F1FdRmUwhcjZm3aBO6oIscmPFE', '1980-11-02', 'M', company_id, user_id_61, '')
+  VALUES('primary_contact', 'Mark', '', 'Fournier', '', 'self', 'ALeCc_hyZR05Myi8xblIW6-H4l_X7bLPZt6UGthUcfizamcdqSmstekXsvQgkPZgq_QVz7CH0tB2', '1980-11-02', 'M', company_id, user_id_61, '')
   RETURNING id into person_id_61;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2604,8 +3489,19 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F43395', person_id_61, usercompanybenefitplanoption_id_61);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_61, usercompanybenefitplanoption_id_61_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(46000.0, now(), now(), 20, person_id_61, user_id_61);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_61, 0, 550.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_61);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Ethan', '', 'Fournier', '', 'dependent', 'ALeCc_jm4zcFqv2LPmpkPsvBVVQWVjZHA4WijqCnlK-2SV3jHU6t_VOWPvra0NR8MVGqzP-cFty8', '2011-09-03', 'M', company_id, user_id_61, '')
+  VALUES('family', 'Ethan', '', 'Fournier', '', 'dependent', 'ALeCc_j023x17T1Mui1ZSmlOtniJMJsdwWgI3XzP0lBQNf_XN0O7z58lQtA76XWPwM78dGf8Dtq7', '2011-09-03', 'M', company_id, user_id_61, '')
   RETURNING id into family_member_id_61_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2617,8 +3513,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('201678.0', family_member_id_61_1, usercompanybenefitplanoption_id_61);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_61_1, usercompanybenefitplanoption_id_61_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Jessica', '', 'Fournier', '', 'spouse', 'ALeCc_h5I7XYQ6vEC7JGmkqCTjMw9gj5qIPJ6Tx-uh-i4akCyOPV3XZn0hEPeZ2ZtTwmWDT3s5GD', '1976-03-31', 'F', company_id, user_id_61, '')
+  VALUES('family', 'Jessica', '', 'Fournier', '', 'spouse', 'ALeCc_g9qUcq-Dr5M2RUwrv6MjLbsQ-Gvz_VaN--lmLfKucMMwhXii6f8iHgq7MKW8cd4Euboytn', '1976-03-31', 'F', company_id, user_id_61, '')
   RETURNING id into family_member_id_61_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2630,8 +3529,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA151118', family_member_id_61_0, usercompanybenefitplanoption_id_61);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_61_0, usercompanybenefitplanoption_id_61_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Noah', '', 'Fournier', '', 'dependent', 'ALeCc_h5FV9XXtjkiDyGi1x7ssi3jPVvMXpftgWd5oqr4ZYZb10oSYVnifVvZvKSszQRQEvN9YyX', '2014-11-14', 'M', company_id, user_id_61, '')
+  VALUES('family', 'Noah', '', 'Fournier', '', 'dependent', 'ALeCc_h3MgPGMq1daUhuBQka8U4BE9M4m8Qtn4-OE3K4_e1yPgcZ_E2xwZXTNv-H-cyVyKmM8YRw', '2014-11-14', 'M', company_id, user_id_61, '')
   RETURNING id into family_member_id_61_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2643,6 +3545,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('201678.0', family_member_id_61_2, usercompanybenefitplanoption_id_61);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_61_2, usercompanybenefitplanoption_id_61_dental);
+
 END;
 
 
@@ -2651,6 +3556,7 @@ DECLARE
   person_id_62 int;
   company_user_id_62 int; 
   usercompanybenefitplanoption_id_62 int;
+  usercompanybenefitplanoption_id_62_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dariustavallai@fairviewhealthcare.com', 't', 'f', 'f', 'Darius', 'Tavallai', now(), now())
@@ -2662,6 +3568,10 @@ BEGIN
   raise notice 'The company_user_id_62 is %', company_user_id_62;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_62);
+
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_62)
+  RETURNING id into usercompanybenefitplanoption_id_62_dental;
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Darius', '', 'Tavallai', '', 'self', '', '1989-07-22', 'M', company_id, user_id_62, '')
@@ -2676,6 +3586,12 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(17617.0, '12/03/2011', now(), now(), company_id, person_id_62, null, null, null);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_62, usercompanybenefitplanoption_id_62_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(18000.0, now(), now(), 20, person_id_62, user_id_62);
+
 END;
 
 
@@ -2684,6 +3600,7 @@ DECLARE
   person_id_63 int;
   company_user_id_63 int; 
   usercompanybenefitplanoption_id_63 int;
+  usercompanybenefitplanoption_id_63_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'ashleylevison@fairviewhealthcare.com', 't', 'f', 'f', 'Ashley', 'Levison', now(), now())
@@ -2697,8 +3614,12 @@ BEGIN
   VALUES(now(), now(), 288, user_id_63)
   RETURNING id into usercompanybenefitplanoption_id_63;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_63)
+  RETURNING id into usercompanybenefitplanoption_id_63_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Ashley', '', 'Levison', '', 'self', 'ALeCc_gIG4S51Ni3zkjxldvo_uG_eibN1CLIS59n-zimqNOqg58OSCrTpgxnejcz95fGVMFVj6Hd', '1988-05-02', 'F', company_id, user_id_63, '')
+  VALUES('primary_contact', 'Ashley', '', 'Levison', '', 'self', 'ALeCc_gGDhIRrDX4nsD_cgpY25Y5P-C_i-reSSne2wL-EGtD42YpJ8kuR2-2pj553Fy1OaykcsuT', '1988-05-02', 'F', company_id, user_id_63, '')
   RETURNING id into person_id_63;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2716,6 +3637,23 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('G70568', person_id_63, usercompanybenefitplanoption_id_63);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_63, usercompanybenefitplanoption_id_63_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(28000.0, now(), now(), 20, person_id_63, user_id_63);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(100000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_63, 3, 3, null, null, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_63, 0, 300.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_63, 0, 1400.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_63);
 END;
 
 
@@ -2724,6 +3662,7 @@ DECLARE
   person_id_64 int;
   company_user_id_64 int; 
   usercompanybenefitplanoption_id_64 int;
+  usercompanybenefitplanoption_id_64_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'shannonohearn@fairviewhealthcare.com', 't', 'f', 'f', 'Shannon', 'O''Hearn', now(), now())
@@ -2737,8 +3676,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_64)
   RETURNING id into usercompanybenefitplanoption_id_64;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_64)
+  RETURNING id into usercompanybenefitplanoption_id_64_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Shannon', '', 'O''Hearn', '', 'self', 'ALeCc_gC1pHpoMJuoLl0R_wqWzFeYy7JtmRkkg3iW8ufLK7j-7FjQOeDvgCyukOmaGp3wj2TSw2U', '1977-12-02', 'F', company_id, user_id_64, '')
+  VALUES('primary_contact', 'Shannon', '', 'O''Hearn', '', 'self', 'ALeCc_gEWjH4CLotwKXWl-zEq1dxlGvCbSlxGg2_mbEO2hB8yKYpDg-oNORUqdhDTJCSGwC6ifuj', '1977-12-02', 'F', company_id, user_id_64, '')
   RETURNING id into person_id_64;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2756,6 +3699,14 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('65085.0', person_id_64, usercompanybenefitplanoption_id_64);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_64, usercompanybenefitplanoption_id_64_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(59000.0, now(), now(), 20, person_id_64, user_id_64);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_64);
 END;
 
 
@@ -2764,6 +3715,7 @@ DECLARE
   person_id_65 int;
   company_user_id_65 int; 
   usercompanybenefitplanoption_id_65 int;
+  usercompanybenefitplanoption_id_65_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'areliousthomas@fairviewhealthcare.com', 't', 'f', 'f', 'Arelious', 'Thomas', now(), now())
@@ -2777,8 +3729,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_65)
   RETURNING id into usercompanybenefitplanoption_id_65;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_65)
+  RETURNING id into usercompanybenefitplanoption_id_65_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Arelious', 'A', 'Thomas', '', 'self', 'ALeCc_ieIH3MD4b11OerK1fPofN_ldRplJmjXLGYZWQAFRRiay9PUhf3lM7pB_OEBTWkjRbyGBfI', '1952-11-18', 'M', company_id, user_id_65, '')
+  VALUES('primary_contact', 'Arelious', 'A', 'Thomas', '', 'self', 'ALeCc_jHVlKp7iR6rjnTcFPi5bB3NckjlDdiJ2NB-q77kDJc2qHNH4LE8zzTGxwH5jM8oT6-GNgM', '1952-11-18', 'M', company_id, user_id_65, '')
   RETURNING id into person_id_65;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2796,6 +3752,14 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA1696', person_id_65, usercompanybenefitplanoption_id_65);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_65, usercompanybenefitplanoption_id_65_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(29000.0, now(), now(), 20, person_id_65, user_id_65);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_65);
 END;
 
 
@@ -2804,6 +3768,7 @@ DECLARE
   person_id_66 int;
   company_user_id_66 int; 
   usercompanybenefitplanoption_id_66 int;
+  usercompanybenefitplanoption_id_66_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'aletheahoch@fairviewhealthcare.com', 't', 'f', 'f', 'Alethea', 'Hoch', now(), now())
@@ -2817,8 +3782,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_66)
   RETURNING id into usercompanybenefitplanoption_id_66;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_66)
+  RETURNING id into usercompanybenefitplanoption_id_66_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Alethea', 'M', 'Hoch', '', 'self', 'ALeCc_hUr6gKS1bLM7nw-zy1KSycIb8HmiI1EV0HxGDeRe1G8VnmmAHVYRw40vvxqksA5ruodOiN', '1954-06-26', 'F', company_id, user_id_66, '')
+  VALUES('primary_contact', 'Alethea', 'M', 'Hoch', '', 'self', 'ALeCc_iTBKJ4ean3n7dNRnruYzILzTuBsNFB0P1Ln2hbB63bVHDXkB0hKoaHCtIpbIXsX5V_GLhc', '1954-06-26', 'F', company_id, user_id_66, '')
   RETURNING id into person_id_66;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2836,6 +3805,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('D60815', person_id_66, usercompanybenefitplanoption_id_66);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_66, usercompanybenefitplanoption_id_66_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(139000.0, now(), now(), 20, person_id_66, user_id_66);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_66, 0, 800.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_66, 0, 2000.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_66);
 END;
 
 
@@ -2844,6 +3827,7 @@ DECLARE
   person_id_67 int;
   company_user_id_67 int; 
   usercompanybenefitplanoption_id_67 int;
+  usercompanybenefitplanoption_id_67_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'brendamarquis@fairviewhealthcare.com', 't', 'f', 'f', 'Brenda', 'Marquis', now(), now())
@@ -2857,8 +3841,12 @@ BEGIN
   VALUES(now(), now(), 288, user_id_67)
   RETURNING id into usercompanybenefitplanoption_id_67;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_67)
+  RETURNING id into usercompanybenefitplanoption_id_67_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Brenda', 'C', 'Marquis', '', 'self', 'ALeCc_hkYQ7B7eEmrwwuyvcrRbJB_3u_sLuPBUJurMZoG3BiPMTquMrSQceRB0wyS07na0scInWJ', '1953-12-16', 'F', company_id, user_id_67, '')
+  VALUES('primary_contact', 'Brenda', 'C', 'Marquis', '', 'self', 'ALeCc_h4AhLVYZ9wA1H9qUGsYedv3wQrKprq_6smTEBqCuTJQSCZmR-_Os9JsXgfEBJeGhepQjsa', '1953-12-16', 'F', company_id, user_id_67, '')
   RETURNING id into person_id_67;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -2876,6 +3864,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F43395', person_id_67, usercompanybenefitplanoption_id_67);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_67, usercompanybenefitplanoption_id_67_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(29000.0, now(), now(), 20, person_id_67, user_id_67);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_67, 0, 300.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_67, 0, 1300.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_67);
 END;
 
 
@@ -2884,6 +3886,7 @@ DECLARE
   person_id_68 int;
   company_user_id_68 int; 
   usercompanybenefitplanoption_id_68 int;
+  usercompanybenefitplanoption_id_68_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'melanieperry@fairviewhealthcare.com', 't', 'f', 'f', 'Melanie', 'Perry', now(), now())
@@ -2896,6 +3899,9 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_68);
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_68);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Melanie', '', 'Perry', '', 'self', '', '1976-11-09', 'F', company_id, user_id_68, '')
   RETURNING id into person_id_68;
@@ -2906,6 +3912,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(68000.0, '07/14/2014', now(), now(), company_id, person_id_68, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(136000.0, now(), now(), 20, person_id_68, user_id_68);
+
 END;
 
 
@@ -2914,6 +3923,7 @@ DECLARE
   person_id_69 int;
   company_user_id_69 int; 
   usercompanybenefitplanoption_id_69 int;
+  usercompanybenefitplanoption_id_69_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'melissarust@fairviewhealthcare.com', 't', 'f', 'f', 'Melissa', 'Rust', now(), now())
@@ -2925,6 +3935,9 @@ BEGIN
   raise notice 'The company_user_id_69 is %', company_user_id_69;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_69);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_69);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Melissa', '', 'Rust', '', 'self', '', '1982-10-02', 'F', company_id, user_id_69, '')
@@ -2939,6 +3952,18 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(41800.0, '07/14/2014', now(), now(), company_id, person_id_69, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(42000.0, now(), now(), 20, person_id_69, user_id_69);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(100000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_69, 3, 3, null, 100000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_69, 0, 350.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_69, 0, 1000.0);
+
 END;
 
 
@@ -2947,6 +3972,7 @@ DECLARE
   person_id_70 int;
   company_user_id_70 int; 
   usercompanybenefitplanoption_id_70 int;
+  usercompanybenefitplanoption_id_70_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'donaldrankins@fairviewhealthcare.com', 't', 'f', 'f', 'Donald', 'Rankins', now(), now())
@@ -2958,6 +3984,9 @@ BEGIN
   raise notice 'The company_user_id_70 is %', company_user_id_70;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_70);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_70);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Donald', '', 'Rankins', '', 'self', '', '1967-02-03', 'M', company_id, user_id_70, '')
@@ -2972,6 +4001,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(56992.0, '04/04/2011', now(), now(), company_id, person_id_70, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(114000.0, now(), now(), 20, person_id_70, user_id_70);
+
 END;
 
 
@@ -2980,6 +4012,7 @@ DECLARE
   person_id_71 int;
   company_user_id_71 int; 
   usercompanybenefitplanoption_id_71 int;
+  usercompanybenefitplanoption_id_71_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'toddgrogg@fairviewhealthcare.com', 't', 'f', 'f', 'Todd', 'Grogg', now(), now())
@@ -2993,8 +4026,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_71)
   RETURNING id into usercompanybenefitplanoption_id_71;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_71)
+  RETURNING id into usercompanybenefitplanoption_id_71_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Todd', 'J', 'Grogg', '', 'self', 'ALeCc_h8rdc97lGZS21tcWS2gnQY73C3mr0NsPL83dv6AAtzG7MFMtOKWWpO2yRBIyt1OBoIX--K', '1966-05-06', 'M', company_id, user_id_71, '')
+  VALUES('primary_contact', 'Todd', 'J', 'Grogg', '', 'self', 'ALeCc_i_Pv4mDu1ovFtff1xYih0o393iJipK8RvaPaJHJyMErF027O6ta6Ra5mzLEmXBbnjDp4Iz', '1966-05-06', 'M', company_id, user_id_71, '')
   RETURNING id into person_id_71;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3012,6 +4049,12 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA148091', person_id_71, usercompanybenefitplanoption_id_71);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_71, usercompanybenefitplanoption_id_71_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(25000.0, now(), now(), 20, person_id_71, user_id_71);
+
 END;
 
 
@@ -3020,6 +4063,7 @@ DECLARE
   person_id_72 int;
   company_user_id_72 int; 
   usercompanybenefitplanoption_id_72 int;
+  usercompanybenefitplanoption_id_72_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jennyxayachack@fairviewhealthcare.com', 't', 'f', 'f', 'Jenny', 'Xayachack', now(), now())
@@ -3032,6 +4076,10 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_72);
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_72)
+  RETURNING id into usercompanybenefitplanoption_id_72_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Jenny', '', 'Xayachack', '', 'self', '', '1990-05-25', 'F', company_id, user_id_72, '')
   RETURNING id into person_id_72;
@@ -3042,6 +4090,12 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(null, '09/01/2008', now(), now(), company_id, person_id_72, null, 23.1800, 173.3333);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_72, usercompanybenefitplanoption_id_72_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(49000.0, now(), now(), 20, person_id_72, user_id_72);
+
 END;
 
 
@@ -3050,6 +4104,7 @@ DECLARE
   person_id_73 int;
   company_user_id_73 int; 
   usercompanybenefitplanoption_id_73 int;
+  usercompanybenefitplanoption_id_73_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'cindyboucher@fairviewhealthcare.com', 't', 'f', 'f', 'Cindy', 'Boucher', now(), now())
@@ -3063,8 +4118,12 @@ BEGIN
   VALUES(now(), now(), 288, user_id_73)
   RETURNING id into usercompanybenefitplanoption_id_73;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_73)
+  RETURNING id into usercompanybenefitplanoption_id_73_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Cindy', 'A', 'Boucher', '', 'self', 'ALeCc_iCPMHmyyJ5GvADNCAp7Bp3wkHLwQ6sVMWI_EHrDXNCdNZR6_czAc7a62TgNIBJGRbB7RXP', '1957-02-15', 'F', company_id, user_id_73, '')
+  VALUES('primary_contact', 'Cindy', 'A', 'Boucher', '', 'self', 'ALeCc_i3w43g1iTtux3hUbqewIa5-T-kW8eUmEApvyFaZeZ5wGG-neqWHT1Nb3u5tl5mxE5RdU3U', '1957-02-15', 'F', company_id, user_id_73, '')
   RETURNING id into person_id_73;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3082,6 +4141,23 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA128700', person_id_73, usercompanybenefitplanoption_id_73);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_73, usercompanybenefitplanoption_id_73_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(26000.0, now(), now(), 20, person_id_73, user_id_73);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(50000.0, 25000.0, null, 0, 0, 0, now(), now(), 12, person_id_73, 3, 3, null, 50000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_73, 0, 300.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_73, 0, 1000.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_73);
 END;
 
 
@@ -3090,6 +4166,7 @@ DECLARE
   person_id_74 int;
   company_user_id_74 int; 
   usercompanybenefitplanoption_id_74 int;
+  usercompanybenefitplanoption_id_74_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'maryscafidi@fairviewhealthcare.com', 't', 'f', 'f', 'Mary', 'Scafidi', now(), now())
@@ -3103,8 +4180,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_74)
   RETURNING id into usercompanybenefitplanoption_id_74;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_74)
+  RETURNING id into usercompanybenefitplanoption_id_74_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Mary', '', 'Scafidi', '', 'self', 'ALeCc_h5el4d2aD6tPEOk0L2D4gbVcwEzUtHXkTXY4q-VJ5Hc9IMIdX1_bhrsCOV7tJTaM_eI8x2', '1959-01-18', 'F', company_id, user_id_74, '')
+  VALUES('primary_contact', 'Mary', '', 'Scafidi', '', 'self', 'ALeCc_jqQjnkUVk58_29NWqudf5LFe99sT1UfsynafaSQc-1ORApa2FCPROeUALKdVaGtAeQ23OB', '1959-01-18', 'F', company_id, user_id_74, '')
   RETURNING id into person_id_74;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3122,6 +4203,18 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('H59937', person_id_74, usercompanybenefitplanoption_id_74);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_74, usercompanybenefitplanoption_id_74_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_74, user_id_74);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, 10000.0, null, 0, 0, 0, now(), now(), 12, person_id_74, 3, 3, null, 20000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_74, 0, 250.0);
+
 END;
 
 
@@ -3130,6 +4223,7 @@ DECLARE
   person_id_75 int;
   company_user_id_75 int; 
   usercompanybenefitplanoption_id_75 int;
+  usercompanybenefitplanoption_id_75_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'brunildamejia@fairviewhealthcare.com', 't', 'f', 'f', 'Brunilda', 'Mejia', now(), now())
@@ -3141,6 +4235,10 @@ BEGIN
   raise notice 'The company_user_id_75 is %', company_user_id_75;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_75);
+
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_75)
+  RETURNING id into usercompanybenefitplanoption_id_75_dental;
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Brunilda', '', 'Mejia', '', 'self', '', '1972-08-17', 'F', company_id, user_id_75, '')
@@ -3155,6 +4253,18 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(66019.2, '09/01/2008', now(), now(), company_id, person_id_75, null, null, null);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_75, usercompanybenefitplanoption_id_75_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(133000.0, now(), now(), 20, person_id_75, user_id_75);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_75, 0, 650.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_75, 0, 2800.0);
+
 END;
 
 
@@ -3163,6 +4273,7 @@ DECLARE
   person_id_76 int;
   company_user_id_76 int; 
   usercompanybenefitplanoption_id_76 int;
+  usercompanybenefitplanoption_id_76_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jameshayes@fairviewhealthcare.com', 't', 'f', 'f', 'James', 'Hayes', now(), now())
@@ -3174,6 +4285,9 @@ BEGIN
   raise notice 'The company_user_id_76 is %', company_user_id_76;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_76);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_76);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'James', '', 'Hayes', '', 'self', '', '1980-10-22', 'M', company_id, user_id_76, '')
@@ -3188,6 +4302,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(20800.0, '07/05/2011', now(), now(), company_id, person_id_76, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_76, user_id_76);
+
 END;
 
 
@@ -3196,6 +4313,7 @@ DECLARE
   person_id_77 int;
   company_user_id_77 int; 
   usercompanybenefitplanoption_id_77 int;
+  usercompanybenefitplanoption_id_77_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'sherimello@fairviewhealthcare.com', 't', 'f', 'f', 'Sheri', 'Mello', now(), now())
@@ -3209,8 +4327,11 @@ BEGIN
   VALUES(now(), now(), 294, user_id_77)
   RETURNING id into usercompanybenefitplanoption_id_77;
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_77);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Sheri', '', 'Mello', '', 'self', 'ALeCc_gX2YkDnNgPdxFXEDiCh41Joegcrvq6BSXrKraPfwVME7pezEnaJpD0dpo4TBj1ZdmXtdrK', '1979-09-04', 'F', company_id, user_id_77, '')
+  VALUES('primary_contact', 'Sheri', '', 'Mello', '', 'self', 'ALeCc_huuoiEMSTqcwMMf8JC68ONR3X9y92S_G__eCv_7ZKhrfm8-AbEtwrpvz77ExKHYNlaabPW', '1979-09-04', 'F', company_id, user_id_77, '')
   RETURNING id into person_id_77;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3228,6 +4349,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA280862', person_id_77, usercompanybenefitplanoption_id_77);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(22000.0, now(), now(), 20, person_id_77, user_id_77);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_77);
 END;
 
 
@@ -3238,6 +4364,7 @@ DECLARE
   family_member_id_78_0 int;
   company_user_id_78 int; 
   usercompanybenefitplanoption_id_78 int;
+  usercompanybenefitplanoption_id_78_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'charlottelavoie@fairviewhealthcare.com', 't', 'f', 'f', 'Charlotte', 'Lavoie', now(), now())
@@ -3251,8 +4378,12 @@ BEGIN
   VALUES(now(), now(), 296, user_id_78)
   RETURNING id into usercompanybenefitplanoption_id_78;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_78)
+  RETURNING id into usercompanybenefitplanoption_id_78_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Charlotte', '', 'Lavoie', '', 'self', 'ALeCc_imYol8lbXn_gOZkp4u8RlzEtXL8p0ga7z2UjsEJHQpDYV7LmyGZ5y9jFFSf6AD8kVqXKB7', '1955-09-02', 'F', company_id, user_id_78, '')
+  VALUES('primary_contact', 'Charlotte', '', 'Lavoie', '', 'self', 'ALeCc_j6N0b_8unSsZ0ETXhMBBTUu-prqBhxG1cPxFAdIjC4h7tCcbj-tWX9eps_k_sem8UpA9ii', '1955-09-02', 'F', company_id, user_id_78, '')
   RETURNING id into person_id_78;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3270,8 +4401,16 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA96670', person_id_78, usercompanybenefitplanoption_id_78);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_78, usercompanybenefitplanoption_id_78_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(45000.0, now(), now(), 20, person_id_78, user_id_78);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_78);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Andrew', '', 'Lavoie', '', 'disabled dependent', 'ALeCc_gU1IWJzLYnIsGVf3ZvOpccPkhQH4NwBcxpmizzLTf28E4FQxVh9Q9-wW83x9BH3h4UX5Ei', '1987-07-01', 'M', company_id, user_id_78, '')
+  VALUES('family', 'Andrew', '', 'Lavoie', '', 'disabled dependent', 'ALeCc_iqO6NJjX9RGd1DDMClXLeIeWFLtGgxWarxxX6SoUk9ZCRw25-OKHl-Tnar5IPi5477Tlds', '1987-07-01', 'M', company_id, user_id_78, '')
   RETURNING id into family_member_id_78_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3283,8 +4422,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('714980.0', family_member_id_78_1, usercompanybenefitplanoption_id_78);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_78_1, usercompanybenefitplanoption_id_78_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Paul', '', 'Lavoie', '', 'spouse', 'ALeCc_gDC6Uo0h-B4zJl78Y8xOUCn5FZT91nEZ975gut8Z7YqvEbNgOp70FNmfZGEQ6-DSyqkW5I', '1950-09-05', 'M', company_id, user_id_78, '')
+  VALUES('family', 'Paul', '', 'Lavoie', '', 'spouse', 'ALeCc_ipzxnl1Czs04v5n8_ohdLCOa0mM0w6RWcaDZpcn49hJ54PO5AcKCr5f5MgxdJ7evXNd1-U', '1950-09-05', 'M', company_id, user_id_78, '')
   RETURNING id into family_member_id_78_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3296,6 +4438,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F85122', family_member_id_78_0, usercompanybenefitplanoption_id_78);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_78_0, usercompanybenefitplanoption_id_78_dental);
+
 END;
 
 
@@ -3304,6 +4449,7 @@ DECLARE
   person_id_79 int;
   company_user_id_79 int; 
   usercompanybenefitplanoption_id_79 int;
+  usercompanybenefitplanoption_id_79_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'clarettamalin@fairviewhealthcare.com', 't', 'f', 'f', 'Claretta', 'Malin', now(), now())
@@ -3317,8 +4463,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_79)
   RETURNING id into usercompanybenefitplanoption_id_79;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_79)
+  RETURNING id into usercompanybenefitplanoption_id_79_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Claretta', '', 'Malin', '', 'self', 'ALeCc_ihsFik8zRxh8359lk0rym5awTvg9Cf5Ituh2UMcU6dPIi8n-vHslOIJO7pgKd1dQSKlQvj', '1953-07-21', 'F', company_id, user_id_79, '')
+  VALUES('primary_contact', 'Claretta', '', 'Malin', '', 'self', 'ALeCc_icEsWtxnr1AJt3Z2AYbSLckkp1-tLO5s3uQIUlMctfILER5Ooqc-gaEabCnrfcabHs3pw3', '1953-07-21', 'F', company_id, user_id_79, '')
   RETURNING id into person_id_79;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3336,6 +4486,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA333498', person_id_79, usercompanybenefitplanoption_id_79);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_79, usercompanybenefitplanoption_id_79_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(77000.0, now(), now(), 20, person_id_79, user_id_79);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_79, 3, 3, null, 20000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_79, 0, 200.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_79);
 END;
 
 
@@ -3344,6 +4508,7 @@ DECLARE
   person_id_80 int;
   company_user_id_80 int; 
   usercompanybenefitplanoption_id_80 int;
+  usercompanybenefitplanoption_id_80_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'conraddupont@fairviewhealthcare.com', 't', 'f', 'f', 'Conrad', 'Dupont', now(), now())
@@ -3357,8 +4522,11 @@ BEGIN
   VALUES(now(), now(), 294, user_id_80)
   RETURNING id into usercompanybenefitplanoption_id_80;
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_80);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Conrad', '', 'Dupont', '', 'self', 'ALeCc_jR0npljHNUEtit5uO1S03loHxBtNhKl5-2uVY8hHIevS6Wg4gUmOCuUZI1lLKPpMP4xEwO', '1962-12-10', 'M', company_id, user_id_80, '')
+  VALUES('primary_contact', 'Conrad', '', 'Dupont', '', 'self', 'ALeCc_inwlG7lGNOys1jFrhEFZAVRN6hJ6otx7REZOOYhfEF1m4jcSX9XeUwQYMNXTsYJ4hIR9pj', '1962-12-10', 'M', company_id, user_id_80, '')
   RETURNING id into person_id_80;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3376,6 +4544,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA272739', person_id_80, usercompanybenefitplanoption_id_80);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(27000.0, now(), now(), 20, person_id_80, user_id_80);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_80);
 END;
 
 
@@ -3384,6 +4557,7 @@ DECLARE
   person_id_81 int;
   company_user_id_81 int; 
   usercompanybenefitplanoption_id_81 int;
+  usercompanybenefitplanoption_id_81_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'lashandralong@fairviewhealthcare.com', 't', 'f', 'f', 'Lashandra', 'Long', now(), now())
@@ -3395,6 +4569,10 @@ BEGIN
   raise notice 'The company_user_id_81 is %', company_user_id_81;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_81);
+
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_81)
+  RETURNING id into usercompanybenefitplanoption_id_81_dental;
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Lashandra', '', 'Long', '', 'self', '', '1977-06-19', 'F', company_id, user_id_81, '')
@@ -3409,6 +4587,15 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(21242.0, '08/04/2014', now(), now(), company_id, person_id_81, null, null, null);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_81, usercompanybenefitplanoption_id_81_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(22000.0, now(), now(), 20, person_id_81, user_id_81);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(40000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_81, 3, 3, null, 40000.0, null);
+
 END;
 
 
@@ -3420,6 +4607,7 @@ DECLARE
   family_member_id_82_2 int;
   company_user_id_82 int; 
   usercompanybenefitplanoption_id_82 int;
+  usercompanybenefitplanoption_id_82_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jillfavereau@fairviewhealthcare.com', 't', 'f', 'f', 'Jill', 'Favereau', now(), now())
@@ -3433,8 +4621,12 @@ BEGIN
   VALUES(now(), now(), 296, user_id_82)
   RETURNING id into usercompanybenefitplanoption_id_82;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_82)
+  RETURNING id into usercompanybenefitplanoption_id_82_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Jill', '', 'Favereau', '', 'self', 'ALeCc_hHsu2DP04k2cnK0ekhJrOygNa6oxBs8-HBEtI08agegMtJGLBZV_xWYRgnUXa5CoAVyI8J', '1972-07-03', 'F', company_id, user_id_82, '')
+  VALUES('primary_contact', 'Jill', '', 'Favereau', '', 'self', 'ALeCc_hlraBqu6CjfuBdlr9DfiJfDZr8NppPuSbxukTX7ItbFJZBhjxZ1et6WT3bi0ylK_Vc-xnI', '1972-07-03', 'F', company_id, user_id_82, '')
   RETURNING id into person_id_82;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3452,8 +4644,19 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F57533', person_id_82, usercompanybenefitplanoption_id_82);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_82, usercompanybenefitplanoption_id_82_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(117000.0, now(), now(), 20, person_id_82, user_id_82);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_82, 0, 550.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_82);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Clifford', '', 'Favereau', '', 'spouse', 'ALeCc_iOMY3sK1XtyddV0ITcyaAiPKJPplWzRCS5AG-okspF-J5UX9EDo8akpcvpH9SiBFEkOL3O', '1968-06-15', 'M', company_id, user_id_82, '')
+  VALUES('family', 'Clifford', '', 'Favereau', '', 'spouse', 'ALeCc_jiP1N2IKhwIcRI4uNFdG6FQFOGjTulKETw6qu20j3U5sonC_sHAxm51yykLL8sz7fF4xA9', '1968-06-15', 'M', company_id, user_id_82, '')
   RETURNING id into family_member_id_82_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3465,8 +4668,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA145464', family_member_id_82_0, usercompanybenefitplanoption_id_82);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_82_0, usercompanybenefitplanoption_id_82_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Anthony', '', 'Favereau', '', 'dependent', 'ALeCc_jgUWnMh4kSGuGyAhqIG7wZRahOBkGwI48nR1K3SIGw-lVWKsvHtB5mDC5Txs8sxVidBim2', '2001-04-16', 'M', company_id, user_id_82, '')
+  VALUES('family', 'Anthony', '', 'Favereau', '', 'dependent', 'ALeCc_jNbD1gWAVrTen8Hkpqqi5P-4Ngn2cnunxfwZBdKoShJBpVo_0ji_Fgl7BMed5yHMaESTvH', '2001-04-16', 'M', company_id, user_id_82, '')
   RETURNING id into family_member_id_82_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3478,8 +4684,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F73883', family_member_id_82_1, usercompanybenefitplanoption_id_82);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_82_1, usercompanybenefitplanoption_id_82_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Leah', '', 'Favereau', '', 'dependent', 'ALeCc_iFt0SXDwx-dNXa-8EL--0Nj3MjGTHBbH88W57Oi5uqLfG9A23fhYXGXeDQoHl5J9JxV1Yr', '2005-12-24', 'F', company_id, user_id_82, '')
+  VALUES('family', 'Leah', '', 'Favereau', '', 'dependent', 'ALeCc_jznuaiz0rmTFpROXAOw2m11CBfSY17qJjOfcMhSLTtof1kmtpup9CCj7pSmAFJTtBHmFgS', '2005-12-24', 'F', company_id, user_id_82, '')
   RETURNING id into family_member_id_82_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3491,6 +4700,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F73883', family_member_id_82_2, usercompanybenefitplanoption_id_82);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_82_2, usercompanybenefitplanoption_id_82_dental);
+
 END;
 
 
@@ -3499,6 +4711,7 @@ DECLARE
   person_id_83 int;
   company_user_id_83 int; 
   usercompanybenefitplanoption_id_83 int;
+  usercompanybenefitplanoption_id_83_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'marianneclauss@fairviewhealthcare.com', 't', 'f', 'f', 'Marianne', 'Clauss', now(), now())
@@ -3512,8 +4725,12 @@ BEGIN
   VALUES(now(), now(), 288, user_id_83)
   RETURNING id into usercompanybenefitplanoption_id_83;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_83)
+  RETURNING id into usercompanybenefitplanoption_id_83_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Marianne', '', 'Clauss', '', 'self', 'ALeCc_gzXOQj8zenDMB9hRmntHr3x5fQIVY00YcQCxVfHFm-jNXTIXYu8ic8bYlcosyEBZBAhzSW', '1966-05-04', 'F', company_id, user_id_83, '')
+  VALUES('primary_contact', 'Marianne', '', 'Clauss', '', 'self', 'ALeCc_gGwzUq3aWTR20FcFc4o8JEV9VBhGQxczQ7AYAMj7KbD24u1P4CktckdLF1SWr7sJA2yZq9', '1966-05-04', 'F', company_id, user_id_83, '')
   RETURNING id into person_id_83;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3531,6 +4748,14 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA128700', person_id_83, usercompanybenefitplanoption_id_83);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_83, usercompanybenefitplanoption_id_83_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(44000.0, now(), now(), 20, person_id_83, user_id_83);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_83);
 END;
 
 
@@ -3539,6 +4764,7 @@ DECLARE
   person_id_84 int;
   company_user_id_84 int; 
   usercompanybenefitplanoption_id_84 int;
+  usercompanybenefitplanoption_id_84_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'deniseparadise@fairviewhealthcare.com', 't', 'f', 'f', 'Denise', 'Paradise', now(), now())
@@ -3550,6 +4776,10 @@ BEGIN
   raise notice 'The company_user_id_84 is %', company_user_id_84;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_84);
+
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_84)
+  RETURNING id into usercompanybenefitplanoption_id_84_dental;
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Denise', 'J', 'Paradise', '', 'self', '', '1972-05-11', 'F', company_id, user_id_84, '')
@@ -3564,6 +4794,21 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(92705.6, '09/01/2008', now(), now(), company_id, person_id_84, null, null, null);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_84, usercompanybenefitplanoption_id_84_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(186000.0, now(), now(), 20, person_id_84, user_id_84);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(250000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_84, 3, 3, null, 250000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_84, 0, 1000.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_84, 0, 4600.0);
+
 END;
 
 
@@ -3573,17 +4818,42 @@ DECLARE
   family_member_id_85_0 int;
   company_user_id_85 int; 
   usercompanybenefitplanoption_id_85 int;
+  usercompanybenefitplanoption_id_85_dental int;
 BEGIN
   user_id_85 := 376;
   INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
   VALUES(now(), now(), 289, user_id_85)
   RETURNING id into usercompanybenefitplanoption_id_85;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_85)
+  RETURNING id into usercompanybenefitplanoption_id_85_dental;
+
   person_id_85 := 422;
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA85794', person_id_85, usercompanybenefitplanoption_id_85);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_85, usercompanybenefitplanoption_id_85_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(140000.0, now(), now(), 20, person_id_85, user_id_85);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_85, 3, 3, null, 20000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_85, 0, 750.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_85, 0, 1500.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_85);
   family_member_id_85_0 := 423;
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_85_0, usercompanybenefitplanoption_id_85_dental);
+
 END;
 
 
@@ -3592,6 +4862,7 @@ DECLARE
   person_id_86 int;
   company_user_id_86 int; 
   usercompanybenefitplanoption_id_86 int;
+  usercompanybenefitplanoption_id_86_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kalilamson@fairviewhealthcare.com', 't', 'f', 'f', 'Kali', 'Lamson', now(), now())
@@ -3603,6 +4874,9 @@ BEGIN
   raise notice 'The company_user_id_86 is %', company_user_id_86;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_86);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_86);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Kali', '', 'Lamson', '', 'self', '', '1987-08-01', 'F', company_id, user_id_86, '')
@@ -3617,6 +4891,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(46000.0, '06/09/2014', now(), now(), company_id, person_id_86, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(46000.0, now(), now(), 20, person_id_86, user_id_86);
+
 END;
 
 
@@ -3625,6 +4902,7 @@ DECLARE
   person_id_87 int;
   company_user_id_87 int; 
   usercompanybenefitplanoption_id_87 int;
+  usercompanybenefitplanoption_id_87_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'stephanieperez@fairviewhealthcare.com', 't', 'f', 'f', 'Stephanie', 'Perez', now(), now())
@@ -3636,6 +4914,9 @@ BEGIN
   raise notice 'The company_user_id_87 is %', company_user_id_87;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_87);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_87);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Stephanie', '', 'Perez', '', 'self', '', '1984-03-25', 'F', company_id, user_id_87, '')
@@ -3650,6 +4931,12 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(null, '09/01/2008', now(), now(), company_id, person_id_87, null, 11.8200, 130.0000);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(19000.0, now(), now(), 20, person_id_87, user_id_87);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_87, 0, 200.0);
+
 END;
 
 
@@ -3658,6 +4945,7 @@ DECLARE
   person_id_88 int;
   company_user_id_88 int; 
   usercompanybenefitplanoption_id_88 int;
+  usercompanybenefitplanoption_id_88_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dawnturcotte@fairviewhealthcare.com', 't', 'f', 'f', 'Dawn', 'Turcotte', now(), now())
@@ -3671,8 +4959,11 @@ BEGIN
   VALUES(now(), now(), 294, user_id_88)
   RETURNING id into usercompanybenefitplanoption_id_88;
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_88);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Dawn', 'G', 'Turcotte', '', 'self', 'ALeCc_jkclxaf8GUWJ2ATcelppbHOBCu75VPnjRNIjOF9wd7jMkMD4PRCoZz1k3GBpgR0LW0azsH', '1964-08-15', 'F', company_id, user_id_88, '')
+  VALUES('primary_contact', 'Dawn', 'G', 'Turcotte', '', 'self', 'ALeCc_i178XQn_4h4Tc1Kl02qWYpFEO53i4BKvbW5BbiaW2GaLOqAZ2KU8q-GNWd7WKUP14jS6wJ', '1964-08-15', 'F', company_id, user_id_88, '')
   RETURNING id into person_id_88;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3690,6 +4981,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('FCH034', person_id_88, usercompanybenefitplanoption_id_88);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_88, user_id_88);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_88);
 END;
 
 
@@ -3698,6 +4994,7 @@ DECLARE
   person_id_89 int;
   company_user_id_89 int; 
   usercompanybenefitplanoption_id_89 int;
+  usercompanybenefitplanoption_id_89_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'eleanorknowlton@fairviewhealthcare.com', 't', 'f', 'f', 'Eleanor', 'Knowlton', now(), now())
@@ -3711,8 +5008,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_89)
   RETURNING id into usercompanybenefitplanoption_id_89;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_89)
+  RETURNING id into usercompanybenefitplanoption_id_89_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Eleanor', '', 'Knowlton', '', 'self', 'ALeCc_gH6CZXbEzJWsR4tdowIv6ZYulRh_dQ6qOo9jPnfMvrW0nRUzpeJySonJYICQ3RZfSy22Sa', '1956-02-09', 'F', company_id, user_id_89, '')
+  VALUES('primary_contact', 'Eleanor', '', 'Knowlton', '', 'self', 'ALeCc_h5YSGN_L3QoaWgwAP1deIyJp8mUJ3CadUEk0xvXdTXKUyoUTsVT8mtfUMFay4z-SSRfvCV', '1956-02-09', 'F', company_id, user_id_89, '')
   RETURNING id into person_id_89;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3730,6 +5031,21 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA125738', person_id_89, usercompanybenefitplanoption_id_89);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_89, usercompanybenefitplanoption_id_89_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(20000.0, now(), now(), 20, person_id_89, user_id_89);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(20000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_89, 3, 3, null, null, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_89, 0, 200.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_89, 0, 1000.0);
+
 END;
 
 
@@ -3741,6 +5057,7 @@ DECLARE
   family_member_id_90_2 int;
   company_user_id_90 int; 
   usercompanybenefitplanoption_id_90 int;
+  usercompanybenefitplanoption_id_90_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'sheilalamb@fairviewhealthcare.com', 't', 'f', 'f', 'Sheila', 'Lamb', now(), now())
@@ -3754,8 +5071,12 @@ BEGIN
   VALUES(now(), now(), 296, user_id_90)
   RETURNING id into usercompanybenefitplanoption_id_90;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_90)
+  RETURNING id into usercompanybenefitplanoption_id_90_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Sheila', 'M', 'Lamb', '', 'self', 'ALeCc_jwqK0pTP-NeTXICjQNxeGq_3_bIyDjEtiwawJIrBQTH1sHPBxiQ2PLlklriVWkdxyGtFyb', '1959-09-07', 'F', company_id, user_id_90, '')
+  VALUES('primary_contact', 'Sheila', 'M', 'Lamb', '', 'self', 'ALeCc_jqv8HJXoSs201TEoASMo56L-utXL4uMgi1cn9KoiXEn2rk9KM1fAiuFcwb4L01iLQfvpN5', '1959-09-07', 'F', company_id, user_id_90, '')
   RETURNING id into person_id_90;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3773,8 +5094,16 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('20684.0', person_id_90, usercompanybenefitplanoption_id_90);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_90, usercompanybenefitplanoption_id_90_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(59000.0, now(), now(), 20, person_id_90, user_id_90);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_90);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Ethan', '', 'Lamb', '', 'dependent', 'ALeCc_jxYkQAsJKLXrTJeTai20eGLqb1W31R9iWnAY10ZZiWPVrZOKGZzNZplCrsPoA4WaZodxxY', '1996-04-02', 'M', company_id, user_id_90, '')
+  VALUES('family', 'Ethan', '', 'Lamb', '', 'dependent', 'ALeCc_jqIGbxEIlUZ-O-A-IXwlgyixxjxZ57QxPIhMDAj0wwrrbz03Y3Mfa99QusKtZIv7XNx7Jw', '1996-04-02', 'M', company_id, user_id_90, '')
   RETURNING id into family_member_id_90_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3786,8 +5115,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('20684.0', family_member_id_90_1, usercompanybenefitplanoption_id_90);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_90_1, usercompanybenefitplanoption_id_90_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Daniel', '', 'Lamb', '', 'spouse', 'ALeCc_iynaDywmXP-eJf51490fn50yrJMh4pLZQWP-ZShQsGlDsA2j0Hj6LfHIzIygoL8yz3oVd-', '1962-01-26', 'M', company_id, user_id_90, '')
+  VALUES('family', 'Daniel', '', 'Lamb', '', 'spouse', 'ALeCc_iXKScW0OCMm5jTKE0Cz-zBlaz-DZT7bvyZrUB_A9pNv8sRC5e3fZk9c8CRaw19JvjOgUsu', '1962-01-26', 'M', company_id, user_id_90, '')
   RETURNING id into family_member_id_90_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3799,8 +5131,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA1031', family_member_id_90_0, usercompanybenefitplanoption_id_90);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_90_0, usercompanybenefitplanoption_id_90_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Ainsley', '', 'Lamb', '', 'dependent', 'ALeCc_iNi1mv9MvskjxWeP9utNyDeT2QJSr9EE8rrhD4cEXkTfAm6xpyFLQXf-460UWLtWgXxIdl', '1998-07-17', 'F', company_id, user_id_90, '')
+  VALUES('family', 'Ainsley', '', 'Lamb', '', 'dependent', 'ALeCc_jtLY8E0yUuDxXnd9j2IAiTtgHFulnrxDvMJvZ8bAxSsE_Y39oTLr1BblZEpQRUDTY-QuhG', '1998-07-17', 'F', company_id, user_id_90, '')
   RETURNING id into family_member_id_90_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3812,6 +5147,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA1031', family_member_id_90_2, usercompanybenefitplanoption_id_90);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_90_2, usercompanybenefitplanoption_id_90_dental);
+
 END;
 
 
@@ -3821,6 +5159,7 @@ DECLARE
   family_member_id_91_0 int;
   company_user_id_91 int; 
   usercompanybenefitplanoption_id_91 int;
+  usercompanybenefitplanoption_id_91_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'cathyriley@fairviewhealthcare.com', 't', 'f', 'f', 'Cathy', 'Riley', now(), now())
@@ -3834,8 +5173,11 @@ BEGIN
   VALUES(now(), now(), 295, user_id_91)
   RETURNING id into usercompanybenefitplanoption_id_91;
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_91);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Cathy', '', 'Riley', '', 'self', 'ALeCc_jMjEkK1V7NaPaZ00pherlE9kjnew2tJ95LimtfxLZu0xHgL-7I2jDQPYYCgNxc-nKW7ZU0', '1959-02-22', 'F', company_id, user_id_91, '')
+  VALUES('primary_contact', 'Cathy', '', 'Riley', '', 'self', 'ALeCc_h-Yj4h-SgJDH9bt4mTFCTmqKSxWmMC5VkSjkf0jhk_7SnUxj6j78fH3GyEHIxWc4ntv0Da', '1959-02-22', 'F', company_id, user_id_91, '')
   RETURNING id into person_id_91;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3853,8 +5195,13 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA280862', person_id_91, usercompanybenefitplanoption_id_91);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_91, user_id_91);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_91);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'William', '', 'Riley', '', 'spouse', 'ALeCc_h0utkIb-D5GgTD3RsDizADjyg1xVsFjLk-dzMQX8AtMVbzLiknhSs8MsS54nQxXrU21TSV', '1953-04-19', 'M', company_id, user_id_91, '')
+  VALUES('family', 'William', '', 'Riley', '', 'spouse', 'ALeCc_gVaZdX1pR8jW90-OsdBGoJOPw21GqnmQCyCFhzBC96W4PUDQUBzCHFKCqsG22ZdHj4FHi_', '1953-04-19', 'M', company_id, user_id_91, '')
   RETURNING id into family_member_id_91_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3874,6 +5221,7 @@ DECLARE
   person_id_92 int;
   company_user_id_92 int; 
   usercompanybenefitplanoption_id_92 int;
+  usercompanybenefitplanoption_id_92_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'robertacarrigg@fairviewhealthcare.com', 't', 'f', 'f', 'Roberta', 'Carrigg', now(), now())
@@ -3887,8 +5235,12 @@ BEGIN
   VALUES(now(), now(), 288, user_id_92)
   RETURNING id into usercompanybenefitplanoption_id_92;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_92)
+  RETURNING id into usercompanybenefitplanoption_id_92_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Roberta', 'A', 'Carrigg', '', 'self', 'ALeCc_if-ulMdOQVEu8nyXMisLM77emOweex-p-ToyRBmevSR1_C-8QoYytF1J-NZnK-hEFKKeL3', '1958-03-07', 'F', company_id, user_id_92, '')
+  VALUES('primary_contact', 'Roberta', 'A', 'Carrigg', '', 'self', 'ALeCc_g6w3a4KcKZ83H2EWTOGK3jI0SUzwa8d3YLQ4_NV5CNY2YldP2yKTZyg-4n9E89sb4SGYe3', '1958-03-07', 'F', company_id, user_id_92, '')
   RETURNING id into person_id_92;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3906,6 +5258,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('E98023', person_id_92, usercompanybenefitplanoption_id_92);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_92, usercompanybenefitplanoption_id_92_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(28000.0, now(), now(), 20, person_id_92, user_id_92);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_92, 0, 300.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_92, 0, 1400.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_92);
 END;
 
 
@@ -3914,6 +5280,7 @@ DECLARE
   person_id_93 int;
   company_user_id_93 int; 
   usercompanybenefitplanoption_id_93 int;
+  usercompanybenefitplanoption_id_93_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'annplourde@fairviewhealthcare.com', 't', 'f', 'f', 'Ann', 'Plourde', now(), now())
@@ -3925,6 +5292,10 @@ BEGIN
   raise notice 'The company_user_id_93 is %', company_user_id_93;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_93);
+
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_93)
+  RETURNING id into usercompanybenefitplanoption_id_93_dental;
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Ann', 'M', 'Plourde', '', 'self', '', '1964-07-27', 'F', company_id, user_id_93, '')
@@ -3939,6 +5310,21 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(76169.0, '09/01/2008', now(), now(), company_id, person_id_93, null, null, null);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_93, usercompanybenefitplanoption_id_93_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(153000.0, now(), now(), 20, person_id_93, user_id_93);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(250000.0, null, 10000.0, 0, 0, 0, now(), now(), 12, person_id_93, 3, 3, null, 250000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_93, 0, 850.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_93, 0, 3700.0);
+
 END;
 
 
@@ -3947,6 +5333,7 @@ DECLARE
   person_id_94 int;
   company_user_id_94 int; 
   usercompanybenefitplanoption_id_94 int;
+  usercompanybenefitplanoption_id_94_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kathrynmasterson@fairviewhealthcare.com', 't', 'f', 'f', 'Kathryn', 'Masterson', now(), now())
@@ -3960,8 +5347,11 @@ BEGIN
   VALUES(now(), now(), 294, user_id_94)
   RETURNING id into usercompanybenefitplanoption_id_94;
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_94);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Kathryn', '', 'Masterson', '', 'self', 'ALeCc_hKUh81NSR5IyIeCC_sh9SMOEXeJc8v8D2YsX5bp5DIMAbK3GFec-fHhyBfJMtv3TiSADJU', '1950-11-05', 'F', company_id, user_id_94, '')
+  VALUES('primary_contact', 'Kathryn', '', 'Masterson', '', 'self', 'ALeCc_je7rHh1ubfxgsusGRt9lS3i-mPLk1wLgHg_8UH6LqmZRIrAC_aAIZErcJafCiNfGutaRDI', '1950-11-05', 'F', company_id, user_id_94, '')
   RETURNING id into person_id_94;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -3979,6 +5369,17 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA323197', person_id_94, usercompanybenefitplanoption_id_94);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(40000.0, now(), now(), 20, person_id_94, user_id_94);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_94, 0, 400.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_94, 0, 1900.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_94);
 END;
 
 
@@ -3987,6 +5388,7 @@ DECLARE
   person_id_95 int;
   company_user_id_95 int; 
   usercompanybenefitplanoption_id_95 int;
+  usercompanybenefitplanoption_id_95_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'sarahst_john@fairviewhealthcare.com', 't', 'f', 'f', 'Sarah', 'St John', now(), now())
@@ -3998,6 +5400,9 @@ BEGIN
   raise notice 'The company_user_id_95 is %', company_user_id_95;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_95);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_95);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Sarah', '', 'St John', '', 'self', '', '1986-04-19', 'F', company_id, user_id_95, '')
@@ -4012,6 +5417,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(19851.0, '07/26/2013', now(), now(), company_id, person_id_95, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(20000.0, now(), now(), 20, person_id_95, user_id_95);
+
 END;
 
 
@@ -4020,6 +5428,7 @@ DECLARE
   person_id_96 int;
   company_user_id_96 int; 
   usercompanybenefitplanoption_id_96 int;
+  usercompanybenefitplanoption_id_96_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'dianahall@fairviewhealthcare.com', 't', 'f', 'f', 'Diana', 'Hall', now(), now())
@@ -4033,8 +5442,12 @@ BEGIN
   VALUES(now(), now(), 288, user_id_96)
   RETURNING id into usercompanybenefitplanoption_id_96;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_96)
+  RETURNING id into usercompanybenefitplanoption_id_96_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Diana', '', 'Hall', '', 'self', 'ALeCc_i5dTLQvcQmgrFnSpVP7oZeZbF6EfdNMEwEOmqX5AOg2CnsldBpruBRPsTEBMnA5kesr4iY', '1970-12-02', 'F', company_id, user_id_96, '')
+  VALUES('primary_contact', 'Diana', '', 'Hall', '', 'self', 'ALeCc_j4cgbhYVj4uGdyDwQXAqN1KGLau6BMMWB2jlQwTtsmCxmQXb28zyswuJQeomm_RrKkHko2', '1970-12-02', 'F', company_id, user_id_96, '')
   RETURNING id into person_id_96;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4052,6 +5465,14 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA52384', person_id_96, usercompanybenefitplanoption_id_96);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_96, usercompanybenefitplanoption_id_96_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_96, user_id_96);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_96);
 END;
 
 
@@ -4060,6 +5481,7 @@ DECLARE
   person_id_97 int;
   company_user_id_97 int; 
   usercompanybenefitplanoption_id_97 int;
+  usercompanybenefitplanoption_id_97_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'rosefournier@fairviewhealthcare.com', 't', 'f', 'f', 'Rose', 'Fournier', now(), now())
@@ -4072,6 +5494,9 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_97);
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_97);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Rose', '', 'Fournier', '', 'self', '', '1962-04-05', 'F', company_id, user_id_97, '')
   RETURNING id into person_id_97;
@@ -4082,6 +5507,15 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(32344.0, '09/09/2013', now(), now(), company_id, person_id_97, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(33000.0, now(), now(), 20, person_id_97, user_id_97);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_97, 0, 350.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_97, 0, 1600.0);
+
 END;
 
 
@@ -4090,6 +5524,7 @@ DECLARE
   person_id_98 int;
   company_user_id_98 int; 
   usercompanybenefitplanoption_id_98 int;
+  usercompanybenefitplanoption_id_98_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'paulinepoisson-levesque@fairviewhealthcare.com', 't', 'f', 'f', 'Pauline', 'Poisson-Levesque', now(), now())
@@ -4101,6 +5536,10 @@ BEGIN
   raise notice 'The company_user_id_98 is %', company_user_id_98;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_98);
+
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_98)
+  RETURNING id into usercompanybenefitplanoption_id_98_dental;
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Pauline', 'A', 'Poisson-Levesque', '', 'self', '', '1949-05-19', 'F', company_id, user_id_98, '')
@@ -4115,6 +5554,15 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(37167.0, '09/01/2008', now(), now(), company_id, person_id_98, null, null, null);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_98, usercompanybenefitplanoption_id_98_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(25000.0, now(), now(), 20, person_id_98, user_id_98);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_98, 0, 350.0);
+
 END;
 
 
@@ -4123,6 +5571,7 @@ DECLARE
   person_id_99 int;
   company_user_id_99 int; 
   usercompanybenefitplanoption_id_99 int;
+  usercompanybenefitplanoption_id_99_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jamesbush@fairviewhealthcare.com', 't', 'f', 'f', 'James', 'Bush', now(), now())
@@ -4136,8 +5585,11 @@ BEGIN
   VALUES(now(), now(), 291, user_id_99)
   RETURNING id into usercompanybenefitplanoption_id_99;
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_99);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'James', '', 'Bush', '', 'self', 'ALeCc_i5ON7udsldu4R3CXdfvYGsRb93m3oUJx7yP4NLShboJsFM7KXP3wN7khM-8XzkU9w7qFXt', '1989-01-09', 'M', company_id, user_id_99, '')
+  VALUES('primary_contact', 'James', '', 'Bush', '', 'self', 'ALeCc_jXKNcngUoZTNcrnuWrKXpajGeB7kRQdhLoMnCkWelXCo2hBA-PjZV7t3WH3GKIgcrp2q-S', '1989-01-09', 'M', company_id, user_id_99, '')
   RETURNING id into person_id_99;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4155,6 +5607,12 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA123876', person_id_99, usercompanybenefitplanoption_id_99);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(22000.0, now(), now(), 20, person_id_99, user_id_99);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(30000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_99, 3, 3, null, null, null);
+
 END;
 
 
@@ -4163,6 +5621,7 @@ DECLARE
   person_id_100 int;
   company_user_id_100 int; 
   usercompanybenefitplanoption_id_100 int;
+  usercompanybenefitplanoption_id_100_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'janetmaxfield@fairviewhealthcare.com', 't', 'f', 'f', 'Janet', 'Maxfield', now(), now())
@@ -4176,8 +5635,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_100)
   RETURNING id into usercompanybenefitplanoption_id_100;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_100)
+  RETURNING id into usercompanybenefitplanoption_id_100_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Janet', '', 'Maxfield', '', 'self', 'ALeCc_gzkAhBgXmNXx7KRtLRFh689iC8EQusYDxGkvPZGfvjoyT0DokIGfuB57yKT46WUfO6HCaG', '1964-08-26', 'F', company_id, user_id_100, '')
+  VALUES('primary_contact', 'Janet', '', 'Maxfield', '', 'self', 'ALeCc_jnHj784bJ81kEK_mEitnxJsLk1VMBQ6BF25FnDNQZMY_xbfYD7tZLeF1YVQFcOY2ZAVvwC', '1964-08-26', 'F', company_id, user_id_100, '')
   RETURNING id into person_id_100;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4195,6 +5658,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('NA1039', person_id_100, usercompanybenefitplanoption_id_100);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_100, usercompanybenefitplanoption_id_100_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(32000.0, now(), now(), 20, person_id_100, user_id_100);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_100, 0, 350.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_100, 0, 1600.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_100);
 END;
 
 
@@ -4203,6 +5680,7 @@ DECLARE
   person_id_101 int;
   company_user_id_101 int; 
   usercompanybenefitplanoption_id_101 int;
+  usercompanybenefitplanoption_id_101_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'christophergrenier@fairviewhealthcare.com', 't', 'f', 'f', 'Christopher', 'Grenier', now(), now())
@@ -4215,6 +5693,9 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_101);
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_101);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Christopher', '', 'Grenier', '', 'self', '', '1989-08-20', 'M', company_id, user_id_101, '')
   RETURNING id into person_id_101;
@@ -4224,6 +5705,9 @@ BEGIN
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(23533.0, '07/15/2015', now(), now(), company_id, person_id_101, null, null, null);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(24000.0, now(), now(), 20, person_id_101, user_id_101);
 
 END;
 
@@ -4236,6 +5720,7 @@ DECLARE
   family_member_id_102_1 int;
   company_user_id_102 int; 
   usercompanybenefitplanoption_id_102 int;
+  usercompanybenefitplanoption_id_102_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'patricialavoie@fairviewhealthcare.com', 't', 'f', 'f', 'Patricia', 'Lavoie', now(), now())
@@ -4249,8 +5734,12 @@ BEGIN
   VALUES(now(), now(), 296, user_id_102)
   RETURNING id into usercompanybenefitplanoption_id_102;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_102)
+  RETURNING id into usercompanybenefitplanoption_id_102_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Patricia', 'A', 'Lavoie', '', 'self', 'ALeCc_iUYxjihIj6VDRvzEuiHCtNw659AYULix-SvnrqCM0BShQt3RP7eoz4JP6fS6IeaFXkQTKC', '1965-06-09', 'F', company_id, user_id_102, '')
+  VALUES('primary_contact', 'Patricia', 'A', 'Lavoie', '', 'self', 'ALeCc_hzgr5fH4ynNYxWO1VSrY_x0NUx5gOJflLRW1yBsVr4wSts09_8jw1n3gVI5g6MpIbK4jjx', '1965-06-09', 'F', company_id, user_id_102, '')
   RETURNING id into person_id_102;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4268,8 +5757,16 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA333498', person_id_102, usercompanybenefitplanoption_id_102);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_102, usercompanybenefitplanoption_id_102_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_102, user_id_102);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_102);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Molly', '', 'Lavoie', '', 'dependent', 'ALeCc_hDPhAD4Wxlg6DSpCDcw8XodcdP1yZSwN6zjsAkyffR8fzRJTtbBFb8SBUkYP5UVWub57WB', '1998-11-25', 'F', company_id, user_id_102, '')
+  VALUES('family', 'Molly', '', 'Lavoie', '', 'dependent', 'ALeCc_g9hQqzupNjTvrVPSclwknIVGNfb6tOKK144kjQU8ozxG1IQPtB_x9JomPgkiHg0usG7HPG', '1998-11-25', 'F', company_id, user_id_102, '')
   RETURNING id into family_member_id_102_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4281,8 +5778,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA12613', family_member_id_102_2, usercompanybenefitplanoption_id_102);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_102_2, usercompanybenefitplanoption_id_102_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Raymond', '', 'Lavoie', '', 'spouse', 'ALeCc_itBeKP8Pn6bSoCpcyT7q34hGzTmvVkWeAF3QYQmVjRKPn-RzOdfBclsobntm1QvuAZZBIX', '1964-07-28', 'M', company_id, user_id_102, '')
+  VALUES('family', 'Raymond', '', 'Lavoie', '', 'spouse', 'ALeCc_huqhU60nmB1-S03vqDQEnZ9vM3pwgfB4-Iw2D-3a0B9-n66bZYhWf3NCtUY6psHvp7XLRF', '1964-07-28', 'M', company_id, user_id_102, '')
   RETURNING id into family_member_id_102_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4294,8 +5794,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('C66065', family_member_id_102_0, usercompanybenefitplanoption_id_102);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_102_0, usercompanybenefitplanoption_id_102_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Jessica', '', 'Lavoie', '', 'dependent', 'ALeCc_gyFbggB9646lUpynRAFoONY4OI0AI7z4guERpNibOJt6H-ShaI62hnuBNToREpD_nioTHh', '1996-05-03', 'F', company_id, user_id_102, '')
+  VALUES('family', 'Jessica', '', 'Lavoie', '', 'dependent', 'ALeCc_htwWMmMNMhvGfefa8So9tD48-KJpOx24IpzagK5AmVu9AIcCS4QATC_RjnfmWI2ovoA5Tb', '1996-05-03', 'F', company_id, user_id_102, '')
   RETURNING id into family_member_id_102_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4307,6 +5810,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA333498', family_member_id_102_1, usercompanybenefitplanoption_id_102);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_102_1, usercompanybenefitplanoption_id_102_dental);
+
 END;
 
 
@@ -4315,6 +5821,7 @@ DECLARE
   person_id_103 int;
   company_user_id_103 int; 
   usercompanybenefitplanoption_id_103 int;
+  usercompanybenefitplanoption_id_103_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'annagelinas@fairviewhealthcare.com', 't', 'f', 'f', 'Anna', 'Gelinas', now(), now())
@@ -4328,8 +5835,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_103)
   RETURNING id into usercompanybenefitplanoption_id_103;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_103)
+  RETURNING id into usercompanybenefitplanoption_id_103_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Anna', 'M', 'Gelinas', '', 'self', 'ALeCc_jF1ou4Vrxzy0lOy80KFEKdi9un8mBUC15Z8QNzL9wGOni4maCcDLjpoOxHYtOBlhrKCKam', '1972-10-03', 'F', company_id, user_id_103, '')
+  VALUES('primary_contact', 'Anna', 'M', 'Gelinas', '', 'self', 'ALeCc_jAQ6PwR6HJjeC9hp6WRvLUIymQYIV0EFXwJ1IwDjWGCNtHqFEL1dZQm2RfZ0u75VcRdK9E', '1972-10-03', 'F', company_id, user_id_103, '')
   RETURNING id into person_id_103;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4347,6 +5858,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA97575', person_id_103, usercompanybenefitplanoption_id_103);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_103, usercompanybenefitplanoption_id_103_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(38000.0, now(), now(), 20, person_id_103, user_id_103);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_103, 0, 450.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_103, 0, 1900.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_103);
 END;
 
 
@@ -4355,6 +5880,7 @@ DECLARE
   person_id_104 int;
   company_user_id_104 int; 
   usercompanybenefitplanoption_id_104 int;
+  usercompanybenefitplanoption_id_104_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'hollymatthew@fairviewhealthcare.com', 't', 'f', 'f', 'Holly', 'Matthew', now(), now())
@@ -4368,8 +5894,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_104)
   RETURNING id into usercompanybenefitplanoption_id_104;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_104)
+  RETURNING id into usercompanybenefitplanoption_id_104_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Holly', '', 'Matthew', '', 'self', 'ALeCc_g1xvufmw4uuzoKNNPeXChMnivaNHrwOupNu338TJ8Y8A_kCDjfdXIjBeGgf1vmTseJiR2K', '1971-05-20', 'F', company_id, user_id_104, '')
+  VALUES('primary_contact', 'Holly', '', 'Matthew', '', 'self', 'ALeCc_iSi_q-6MxYnj-nrGIKwfd_7IXwWIzlif1MPqk1p8JH-9_1gwKYgAGxc7zgz2oEypKXJ2yC', '1971-05-20', 'F', company_id, user_id_104, '')
   RETURNING id into person_id_104;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4387,6 +5917,18 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('G00063', person_id_104, usercompanybenefitplanoption_id_104);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_104, usercompanybenefitplanoption_id_104_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(18000.0, now(), now(), 20, person_id_104, user_id_104);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_104, 0, 200.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_104, 0, 900.0);
+
 END;
 
 
@@ -4396,6 +5938,7 @@ DECLARE
   family_member_id_105_0 int;
   company_user_id_105 int; 
   usercompanybenefitplanoption_id_105 int;
+  usercompanybenefitplanoption_id_105_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'michelledodge@fairviewhealthcare.com', 't', 'f', 'f', 'Michelle', 'Dodge', now(), now())
@@ -4409,8 +5952,12 @@ BEGIN
   VALUES(now(), now(), 295, user_id_105)
   RETURNING id into usercompanybenefitplanoption_id_105;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_105)
+  RETURNING id into usercompanybenefitplanoption_id_105_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Michelle', 'L', 'Dodge', '', 'self', 'ALeCc_g-C_YDOg6SHJmc6JE7Na9zMYSML5SWHHoG1CpQ1tm6OAwt68AniW1rwRWwtiBZXN7lm-Aq', '1968-09-21', 'F', company_id, user_id_105, '')
+  VALUES('primary_contact', 'Michelle', 'L', 'Dodge', '', 'self', 'ALeCc_jqmj8-mpZ0dFhifdJTuJ6_knWMJbw5taI4YQdVIRuC04GsMWlxCDt8j4PdUGyXe-F8TYOF', '1968-09-21', 'F', company_id, user_id_105, '')
   RETURNING id into person_id_105;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4428,8 +5975,22 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA138916', person_id_105, usercompanybenefitplanoption_id_105);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_105, usercompanybenefitplanoption_id_105_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(130000.0, now(), now(), 20, person_id_105, user_id_105);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_105, 0, 500.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_105, 0, 2000.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_105);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Kent', '', 'Dodge', '', 'spouse', 'ALeCc_h3L7uacPDBHgYIYbnIJHtkCFuXXumtrKBuIqAz8K-nZWIqxDNfvCSKBnfzY6C8UQ_V2n2E', '1957-10-03', 'M', company_id, user_id_105, '')
+  VALUES('family', 'Kent', '', 'Dodge', '', 'spouse', 'ALeCc_iZjARHaTdA3cGKfa-8M0rh6Ldt3x6C2Xn3gyCtcXuXxabKyPWGRBcEix33QI2Npb8boGU5', '1957-10-03', 'M', company_id, user_id_105, '')
   RETURNING id into family_member_id_105_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4441,6 +6002,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('F43395', family_member_id_105_0, usercompanybenefitplanoption_id_105);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_105_0, usercompanybenefitplanoption_id_105_dental);
+
 END;
 
 
@@ -4450,6 +6014,7 @@ DECLARE
   family_member_id_106_0 int;
   company_user_id_106 int; 
   usercompanybenefitplanoption_id_106 int;
+  usercompanybenefitplanoption_id_106_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'elizabethfahey@fairviewhealthcare.com', 't', 'f', 'f', 'Elizabeth', 'Fahey', now(), now())
@@ -4463,8 +6028,12 @@ BEGIN
   VALUES(now(), now(), 295, user_id_106)
   RETURNING id into usercompanybenefitplanoption_id_106;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_106)
+  RETURNING id into usercompanybenefitplanoption_id_106_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Elizabeth', 'A', 'Fahey', '', 'self', 'ALeCc_hNDKM9RKYbXGIPL74eIxtItMCe-Dzk736YMy7uD_tKg9La8M0igTxQwUmg4wj3EdG1ydKd', '1954-10-28', 'F', company_id, user_id_106, '')
+  VALUES('primary_contact', 'Elizabeth', 'A', 'Fahey', '', 'self', 'ALeCc_hNtxQ5i1wHNyoFF1jh-86RcVvQ-c826RXucqhf-hld_bpZ8DhVBtwUzDG1GL9wUdKJa5Va', '1954-10-28', 'F', company_id, user_id_106, '')
   RETURNING id into person_id_106;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4482,8 +6051,22 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA276742', person_id_106, usercompanybenefitplanoption_id_106);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_106, usercompanybenefitplanoption_id_106_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(25000.0, now(), now(), 20, person_id_106, user_id_106);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_106, 0, 300.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_106, 0, 1200.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_106);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Michael', '', 'Fahey', '', 'spouse', 'ALeCc_hIgnl7ThIW6cm3QKTbw06kpQpWebwYgcS5_Wqtko9X116iC2cCIjYJXGaBMtuhEPRWsNjK', '1953-02-09', 'M', company_id, user_id_106, '')
+  VALUES('family', 'Michael', '', 'Fahey', '', 'spouse', 'ALeCc_inbMaLlc9HgnPFqqtWdnIf4tG_LzhwXa5Kn5JnqM7rOy2fcWd2wcuqNiFT4s8CprpGRJzT', '1953-02-09', 'M', company_id, user_id_106, '')
   RETURNING id into family_member_id_106_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4495,6 +6078,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('7525.0', family_member_id_106_0, usercompanybenefitplanoption_id_106);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_106_0, usercompanybenefitplanoption_id_106_dental);
+
 END;
 
 
@@ -4503,6 +6089,7 @@ DECLARE
   person_id_107 int;
   company_user_id_107 int; 
   usercompanybenefitplanoption_id_107 int;
+  usercompanybenefitplanoption_id_107_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'theresacronin@fairviewhealthcare.com', 't', 'f', 'f', 'Theresa', 'Cronin', now(), now())
@@ -4516,8 +6103,11 @@ BEGIN
   VALUES(now(), now(), 291, user_id_107)
   RETURNING id into usercompanybenefitplanoption_id_107;
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_107);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Theresa', '', 'Cronin', '', 'self', 'ALeCc_jJkqR-pyYYbisgkLLL58s1CS45XnNFUCBKfbUCvNJ3W42eD3ZRNyBsfm-dqge4gEVqnh4t', '1949-12-05', 'F', company_id, user_id_107, '')
+  VALUES('primary_contact', 'Theresa', '', 'Cronin', '', 'self', 'ALeCc_gosqZAxjj7CheBhwY8M0AYwlm16LqjNWT9vsJyqImX1w4VZfwXVq5jda-rNHIsrlY3ln8w', '1949-12-05', 'F', company_id, user_id_107, '')
   RETURNING id into person_id_107;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4535,6 +6125,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA19803', person_id_107, usercompanybenefitplanoption_id_107);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(17000.0, now(), now(), 20, person_id_107, user_id_107);
+
 END;
 
 
@@ -4543,6 +6136,7 @@ DECLARE
   person_id_108 int;
   company_user_id_108 int; 
   usercompanybenefitplanoption_id_108 int;
+  usercompanybenefitplanoption_id_108_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'richardford@fairviewhealthcare.com', 't', 'f', 'f', 'Richard', 'Ford', now(), now())
@@ -4555,6 +6149,9 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_108);
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_108);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Richard', '', 'Ford', '', 'self', '', '1990-02-11', 'M', company_id, user_id_108, '')
   RETURNING id into person_id_108;
@@ -4565,6 +6162,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(20800.0, '06/05/2006', now(), now(), company_id, person_id_108, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_108, user_id_108);
+
 END;
 
 
@@ -4574,6 +6174,7 @@ DECLARE
   family_member_id_109_0 int;
   company_user_id_109 int; 
   usercompanybenefitplanoption_id_109 int;
+  usercompanybenefitplanoption_id_109_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'mariamiranda@fairviewhealthcare.com', 't', 'f', 'f', 'Maria', 'Miranda', now(), now())
@@ -4587,8 +6188,12 @@ BEGIN
   VALUES(now(), now(), 292, user_id_109)
   RETURNING id into usercompanybenefitplanoption_id_109;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 301, user_id_109)
+  RETURNING id into usercompanybenefitplanoption_id_109_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Maria', '', 'Miranda', '', 'self', 'ALeCc_hFuORDlDb2UPQif5O6Q9uYa5i3mB74JuGUA5cWrhdHKg1TCcIFyhXefAWNZ6M0ooom6qFG', '1991-10-15', 'F', company_id, user_id_109, '')
+  VALUES('primary_contact', 'Maria', '', 'Miranda', '', 'self', 'ALeCc_jmcaTffUjUFHvZ_xEh2F0xCRUUNGHuZQKHjhujxg6s0bcgeixPW0qQ2siLVuqUKOgqdpg1', '1991-10-15', 'F', company_id, user_id_109, '')
   RETURNING id into person_id_109;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4606,8 +6211,23 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('S51601', person_id_109, usercompanybenefitplanoption_id_109);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_109, usercompanybenefitplanoption_id_109_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(25000.0, now(), now(), 20, person_id_109, user_id_109);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(100000.0, null, 10000.0, 0, 0, 0, now(), now(), 12, person_id_109, 3, 3, null, 100000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_109, 0, 300.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_109, 0, 1200.0);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Reinaliz Guadalupe', '', 'Roig-Miranda', '', 'dependent', 'ALeCc_iHL9cdfaw44AdD_Bn1a3FwVfvJwRCSEwdbat94ZhXgZthsBBXkUlVva_gsU4DU-hGtjSET', '2013-10-14', 'F', company_id, user_id_109, '')
+  VALUES('family', 'Reinaliz Guadalupe', '', 'Roig-Miranda', '', 'dependent', 'ALeCc_j5rLWvOOiBkAv0DjsDHmAASAOIKAQ2A-jqmN4CCdEM6MCWu2sdi8o2Rof1ltw6GsZe3Q9h', '2013-10-14', 'F', company_id, user_id_109, '')
   RETURNING id into family_member_id_109_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4619,6 +6239,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('FCH031', family_member_id_109_0, usercompanybenefitplanoption_id_109);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_109_0, usercompanybenefitplanoption_id_109_dental);
+
 END;
 
 
@@ -4627,6 +6250,7 @@ DECLARE
   person_id_110 int;
   company_user_id_110 int; 
   usercompanybenefitplanoption_id_110 int;
+  usercompanybenefitplanoption_id_110_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'heatherbresee@fairviewhealthcare.com', 't', 'f', 'f', 'Heather', 'Bresee', now(), now())
@@ -4640,8 +6264,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_110)
   RETURNING id into usercompanybenefitplanoption_id_110;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_110)
+  RETURNING id into usercompanybenefitplanoption_id_110_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Heather', '', 'Bresee', '', 'self', 'ALeCc_ju055Z3tx0IbHJPHxw5vGmio3D2-O1KXLLrRUpb6xtoUYD8BrvTurBF-rKpwJW79XTOqxH', '1988-04-14', 'F', company_id, user_id_110, '')
+  VALUES('primary_contact', 'Heather', '', 'Bresee', '', 'self', 'ALeCc_gsWFjH3a0GbKKYhgl98Pq43jt_NFfYQF59YMEy0v-4NymSxPeqtXgkmLsS32CaZiPf1wNb', '1988-04-14', 'F', company_id, user_id_110, '')
   RETURNING id into person_id_110;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4659,6 +6287,23 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA145464', person_id_110, usercompanybenefitplanoption_id_110);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_110, usercompanybenefitplanoption_id_110_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(25000.0, now(), now(), 20, person_id_110, user_id_110);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(40000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_110, 3, 3, null, 40000.0, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_110, 0, 200.0);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_110, 0, 800.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_110);
 END;
 
 
@@ -4667,6 +6312,7 @@ DECLARE
   person_id_111 int;
   company_user_id_111 int; 
   usercompanybenefitplanoption_id_111 int;
+  usercompanybenefitplanoption_id_111_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'jessicasmith@fairviewhealthcare.com', 't', 'f', 'f', 'Jessica', 'Smith', now(), now())
@@ -4680,8 +6326,12 @@ BEGIN
   VALUES(now(), now(), 291, user_id_111)
   RETURNING id into usercompanybenefitplanoption_id_111;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_111)
+  RETURNING id into usercompanybenefitplanoption_id_111_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Jessica', '', 'Smith', '', 'self', 'ALeCc_jnLSJblzEGRyebUlLvVsAfELfpkfoeiWd9I4K_raZT2UDl4139rXGGFVLMnSUnd6t-g0VP', '1988-05-31', 'F', company_id, user_id_111, '')
+  VALUES('primary_contact', 'Jessica', '', 'Smith', '', 'self', 'ALeCc_iY6p7P8dgU8MpZYQBTK0S9frW499pg0IBMIlOJnlETSWXPtNUxYr4v-PoxC2GKfOCBlJmm', '1988-05-31', 'F', company_id, user_id_111, '')
   RETURNING id into person_id_111;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4699,6 +6349,18 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA95114', person_id_111, usercompanybenefitplanoption_id_111);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_111, usercompanybenefitplanoption_id_111_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(17000.0, now(), now(), 20, person_id_111, user_id_111);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(90000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_111, 3, 3, null, null, null);
+
+  INSERT INTO app_usercompanyltdinsuranceplan(created_at, updated_at, company_ltd_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 13, user_id_111, 0, 800.0);
+
 END;
 
 
@@ -4710,6 +6372,7 @@ DECLARE
   family_member_id_112_2 int;
   company_user_id_112 int; 
   usercompanybenefitplanoption_id_112 int;
+  usercompanybenefitplanoption_id_112_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'shellybeaucage@fairviewhealthcare.com', 't', 'f', 'f', 'Shelly', 'Beaucage', now(), now())
@@ -4723,8 +6386,12 @@ BEGIN
   VALUES(now(), now(), 296, user_id_112)
   RETURNING id into usercompanybenefitplanoption_id_112;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_112)
+  RETURNING id into usercompanybenefitplanoption_id_112_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Shelly', 'A', 'Beaucage', '', 'self', 'ALeCc_iwmX8aCnCo2LvqHnAOdZF3lHUmhWtSNNMXm285YmiNiDyTOUILwY7Ld9Wj6cxCc_akYcR9', '1969-10-15', 'F', company_id, user_id_112, '')
+  VALUES('primary_contact', 'Shelly', 'A', 'Beaucage', '', 'self', 'ALeCc_h0lSnd5UVWm1emhuPlp9ngWiGqs85owGyXvuT029MXuKPpxgo914NxqfdJxjJYXX6gLQmg', '1969-10-15', 'F', company_id, user_id_112, '')
   RETURNING id into person_id_112;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4742,8 +6409,19 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA85774', person_id_112, usercompanybenefitplanoption_id_112);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_112, usercompanybenefitplanoption_id_112_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(41000.0, now(), now(), 20, person_id_112, user_id_112);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_112, 0, 500.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_112);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Paige', '', 'Beaucage', '', 'dependent', 'ALeCc_haj29FaQeJKhUij10iueDJpnakyQRvsrSslFEXOIB4iAdnrqfIln8NLTInR6HmgBJ02glm', '1993-01-22', 'F', company_id, user_id_112, '')
+  VALUES('family', 'Paige', '', 'Beaucage', '', 'dependent', 'ALeCc_hAKUmoF31tWe9uXPr3ysKA7gv6jqSKYCxt2HqC3p8jc8dLhqZZI2GNRcryU4SWHEz7Tz-z', '1993-01-22', 'F', company_id, user_id_112, '')
   RETURNING id into family_member_id_112_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4755,8 +6433,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA85774', family_member_id_112_1, usercompanybenefitplanoption_id_112);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_112_1, usercompanybenefitplanoption_id_112_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Britney', '', 'Beaucage', '', 'dependent', 'ALeCc_hPpntX1C2BAO9Hg7LyuHvcCEpWdxrxpJhyZes8nQXv-zNwoeFer2riZvwtb0ZiWvc5xmq2', '1995-05-31', 'F', company_id, user_id_112, '')
+  VALUES('family', 'Britney', '', 'Beaucage', '', 'dependent', 'ALeCc_j3oKknMcsGnq0IFUDViyjGnPC015jZdoMF1z_W3WH9A6sJ794f-o5bs2EkxKipS4jktQ4u', '1995-05-31', 'F', company_id, user_id_112, '')
   RETURNING id into family_member_id_112_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4768,8 +6449,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA85774', family_member_id_112_0, usercompanybenefitplanoption_id_112);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_112_0, usercompanybenefitplanoption_id_112_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Justin', '', 'Saucier', '', 'dependent', 'ALeCc_jVUhYySNJmXURlHOVogdRk73dxOAmp1u1SuUckLrnM-RYPx5PAhbGpj7ZlAoz1eMi7X3FQ', '1990-03-08', 'M', company_id, user_id_112, '')
+  VALUES('family', 'Justin', '', 'Saucier', '', 'dependent', 'ALeCc_gHoa08PFfM0D1iZSjCWGNYaYvv5uf7U_h7YKMXKOC4X6Su3yO6SzzNTkQJ1z66g5XuzC2t', '1990-03-08', 'M', company_id, user_id_112, '')
   RETURNING id into family_member_id_112_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4781,6 +6465,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA85774', family_member_id_112_2, usercompanybenefitplanoption_id_112);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_112_2, usercompanybenefitplanoption_id_112_dental);
+
 END;
 
 
@@ -4789,6 +6476,7 @@ DECLARE
   person_id_113 int;
   company_user_id_113 int; 
   usercompanybenefitplanoption_id_113 int;
+  usercompanybenefitplanoption_id_113_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'cristianechatfield@fairviewhealthcare.com', 't', 'f', 'f', 'Cristiane', 'Chatfield', now(), now())
@@ -4800,6 +6488,9 @@ BEGIN
   raise notice 'The company_user_id_113 is %', company_user_id_113;
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_113);
+
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_113);
 
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Cristiane', '', 'Chatfield', '', 'self', '', '1973-09-10', 'F', company_id, user_id_113, '')
@@ -4814,6 +6505,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(28080.0, '04/07/2014', now(), now(), company_id, person_id_113, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(29000.0, now(), now(), 20, person_id_113, user_id_113);
+
 END;
 
 
@@ -4822,6 +6516,7 @@ DECLARE
   person_id_114 int;
   company_user_id_114 int; 
   usercompanybenefitplanoption_id_114 int;
+  usercompanybenefitplanoption_id_114_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'danilledefranzo@fairviewhealthcare.com', 't', 'f', 'f', 'Danille', 'Defranzo', now(), now())
@@ -4834,6 +6529,9 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_114);
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_114);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Danille', '', 'Defranzo', '', 'self', '', '1992-02-12', 'F', company_id, user_id_114, '')
   RETURNING id into person_id_114;
@@ -4844,6 +6542,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(23712.0, '01/20/2015', now(), now(), company_id, person_id_114, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(24000.0, now(), now(), 20, person_id_114, user_id_114);
+
 END;
 
 
@@ -4852,6 +6553,7 @@ DECLARE
   person_id_115 int;
   company_user_id_115 int; 
   usercompanybenefitplanoption_id_115 int;
+  usercompanybenefitplanoption_id_115_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'kellymcnally@fairviewhealthcare.com', 't', 'f', 'f', 'Kelly', 'Mcnally', now(), now())
@@ -4865,8 +6567,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_115)
   RETURNING id into usercompanybenefitplanoption_id_115;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_115)
+  RETURNING id into usercompanybenefitplanoption_id_115_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Kelly', '', 'Mcnally', '', 'self', 'ALeCc_gvgvG8atneC2_82KktHniEs7my3RU0ZLRQOLBkSZY90sazyDgY-RR2Z0zWKLiM7cdinQ-I', '1989-09-01', 'F', company_id, user_id_115, '')
+  VALUES('primary_contact', 'Kelly', '', 'Mcnally', '', 'self', 'ALeCc_h9mMoOmTxBFF2VeOzWw_RQD6ec6tAWcK8xNXIomBzOVhc5n8_dnx3so-vywf5vd-6X-QpA', '1989-09-01', 'F', company_id, user_id_115, '')
   RETURNING id into person_id_115;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4881,6 +6587,17 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA7125', person_id_115, usercompanybenefitplanoption_id_115);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_115, usercompanybenefitplanoption_id_115_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(23000.0, now(), now(), 20, person_id_115, user_id_115);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_115, 0, 250.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_115);
 END;
 
 
@@ -4889,6 +6606,7 @@ DECLARE
   person_id_116 int;
   company_user_id_116 int; 
   usercompanybenefitplanoption_id_116 int;
+  usercompanybenefitplanoption_id_116_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'amandaglazier@fairviewhealthcare.com', 't', 'f', 'f', 'Amanda', 'Glazier', now(), now())
@@ -4901,6 +6619,10 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_116);
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_116)
+  RETURNING id into usercompanybenefitplanoption_id_116_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Amanda', '', 'Glazier', '', 'self', '', '1978-10-22', 'F', company_id, user_id_116, '')
   RETURNING id into person_id_116;
@@ -4911,6 +6633,12 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(31200.0, '05/01/2015', now(), now(), company_id, person_id_116, null, null, null);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_116, usercompanybenefitplanoption_id_116_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(32000.0, now(), now(), 20, person_id_116, user_id_116);
+
 END;
 
 
@@ -4919,6 +6647,7 @@ DECLARE
   person_id_117 int;
   company_user_id_117 int; 
   usercompanybenefitplanoption_id_117 int;
+  usercompanybenefitplanoption_id_117_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'aubreyguillotte@fairviewhealthcare.com', 't', 'f', 'f', 'Aubrey', 'Guillotte', now(), now())
@@ -4931,6 +6660,9 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_117);
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_117);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Aubrey', '', 'Guillotte', '', 'self', '', '1990-04-12', 'F', company_id, user_id_117, '')
   RETURNING id into person_id_117;
@@ -4941,6 +6673,9 @@ BEGIN
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(20800.0, '05/08/2015', now(), now(), company_id, person_id_117, null, null, null);
 
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(21000.0, now(), now(), 20, person_id_117, user_id_117);
+
 END;
 
 
@@ -4949,6 +6684,7 @@ DECLARE
   person_id_118 int;
   company_user_id_118 int; 
   usercompanybenefitplanoption_id_118 int;
+  usercompanybenefitplanoption_id_118_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'karenfothergill@fairviewhealthcare.com', 't', 'f', 'f', 'Karen', 'Fothergill', now(), now())
@@ -4962,8 +6698,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_118)
   RETURNING id into usercompanybenefitplanoption_id_118;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_118)
+  RETURNING id into usercompanybenefitplanoption_id_118_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Karen', '', 'Fothergill', '', 'self', 'ALeCc_ieVrQuA156mpALZMV2As9wcelpbDuQfO35cJ6vQuobZBqLNr3x7oP37nMKQ77tlzQDFF8g', '1954-07-18', 'F', company_id, user_id_118, '')
+  VALUES('primary_contact', 'Karen', '', 'Fothergill', '', 'self', 'ALeCc_jQN_bcRTsf0Unz20scaPbWHKdL4Rtlqn8kR0JPzBmmLPdBm3-3coGYsFMtuM5S7mJV1yL0', '1954-07-18', 'F', company_id, user_id_118, '')
   RETURNING id into person_id_118;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -4981,6 +6721,17 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('FCH034', person_id_118, usercompanybenefitplanoption_id_118);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_118, usercompanybenefitplanoption_id_118_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(20000.0, now(), now(), 20, person_id_118, user_id_118);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_118, 0, 250.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_118);
 END;
 
 
@@ -4989,6 +6740,7 @@ DECLARE
   person_id_119 int;
   company_user_id_119 int; 
   usercompanybenefitplanoption_id_119 int;
+  usercompanybenefitplanoption_id_119_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'nicholecurran@fairviewhealthcare.com', 't', 'f', 'f', 'Nichole', 'Curran', now(), now())
@@ -5001,6 +6753,9 @@ BEGIN
   INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
   VALUES(now(), now(), 1, company_id, user_id_119);
 
+  INSERT INTO app_usercompanywaivedbenefit(created_at, updated_at, benefit_type_id, company_id, user_id)
+  VALUES(now(), now(), 2, company_id, user_id_119);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
   VALUES('primary_contact', 'Nichole', '', 'Curran', '', 'self', '', '1987-10-26', 'F', company_id, user_id_119, '')
   RETURNING id into person_id_119;
@@ -5010,6 +6765,9 @@ BEGIN
 
   INSERT INTO app_employeecompensation(annual_base_salary, effective_date, created_at, updated_at, company_id, person_id, reason_id, hourly_rate, projected_hour_per_month)
   VALUES(21060.0, '08/04/2014', now(), now(), company_id, person_id_119, null, null, null);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(22000.0, now(), now(), 20, person_id_119, user_id_119);
 
 END;
 
@@ -5021,6 +6779,7 @@ DECLARE
   family_member_id_120_1 int;
   company_user_id_120 int; 
   usercompanybenefitplanoption_id_120 int;
+  usercompanybenefitplanoption_id_120_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'tracieseidl@fairviewhealthcare.com', 't', 'f', 'f', 'Tracie', 'Seidl', now(), now())
@@ -5034,8 +6793,12 @@ BEGIN
   VALUES(now(), now(), 296, user_id_120)
   RETURNING id into usercompanybenefitplanoption_id_120;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_120)
+  RETURNING id into usercompanybenefitplanoption_id_120_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Tracie', 'M', 'Seidl', '', 'self', 'ALeCc_jf5RtD-rP_QQ0-9BdZRsjRpCHYEExlhF-d1_qPxtT_2N5Cn0Tey7YfFJLGlN1zOvQo9zM9', '1973-09-17', 'F', company_id, user_id_120, '')
+  VALUES('primary_contact', 'Tracie', 'M', 'Seidl', '', 'self', 'ALeCc_i1o5wBsi3XLBCuD98sC2MsBslCw_IRPq5d_QaQSJnN_dGqwgOUFDk37vyvAGEMiErBJSw7', '1973-09-17', 'F', company_id, user_id_120, '')
   RETURNING id into person_id_120;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -5053,8 +6816,16 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('NH22665', person_id_120, usercompanybenefitplanoption_id_120);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_120, usercompanybenefitplanoption_id_120_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(48000.0, now(), now(), 20, person_id_120, user_id_120);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_120);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Michael', '', 'Seidl', '', 'spouse', 'ALeCc_iqfAu8CwL6I6So-lFlH9ojGpZp2fQCeGWwUPsVgL4wLx6EZuq2xrjCXqyc8XLORSiCoBd6', '1973-03-29', 'M', company_id, user_id_120, '')
+  VALUES('family', 'Michael', '', 'Seidl', '', 'spouse', 'ALeCc_jZ8ttzxPInXy7ywnzqlgBPKMR1LbVHledaL2eGPUSYfMQw7W6HpZvLrlk_qlGWgllyYkCx', '1973-03-29', 'M', company_id, user_id_120, '')
   RETURNING id into family_member_id_120_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -5066,8 +6837,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('61828.0', family_member_id_120_0, usercompanybenefitplanoption_id_120);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_120_0, usercompanybenefitplanoption_id_120_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Shayne', '', 'Seidl', '', 'dependent', 'ALeCc_g5goyPy3fK3V1u48MNKtzMlE9e_q7dc23X9LPTIm4X4geb7mI0pmW_PwmwfxGrmiysiQL8', '1997-01-11', 'M', company_id, user_id_120, '')
+  VALUES('family', 'Shayne', '', 'Seidl', '', 'dependent', 'ALeCc_gQTUOXKp16gPCBJKHUX8pzICezzGio-D4Q5Ho49fsrlAupsik7MJt0bokvrghOI_Fs1WRy', '1997-01-11', 'M', company_id, user_id_120, '')
   RETURNING id into family_member_id_120_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -5079,6 +6853,9 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA18476', family_member_id_120_1, usercompanybenefitplanoption_id_120);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_120_1, usercompanybenefitplanoption_id_120_dental);
+
 END;
 
 
@@ -5087,6 +6864,7 @@ DECLARE
   person_id_121 int;
   company_user_id_121 int; 
   usercompanybenefitplanoption_id_121 int;
+  usercompanybenefitplanoption_id_121_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'rosemarysampson@fairviewhealthcare.com', 't', 'f', 'f', 'Rosemary', 'Sampson', now(), now())
@@ -5100,8 +6878,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_121)
   RETURNING id into usercompanybenefitplanoption_id_121;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_121)
+  RETURNING id into usercompanybenefitplanoption_id_121_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Rosemary', '', 'Sampson', '', 'self', 'ALeCc_gCx6N8B_HGUIl-AgpXr9w50jc9VRzw4GX91lR_599KYamljGtiGGO_Bou1jtg4n3ereara', '1962-05-02', 'F', company_id, user_id_121, '')
+  VALUES('primary_contact', 'Rosemary', '', 'Sampson', '', 'self', 'ALeCc_hYj5J4o5nPqPy1CRp4rzsr6d6ouTPEqqLkESiaals4MQcgB4LvML1GQbFS7H7hOb-_uji0', '1962-05-02', 'F', company_id, user_id_121, '')
   RETURNING id into person_id_121;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -5119,6 +6901,17 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('B73073', person_id_121, usercompanybenefitplanoption_id_121);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_121, usercompanybenefitplanoption_id_121_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(140000.0, now(), now(), 20, person_id_121, user_id_121);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(100000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_121, 3, 3, null, 100000.0, null);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_121);
 END;
 
 
@@ -5127,6 +6920,7 @@ DECLARE
   person_id_122 int;
   company_user_id_122 int; 
   usercompanybenefitplanoption_id_122 int;
+  usercompanybenefitplanoption_id_122_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'elizabethngugi@fairviewhealthcare.com', 't', 'f', 'f', 'Elizabeth', 'Ngugi', now(), now())
@@ -5140,8 +6934,12 @@ BEGIN
   VALUES(now(), now(), 294, user_id_122)
   RETURNING id into usercompanybenefitplanoption_id_122;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 300, user_id_122)
+  RETURNING id into usercompanybenefitplanoption_id_122_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Elizabeth', '', 'Ngugi', '', 'self', 'ALeCc_iSqmYh-43VeWveHTR8ZYWqnOBFj5ACl3ZDt9ZINvtIsW6OL2584yQf-4533i-bCqe47NYJ', '1973-03-05', 'F', company_id, user_id_122, '')
+  VALUES('primary_contact', 'Elizabeth', '', 'Ngugi', '', 'self', 'ALeCc_gnGbdGYyRbIZOtQ7XUO19JdHN21W2Qd8BvmL-bTmA1fBu0uWB1i10nzALaDuAXYy19pmcF', '1973-03-05', 'F', company_id, user_id_122, '')
   RETURNING id into person_id_122;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -5159,6 +6957,20 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('S51601', person_id_122, usercompanybenefitplanoption_id_122);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_122, usercompanybenefitplanoption_id_122_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(46000.0, now(), now(), 20, person_id_122, user_id_122);
+
+  INSERT INTO app_personcompsuppllifeinsuranceplan(self_elected_amount, spouse_elected_amount, child_elected_amount, self_premium_per_month, spouse_premium_per_month, child_premium_per_month, created_at, updated_at, company_supplemental_life_insurance_plan_id, person_id, self_condition_id, spouse_condition_id, child_adad_premium_per_month, self_adad_premium_per_month, spouse_adad_premium_per_month)
+  VALUES(50000.0, null, null, 0, 0, 0, now(), now(), 12, person_id_122, 3, 3, null, null, null);
+
+  INSERT INTO app_usercompanystdinsuranceplan(created_at, updated_at, company_std_insurance_id, user_id, total_premium_per_month, user_select_amount)
+  VALUES(now(), now(), 8, user_id_122, 0, 150.0);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_122);
 END;
 
 
@@ -5170,6 +6982,7 @@ DECLARE
   family_member_id_123_2 int;
   company_user_id_123 int; 
   usercompanybenefitplanoption_id_123 int;
+  usercompanybenefitplanoption_id_123_dental int;
 BEGIN
   INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)
   VALUES('pbkdf2_sha256$15000$GAyg51JDojge$maah6d3l+UgThTc9ia/19yJv2ose5hBdtfrY9x+BL8c=', now(), 'bonniedoran@fairviewhealthcare.com', 't', 'f', 'f', 'Bonnie', 'Doran', now(), now())
@@ -5183,8 +6996,12 @@ BEGIN
   VALUES(now(), now(), 296, user_id_123)
   RETURNING id into usercompanybenefitplanoption_id_123;
 
+  INSERT INTO app_usercompanybenefitplanoption(created_at, updated_at, benefit_id, user_id)
+  VALUES(now(), now(), 302, user_id_123)
+  RETURNING id into usercompanybenefitplanoption_id_123_dental;
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('primary_contact', 'Bonnie', 'L', 'Doran', '', 'self', 'ALeCc_hFMlWqOE_u_CNiRi-RQ-d_dI_M73G1OasE7BdkR5XRk5dY2h4-klUgVgxDU24JRlj4Pr3E', '1956-07-27', 'F', company_id, user_id_123, '')
+  VALUES('primary_contact', 'Bonnie', 'L', 'Doran', '', 'self', 'ALeCc_jtSfefv3Xs__IEhYPF5PUg4V6HWCg8JR5U1_JZMJBYlc_5ejRj0r3AYmHLlgZc-5SI0J1P', '1956-07-27', 'F', company_id, user_id_123, '')
   RETURNING id into person_id_123;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -5202,8 +7019,16 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA85791', person_id_123, usercompanybenefitplanoption_id_123);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', person_id_123, usercompanybenefitplanoption_id_123_dental);
+
+  INSERT INTO app_usercompanylifeinsuranceplan(insurance_amount, created_at, updated_at, company_life_insurance_id, person_id, user_id)
+  VALUES(38000.0, now(), now(), 20, person_id_123, user_id_123);
+
+  INSERT INTO app_personcompanyhraplan(created_at, updated_at, company_hra_plan_id, person_id)
+  VALUES(now(), now(), 4, person_id_123);
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Sadie', '', 'Doran', '', 'dependent', 'ALeCc_izjzyZ3vgfvIbnjB79kdVw3xQGrjOkgDQP-R7xw2Pj7drV6OtZA6Hewz50yx7l8HNGGREp', '1994-08-11', 'F', company_id, user_id_123, '')
+  VALUES('family', 'Sadie', '', 'Doran', '', 'dependent', 'ALeCc_jLjWZifz-cfbXFC4o6K3I0cst42aAxIT_ilRNuvHICl7a2WYAoMUHO4i5vT5-B89R88a2Z', '1994-08-11', 'F', company_id, user_id_123, '')
   RETURNING id into family_member_id_123_1;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -5215,8 +7040,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA85791', family_member_id_123_1, usercompanybenefitplanoption_id_123);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_123_1, usercompanybenefitplanoption_id_123_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Carly', '', 'Doran', '', 'dependent', 'ALeCc_hXqMSLYy78Sf6rtC3SN2aF4PvuvuXuq6WhJjpD5pMBHmew4iVeXBFZ8zcIGd7rIdzG_SiE', '1990-04-30', 'F', company_id, user_id_123, '')
+  VALUES('family', 'Carly', '', 'Doran', '', 'dependent', 'ALeCc_g-9NadwPUGlSOBgke0lAMav2vLcerMCGgFn7wXTgwfH3h3632aHmPaqHQeGlzQX_eLYugq', '1990-04-30', 'F', company_id, user_id_123, '')
   RETURNING id into family_member_id_123_0;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -5228,8 +7056,11 @@ BEGIN
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA85791', family_member_id_123_0, usercompanybenefitplanoption_id_123);
 
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_123_0, usercompanybenefitplanoption_id_123_dental);
+
   INSERT INTO app_person(person_type, first_name, middle_name, last_name, email, relationship, ssn, birth_date, gender, company_id, user_id, reason_for_change)
-  VALUES('family', 'Jonathan', '', 'Smith', '', 'life partner', 'ALeCc_gJCl0OBP9b_pj3SRWVDUBKTpaZFsvB8nx-cL9zZfsTJVUpO3RF0hM310Q6AYC12u-m8lOX', '1952-12-27', 'M', company_id, user_id_123, '')
+  VALUES('family', 'Jonathan', '', 'Smith', '', 'life partner', 'ALeCc_iyTidqrv4ymUuw0V4s2EUt0go_HMVfmbWff3OK3cJo90ji_bPrgxyJn4EV_y4Otdivuhh4', '1952-12-27', 'M', company_id, user_id_123, '')
   RETURNING id into family_member_id_123_2;
 
   INSERT INTO app_address(address_type, street_1, street_2, city, state, zipcode, company_id, person_id)
@@ -5240,6 +7071,9 @@ BEGIN
 
   INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
   VALUES('AA85791', family_member_id_123_2, usercompanybenefitplanoption_id_123);
+
+  INSERT INTO app_enrolled(pcp, person_id, user_company_benefit_plan_option_id)
+  VALUES('', family_member_id_123_2, usercompanybenefitplanoption_id_123_dental);
 
 END;
 

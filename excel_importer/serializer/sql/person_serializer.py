@@ -3,7 +3,8 @@ from phone_serializer import PhoneSerializer
 from employee_profile_serializer import EmployeeProfileSerializer
 from employee_compensation_serializer import EmployeeCompensationSerializer
 from ..serializer import Serializer
-from benefits.health_enrollment_serializer import HealthEnrollmentSerializer
+from benefits.medical_enrollment_serializer import MedicalEnrollmentSerializer
+from benefits.dental_enrollment_serializer import DentalEnrollmentSerializer
 
 class PersonSerializer(object):
 
@@ -25,7 +26,7 @@ class PersonSerializer(object):
 
 
     @staticmethod
-    def serialize(person, file, user_id_string, person_id_string, health_selection_id):
+    def serialize(person, file, user_id_string, person_id_string, medical_selection_id, dental_selection_id):
         if not person:
             return
 
@@ -42,5 +43,6 @@ class PersonSerializer(object):
             EmployeeProfileSerializer.serialize(person.employee_profile, file, person_id_string)
             EmployeeCompensationSerializer.serialize(person.employee_compensation, file, person_id_string)
 
-        HealthEnrollmentSerializer.serialize(person.medical_enrollment, file, person_id_string, health_selection_id)
+        MedicalEnrollmentSerializer.serialize(person.medical_enrollment, file, person_id_string, medical_selection_id)
+        DentalEnrollmentSerializer.serialize(person.dental_enrollment, file, person_id_string, dental_selection_id)
 

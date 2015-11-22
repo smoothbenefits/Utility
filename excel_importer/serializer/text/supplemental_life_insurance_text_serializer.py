@@ -2,7 +2,7 @@ class SupplementalLifeInsuranceTextSerializer(object):
     @staticmethod
     def serialize_rates(plan_rates, f):
         for condition in plan_rates.keys():
-            f.write('      {}\n'.format(condition))
+            f.write('      condition_id: {}\n'.format(condition))
             condition_rates = plan_rates[condition]
             for rate in condition_rates:
                 f.write('        age_min: {}, age_max: {}, rate: {}, benefit_reduction_percentage:{}\n'.format(rate.age_min, rate.age_max, rate.rate, rate.benefit_reduction_percentage))

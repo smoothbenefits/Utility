@@ -37,23 +37,7 @@ Supplemental Life Insurance Plan:
 id: 12, name: 'Assurant Voluntary Life',  use_employee_age_for_spouse: False
   Insurance rates:
     employee:
-      Non-Tobacco
-        age_min: None, age_max: 19, rate: 0.21, benefit_reduction_percentage:None
-        age_min: 20, age_max: 24, rate: 0.21, benefit_reduction_percentage:None
-        age_min: 25, age_max: 29, rate: 0.24, benefit_reduction_percentage:None
-        age_min: 30, age_max: 34, rate: 0.28, benefit_reduction_percentage:None
-        age_min: 35, age_max: 39, rate: 0.34, benefit_reduction_percentage:None
-        age_min: 40, age_max: 44, rate: 0.56, benefit_reduction_percentage:None
-        age_min: 45, age_max: 49, rate: 0.79, benefit_reduction_percentage:None
-        age_min: 50, age_max: 54, rate: 1.38, benefit_reduction_percentage:None
-        age_min: 55, age_max: 59, rate: 2.49, benefit_reduction_percentage:None
-        age_min: 60, age_max: 64, rate: 3.60, benefit_reduction_percentage:None
-        age_min: 65, age_max: 69, rate: 5.97, benefit_reduction_percentage:None
-        age_min: 70, age_max: 74, rate: 11.41, benefit_reduction_percentage:33.00
-        age_min: 75, age_max: 79, rate: 17.35, benefit_reduction_percentage:33.00
-        age_min: 80, age_max: 84, rate: 17.35, benefit_reduction_percentage:33.00
-        age_min: 85, age_max: None, rate: 17.35, benefit_reduction_percentage:33.00
-      Tobacco
+      condition_id: 2
         age_min: None, age_max: 19, rate: 0.31, benefit_reduction_percentage:None
         age_min: 20, age_max: 24, rate: 0.31, benefit_reduction_percentage:None
         age_min: 25, age_max: 29, rate: 0.35, benefit_reduction_percentage:None
@@ -69,8 +53,24 @@ id: 12, name: 'Assurant Voluntary Life',  use_employee_age_for_spouse: False
         age_min: 75, age_max: 79, rate: 28.89, benefit_reduction_percentage:33.00
         age_min: 80, age_max: 84, rate: 28.89, benefit_reduction_percentage:33.00
         age_min: 85, age_max: None, rate: 28.89, benefit_reduction_percentage:33.00
+      condition_id: 3
+        age_min: None, age_max: 19, rate: 0.21, benefit_reduction_percentage:None
+        age_min: 20, age_max: 24, rate: 0.21, benefit_reduction_percentage:None
+        age_min: 25, age_max: 29, rate: 0.24, benefit_reduction_percentage:None
+        age_min: 30, age_max: 34, rate: 0.28, benefit_reduction_percentage:None
+        age_min: 35, age_max: 39, rate: 0.34, benefit_reduction_percentage:None
+        age_min: 40, age_max: 44, rate: 0.56, benefit_reduction_percentage:None
+        age_min: 45, age_max: 49, rate: 0.79, benefit_reduction_percentage:None
+        age_min: 50, age_max: 54, rate: 1.38, benefit_reduction_percentage:None
+        age_min: 55, age_max: 59, rate: 2.49, benefit_reduction_percentage:None
+        age_min: 60, age_max: 64, rate: 3.60, benefit_reduction_percentage:None
+        age_min: 65, age_max: 69, rate: 5.97, benefit_reduction_percentage:None
+        age_min: 70, age_max: 74, rate: 11.41, benefit_reduction_percentage:33.00
+        age_min: 75, age_max: 79, rate: 17.35, benefit_reduction_percentage:33.00
+        age_min: 80, age_max: 84, rate: 17.35, benefit_reduction_percentage:33.00
+        age_min: 85, age_max: None, rate: 17.35, benefit_reduction_percentage:33.00
     spouse:
-      Non-Tobacco
+      condition_id: 2
         age_min: None, age_max: 19, rate: 0.24, benefit_reduction_percentage:None
         age_min: 20, age_max: 24, rate: 0.24, benefit_reduction_percentage:None
         age_min: 25, age_max: 29, rate: 0.28, benefit_reduction_percentage:None
@@ -86,7 +86,7 @@ id: 12, name: 'Assurant Voluntary Life',  use_employee_age_for_spouse: False
         age_min: 75, age_max: 79, rate: 29.87, benefit_reduction_percentage:33.00
         age_min: 80, age_max: 84, rate: 29.87, benefit_reduction_percentage:33.00
         age_min: 85, age_max: None, rate: 29.87, benefit_reduction_percentage:33.00
-      Tobacco
+      condition_id: 3
         age_min: None, age_max: 19, rate: 0.24, benefit_reduction_percentage:None
         age_min: 20, age_max: 24, rate: 0.24, benefit_reduction_percentage:None
         age_min: 25, age_max: 29, rate: 0.28, benefit_reduction_percentage:None
@@ -103,7 +103,7 @@ id: 12, name: 'Assurant Voluntary Life',  use_employee_age_for_spouse: False
         age_min: 80, age_max: 84, rate: 29.87, benefit_reduction_percentage:33.00
         age_min: 85, age_max: None, rate: 29.87, benefit_reduction_percentage:33.00
     child:
-      Unknown
+      condition_id: 1
         age_min: None, age_max: None, rate: 1.19, benefit_reduction_percentage:None
 STD Plan:
 ---------------------------------------------------------------------------
@@ -143,6 +143,10 @@ id: 13, name: 'Assurant Voluntary Long-Term Disability' elimination_period_in_mo
         age_min: 75, age_max: 79, rate: 0.1485000000
         age_min: 80, age_max: 84, rate: 0.1485000000
         age_min: 85, age_max: 200, rate: 0.1485000000
+HRA plan: 
+---------------------------------------------------------------------------
+id: 4, name: 'HRA'
+
 
 USERS:
 ---------------------------------------------------------------------
@@ -158,6 +162,7 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, E13699
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 50000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , SELINA, FLETCHER, SELINAFLETCHER@fairviewhealthcare.com
 person: , SELINA, FLETCHER, 12/11/1978, 454-91-0722, Female
@@ -196,7 +201,8 @@ Person Medical Selection No Plan: ,
 No family_members
 Medical Selection No Plan: , 
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 20000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 20000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 20000.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 20000.0, 20000.0, 09/01/2015
 ---------------------------------------------------------------------
 user: , KRISTIN, MAFFEE, KRISTINMAFFEE@fairviewhealthcare.com
 person: , KRISTIN, MAFFEE, 6/2/1959, 003-42-5534, Female
@@ -210,6 +216,7 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, E12436
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 31000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , JERENE, VEILLEUX, JERENEVEILLEUX@fairviewhealthcare.com
 person: , JERENE, VEILLEUX, 06/21/1967, 017-64-1999, Female
@@ -230,8 +237,10 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, G99011
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 55000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
+Supplemental Life Selection spouse: Assurant Voluntary Life, V SP LIF, 50000.0, 50000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 350.0, 350.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , DIANE, ZACHER, DIANEZACHER@fairviewhealthcare.com
 person: , DIANE, ZACHER, 10/03/1956, 003-52-4171, Female
@@ -259,9 +268,10 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA161866
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 47000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 100000.0, 0.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 100000.0, 0.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1600.0, 0.0, 10/01/2012
 Std Selection: Assurant Short Term Disability, V STD, 550.0, 0.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , CATHERINE, LAJOIE, CATHERINELAJOIE@fairviewhealthcare.com
 person: , CATHERINE, LAJOIE, 04/27/1974, , Female
@@ -307,9 +317,13 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 694219.0
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 125000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 250000.0, 130000.0, 12/01/2010
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 250000.0, 130000.0, 12/01/2010
+Supplemental Life Selection spouse: Assurant Voluntary Life, V SP LIF, 50000.0, 0.0, 09/01/2015
+Supplemental Life Selection child: Assurant Voluntary Life, V CH LIF, 10000.0, 10000.0, 12/01/2010
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 250000.0, 130000.0, 12/01/2010
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 3100.0, 2700.0, 10/01/2008
 Std Selection: Assurant Short Term Disability, V STD, 700.0, 700.0, 10/01/2008
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , KRISTINE, NUTTER, KRISTINENUTTER@fairviewhealthcare.com
 person: , KRISTINE, NUTTER, 04/21/1967, , Female
@@ -357,6 +371,7 @@ Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductib
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 25000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 300.0, 300.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , MAUREEN, AMADI, MAUREENAMADI@fairviewhealthcare.com
 person: , MAUREEN, AMADI, 06/27/1974, , Female
@@ -379,7 +394,7 @@ Person Medical Selection No Plan: ,
 No family_members
 Medical Selection No Plan: , 
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 19000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 20000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 20000.0, 09/01/2015
 ---------------------------------------------------------------------
 user: , DANIELLE, QUINN, DANIELLEQUINN@fairviewhealthcare.com
 person: , DANIELLE, QUINN, 06/16/1980, 003-74-5766, Female
@@ -393,8 +408,10 @@ No family_members
 Medical Selection: 65, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 2000/4000., Fairview $3000 Plan with $1000 HRA Benefit, 692614.0
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 110000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection spouse: Assurant Voluntary Life, V SP LIF, 10000.0, 0.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 600.0, 0.0, 04/01/2014
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , CAROLYN, BEAULIEU, CAROLYNBEAULIEU@fairviewhealthcare.com
 person: , CAROLYN, BEAULIEU, 08/27/1953, 027-42-8819, Female
@@ -408,8 +425,10 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, D60815
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 43000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 12/01/2010
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 12/01/2010
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 20000.0, 0.0, 12/01/2010
 Std Selection: Assurant Short Term Disability, V STD, 500.0, 0.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , CARLA, WHOLEY, CARLAWHOLEY@fairviewhealthcare.com
 person: , CARLA, WHOLEY, 06/08/1963, , Female
@@ -457,6 +476,7 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_famil
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA39509
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 17000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , DARLENE, CROSS, DARLENECROSS@fairviewhealthcare.com
 person: , DARLENE, CROSS, 05/25/1962, 111-11-1962, Female
@@ -468,6 +488,7 @@ Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce D
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 400094.0
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 21000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , CHRISTINE, CARPENTER, CHRISTINECARPENTER@fairviewhealthcare.com
 person: , CHRISTINE, CARPENTER, 05/06/1968, , Female
@@ -492,7 +513,8 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 691861.0
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 45000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 40000.0, 20000.0, 12/01/2010
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 40000.0, 20000.0, 12/01/2010
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , CARLA, WHOLEY, CARLAWHOLEY1@fairviewhealthcare.com
 person: , CARLA, WHOLEY, 02/27/1989, , Female
@@ -517,6 +539,7 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, D60815
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 25000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , MARIA, DUBE, MARIADUBE@fairviewhealthcare.com
 person: , MARIA, DUBE, 12/18/1965, 001-50-4457, Female
@@ -537,9 +560,11 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_one
 Medical Selection: 65, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 2000/4000., Fairview $3000 Plan with $1000 HRA Benefit, AA111351
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 61000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 120000.0, 120000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 120000.0, 120000.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 120000.0, 20000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 3000.0, 3000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 700.0, 700.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ROBYN, BRODY, ROBYNBRODY@fairviewhealthcare.com
 person: , ROBYN, BRODY, 02/23/1975, 130-56-3231, Female
@@ -553,9 +578,11 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA23226
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 48000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 130000.0, 130000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 130000.0, 130000.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 130000.0, 20000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 2400.0, 2400.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 550.0, 550.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , JILL, KRACKE, JILLKRACKE@fairviewhealthcare.com
 person: , JILL, KRACKE, 05/31/1989, 016-72-1445, Female
@@ -628,7 +655,11 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_famil
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, F61546
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 140000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 50000.0, 50000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 50000.0, 50000.0, 09/01/2015
+Supplemental Life Selection spouse: Assurant Voluntary Life, V SP LIF, 25000.0, 25000.0, 09/01/2015
+Supplemental Life Selection child: Assurant Voluntary Life, V CH LIF, 10000.0, 10000.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 50000.0, 50000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , LAURIE, MARSTON, LAURIEMARSTON@fairviewhealthcare.com
 person: , LAURIE, MARSTON, 01/05/1960, 001-52-9047, Female
@@ -650,6 +681,7 @@ Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductib
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 27000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 300.0, 0.0, 10/01/2011
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ALFREDO, SANTIAGO-SANCHEZ, ALFREDOSANTIAGO-SANCHEZ@fairviewhealthcare.com
 person: , ALFREDO, SANTIAGO-SANCHEZ, 04/05/1980, 079-64-2146, Male
@@ -663,7 +695,9 @@ No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA19803
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 23000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 100000.0, 20000.0, 12/01/2010
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 100000.0, 20000.0, 12/01/2010
+Supplemental Life Selection spouse: Assurant Voluntary Life, V SP LIF, 25000.0, 0.0, 12/01/2010
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 100000.0, 0.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 250.0, 0.0, 09/01/2015
 ---------------------------------------------------------------------
 user: , KAREN, TIERNEY, KARENTIERNEY@fairviewhealthcare.com
@@ -680,6 +714,7 @@ Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 48000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 2000.0, 2000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 550.0, 0.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , MICHELLE, D'AVANZO, MICHELLED'AVANZO@fairviewhealthcare.com
 person: , MICHELLE, D'AVANZO, 11/9/1967, 030-52-4690, Female
@@ -693,6 +728,7 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, C66071
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 28000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , MEGHAN, LANDRY, MEGHANLANDRY@fairviewhealthcare.com
 person: , MEGHAN, LANDRY, 11/25/1983, , Female
@@ -704,7 +740,8 @@ Person Medical Selection No Plan: ,
 No family_members
 Medical Selection No Plan: , 
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 50000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 100000.0, 100000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 500.0, 500.0, 09/01/2015
 ---------------------------------------------------------------------
 user: , AMANDA, WHITE, AMANDAWHITE@fairviewhealthcare.com
@@ -719,6 +756,7 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NA1039
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 23000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ALAN, DUPONT, ALANDUPONT@fairviewhealthcare.com
 person: , ALAN, DUPONT, 10/19/1955, , Male
@@ -745,8 +783,9 @@ No family_members
 Medical Selection: 65, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 2000/4000., Fairview $3000 Plan with $1000 HRA Higher Benefit, LH0144
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 38000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 300.0, 300.0, 10/01/2008
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , THERESA, BERRY, THERESABERRY@fairviewhealthcare.com
 person: , THERESA, BERRY, 08/01/1960, 015-56-6512, Female
@@ -762,6 +801,7 @@ Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 180000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 4500.0, 3700.0, 10/01/2008
 Std Selection: Assurant Short Term Disability, V STD, 1000.0, 1000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , RHONDA, BOUDREAU, RHONDABOUDREAU@fairviewhealthcare.com
 person: , RHONDA, BOUDREAU, 02/26/1969, 018-56-1775, Female
@@ -775,8 +815,10 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA159668
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 62000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 40000.0, 40000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 40000.0, 40000.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 40000.0, 40000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 700.0, 700.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , DEBRA, MELVILLE, DEBRAMELVILLE@fairviewhealthcare.com
 person: , DEBRA, MELVILLE, 09/18/1961, , Female
@@ -788,7 +830,8 @@ Person Medical Selection No Plan: ,
 No family_members
 Medical Selection No Plan: , 
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 113000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 20000.0, 0.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 200.0, 0.0, 09/01/2015
 ---------------------------------------------------------------------
 user: , DWAYNE, BERNARD, DWAYNEBERNARD@fairviewhealthcare.com
@@ -803,8 +846,10 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA148119
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 32000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 20000.0, 0.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 350.0, 350.0, 01/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , DAVID, DILLAVOU, DAVIDDILLAVOU@fairviewhealthcare.com
 person: , DAVID, DILLAVOU, 03/23/1986, 001-82-7490, Male
@@ -833,6 +878,7 @@ Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 126000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 2500.0, 2500.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 550.0, 0.0, 10/01/2010
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , MARTINA, HILL, MARTINAHILL@fairviewhealthcare.com
 person: , MARTINA, HILL, 06/02/1995, , Female
@@ -844,7 +890,7 @@ Person Medical Selection No Plan: ,
 No family_members
 Medical Selection No Plan: , 
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 24000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 120000.0, 120000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 120000.0, 120000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 800.0, 800.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 200.0, 200.0, 09/01/2015
 ---------------------------------------------------------------------
@@ -889,6 +935,7 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA280977
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 10/12/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 136000.0, 09/20/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , DONGPHUONG, NGUYEN, DONGPHUONGNGUYEN@fairviewhealthcare.com
 person: , DONGPHUONG, NGUYEN, 08/14/1982, 002-98-9585, Female
@@ -923,6 +970,7 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_famil
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH032
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 46000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ROSELYNN, BENARD, ROSELYNNBENARD@fairviewhealthcare.com
 person: , ROSELYNN, BENARD, 02/11/1972, 003-78-0456, Female
@@ -943,8 +991,10 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, NH1759
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 32000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 30000.0, 0.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 30000.0, 0.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 30000.0, 0.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1300.0, 1300.0, 10/01/2008
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , IRENE, GILLEN, IRENEGILLEN@fairviewhealthcare.com
 person: , IRENE, GILLEN, 12/29/1964, 034-52-5358, Female
@@ -965,6 +1015,7 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, PRK003
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 10/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 55000.0, 10/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , RICHARD, LEBOEUF, RICHARDLEBOEUF@fairviewhealthcare.com
 person: , RICHARD, LEBOEUF, 01/14/1967, 014-42-2842, Male
@@ -1008,6 +1059,7 @@ Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 225000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 5000.0, 5000.0, 10/01/2008
 Std Selection: Assurant Short Term Disability, V STD, 1000.0, 1000.0, 10/01/2008
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , KATHERINE, CONWAY, KATHERINECONWAY@fairviewhealthcare.com
 person: , KATHERINE, CONWAY, 06/19/1992, 007-92-6398, Female
@@ -1021,7 +1073,8 @@ No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, HV0047
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 21000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 100000.0, 100000.0, 09/01/2015
 ---------------------------------------------------------------------
 user: , ROBERT, MACKAY, ROBERTMACKAY@fairviewhealthcare.com
 person: , ROBERT, MACKAY, 01/27/1956, , Male
@@ -1053,6 +1106,7 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA138066
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 48000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , KYLE, SARGENT, KYLESARGENT@fairviewhealthcare.com
 person: , KYLE, SARGENT, 08/07/1991, , Male
@@ -1064,7 +1118,8 @@ Person Medical Selection No Plan: ,
 No family_members
 Medical Selection No Plan: , 
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 18000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 20000.0, 0.0, 09/01/2015
 ---------------------------------------------------------------------
 user: , JESSICA, MORRELL, JESSICAMORRELL@fairviewhealthcare.com
 person: , JESSICA, MORRELL, 01/02/1987, 015-68-4490, Female
@@ -1138,6 +1193,7 @@ Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductib
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 46000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 550.0, 550.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , DARIUS, TAVALLAI, DARIUSTAVALLAI@fairviewhealthcare.com
 person: , DARIUS, TAVALLAI, 07/22/1989, , Male
@@ -1164,9 +1220,10 @@ No family_members
 Medical Selection: 65, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 2000/4000., Fairview $3000 Plan with $1000 HRA Benefit, G70568
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 28000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1400.0, 1400.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 300.0, 300.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , SHANNON, O'HEARN, SHANNONO'HEARN@fairviewhealthcare.com
 person: , SHANNON, O'HEARN, 12/02/1977, 018-58-4447, Female
@@ -1180,6 +1237,7 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 65085.0
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 59000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ARELIOUS, THOMAS, ARELIOUSTHOMAS@fairviewhealthcare.com
 person: , ARELIOUS, THOMAS, 11/18/1952, 034-46-7794, Male
@@ -1193,6 +1251,7 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1696
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 29000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ALETHEA, HOCH, ALETHEAHOCH@fairviewhealthcare.com
 person: , ALETHEA, HOCH, 06/26/1954, 034-44-3289, Female
@@ -1208,6 +1267,7 @@ Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 139000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 2000.0, 0.0, 10/01/2011
 Std Selection: Assurant Short Term Disability, V STD, 800.0, 0.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , BRENDA, MARQUIS, BRENDAMARQUIS@fairviewhealthcare.com
 person: , BRENDA, MARQUIS, 12/16/1953, 001-46-5004, Female
@@ -1223,6 +1283,7 @@ Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 29000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1300.0, 1300.0, 10/01/2008
 Std Selection: Assurant Short Term Disability, V STD, 300.0, 300.0, 10/01/2008
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , MELANIE, PERRY, MELANIEPERRY@fairviewhealthcare.com
 person: , MELANIE, PERRY, 11/09/1976, , Female
@@ -1245,7 +1306,8 @@ Person Medical Selection No Plan: ,
 No family_members
 Medical Selection No Plan: , 
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 42000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 100000.0, 20000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 100000.0, 20000.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 100000.0, 20000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1000.0, 1000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 350.0, 350.0, 09/01/2015
 ---------------------------------------------------------------------
@@ -1298,9 +1360,12 @@ No family_members
 Medical Selection: 65, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 2000/4000., Fairview $3000 Plan with $1000 HRA  Higher Benefit, AA128700
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 26000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 50000.0, 50000.0, 12/01/2010
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 50000.0, 50000.0, 12/01/2010
+Supplemental Life Selection spouse: Assurant Voluntary Life, V SP LIF, 25000.0, 0.0, 12/01/2010
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 50000.0, 50000.0, 12/01/2010
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1000.0, 1000.0, 10/01/2008
 Std Selection: Assurant Short Term Disability, V STD, 300.0, 300.0, 10/01/2008
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , MARY, SCAFIDI, MARYSCAFIDI@fairviewhealthcare.com
 person: , MARY, SCAFIDI, 01/18/1959, 016-52-3528, Female
@@ -1314,7 +1379,9 @@ No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, H59937
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 21000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection spouse: Assurant Voluntary Life, V SP LIF, 10000.0, 0.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 20000.0, 0.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 250.0, 0.0, 06/01/2014
 ---------------------------------------------------------------------
 user: , BRUNILDA, MEJIA, BRUNILDAMEJIA@fairviewhealthcare.com
@@ -1353,6 +1420,7 @@ Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce D
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA280862
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 22000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , CHARLOTTE, LAVOIE, CHARLOTTELAVOIE@fairviewhealthcare.com
 person: , CHARLOTTE, LAVOIE, 09/02/1955, 001-46-5292, Female
@@ -1380,6 +1448,7 @@ Person Dental Enrollment: 69, Assurant Dental PPO, V EE DEN, individual_plus_fam
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, 714980.0
 Dental Selection: Assurant Dental PPO, V EE DEN, 0.0, 0.0, 09/01/2010
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 45000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , CLARETTA, MALIN, CLARETTAMALIN@fairviewhealthcare.com
 person: , CLARETTA, MALIN, 07/21/1953, 400-82-8193, Female
@@ -1393,8 +1462,10 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA333498
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 77000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 20000.0, 06/01/2011
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 20000.0, 06/01/2011
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 20000.0, 20000.0, 06/01/2011
 Std Selection: Assurant Short Term Disability, V STD, 200.0, 0.0, 06/01/2011
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , CONRAD, DUPONT, CONRADDUPONT@fairviewhealthcare.com
 person: , CONRAD, DUPONT, 12/10/1962, 001-60-7377, Male
@@ -1406,6 +1477,7 @@ Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce D
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA272739
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 27000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , LASHANDRA, LONG, LASHANDRALONG@fairviewhealthcare.com
 person: , LASHANDRA, LONG, 06/19/1977, , Female
@@ -1419,7 +1491,8 @@ No family_members
 Medical Selection No Plan: , 
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 22000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 40000.0, 40000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 40000.0, 40000.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 40000.0, 40000.0, 09/01/2015
 ---------------------------------------------------------------------
 user: , JILL, FAVEREAU, JILLFAVEREAU@fairviewhealthcare.com
 person: , JILL, FAVEREAU, 07/03/1972, 003-72-0122, Female
@@ -1455,6 +1528,7 @@ Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductib
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 117000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 550.0, 0.0, 10/01/2011
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , MARIANNE, CLAUSS, MARIANNECLAUSS@fairviewhealthcare.com
 person: , MARIANNE, CLAUSS, 05/04/1966, 049-72-3781, Female
@@ -1468,6 +1542,7 @@ No family_members
 Medical Selection: 65, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 2000/4000., Fairview $3000 Plan with $1000 HRA Higher Benefit, AA128700
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 44000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , DENISE, PARADISE, DENISEPARADISE@fairviewhealthcare.com
 person: , DENISE, PARADISE, 05/11/1972, , Female
@@ -1481,7 +1556,8 @@ No family_members
 Medical Selection No Plan: , 
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 186000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 250000.0, 30000.0, 12/01/2010
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 250000.0, 30000.0, 12/01/2010
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 250000.0, 0.0, 12/01/2010
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 4600.0, 3600.0, 10/01/2008
 Std Selection: Assurant Short Term Disability, V STD, 1000.0, 1000.0, 10/01/2008
 ---------------------------------------------------------------------
@@ -1503,9 +1579,11 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_one
 Medical Selection: 65, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 2000/4000., Fairview $3000 Plan with $1000 HRA Benefit, AA85794
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 140000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 12/01/2010
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 12/01/2010
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 20000.0, 0.0, 12/01/2010
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1500.0, 0.0, 10/01/2008
 Std Selection: Assurant Short Term Disability, V STD, 750.0, 0.0, 10/01/2008
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , KALI, LAMSON, KALILAMSON@fairviewhealthcare.com
 person: , KALI, LAMSON, 08/01/1987, , Female
@@ -1540,6 +1618,7 @@ Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce D
 No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, FCH034
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 21000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ELEANOR, KNOWLTON, ELEANORKNOWLTON@fairviewhealthcare.com
 person: , ELEANOR, KNOWLTON, 02/09/1956, 004-60-1049, Female
@@ -1553,7 +1632,7 @@ No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA125738
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 20000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 20000.0, 0.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1000.0, 0.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 200.0, 0.0, 09/01/2015
 ---------------------------------------------------------------------
@@ -1590,6 +1669,7 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_famil
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA1031
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 10/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 59000.0, 10/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , CATHY, RILEY, CATHYRILEY@fairviewhealthcare.com
 person: , CATHY, RILEY, 02/22/1959, 003-54-4289, Female
@@ -1607,6 +1687,7 @@ compensation: , , , ,
 Person Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA275111, individual_plus_one
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA275111
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 21000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ROBERTA, CARRIGG, ROBERTACARRIGG@fairviewhealthcare.com
 person: , ROBERTA, CARRIGG, 03/07/1958, 022-44-8535, Female
@@ -1622,6 +1703,7 @@ Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 28000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1400.0, 0.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 300.0, 0.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ANN, PLOURDE, ANNPLOURDE@fairviewhealthcare.com
 person: , ANN, PLOURDE, 07/27/1964, , Female
@@ -1635,7 +1717,9 @@ No family_members
 Medical Selection No Plan: , 
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 153000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 250000.0, 0.0, 12/01/2010
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 250000.0, 0.0, 12/01/2010
+Supplemental Life Selection child: Assurant Voluntary Life, V CH LIF, 10000.0, 0.0, 12/01/2010
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 250000.0, 0.0, 12/01/2010
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 3700.0, 0.0, 10/01/2010
 Std Selection: Assurant Short Term Disability, V STD, 850.0, 0.0, 10/01/2010
 ---------------------------------------------------------------------
@@ -1651,6 +1735,7 @@ Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductib
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 40000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1900.0, 0.0, 10/01/2008
 Std Selection: Assurant Short Term Disability, V STD, 400.0, 0.0, 10/01/2008
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , SARAH, ST JOHN, SARAHST_JOHN@fairviewhealthcare.com
 person: , SARAH, ST JOHN, 04/19/1986, , Female
@@ -1675,6 +1760,7 @@ No family_members
 Medical Selection: 65, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 2000/4000., Fairview $3000 Plan with $1000 HRA Benefit, AA52384
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 21000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ROSE, FOURNIER, ROSEFOURNIER@fairviewhealthcare.com
 person: , ROSE, FOURNIER, 04/05/1962, , Female
@@ -1713,7 +1799,7 @@ Person Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairv
 No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA123876
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 22000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 30000.0, 30000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 30000.0, 30000.0, 09/01/2015
 ---------------------------------------------------------------------
 user: , JANET, MAXFIELD, JANETMAXFIELD@fairviewhealthcare.com
 person: , JANET, MAXFIELD, 08/26/1964, 001-62-9973, Female
@@ -1729,6 +1815,7 @@ Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 32000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1600.0, 1600.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 350.0, 350.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , CHRISTOPHER, GRENIER, CHRISTOPHERGRENIER@fairviewhealthcare.com
 person: , CHRISTOPHER, GRENIER, 08/20/1989, , Male
@@ -1774,6 +1861,7 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_famil
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA12613
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 21000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ANNA, GELINAS, ANNAGELINAS@fairviewhealthcare.com
 person: , ANNA, GELINAS, 10/03/1972, 003-56-2833, Female
@@ -1789,6 +1877,7 @@ Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 38000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1900.0, 0.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 450.0, 0.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , HOLLY, MATTHEW, HOLLYMATTHEW@fairviewhealthcare.com
 person: , HOLLY, MATTHEW, 05/20/1971, 001-54-8691, Female
@@ -1826,6 +1915,7 @@ Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 130000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 2000.0, 2000.0, 10/01/2010
 Std Selection: Assurant Short Term Disability, V STD, 500.0, 500.0, 10/01/2010
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ELIZABETH, FAHEY, ELIZABETHFAHEY@fairviewhealthcare.com
 person: , ELIZABETH, FAHEY, 10/28/1954, 025-46-3064, Female
@@ -1848,6 +1938,7 @@ Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 25000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1200.0, 0.0, 10/01/2008
 Std Selection: Assurant Short Term Disability, V STD, 300.0, 0.0, 10/01/2012
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , THERESA, CRONIN, THERESACRONIN@fairviewhealthcare.com
 person: , THERESA, CRONIN, 12/05/1949, 010-42-7670, Female
@@ -1890,7 +1981,9 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_one
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, FCH031
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 25000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
+Supplemental Life Selection child: Assurant Voluntary Life, V CH LIF, 10000.0, 10000.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 100000.0, 100000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 1200.0, 1200.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 300.0, 300.0, 09/01/2015
 ---------------------------------------------------------------------
@@ -1906,9 +1999,11 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA145464
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 25000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 40000.0, 0.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 40000.0, 0.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 40000.0, 0.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 800.0, 0.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 200.0, 0.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , JESSICA, SMITH, JESSICASMITH@fairviewhealthcare.com
 person: , JESSICA, SMITH, 05/31/1988, 002-76-1102, Female
@@ -1922,7 +2017,7 @@ No family_members
 Medical Selection: 66, Harvard Pilgrim HMO $5000 Deductible NO HRA, Fairview $5000 Plan, AA95114
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 17000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 90000.0, 20000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 90000.0, 20000.0, 09/01/2015
 Ltd Selection: Assurant Voluntary Long-Term Disability, V LTD, 800.0, 800.0, 09/01/2015
 ---------------------------------------------------------------------
 user: , SHELLY, BEAUCAGE, SHELLYBEAUCAGE@fairviewhealthcare.com
@@ -1959,6 +2054,7 @@ Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductib
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 41000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 500.0, 0.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , CRISTIANE, CHATFIELD, CRISTIANECHATFIELD@fairviewhealthcare.com
 person: , CRISTIANE, CHATFIELD, 09/10/1973, , Female
@@ -1995,6 +2091,7 @@ Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductib
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 23000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 250.0, 250.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , AMANDA, GLAZIER, AMANDAGLAZIER@fairviewhealthcare.com
 person: , AMANDA, GLAZIER, 10/22/1978, , Female
@@ -2033,6 +2130,7 @@ Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductib
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 20000.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 250.0, 250.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , NICHOLE, CURRAN, NICHOLECURRAN@fairviewhealthcare.com
 person: , NICHOLE, CURRAN, 10/26/1987, , Female
@@ -2071,6 +2169,7 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_famil
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA18476
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 48000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ROSEMARY, SAMPSON, ROSEMARYSAMPSON@fairviewhealthcare.com
 person: , ROSEMARY, SAMPSON, 05/02/1962, 023-54-5133, Female
@@ -2084,7 +2183,9 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, B73073
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 140000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 100000.0, 100000.0, 09/01/2015
+Supplemental Life Selection ADD: Assurant Voluntary Life, V EE ADD, 100000.0, 100000.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , ELIZABETH, NGUGI, ELIZABETHNGUGI@fairviewhealthcare.com
 person: , ELIZABETH, NGUGI, 03/05/1973, 206-76-8506, Female
@@ -2098,8 +2199,9 @@ No family_members
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, S51601
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 46000.0, 09/01/2015
-Supplemental Life Selection: Assurant Voluntary Life, V EE LIF, 50000.0, 0.0, 09/01/2015
+Supplemental Life Selection self: Assurant Voluntary Life, V EE LIF, 50000.0, 0.0, 09/01/2015
 Std Selection: Assurant Short Term Disability, V STD, 150.0, 0.0, 09/01/2015
+HRA Selection: 4, HRA
 ---------------------------------------------------------------------
 user: , BONNIE, DORAN, BONNIEDORAN@fairviewhealthcare.com
 person: , BONNIE, DORAN, 07/27/1956, 049-54-4146, Female
@@ -2134,3 +2236,4 @@ Person Dental Enrollment: 69, Assurant Dental PPO, DEN-EE, individual_plus_famil
 Medical Selection: 67, Harvard Pilgrim HMO $3000/$9000 w/ HRA to reduce Deductible to 1000/3000, Fairview $3000 Plan with $1000 HRA, AA85791
 Dental Selection: Assurant Dental PPO, DEN-EE, 0.0, 0.0, 09/01/2015
 Basic Life Selection: Assurant Basic Life and AD&D, EE LIF, 0.0, 38000.0, 09/01/2015
+HRA Selection: 4, HRA

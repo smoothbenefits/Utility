@@ -2,6 +2,7 @@ from basic_life_insurance_text_serializer import BasicLifeInsuranceTextSerialize
 from supplemental_life_insurance_text_serializer import SupplementalLifeInsuranceTextSerializer
 from std_plan_text_serializer import StdPlanTextSerializer
 from ltd_plan_text_serializer import LtdPlanTextSerializer
+from hra_plan_text_serializer import HraPlanTextSerializer
 
 class CompanyBenefitsTextSerializer(object):
     @staticmethod
@@ -52,3 +53,7 @@ class CompanyBenefitsTextSerializer(object):
             f.write("---------------------------------------------------------------------------\n")
             LtdPlanTextSerializer.serialize(benefits.ltd_plan, f)
 
+        if benefits.hra_plan:
+            f.write("HRA plan: \n")
+            f.write("---------------------------------------------------------------------------\n")
+            HraPlanTextSerializer.serialize(benefits.hra_plan, f)
