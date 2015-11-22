@@ -30,7 +30,7 @@ Dentals:
 
 Basic Life Insurance Plan:
 ---------------------------------------------------------------------------
-id: 20, name: 'Assurant Basic Life and AD&D',  total_cost_per_period: 6.95, employee_cost_per_period: 0E-10, salary_multiplier:1
+id: 17, name: 'Assurant Basic Life and AD&D',  total_cost_per_period: 6.95, employee_cost_per_period: 0E-10, salary_multiplier:1
 
 Supplemental Life Insurance Plan:
 ---------------------------------------------------------------------------
@@ -126,7 +126,7 @@ id: 8, name: 'Assurant Short Term Disability' elimination_period_in_days: 14, du
         age_min: 85, age_max: 200, rate: 0.3185000000
 LTD Plan:
 ---------------------------------------------------------------------------
-id: 13, name: 'Assurant Voluntary Long-Term Disability' elimination_period_in_months: 3, duration_in_years: 24, percentage_of_salary: 60.00, max_benefit_monthly: 5000.00, employer_contribution_percentage: 0.00, paid_by: None, user_amount_required: True, benefit_amount_step: 100.0000
+id: 10, name: 'Assurant Voluntary Long-Term Disability' elimination_period_in_months: 3, duration_in_years: 24, percentage_of_salary: 60.00, max_benefit_monthly: 5000.00, employer_contribution_percentage: 0.00, paid_by: None, user_amount_required: True, benefit_amount_step: 100.0000
   Age based rates:
         age_min: -1, age_max: 19, rate: 0.0186000000
         age_min: 20, age_max: 24, rate: 0.0186000000

@@ -7,7 +7,7 @@ class BasicLifeInsuranceRepository(Repository):
         self.company_id = company_id
 
     def _get_sql_string(self):
-        return """select lp.id,
+        return """select csp.id,
                     lp.name, 
                     csp.total_cost_per_period,
                     csp.employee_cost_per_period,

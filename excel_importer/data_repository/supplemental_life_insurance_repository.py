@@ -7,7 +7,7 @@ class SupplementalLifeInsuranceRepository(Repository):
         self.company_id = company_id
 
     def _get_sql_string(self):
-        return """select sp.id,
+        return """select csp.id,
                     sp.name, 
                     sp.use_employee_age_for_spouse,
                     sr.age_min,

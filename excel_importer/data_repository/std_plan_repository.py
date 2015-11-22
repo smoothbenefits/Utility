@@ -7,7 +7,7 @@ class StdPlanRepository(Repository):
         self.company_id = company_id
 
     def _get_sql_string(self):
-        return """select sp.id,
+        return """select csp.id,
                     sp.name, 
                     csp.elimination_period_in_days,
                     csp.duration,

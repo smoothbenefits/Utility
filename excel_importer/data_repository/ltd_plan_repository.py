@@ -7,7 +7,7 @@ class LtdPlanRepository(Repository):
         self.company_id = company_id
 
     def _get_sql_string(self):
-        return """select lp.id,
+        return """select clp.id,
                     lp.name, 
                     clp.elimination_period_in_months,
                     clp.duration,

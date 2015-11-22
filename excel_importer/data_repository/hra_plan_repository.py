@@ -7,7 +7,7 @@ class HraPlanRepository(Repository):
         self.company_id = company_id
 
     def _get_sql_string(self):
-        return '''select hp.id, 
+        return '''select ch.id, 
                     hp.name 
                     from app_companyhraplan ch 
                     join app_hraplan hp on hp.id = ch.hra_plan_id 
