@@ -34,14 +34,14 @@ If you have the db component, run the command below
 Repeat the steps in "Testing" section above starting from step 2 
 
 ## Code structure:
-* The excel_importer have the following group of objects:
-** model - These objects are the in memory models of the data parsed and retrieved.
-** parser - These objects are the excel reader that would translate all the excel data into model data
-** data_repository - These objects reads the needed data from BenefitMy_Python app database for company level data
-** serializer - These objects takes the models and output the data within models to which ever serialization format needed. Current we have text and sql (PL/pgSQL)
-** Company_benefits_provider - the main engine to read all the data from existing db and populate model
-** import_excel - The main program
-** users_db_data_provider - The engine to retrive and populate the company user data model from database
-** users_excel_data_provider - The engine to retrieve data from excel for company user data model
-* Please note with in the model and parser, there are company specific model and parser like model.benefits.assurant_benefit_selection and assurant_benefit_selection_parser.
+The excel_importer have the following group of objects:
+* model - These objects are the in memory models of the data parsed and retrieved.
+* parser - These objects are the excel reader that would translate all the excel data into model data
+* data_repository - These objects reads the needed data from BenefitMy_Python app database for company level data
+* serializer - These objects takes the models and output the data within models to which ever serialization format needed. Current we have text and sql (PL/pgSQL)
+* Company_benefits_provider - the main engine to read all the data from existing db and populate model
+* import_excel - The main program
+* users_db_data_provider - The engine to retrive and populate the company user data model from database
+* users_excel_data_provider - The engine to retrieve data from excel for company user data model
+Please note with in the model and parser, there are company specific model and parser like model.benefits.assurant_benefit_selection and assurant_benefit_selection_parser.
 
