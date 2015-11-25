@@ -4,3 +4,8 @@ class CompanyBenefits(object):
         self.medicals = None
         self.dentals = None
         self.visions = None
+        self.basic_life_insurance = None
+        self.supplemental_life_insurance = None
+        self.std_plan = None
+        self.ltd_plan = None
+        self.hra_plan = None

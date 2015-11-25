@@ -1,4 +1,9 @@
 from data_repository.health_plan_repository import HealthPlanRepository
+from data_repository.supplemental_life_insurance_repository import SupplementalLifeInsuranceRepository
+from data_repository.std_plan_repository import StdPlanRepository
+from data_repository.ltd_plan_repository import LtdPlanRepository
+from data_repository.basic_life_insurance_repository import BasicLifeInsuranceRepository
+from data_repository.hra_plan_repository import HraPlanRepository
 import psycopg2
 
 class CompanyBenefitsProvider(object):
@@ -15,4 +20,15 @@ class CompanyBenefitsProvider(object):
         comp_benefits.medicals = types.get('Medical', None)
         comp_benefits.dentals = types.get('Dental', None)
         comp_benefits.visions = types.get('Vision', None)
+
+        basic_repo = BasicLifeInsuranceRepository(cur, self.company_id)
+        comp_benefits.basic_life_insurance = basic_repo.get_model()
+        suppl_repo = SupplementalLifeInsuranceRepository(cur, self.company_id)
+        comp_benefits.supplemental_life_insurance = suppl_repo.get_model()
+        std_repo = StdPlanRepository(cur, self.company_id)
+        comp_benefits.std_plan = std_repo.get_model()
+        ltd_repo = LtdPlanRepository(cur, self.company_id)
+        comp_benefits.ltd_plan = ltd_repo.get_model()
+        hra_repo = HraPlanRepository(cur, self.company_id)
+        comp_benefits.hra_plan = hra_repo.get_model()
 

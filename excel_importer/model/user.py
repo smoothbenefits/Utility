@@ -10,3 +10,9 @@ class User(Base):
         self.person = None
         self.id = ""
         self.medical_selection = None
+        self.dental_selection = None
+        self.basic_life_selection = None
+        self.supplemental_life_selection = {'self':None, 'spouse':None, 'child':None, 'ADD':None}
+        self.ltd_selection = None
+        self.std_selection = None
+        self.hra_selection = None
