@@ -7,7 +7,7 @@ class EmployeeProfileRepository(Repository):
         self.person_id = person_id
 
     def _get_sql_string(self):
-        return 'select id, job_title, annual_base_salary, start_date, employment_type, employment_status, benefit_start_date from app_employeeprofile where person_id=\'{}\''.format(self.person_id)
+        return 'select id, job_title, annual_base_salary, start_date, employment_type, employment_status, benefit_start_date, person_id, company_id from app_employeeprofile where person_id=\'{}\''.format(self.person_id)
 
     def _get_model_populated_with_data(self, data):
         if not data:
@@ -22,6 +22,8 @@ class EmployeeProfileRepository(Repository):
             cur_profile.employment_type = row[4]
             cur_profile.employment_status = row[5]
             cur_profile.benefit_start_date = row[6]
+            cur_profile.person_id = row[7]
+            cur_profile.company_id = row[8]
             return cur_profile
         else:
             return None
