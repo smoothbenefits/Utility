@@ -3,6 +3,7 @@ import datetime
 
 DAYS_A_YEAR = 365
 START_DATE = datetime.date(2016, 1, 1)
+DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S'
 
 class AccrualSpec(object):
 
@@ -11,7 +12,11 @@ class AccrualSpec(object):
         self.accruedHours = accrued_hours
 
     def to_json_string(self):
-        obj = {'accrualFrequency': self.accrualFrequency, 'accruedHours': self.accruedHours}
+        obj = {
+                'accrualFrequency': self.accrualFrequency,
+                'accruedHours': self.accruedHours,
+                'lastAccrualTimestamp': datetime.datetime.now().strftime(DATETIME_FORMAT)
+              }
         return json.dumps(obj)
 
 class QuotaInfoCollectionEntry(object):
@@ -34,7 +39,10 @@ class QuotaInfoCollectionEntry(object):
 
 class TimeOffQuota(object):
 
-    def __init__(self, timeoff_type, person_id, target_hours, accrual_frequency):
+    def __init__(self, timeoff_type, person_id, company_id, target_hours, accrual_frequency):
+
+        self.createdTimeStamp = datetime.datetime.now()
+        self.modifiedTimestamp = datetime.datetime.now()
 
         # Assume accrued time is 0 at the beginning of this year
         days_diff = (datetime.date.today() - START_DATE).days
@@ -42,11 +50,15 @@ class TimeOffQuota(object):
         self.target_hours = target_hours
 
         self.personDescriptor = person_id
+        self.companyDescriptor = company_id
         self.quotaInfoCollection = QuotaInfoCollectionEntry(timeoff_type, target_hours, accrual_frequency, self.accrued_time)
 
     def to_json_string(self):
         obj = {
                   "personDescriptor": self.personDescriptor,
+                  "companyDescriptor": self.companyDescriptor,
+                  "createdTimeStamp": self.createdTimeStamp.strftime(DATETIME_FORMAT),
+                  "modifiedTimestamp": self.modifiedTimestamp.strftime(DATETIME_FORMAT),
                   "quotaInfoCollection": self.quotaInfoCollection.to_json_string()
               }
         return json.dumps(obj).replace('\\', '').replace('"{', "{").replace('}"', '}')
