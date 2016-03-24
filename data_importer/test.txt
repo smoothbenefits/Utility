@@ -1,4 +1,0 @@
-{"personDescriptor": "development_BMHT_4_8e37f27ce2220e875bfb0b9815df0b0d", "quotaInfoCollection": {"timeoffType": "PTO", "annualTargetHours": 80, "accrualSpecs": {"accruedHours": 0.0, "accrualFrequency": "Monthly"}, "bankedHours": 0.0}}
-{"personDescriptor": "development_BMHT_4_8e37f27ce2220e875bfb0b9815df0b0d", "quotaInfoCollection": {"timeoffType": "SickTime", "annualTargetHours": 20, "accrualSpecs": {"accruedHours": 0.0, "accrualFrequency": "Monthly"}, "bankedHours": 0.0}}
-{"personDescriptor": "development_BMHT_3_babf7c42f76af6f81486d76ff6e33505", "quotaInfoCollection": {"timeoffType": "PTO", "annualTargetHours": 80, "accrualSpecs": {"accruedHours": 0.0, "accrualFrequency": "Monthly"}, "bankedHours": 0.0}}
-{"personDescriptor": "development_BMHT_3_babf7c42f76af6f81486d76ff6e33505", "quotaInfoCollection": {"timeoffType": "SickTime", "annualTargetHours": 20, "accrualSpecs": {"accruedHours": 0.0, "accrualFrequency": "Monthly"}, "bankedHours": 0.0}}
