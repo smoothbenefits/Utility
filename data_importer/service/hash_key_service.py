@@ -1,3 +1,8 @@
+###
+#
+# This is a direct copy of the hash key service in BenefitMY_Python repository
+#
+###
 import re
 from hashlib import md5
 

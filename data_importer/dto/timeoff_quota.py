@@ -1,7 +1,7 @@
 import json
 import datetime
 
-DAYS_A_YEAR = 365
+DAYS_A_YEAR = 365.0
 START_DATE = datetime.date(2016, 1, 1)
 DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S'
 
@@ -13,9 +13,9 @@ class AccrualSpec(object):
 
     def to_json_string(self):
         obj = {
-                'accrualFrequency': self.accrualFrequency,
-                'accruedHours': self.accruedHours,
-                'lastAccrualTimestamp': datetime.datetime.now().strftime(DATETIME_FORMAT)
+                  'accrualFrequency': self.accrualFrequency,
+                  'accruedHours': self.accruedHours,
+                  'lastAccrualTimestamp': datetime.datetime.now().strftime(DATETIME_FORMAT)
               }
         return json.dumps(obj)
 
@@ -61,4 +61,7 @@ class TimeOffQuota(object):
                   "modifiedTimestamp": self.modifiedTimestamp.strftime(DATETIME_FORMAT),
                   "quotaInfoCollection": self.quotaInfoCollection.to_json_string()
               }
+
+        # Replace additional escape characters and quetos, resulting from multi-layer serialization
+        # For the purpose of this script, this replacement should be enough
         return json.dumps(obj).replace('\\', '').replace('"{', "{").replace('}"', '}')

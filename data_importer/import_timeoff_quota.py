@@ -6,7 +6,9 @@ import urlparse
 from dto.employee_time_off import Employee
 from serializer.mongodb.timeoff_quota_serializer import TimeOffQuotaSerializer
 from data_repository.employee_profile_company_repository import EmployeeProfileCompanyRepository
-
+#
+# Company settings defined below
+#
 PTO_TIMEOFF = 'PTO'
 FULLTIME_QUOTA = 80
 PARTTIME_QUOTA = 20
@@ -17,6 +19,9 @@ SICKDAY_QUOTA = 20
 FULLTIME = 'FullTime'
 PARTIME = 'PartTime'
 ACCRUAL_FREQUENCY = 'Monthly'
+#
+# Company settings defined above
+#
 
 urlparse.uses_netloc.append("postgres")
 url = urlparse.urlparse(os.environ["DATABASE_URL"])
@@ -30,6 +35,8 @@ conn = psycopg2.connect(
 )
 
 def usage():
+    print "STEP 0:"
+    print "  Make sure company settings are set correctly inside import_timeoff_quota.py file\n"
     print "Set DATABASE_URL environment variable for Heroku Postgres connection: "
     print "  $ DATABASE_URL=$(heroku config:get DATABASE_URL -a [APP_NAME])\n"
     print "Run script only after DATABASE_URL has been set:"
@@ -55,6 +62,7 @@ def main(argv):
             employeeDto = Employee(employee.person_id, employee.company_id, employee.employment_type, environment)
 
             # Get PTO quota
+            pto_target = 0
             if employee.employment_type == FULLTIME:
                 pto_target = FULLTIME_QUOTA
             elif employee.employment_type == PARTIME:
