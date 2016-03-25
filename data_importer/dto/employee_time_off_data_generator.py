@@ -2,7 +2,7 @@ import datetime
 from service.hash_key_service import HashKeyService
 from timeoff_quota import TimeOffQuota
 
-class Employee(object):
+class EmployeeTimeOffDataGenerator(object):
 
     def __init__(self, person_id, company_id, employment_type, environment):
         self.person_id = person_id

@@ -3,7 +3,7 @@ import os
 import sys
 import psycopg2
 import urlparse
-from dto.employee_time_off import Employee
+from dto.employee_time_off_data_generator import EmployeeTimeOffDataGenerator
 from serializer.mongodb.timeoff_quota_serializer import TimeOffQuotaSerializer
 from data_repository.employee_profile_company_repository import EmployeeProfileCompanyRepository
 #
@@ -54,12 +54,20 @@ def main(argv):
         company_id = argv[0]
         environment = argv[1]
         output_file = argv[2]
-        repository = EmployeeProfileCompanyRepository(cursor, company_id)
 
+        # Use data repository to retrieve raw data from database
+        repository = EmployeeProfileCompanyRepository(cursor, company_id)
         data = repository.get_model()
+
+        # Map database model to DTO objects for time off quota calculation
         dtos = []
         for employee in data:
-            employeeDto = Employee(employee.person_id, employee.company_id, employee.employment_type, environment)
+            employeeDto = EmployeeTimeOffDataGenerator(
+                              employee.person_id,
+                              employee.company_id,
+                              employee.employment_type,
+                              environment
+                          )
 
             # Get PTO quota
             pto_target = 0
@@ -74,6 +82,7 @@ def main(argv):
             sick_quota = employeeDto.CalculateEmployeeTimeOffQuota(SICKDAY_QUOTA, SICKDAY_TIMEOFF, ACCRUAL_FREQUENCY)
             dtos.append(sick_quota)
 
+        # Serialize time off quota data into a local text file in JSON format
         serializer = TimeOffQuotaSerializer()
         serializer.serialize(output_file, dtos)
 
