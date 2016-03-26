@@ -49,48 +49,48 @@ def upload_steps(output_file):
     print "  $ mongoimport -h ds029615.mlab.com:29615 -d [DB_NAME] -c [COLLECTION_NAME] -u [USERNAME] -p [PASSWORD] --file " + output_file
 
 def main(argv):
-    try:
-        cursor = conn.cursor()
-        company_id = argv[0]
-        environment = argv[1]
-        output_file = argv[2]
+    # try:
+    cursor = conn.cursor()
+    company_id = argv[0]
+    environment = argv[1]
+    output_file = argv[2]
 
-        # Use data repository to retrieve raw data from database
-        repository = EmployeeProfileCompanyRepository(cursor, company_id)
-        data = repository.get_model()
+    # Use data repository to retrieve raw data from database
+    repository = EmployeeProfileCompanyRepository(cursor, company_id)
+    data = repository.get_model()
 
-        # Map database model to DTO objects for time off quota calculation
-        dtos = []
-        for employee in data:
-            employeeDto = EmployeeTimeOffDataGenerator(
-                              employee.person_id,
-                              employee.company_id,
-                              employee.employment_type,
-                              environment
-                          )
+    # Map database model to DTO objects for time off quota calculation
+    dtos = []
+    for employee in data:
+        employeeDto = EmployeeTimeOffDataGenerator(
+                          employee.person_id,
+                          employee.company_id,
+                          employee.employment_type,
+                          environment
+                      )
 
-            # Get PTO quota
-            pto_target = 0
-            if employee.employment_type == FULLTIME:
-                pto_target = FULLTIME_QUOTA
-            elif employee.employment_type == PARTIME:
-                pto_target = PARTTIME_QUOTA
-            pto_quota = employeeDto.CalculateEmployeeTimeOffQuota(pto_target, PTO_TIMEOFF, ACCRUAL_FREQUENCY)
-            dtos.append(pto_quota)
+        # Get PTO quota
+        pto_target = 0
+        if employee.employment_type == FULLTIME:
+            pto_target = FULLTIME_QUOTA
+        elif employee.employment_type == PARTIME:
+            pto_target = PARTTIME_QUOTA
+        pto_quota = employeeDto.CalculateEmployeeTimeOffQuota(pto_target, PTO_TIMEOFF, ACCRUAL_FREQUENCY)
+        dtos.append(pto_quota)
 
-            # Get Sick Time quota
-            sick_quota = employeeDto.CalculateEmployeeTimeOffQuota(SICKDAY_QUOTA, SICKDAY_TIMEOFF, ACCRUAL_FREQUENCY)
-            dtos.append(sick_quota)
+        # Get Sick Time quota
+        sick_quota = employeeDto.CalculateEmployeeTimeOffQuota(SICKDAY_QUOTA, SICKDAY_TIMEOFF, ACCRUAL_FREQUENCY)
+        dtos.append(sick_quota)
 
-        # Serialize time off quota data into a local text file in JSON format
-        serializer = TimeOffQuotaSerializer()
-        serializer.serialize(output_file, dtos)
+    # Serialize time off quota data into a local text file in JSON format
+    serializer = TimeOffQuotaSerializer()
+    serializer.serialize(output_file, dtos)
 
-        upload_steps(output_file)
-    except:
-        print sys.exc_info()[0]
-        usage()
-        sys.exit(2)
+    upload_steps(output_file)
+    # except:
+    #     print sys.exc_info()[0]
+    #     usage()
+    #     sys.exit(2)
 
 if __name__ == "__main__":
    main(sys.argv[1:])

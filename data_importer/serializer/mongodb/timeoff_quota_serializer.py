@@ -7,8 +7,10 @@ class TimeOffQuotaSerializer(object):
         target = open(file_name, 'w')
         target.truncate() # clear the file content so it is now empty
         for quota in timeoff_quotas:
-            print quota.to_json_string()
-            target.write(quota.to_json_string())
+            serializable = quota.as_serializable()
+            in_json = json.dumps(serializable)
+            print in_json
+            target.write(in_json)
             target.write('\n')
 
         target.close()

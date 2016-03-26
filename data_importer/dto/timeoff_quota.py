@@ -11,13 +11,13 @@ class AccrualSpec(object):
         self.accrualFrequency = accrual_frequency
         self.accruedHours = accrued_hours
 
-    def to_json_string(self):
+    def as_serializable(self):
         obj = {
                   'accrualFrequency': self.accrualFrequency,
                   'accruedHours': self.accruedHours,
                   'lastAccrualTimestamp': datetime.datetime.now().strftime(DATETIME_FORMAT)
               }
-        return json.dumps(obj)
+        return obj
 
 class QuotaInfoCollectionEntry(object):
 
@@ -27,14 +27,14 @@ class QuotaInfoCollectionEntry(object):
         self.bankedHours = accrued_hours
         self.accrualSpecs = AccrualSpec(accrual_frequency, accrued_hours)
 
-    def to_json_string(self):
+    def as_serializable(self):
         obj =  {
                     'timeoffType': self.timeoffType,
                     'annualTargetHours': self.annualTargetHours,
                     'bankedHours': self.bankedHours,
-                    'accrualSpecs': self.accrualSpecs.to_json_string()
+                    'accrualSpecs': self.accrualSpecs.as_serializable()
                 }
-        return json.dumps(obj)
+        return obj
 
 
 class TimeOffQuota(object):
@@ -53,15 +53,13 @@ class TimeOffQuota(object):
         self.companyDescriptor = company_id
         self.quotaInfoCollection = QuotaInfoCollectionEntry(timeoff_type, target_hours, accrual_frequency, self.accrued_time)
 
-    def to_json_string(self):
+    def as_serializable(self):
         obj = {
                   "personDescriptor": self.personDescriptor,
                   "companyDescriptor": self.companyDescriptor,
                   "createdTimeStamp": self.createdTimeStamp.strftime(DATETIME_FORMAT),
                   "modifiedTimestamp": self.modifiedTimestamp.strftime(DATETIME_FORMAT),
-                  "quotaInfoCollection": self.quotaInfoCollection.to_json_string()
+                  "quotaInfoCollection": self.quotaInfoCollection.as_serializable()
               }
 
-        # Replace additional escape characters and quetos, resulting from multi-layer serialization
-        # For the purpose of this script, this replacement should be enough
-        return json.dumps(obj).replace('\\', '').replace('"{', "{").replace('}"', '}')
+        return obj
