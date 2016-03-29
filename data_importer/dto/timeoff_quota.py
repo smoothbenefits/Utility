@@ -59,7 +59,7 @@ class TimeOffQuota(object):
                   "companyDescriptor": self.companyDescriptor,
                   "createdTimeStamp": self.createdTimeStamp.strftime(DATETIME_FORMAT),
                   "modifiedTimestamp": self.modifiedTimestamp.strftime(DATETIME_FORMAT),
-                  "quotaInfoCollection": self.quotaInfoCollection.as_serializable()
+                  "quotaInfoCollection": [self.quotaInfoCollection.as_serializable()]
               }
 
         return obj
