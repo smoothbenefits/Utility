@@ -9,11 +9,11 @@ from data_repository.employee_profile_company_repository import EmployeeProfileC
 #
 # Company settings defined below
 #
-PTO_TIMEOFF = 'PTO'
+PTO_TIMEOFF = 'Paid Time Off (PTO)'
 FULLTIME_QUOTA = 80
 PARTTIME_QUOTA = 20
 
-SICKDAY_TIMEOFF = 'SickTime'
+SICKDAY_TIMEOFF = 'Sick Time'
 SICKDAY_QUOTA = 20
 
 FULLTIME = 'FullTime'
@@ -46,7 +46,7 @@ def upload_steps(output_file):
     print "\n"
     print "Data exported to " + output_file
     print "Run the following command to import data into MongoDb:"
-    print "  $ mongoimport -h ds029615.mlab.com:29615 -d [DB_NAME] -c [COLLECTION_NAME] -u [USERNAME] -p [PASSWORD] --file " + output_file
+    print "  $ mongoimport -h ds061238.mlab.com:61238 -d [DB_NAME] -c [COLLECTION_NAME] -u [USERNAME] -p [PASSWORD] --file " + output_file
 
 def main(argv):
     # try:
