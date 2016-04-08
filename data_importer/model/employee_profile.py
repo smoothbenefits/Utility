@@ -11,3 +11,4 @@ class EmployeeProfile(Base):
         self.id = ''
         self.person_id = ''
         self.company_id = ''
+        self.user_id = ''
