@@ -63,7 +63,7 @@ def main(argv):
     dtos = []
     for employee in data:
         employeeDto = EmployeeTimeOffDataGenerator(
-                          employee.person_id,
+                          employee.user_id,
                           employee.company_id,
                           employee.employment_type,
                           environment
