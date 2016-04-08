@@ -63,7 +63,7 @@ def main(argv):
     dtos = []
     for employee in data:
         employeeDto = EmployeeTimeOffDataGenerator(
-                          employee.person_id,
+                          employee.user_id,
                           employee.company_id,
                           employee.employment_type,
                           environment
@@ -71,15 +71,15 @@ def main(argv):
 
         # Get PTO quota
         pto_target = 0
+        timeoff_types = []
         if employee.employment_type == FULLTIME:
             pto_target = FULLTIME_QUOTA
         elif employee.employment_type == PARTIME:
             pto_target = PARTTIME_QUOTA
-        pto_quota = employeeDto.CalculateEmployeeTimeOffQuota(pto_target, PTO_TIMEOFF, ACCRUAL_FREQUENCY)
-        dtos.append(pto_quota)
-
+        timeoff_types.append((pto_target, PTO_TIMEOFF, ACCRUAL_FREQUENCY))
+        timeoff_types.append((SICKDAY_QUOTA, SICKDAY_TIMEOFF, ACCRUAL_FREQUENCY))
         # Get Sick Time quota
-        sick_quota = employeeDto.CalculateEmployeeTimeOffQuota(SICKDAY_QUOTA, SICKDAY_TIMEOFF, ACCRUAL_FREQUENCY)
+        sick_quota = employeeDto.CalculateEmployeeTimeOffQuota(timeoff_types)
         dtos.append(sick_quota)
 
     # Serialize time off quota data into a local text file in JSON format
