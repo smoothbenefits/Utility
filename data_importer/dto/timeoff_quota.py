@@ -39,19 +39,27 @@ class QuotaInfoCollectionEntry(object):
 
 class TimeOffQuota(object):
 
-    def __init__(self, timeoff_type, person_id, company_id, target_hours, accrual_frequency):
+    def __init__(self, person_id, company_id, timeoff_types):
 
         self.createdTimeStamp = datetime.datetime.now()
         self.modifiedTimestamp = datetime.datetime.now()
-
-        # Assume accrued time is 0 at the beginning of this year
-        days_diff = (datetime.date.today() - START_DATE).days
-        self.accrued_time = round(days_diff / DAYS_A_YEAR * target_hours, 1)
-        self.target_hours = target_hours
-
         self.personDescriptor = person_id
         self.companyDescriptor = company_id
-        self.quotaInfoCollection = QuotaInfoCollectionEntry(timeoff_type, target_hours, accrual_frequency, self.accrued_time)
+        self.quotaInfoCollection = []
+        # Assume accrued time is 0 at the beginning of this year
+        days_diff = (datetime.date.today() - START_DATE).days
+        for timeoff_type_item in timeoff_types:
+            timeoff_type = timeoff_type_item[1]
+            target_hours = timeoff_type_item[0]
+            accrual_frequency = timeoff_type_item[2]
+            accrued_time = round(days_diff / DAYS_A_YEAR * target_hours, 1)
+            self.quotaInfoCollection.append(QuotaInfoCollectionEntry(timeoff_type, target_hours, accrual_frequency, accrued_time))
+
+    def _serialize_collection(self, collection):
+        serialized_collection = []
+        for item in collection:
+            serialized_collection.append(item.as_serializable())
+        return serialized_collection
 
     def as_serializable(self):
         obj = {
@@ -59,7 +67,7 @@ class TimeOffQuota(object):
                   "companyDescriptor": self.companyDescriptor,
                   "createdTimeStamp": self.createdTimeStamp.strftime(DATETIME_FORMAT),
                   "modifiedTimestamp": self.modifiedTimestamp.strftime(DATETIME_FORMAT),
-                  "quotaInfoCollection": [self.quotaInfoCollection.as_serializable()]
+                  "quotaInfoCollection": self._serialize_collection(self.quotaInfoCollection)
               }
 
         return obj
