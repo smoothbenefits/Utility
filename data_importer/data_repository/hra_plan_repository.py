@@ -1,7 +1,8 @@
-from model.benefits.hra_plan import HraPlan
-from repository import Repository
+from ..model.benefits.hra_plan import HraPlan
+from common.data_repository.sql_repository_base import SqlRepositoryBase
 
-class HraPlanRepository(Repository):
+
+class HraPlanRepository(SqlRepositoryBase):
     def __init__(self, cursor, company_id):
         super(HraPlanRepository, self).__init__(cursor)
         self.company_id = company_id

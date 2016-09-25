@@ -1,8 +1,10 @@
 from decimal import *
-from model.benefits.benefit_plan import BenefitPlan
-from model.benefits.health_option import HealthOption
-from repository import Repository
-class HealthPlanRepository(Repository):
+from ..model.benefits.benefit_plan import BenefitPlan
+from ..model.benefits.health_option import HealthOption
+from common.data_repository.sql_repository_base import SqlRepositoryBase
+
+
+class HealthPlanRepository(SqlRepositoryBase):
     def __init__(self, cursor, company_id):
         super(HealthPlanRepository, self).__init__(cursor)
         self.company_id = company_id

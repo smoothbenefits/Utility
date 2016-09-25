@@ -1,11 +1,12 @@
-from model.person import Person
-from repository import Repository
+from ..model.person import Person
+from common.data_repository.sql_repository_base import SqlRepositoryBase
 from address_repository import AddressRepository
 from phone_repository import PhoneRepository
 from employee_profile_repository import EmployeeProfileRepository
 from employee_compensation_repository import EmployeeCompensationRepository
 
-class DependentRepository(Repository):
+
+class DependentRepository(SqlRepositoryBase):
     def __init__(self, cursor, user_id):
         super(DependentRepository, self).__init__(cursor)
         self.user_id = user_id

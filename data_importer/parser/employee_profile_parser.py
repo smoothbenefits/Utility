@@ -1,5 +1,5 @@
-from model_parser_base import ModelParserBase
-from model.employee_profile import EmployeeProfile
+from common.excel_parse.model_parser_base import ModelParserBase
+from ..model.employee_profile import EmployeeProfile
 
 
 class EmployeeProfileParser(ModelParserBase):

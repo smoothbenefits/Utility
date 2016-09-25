@@ -1,7 +1,8 @@
-from model.phone import Phone
-from repository import Repository
+from ..model.phone import Phone
+from common.data_repository.sql_repository_base import SqlRepositoryBase
 
-class PhoneRepository(Repository):
+
+class PhoneRepository(SqlRepositoryBase):
     def __init__(self, cursor, person_id):
         super(PhoneRepository, self).__init__(cursor)
         self.person_id = person_id

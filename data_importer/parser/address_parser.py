@@ -1,5 +1,5 @@
-from model_parser_base import ModelParserBase
-from model.address import Address
+from common.excel_parse.model_parser_base import ModelParserBase
+from ..model.address import Address
 
 
 class AddressParser(ModelParserBase):

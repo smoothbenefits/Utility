@@ -1,7 +1,8 @@
-from model.employee_profile import EmployeeProfile
-from repository import Repository
+from ..model.employee_profile import EmployeeProfile
+from common.data_repository.sql_repository_base import SqlRepositoryBase
 
-class EmployeeProfileRepository(Repository):
+
+class EmployeeProfileRepository(SqlRepositoryBase):
     def __init__(self, cursor, person_id):
         super(EmployeeProfileRepository, self).__init__(cursor)
         self.person_id = person_id

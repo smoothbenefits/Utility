@@ -1,7 +1,9 @@
 from decimal import *
-from model.benefits.basic_life_insurance import BasicLifeInsurance
-from repository import Repository
-class BasicLifeInsuranceRepository(Repository):
+from ..model.benefits.basic_life_insurance import BasicLifeInsurance
+from common.data_repository.sql_repository_base import SqlRepositoryBase
+
+
+class BasicLifeInsuranceRepository(SqlRepositoryBase):
     def __init__(self, cursor, company_id):
         super(BasicLifeInsuranceRepository, self).__init__(cursor)
         self.company_id = company_id

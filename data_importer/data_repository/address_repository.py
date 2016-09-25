@@ -1,7 +1,8 @@
-from model.address import Address
-from repository import Repository
+from ..model.address import Address
+from common.data_repository.sql_repository_base import SqlRepositoryBase
 
-class AddressRepository(Repository):
+
+class AddressRepository(SqlRepositoryBase):
     def __init__(self, cursor, person_id):
         super(AddressRepository, self).__init__(cursor)
         self.person_id = person_id

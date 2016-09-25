@@ -1,5 +1,5 @@
 import datetime
-from service.hash_key_service import HashKeyService
+from ..service.hash_key_service import HashKeyService
 from timeoff_quota import TimeOffQuota
 
 class EmployeeTimeOffDataGenerator(object):

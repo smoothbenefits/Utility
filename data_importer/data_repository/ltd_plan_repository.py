@@ -1,7 +1,9 @@
-from model.benefits.age_based_rate import AgeBasedRate
-from model.benefits.ltd_plan import LtdPlan
-from repository import Repository
-class LtdPlanRepository(Repository):
+from ..model.benefits.age_based_rate import AgeBasedRate
+from ..model.benefits.ltd_plan import LtdPlan
+from common.data_repository.sql_repository_base import SqlRepositoryBase
+
+
+class LtdPlanRepository(SqlRepositoryBase):
     def __init__(self, cursor, company_id):
         super(LtdPlanRepository, self).__init__(cursor)
         self.company_id = company_id

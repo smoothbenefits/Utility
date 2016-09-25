@@ -1,7 +1,9 @@
-from model.benefits.supplemental_life_insurance import SupplementalLifeInsurance
-from model.benefits.supplemental_life_insurance_rate import SupplementalLifeInsuranceRate
-from repository import Repository
-class SupplementalLifeInsuranceRepository(Repository):
+from ..model.benefits.supplemental_life_insurance import SupplementalLifeInsurance
+from ..model.benefits.supplemental_life_insurance_rate import SupplementalLifeInsuranceRate
+from common.data_repository.sql_repository_base import SqlRepositoryBase
+
+
+class SupplementalLifeInsuranceRepository(SqlRepositoryBase):
     def __init__(self, cursor, company_id):
         super(SupplementalLifeInsuranceRepository, self).__init__(cursor)
         self.company_id = company_id
