@@ -1,6 +1,8 @@
 import re
 from hashlib import md5
 
+from environment_utility import EnvironmentUtility
+
 HASH_KEY = '5e14ca8a-4a48-4cf7-aa3b-e207eb1a9adb'
 
 
@@ -25,12 +27,14 @@ class HashKeyUtility(object):
         return "{0}_{1}_{2}".format(
             self.HASH_TOKEN_PREFIX, key, md5("{0}{1}".format(HASH_KEY, key)).hexdigest())
 
-    def encode_key_with_environment(self, key, env):
+    def encode_key_with_environment(self, key):
         if (not key):
             return None
         hash_key = self.encode_key(key)
 
-        return '{0}_{1}'.format(env, hash_key)    
+        env_prefix = EnvironmentUtility.get_active_settings().hash_id_env_prefix
+
+        return '{0}_{1}'.format(env_prefix, hash_key)    
 
     ''' Validate the integrity of the encoded key and
         - return the originl key if it is valid
@@ -54,13 +58,16 @@ class HashKeyUtility(object):
         else:
             return None
 
-    def decode_key_with_environment(self, encoded_key, env):
+    def decode_key_with_environment(self, encoded_key):
         if (not encoded_key):
             return None
 
+        # Get expected environment prefix
+        env_prefix = EnvironmentUtility.get_active_settings().hash_id_env_prefix
+
         # Check that the environment token matches
         env_token = encoded_key.split('_', 1)[0]
-        if (env_token != env):
+        if (env_token != env_prefix):
             return None
 
         hashed_key_part = encoded_key.split('_', 1)[1]

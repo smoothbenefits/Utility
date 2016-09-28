@@ -8,7 +8,7 @@ class SqlRepositoryBase(object):
     def _get_model_populated_with_data(self, data):
         raise NotImplementedError("Please Implement this method in the sub-class")
 
-    def get_data_row(self):
+    def __get_data_row(self):
         sql_string = self._get_sql_string()
         if sql_string:
             self.cursor.execute(sql_string)
@@ -17,5 +17,5 @@ class SqlRepositoryBase(object):
             return None
 
     def get_model(self):
-        data = self.get_data_row()
+        data = self.__get_data_row()
         return self._get_model_populated_with_data(data)

@@ -22,7 +22,7 @@ class AccountBenefitDataImport(object):
 
     @staticmethod
     def usage():
-        print "data_import.py [action] [options] [arguments]\n"
+        print "data_import.py account_benefit_data_import [options] [arguments]\n"
         print "options can be one of the following: \n"
         print "-d (--debug) this will turn on the debug statment output \n"
         print "-h (--help) the option will print this message \n"
@@ -39,7 +39,7 @@ class AccountBenefitDataImport(object):
         except getopt.GetoptError as err:
             # print help information and exit:
             print(err) # will print something like "option -a not recognized"
-            usage()
+            AccountBenefitDataImport.usage()
             sys.exit(2)
         input_array = None
         output = None
@@ -53,7 +53,7 @@ class AccountBenefitDataImport(object):
             if o == "-d":
                 Logger.setLevel(logging.DEBUG)
             elif o in ("-h", "--help"):
-                usage()
+                AccountBenefitDataImport.usage()
                 sys.exit()
             elif o in ("-o", "--output"):
                 output = a
@@ -68,7 +68,7 @@ class AccountBenefitDataImport(object):
                 assert False, "unhandled option"
 
         if len(args) <= 0:
-            usage()
+            AccountBenefitDataImport.usage()
             sys.exit(2)
         company_users = FairviewUsers(company_id, 'fairviewhealthcare.com')
         data_provider = None
