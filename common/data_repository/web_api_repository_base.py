@@ -14,7 +14,7 @@ class WebApiRepositoryBase(object):
         url = self._get_url()
         if url:
             response = self.web_request_utility.get(url)
-            return repsonse.json()
+            return response.json()
         else:
             return None
 
