@@ -1,5 +1,5 @@
 import psycopg2
-from data_repository.user_repository import UserRepository
+from data_provider.user_data_provider import UserDataProvider
 from serializer.text.user_serializer import UserSerializer
 
 class UsersDBDataProvider(object):
@@ -12,7 +12,7 @@ class UsersDBDataProvider(object):
         db_comp_users = cur.fetchall()
         users = []
         for db_user_id in db_comp_users:
-            user_repo = UserRepository(cur, db_user_id[0])
+            user_repo = UserDataProvider(cur, db_user_id[0])
             user = user_repo.get_model()
             if user:
                 users.append(user)

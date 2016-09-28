@@ -1,10 +1,10 @@
 from ..model.employee_compensation import EmployeeCompensation
-from common.data_repository.sql_repository_base import SqlRepositoryBase
+from common.data_provider.sql_data_provider_base import SqlDataProviderBase
 
 
-class EmployeeCompensationRepository(SqlRepositoryBase):
+class EmployeeCompensationDataProvider(SqlDataProviderBase):
     def __init__(self, cursor, person_id):
-        super(EmployeeCompensationRepository, self).__init__(cursor)
+        super(EmployeeCompensationDataProvider, self).__init__(cursor)
         self.person_id = person_id
 
     def _get_sql_string(self):

@@ -1,12 +1,12 @@
 from ..model.user import User
-from common.data_repository.sql_repository_base import SqlRepositoryBase
-from person_repository import PersonRepository
-from dependent_repository import DependentRepository
+from common.data_provider.sql_data_provider_base import SqlDataProviderBase
+from person_data_provider import PersonDataProvider
+from dependent_data_provider import DependentDataProvider
 
 
-class UserRepository(SqlRepositoryBase):
+class UserDataProvider(SqlDataProviderBase):
     def __init__(self, cursor, user_id):
-        super(UserRepository, self).__init__(cursor)
+        super(UserDataProvider, self).__init__(cursor)
         self.user_id = user_id
 
     def _get_sql_string(self):
@@ -23,9 +23,9 @@ class UserRepository(SqlRepositoryBase):
             cur_user.first_name = row[2]
             cur_user.last_name = row[3]
             cur_user.id = self.user_id
-            pr = PersonRepository(self.cursor, self.user_id)
+            pr = PersonDataProvider(self.cursor, self.user_id)
             cur_user.person = pr.get_model()
-            dep_repo = DependentRepository(self.cursor, self.user_id)
+            dep_repo = DependentDataProvider(self.cursor, self.user_id)
             members = dep_repo.get_model()
             for member in members:
                 cur_user.family_members.append(member)

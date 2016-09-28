@@ -1,14 +1,14 @@
 from ..model.person import Person
-from common.data_repository.sql_repository_base import SqlRepositoryBase
-from address_repository import AddressRepository
-from phone_repository import PhoneRepository
-from employee_profile_repository import EmployeeProfileRepository
-from employee_compensation_repository import EmployeeCompensationRepository
+from common.data_provider.sql_data_provider_base import SqlDataProviderBase
+from address_data_provider import AddressDataProvider
+from phone_data_provider import PhoneDataProvider
+from employee_profile_data_provider import EmployeeProfileDataProvider
+from employee_compensation_data_provider import EmployeeCompensationDataProvider
 
 
-class DependentRepository(SqlRepositoryBase):
+class DependentDataProvider(SqlDataProviderBase):
     def __init__(self, cursor, user_id):
-        super(DependentRepository, self).__init__(cursor)
+        super(DependentDataProvider, self).__init__(cursor)
         self.user_id = user_id
 
     def _get_sql_string(self):
@@ -32,13 +32,13 @@ class DependentRepository(SqlRepositoryBase):
             cur_person.ssn = row[7]
             cur_person.email = row[8]
             cur_person.person_type = 'primary_contact'
-            address_repo = AddressRepository(self.cursor, cur_person.id)
+            address_repo = AddressDataProvider(self.cursor, cur_person.id)
             cur_person.address = address_repo.get_model()
-            phone_repo = PhoneRepository(self.cursor, cur_person.id)
+            phone_repo = PhoneDataProvider(self.cursor, cur_person.id)
             cur_person.phone = phone_repo.get_model()
-            profile_repo = EmployeeProfileRepository(self.cursor, cur_person.id)
+            profile_repo = EmployeeProfileDataProvider(self.cursor, cur_person.id)
             cur_person.employee_profile = profile_repo.get_model()
-            comp_repo = EmployeeCompensationRepository(self.cursor, cur_person.id)
+            comp_repo = EmployeeCompensationDataProvider(self.cursor, cur_person.id)
             cur_person.employee_compensation = comp_repo.get_model()
             members.append(cur_person)
         return members

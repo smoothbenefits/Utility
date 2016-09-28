@@ -1,11 +1,11 @@
 from ..model.benefits.supplemental_life_insurance import SupplementalLifeInsurance
 from ..model.benefits.supplemental_life_insurance_rate import SupplementalLifeInsuranceRate
-from common.data_repository.sql_repository_base import SqlRepositoryBase
+from common.data_provider.sql_data_provider_base import SqlDataProviderBase
 
 
-class SupplementalLifeInsuranceRepository(SqlRepositoryBase):
+class SupplementalLifeInsuranceDataProvider(SqlDataProviderBase):
     def __init__(self, cursor, company_id):
-        super(SupplementalLifeInsuranceRepository, self).__init__(cursor)
+        super(SupplementalLifeInsuranceDataProvider, self).__init__(cursor)
         self.company_id = company_id
 
     def _get_sql_string(self):

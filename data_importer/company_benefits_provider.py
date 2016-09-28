@@ -1,9 +1,9 @@
-from data_repository.health_plan_repository import HealthPlanRepository
-from data_repository.supplemental_life_insurance_repository import SupplementalLifeInsuranceRepository
-from data_repository.std_plan_repository import StdPlanRepository
-from data_repository.ltd_plan_repository import LtdPlanRepository
-from data_repository.basic_life_insurance_repository import BasicLifeInsuranceRepository
-from data_repository.hra_plan_repository import HraPlanRepository
+from data_provider.health_plan_data_provider import HealthPlanDataProvider
+from data_provider.supplemental_life_insurance_data_provider import SupplementalLifeInsuranceDataProvider
+from data_provider.std_plan_data_provider import StdPlanDataProvider
+from data_provider.ltd_plan_data_provider import LtdPlanDataProvider
+from data_provider.basic_life_insurance_data_provider import BasicLifeInsuranceDataProvider
+from data_provider.hra_plan_data_provider import HraPlanDataProvider
 import psycopg2
 
 class CompanyBenefitsProvider(object):
@@ -14,21 +14,21 @@ class CompanyBenefitsProvider(object):
     def provide(self, comp_benefits):
         # Health Benefits
         cur = self.conn.cursor()
-        health_repo = HealthPlanRepository(cur, self.company_id)
+        health_repo = HealthPlanDataProvider(cur, self.company_id)
         types = health_repo.get_model()
 
         comp_benefits.medicals = types.get('Medical', None)
         comp_benefits.dentals = types.get('Dental', None)
         comp_benefits.visions = types.get('Vision', None)
 
-        basic_repo = BasicLifeInsuranceRepository(cur, self.company_id)
+        basic_repo = BasicLifeInsuranceDataProvider(cur, self.company_id)
         comp_benefits.basic_life_insurance = basic_repo.get_model()
-        suppl_repo = SupplementalLifeInsuranceRepository(cur, self.company_id)
+        suppl_repo = SupplementalLifeInsuranceDataProvider(cur, self.company_id)
         comp_benefits.supplemental_life_insurance = suppl_repo.get_model()
-        std_repo = StdPlanRepository(cur, self.company_id)
+        std_repo = StdPlanDataProvider(cur, self.company_id)
         comp_benefits.std_plan = std_repo.get_model()
-        ltd_repo = LtdPlanRepository(cur, self.company_id)
+        ltd_repo = LtdPlanDataProvider(cur, self.company_id)
         comp_benefits.ltd_plan = ltd_repo.get_model()
-        hra_repo = HraPlanRepository(cur, self.company_id)
+        hra_repo = HraPlanDataProvider(cur, self.company_id)
         comp_benefits.hra_plan = hra_repo.get_model()
 

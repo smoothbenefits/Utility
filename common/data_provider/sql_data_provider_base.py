@@ -1,20 +1,18 @@
-from common.utility.web_request_utility import WebRequestUtility
+class SqlDataProviderBase(object):
+    def __init__(self, cursor):
+        self.cursor = cursor
 
-class WebApiRepositoryBase(object):
-    def __init__(self):
-        self.web_request_utility = WebRequestUtility()
-
-    def _get_url(self):
+    def _get_sql_string(self):
         raise NotImplementedError("Please Implement this method in the sub-class")
 
     def _get_model_populated_with_data(self, data):
         raise NotImplementedError("Please Implement this method in the sub-class")
 
     def __get_data(self):
-        url = self._get_url()
-        if url:
-            response = self.web_request_utility.get(url)
-            return response.json()
+        sql_string = self._get_sql_string()
+        if sql_string:
+            self.cursor.execute(sql_string)
+            return self.cursor.fetchall()
         else:
             return None
 

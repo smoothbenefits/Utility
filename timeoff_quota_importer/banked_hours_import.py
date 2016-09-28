@@ -3,7 +3,7 @@ import sys, getopt
 import logging
 
 from common.utility.environment_utility import EnvironmentUtility
-from data_repository.users_repository import UsersRepository
+from data_provider.company_users_data_provider import CompanyUsersDataProvider
 
 class BankedHoursImport(object):
 
@@ -19,8 +19,8 @@ class BankedHoursImport(object):
 
     @staticmethod
     def _perform_import(company_id, excel_file_path):
-        users_repository = UsersRepository(company_id)
-        all_users = users_repository.get_model()
+        users_data_provider = CompanyUsersDataProvider(company_id)
+        all_users = users_data_provider.get_model()
         for user in all_users:
             print "{} {}".format(user.first_name, user.last_name)
 

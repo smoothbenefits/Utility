@@ -37,7 +37,7 @@ Repeat the steps in "Testing" section above starting from step 2
 The excel_importer have the following group of objects:
 * model - These objects are the in memory models of the data parsed and retrieved.
 * parser - These objects are the excel reader that would translate all the excel data into model data
-* data_repository - These objects reads the needed data from BenefitMy_Python app database for company level data
+* data_provider - These objects reads the needed data from BenefitMy_Python app database for company level data
 * serializer - These objects takes the models and output the data within models to which ever serialization format needed. Current we have text and sql (PL/pgSQL)
 * Company_benefits_provider - the main engine to read all the data from existing db and populate model
 * import_excel - The main program

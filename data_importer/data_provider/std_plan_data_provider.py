@@ -1,11 +1,11 @@
 from ..model.benefits.age_based_rate import AgeBasedRate
 from ..model.benefits.std_plan import StdPlan
-from common.data_repository.sql_repository_base import SqlRepositoryBase
+from common.data_provider.sql_data_provider_base import SqlDataProviderBase
 
 
-class StdPlanRepository(SqlRepositoryBase):
+class StdPlanDataProvider(SqlDataProviderBase):
     def __init__(self, cursor, company_id):
-        super(StdPlanRepository, self).__init__(cursor)
+        super(StdPlanDataProvider, self).__init__(cursor)
         self.company_id = company_id
 
     def _get_sql_string(self):

@@ -1,13 +1,13 @@
 from common.utility.environment_utility import EnvironmentUtility
 from common.utility.hash_key_utility import HashKeyUtility
-from common.data_repository.web_api_repository_base import WebApiRepositoryBase
+from common.data_provider.web_api_data_provider_base import WebApiDataProviderBase
 
 from ..model.user_info import UserInfo
 
 
-class UsersRepository(WebApiRepositoryBase):
+class CompanyUsersDataProvider(WebApiDataProviderBase):
     def __init__(self, company_id):
-        super(UsersRepository, self).__init__()
+        super(CompanyUsersDataProvider, self).__init__()
         self._company_id = company_id
 
     def _get_url(self):

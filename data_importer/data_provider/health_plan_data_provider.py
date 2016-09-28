@@ -1,12 +1,12 @@
 from decimal import *
 from ..model.benefits.benefit_plan import BenefitPlan
 from ..model.benefits.health_option import HealthOption
-from common.data_repository.sql_repository_base import SqlRepositoryBase
+from common.data_provider.sql_data_provider_base import SqlDataProviderBase
 
 
-class HealthPlanRepository(SqlRepositoryBase):
+class HealthPlanDataProvider(SqlDataProviderBase):
     def __init__(self, cursor, company_id):
-        super(HealthPlanRepository, self).__init__(cursor)
+        super(HealthPlanDataProvider, self).__init__(cursor)
         self.company_id = company_id
 
     def _get_sql_string(self):

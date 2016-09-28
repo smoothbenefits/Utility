@@ -1,10 +1,10 @@
 from ..model.benefits.hra_plan import HraPlan
-from common.data_repository.sql_repository_base import SqlRepositoryBase
+from common.data_provider.sql_data_provider_base import SqlDataProviderBase
 
 
-class HraPlanRepository(SqlRepositoryBase):
+class HraPlanDataProvider(SqlDataProviderBase):
     def __init__(self, cursor, company_id):
-        super(HraPlanRepository, self).__init__(cursor)
+        super(HraPlanDataProvider, self).__init__(cursor)
         self.company_id = company_id
 
     def _get_sql_string(self):
