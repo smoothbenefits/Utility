@@ -4,6 +4,7 @@ import logging
 
 from common.utility.environment_utility import EnvironmentUtility
 from data_provider.company_users_data_provider import CompanyUsersDataProvider
+from data_provider.company_users_timeoff_quota_data_provider import CompanyUsersTimeoffQuotaDataProvider
 
 class BankedHoursImport(object):
 
@@ -23,6 +24,13 @@ class BankedHoursImport(object):
         all_users = users_data_provider.get_model()
         for user in all_users:
             print "{} {}".format(user.first_name, user.last_name)
+
+        print '##############'
+
+        timeoff_quotas_data_provider = CompanyUsersTimeoffQuotaDataProvider(company_id)
+        all_users_timeoff_quotas = timeoff_quotas_data_provider.get_model()
+        for quota in all_users_timeoff_quotas:
+            print "{} {}".format(quota.personDescriptor, quota.quotaInfoCollection[0].timeoffType)
 
     @staticmethod
     def execute(argv):
