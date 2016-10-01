@@ -3,10 +3,7 @@ import sys, getopt
 import logging
 
 from common.utility.environment_utility import EnvironmentUtility
-from data_provider.company_users_data_provider import CompanyUsersDataProvider
-from data_provider.company_users_timeoff_quota_data_provider import CompanyUsersTimeoffQuotaDataProvider
-from data_provider.excel_users_timeoff_quota_data_provider import ExcelUsersTimeoffQuotaDataProvider
-
+from data_aggregator.users_timeoff_quota_data_aggregator import UsersTimeoffQuotaDataAggregator
 
 class TimeoffQuotaImport(object):
 
@@ -22,24 +19,8 @@ class TimeoffQuotaImport(object):
 
     @staticmethod
     def _perform_import(company_id, excel_file_path):
-        users_data_provider = CompanyUsersDataProvider(company_id)
-        all_users = users_data_provider.get_model()
-        for user in all_users:
-            print "{} {}".format(user.first_name, user.last_name)
-
-        print '##############'
-
-        timeoff_quotas_data_provider = CompanyUsersTimeoffQuotaDataProvider(company_id)
-        all_users_timeoff_quotas = timeoff_quotas_data_provider.get_model()
-        for quota in all_users_timeoff_quotas:
-            print "{} {}".format(quota.personDescriptor, quota.quotaInfoCollection[0].timeoffType)
-
-        print '##############'
-
-        excel_data_provider = ExcelUsersTimeoffQuotaDataProvider(excel_file_path)
-        all_parsed_data = excel_data_provider.get_model()
-        for row_data in all_parsed_data:
-            print "{} {} {}".format(row_data.email, row_data.timeoff_type, row_data.annual_target_hours)
+        data_aggregator = UsersTimeoffQuotaDataAggregator(company_id, excel_file_path)
+        aggregated_data = data_aggregator.get_aggregated_data()
 
     @staticmethod
     def execute(argv):

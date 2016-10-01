@@ -7,6 +7,7 @@ class UserTimeoffQuotaRow(object):
         self.timeoff_type = None
         self.annual_target_hours = None
         self.accrual_frequency = None
+        self.banked_hours = None
 
     def is_valid(self):
         if (self.email is None and (self.first_name is None or self.last_name is None)):

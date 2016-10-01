@@ -9,12 +9,12 @@ class CompanyUsersDataProvider(WebApiDataProviderBase):
     def __init__(self, company_id):
         super(CompanyUsersDataProvider, self).__init__()
         self._company_id = company_id
+        self._hash_key_utility = HashKeyUtility()
 
     def _get_url(self):
-        hash_key_utility = HashKeyUtility()
         url = '{0}api/v1/companies/{1}/users'.format(
             EnvironmentUtility.get_active_settings().main_app_base_url,
-            hash_key_utility.encode_key(self._company_id))
+            self._hash_key_utility.encode_key(self._company_id))
         return url
 
     def _get_model_populated_with_data(self, data):
@@ -28,7 +28,7 @@ class CompanyUsersDataProvider(WebApiDataProviderBase):
             if user_role_info['company_user_type'] == 'employee':
                 user_info = user_role_info['user']
                 user_model = UserInfo(
-                    user_id=user_info['id'],
+                    user_id=self._hash_key_utility.decode_key(user_info['id']),
                     first_name=user_info['first_name'],
                     last_name=user_info['last_name'],
                     email=user_info['email'])
