@@ -14,7 +14,7 @@ class TimeoffQuotaJsonSerializer(object):
         obj = {
                   'accrualFrequency': accrual_spec.accrualFrequency,
                   'accruedHours': accrual_spec.accruedHours,
-                  'lastAccrualTimestamp': accrualSpecs.lastAccrualTimestamp
+                  'lastAccrualTimestamp': accrual_spec.lastAccuralTimeStamp
               }
         return obj
 
@@ -49,6 +49,7 @@ class TimeoffQuotaJsonSerializer(object):
             return None
 
         obj = {
+                  "_id": timeoff_quota.id,
                   "personDescriptor": timeoff_quota.personDescriptor,
                   "companyDescriptor": timeoff_quota.companyDescriptor,
                   "createdTimeStamp": timeoff_quota.createdTimeStamp,
@@ -117,5 +118,7 @@ class TimeoffQuotaJsonSerializer(object):
             company_descriptor=timeoff_quota_data['companyDescriptor'],
             quota_info_collection=TimeoffQuotaJsonSerializer.__deserialize_quota_info_collection(timeoff_quota_data['quotaInfoCollection'])
         )
+
+        obj.id = timeoff_quota_data['_id']
 
         return obj

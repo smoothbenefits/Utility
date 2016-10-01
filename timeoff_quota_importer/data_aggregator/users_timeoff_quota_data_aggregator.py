@@ -6,6 +6,8 @@ from ..data_provider.company_users_data_provider import CompanyUsersDataProvider
 from ..data_provider.company_users_timeoff_quota_data_provider import CompanyUsersTimeoffQuotaDataProvider
 from ..data_provider.excel_users_timeoff_quota_data_provider import ExcelUsersTimeoffQuotaDataProvider
 from ..model.timeoff_quota import TimeOffQuota
+from ..serialization.timeoff_quota_json_serializer import TimeoffQuotaJsonSerializer
+
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
 Logger = logging.getLogger("UsersTimeoffQuotaDataAggregator")
@@ -17,6 +19,14 @@ class UsersTimeoffQuotaDataAggregator(object):
         self.__company_id = company_id
         self.__excel_file_path = excel_file_path
         self.__hash_key_utility = HashKeyUtility()
+
+    def get_aggregated_data_as_serializable(self):
+        aggregated_data = self.get_aggregated_data()
+        serializable_collection = []
+        for quota_record in aggregated_data:
+            serializable = TimeoffQuotaJsonSerializer.serialize(quota_record)
+            serializable_collection.append(serializable)
+        return serializable_collection
 
     def get_aggregated_data(self):
 
@@ -50,7 +60,8 @@ class UsersTimeoffQuotaDataAggregator(object):
         if not self.__validate_output_data():
             raise ValueError('There were validation issues with the aggregated data!')
 
-        return user_quota_mapping
+        for k in user_quota_mapping:
+            yield user_quota_mapping[k]
 
     def __validate_input_data(self):
         # [TODO]: validate input excel data

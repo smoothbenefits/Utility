@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys, getopt
 import logging
+import json
 
 from common.utility.environment_utility import EnvironmentUtility
 from data_aggregator.users_timeoff_quota_data_aggregator import UsersTimeoffQuotaDataAggregator
@@ -20,7 +21,8 @@ class TimeoffQuotaImport(object):
     @staticmethod
     def _perform_import(company_id, excel_file_path):
         data_aggregator = UsersTimeoffQuotaDataAggregator(company_id, excel_file_path)
-        aggregated_data = data_aggregator.get_aggregated_data()
+        serializable_aggregated_data = data_aggregator.get_aggregated_data_as_serializable()
+        print json.dumps(serializable_aggregated_data)
 
     @staticmethod
     def execute(argv):
