@@ -13,7 +13,8 @@ class UserTimeoffQuotaRowParser(ModelParserBase):
             'employee last name': (lambda value, model: self._set_string_value_on_model(model, 'last_name', value)),
             'time off type': (lambda value, model: self._set_string_value_on_model(model, 'timeoff_type', value)),
             'annual target hours': (lambda value, model: self._set_number_value_on_model(model, 'annual_target_hours', value)),
-            'accrual frequency': (lambda value, model: self._set_string_value_on_model(model, 'accrual_frequency', value))    
+            'accrual frequency': (lambda value, model: self._set_string_value_on_model(model, 'accrual_frequency', value)),    
+            'banked hours': (lambda value, model: self._set_number_value_on_model(model, 'banked_hours', value))
         }
 
     def _create_model_instance(self):
