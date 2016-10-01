@@ -13,12 +13,15 @@ class ModelParserBase(object):
         self.column_index_property_mapping = {}
 
     # Initialize the internal column mapping from the given header row
-    def initialize_column_mapping(self, header_row):
+    def __initialize_column_mapping(self, header_row):
         self._setup_column_mapping()
         for cell in header_row:
             if cell.value and cell.value.lower() in self.column_property_mapping:
                 self.column_index_property_mapping[cell.column] \
                     = self.column_property_mapping[cell.value.lower()]
+
+    def initialize(self, header_row):
+        self.__initialize_column_mapping(header_row)
 
     # Parse a data row into an instance of the corresponding model object
     def parse_data_row(self, data_row):
@@ -29,6 +32,18 @@ class ModelParserBase(object):
                 self.column_index_property_mapping[cell.column](cell.value, model_instance)
 
         return model_instance
+
+    def _set_string_value_on_model(self, model, field_name, value):
+        result_value = value
+        if (value is not None):
+            result_value = value.strip()
+        setattr(model, field_name, result_value)
+
+    def _set_number_value_on_model(self, model, field_name, value):
+        result_value = value
+        if (value is not None):
+            result_value = float(value)
+        setattr(model, field_name, result_value)
 
     # Allow concrete classes to populate the mapping polymorphically
     def _setup_column_mapping(self):

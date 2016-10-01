@@ -1,0 +1,21 @@
+In excel data provider/parser:
+    * parse all rows to a collection of UserTimeoffQuotaRowModel
+    * perform validation on the data set
+
+In data aggregator:
+    * collect all of the belows:
+        * excel parsed collection
+        * timeoff quota data provider result
+        * company users data provider result
+    * Perform validations. e.g. company does not have any users, or there are users from the excel not found in company users list, etc.
+    * Merge/aggregate the 3 sets of data into 1 user to timeoff-quota mapping
+        * First merge the excel data set and the company user data set so we have full user information in all 3 sets
+        * Then merge the existing quota data with input quota data
+            * If the user does not have quota currently, create one with user information, and empty set for quota specs entry collection
+            * Then if the user's quota specs does not have the corresponding timeoff type, create one and insert into the specs entry collection, with default data, and then update it with the data from excel row data.
+
+In data importer or data utilizer, get the output mapping from data aggregator and serialize to json and output to a file to represent a post. e.g. via postman
+    * get an array contains all items serialized
+    * serialize that array into the file.
+
+Implement a batch update end point on TimeTracking service.

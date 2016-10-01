@@ -1,3 +1,13 @@
+VALID_ACCRUAL_FREQUENCY = [
+    'Monthly',
+    'Daily'
+]
+
+VALID_TIMEOFF_TYPE = [
+    'Paid Time Off (PTO)',
+    'Sick Time'
+]
+
 class AccrualSpec(object):
 
     def __init__(self, accrual_frequency, accrued_hours, last_accrual_time_stamp):

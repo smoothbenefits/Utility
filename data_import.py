@@ -4,13 +4,15 @@ import sys
 
 from data_importer.account_benefit_data_import import AccountBenefitDataImport
 from timeoff_quota_importer.banked_hours_import import BankedHoursImport
-
+from timeoff_quota_importer.timeoff_quota_import import TimeoffQuotaImport
 
 ACTION_BANKED_HOURS_IMPORT = 'banked_hours_import'
+ACTION_TIMEOFF_QUOTA_IMPORT = 'timeoff_quota_import'
 ACTION_ACCOUNT_BENEFIT_DATA_IMPORT = 'account_benefit_data_import'
 
 AVAILABLE_ACTIONS = [
     ACTION_BANKED_HOURS_IMPORT,
+    ACTION_TIMEOFF_QUOTA_IMPORT,
     ACTION_ACCOUNT_BENEFIT_DATA_IMPORT
 ]
 
@@ -23,6 +25,8 @@ def usage():
 def main(argv):
     if (argv[0] == ACTION_BANKED_HOURS_IMPORT):
         BankedHoursImport.execute(argv[1:])
+    if (argv[0] == ACTION_TIMEOFF_QUOTA_IMPORT):
+        TimeoffQuotaImport.execute(argv[1:])
     elif (argv[0] == ACTION_ACCOUNT_BENEFIT_DATA_IMPORT):
         AccountBenefitDataImport.execute(argv[1:])
     else:
