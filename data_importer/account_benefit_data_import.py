@@ -1,10 +1,9 @@
-#!/usr/bin/env python
-
 from openpyxl import load_workbook
 from openpyxl.compat import range
 from openpyxl.cell import get_column_letter
 import sys, getopt
 import logging
+from common.data_import_base import DataImportBase
 from model.fairview_users import FairviewUsers
 from users_excel_data_provider import UsersExcelDataProvider
 from users_db_data_provider import UsersDBDataProvider
@@ -13,16 +12,22 @@ from company_benefits_provider import CompanyBenefitsProvider
 from model.company_benefits import CompanyBenefits
 from serializer.text.company_users_text_serializer import CompanyUsersTextSerializer
 
+
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
 Logger = logging.getLogger("import_excel")
 company_id = 23
 
 
-class AccountBenefitDataImport(object):
+class AccountBenefitDataImport(DataImportBase):
 
-    @staticmethod
-    def usage():
-        print "data_import.py account_benefit_data_import [options] [arguments]\n"
+    def __init__(self):
+        super(AccountBenefitDataImport, self).__init__()
+
+    def get_program_name(self):
+        return 'account_benefit_data_import'
+
+    def usage(self):
+        print "data_import.py {} [options] [arguments]\n".format(self.get_program_name())
         print "options can be one of the following: \n"
         print "-d (--debug) this will turn on the debug statment output \n"
         print "-h (--help) the option will print this message \n"
@@ -32,14 +37,13 @@ class AccountBenefitDataImport(object):
         print "-t (--text) serialize the parsed data into the text file named \"model_data.txt\"\n"
         print "The script needs the list of input excel file path to actually perform the import action\n"
 
-    @staticmethod
-    def execute(argv):
+    def execute(self, argv):
         try:
             opts, args = getopt.getopt(argv, "di:ho:b:e:t", ["help", "output=", "exclude=", "base=", "text"])
         except getopt.GetoptError as err:
             # print help information and exit:
             print(err) # will print something like "option -a not recognized"
-            AccountBenefitDataImport.usage()
+            self.usage()
             sys.exit(2)
         input_array = None
         output = None
@@ -53,7 +57,7 @@ class AccountBenefitDataImport(object):
             if o == "-d":
                 Logger.setLevel(logging.DEBUG)
             elif o in ("-h", "--help"):
-                AccountBenefitDataImport.usage()
+                self.usage()
                 sys.exit()
             elif o in ("-o", "--output"):
                 output = a
@@ -68,7 +72,7 @@ class AccountBenefitDataImport(object):
                 assert False, "unhandled option"
 
         if len(args) <= 0:
-            AccountBenefitDataImport.usage()
+            self.usage()
             sys.exit(2)
         company_users = FairviewUsers(company_id, 'fairviewhealthcare.com')
         data_provider = None

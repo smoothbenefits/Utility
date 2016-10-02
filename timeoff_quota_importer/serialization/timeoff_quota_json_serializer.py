@@ -52,12 +52,12 @@ class TimeoffQuotaJsonSerializer(object):
                   "_id": timeoff_quota.id,
                   "personDescriptor": timeoff_quota.personDescriptor,
                   "companyDescriptor": timeoff_quota.companyDescriptor,
-                  "createdTimeStamp": timeoff_quota.createdTimeStamp,
+                  "createdTimestamp": timeoff_quota.createdTimestamp,
                   "modifiedTimestamp": timeoff_quota.modifiedTimestamp,
                   "quotaInfoCollection": TimeoffQuotaJsonSerializer.__serialize_quota_info_collection(timeoff_quota.quotaInfoCollection)
               }
 
-        return obj
+        return TimeoffQuotaJsonSerializer.__get_serializable_exclude_none_fields(obj)
 
 
     @staticmethod
@@ -107,12 +107,12 @@ class TimeoffQuotaJsonSerializer(object):
         # For some reason, we were not automatically set created time stamp
         # on time tracking service modeling, and hence this could be non-exist
         # on existing data
-        createdTimeStamp = None
-        if ('createdTimeStamp' in timeoff_quota_data):
-            createdTimeStamp = timeoff_quota_data['createdTimeStamp']
+        createdTimestamp = None
+        if ('createdTimestamp' in timeoff_quota_data):
+            createdTimestamp = timeoff_quota_data['createdTimestamp']
 
         obj = TimeOffQuota(
-            created_time_stamp=createdTimeStamp,
+            created_time_stamp=createdTimestamp,
             modified_time_stamp=timeoff_quota_data['modifiedTimestamp'],
             person_descriptor=timeoff_quota_data['personDescriptor'],
             company_descriptor=timeoff_quota_data['companyDescriptor'],
@@ -122,3 +122,22 @@ class TimeoffQuotaJsonSerializer(object):
         obj.id = timeoff_quota_data['_id']
 
         return obj
+
+    ''' Utlity method to clean up the serializable, be it a dictionary
+        or a list of dictionaries. 
+        This is so that empty/None field is not included in the json,
+        or else, the result would be settint those fields to null rather 
+        than assuming the default values on the storage/sever side.
+    '''
+    @staticmethod
+    def __get_serializable_exclude_none_fields(serializable):
+        if (isinstance(serializable, list)):
+            clean_list = []
+            for item in serializable:
+                clean_list.append(TimeoffQuotaJsonSerializer.__get_serializable_exclude_none_fields(item))
+            return clean_list
+
+        if isinstance(serializable, dict):
+            return dict((k,TimeoffQuotaJsonSerializer.__get_serializable_exclude_none_fields(v)) for k,v in serializable.iteritems() if v is not None)
+
+        return serializable

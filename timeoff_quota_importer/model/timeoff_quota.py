@@ -69,7 +69,7 @@ class TimeOffQuota(object):
     def __init__(self, person_descriptor, company_descriptor, quota_info_collection, created_time_stamp=None, modified_time_stamp=None):
 
         self.id = None
-        self.createdTimeStamp = created_time_stamp
+        self.createdTimestamp = created_time_stamp
         self.modifiedTimestamp = modified_time_stamp
         self.personDescriptor = person_descriptor
         self.companyDescriptor = company_descriptor
