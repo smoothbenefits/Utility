@@ -11,3 +11,6 @@ class WebRequestUtility(object):
 
     def post(self, url, data_object):
         return requests.post(url, json=data_object, verify=False)
+
+    def put(self, url, data_object):
+        return requests.put(url, json=data_object, verify=False)

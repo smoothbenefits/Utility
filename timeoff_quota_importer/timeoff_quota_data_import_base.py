@@ -4,6 +4,7 @@ import logging
 import json
 
 from common.data_import_base import DataImportBase
+from common.utility.web_request_utility import WebRequestUtility
 from common.utility.environment_utility import EnvironmentUtility
 from data_aggregator.users_timeoff_quota_data_aggregator import UsersTimeoffQuotaDataAggregator
 
@@ -60,5 +61,26 @@ class TimeoffQuotaDataImportBase(DataImportBase):
     def __perform_import(self, company_id, excel_file_path):
         data_aggregator = UsersTimeoffQuotaDataAggregator(company_id, excel_file_path)
         serializable_aggregated_data = data_aggregator.get_aggregated_data_as_serializable()
-        print json.dumps(serializable_aggregated_data)
 
+        # Print output
+        print '####### Output Starts #######'
+        print ''
+        print json.dumps(serializable_aggregated_data)
+        print ''
+        print '####### Output Ends #######'
+        print ''
+
+        # Now confirm with user about whether to proceed to write to 
+        # server automatically
+        proceed = self._confirm_question('Proceed writing the data to server?')
+        if proceed:
+            url = '{0}api/v1/timeoff_quotas/batch'.format(
+                EnvironmentUtility.get_active_settings().time_tracking_base_url)
+            web_request_utility = WebRequestUtility()
+            response = web_request_utility.put(url, serializable_aggregated_data)
+
+            # Deledate to library call to raise exception for failed web request
+            response.raise_for_status()
+
+        print ''
+        print 'The data has been successfully saved to server!' 
