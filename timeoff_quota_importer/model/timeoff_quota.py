@@ -25,6 +25,15 @@ class AccrualSpec(object):
         if (accrual_frequency is not None):
             self.accrualFrequency = accrual_frequency
 
+    def is_valid(self):
+        if (self.accrualFrequency is None or self.accruedHours is None):
+            return False
+        if (self.accrualFrequency not in VALID_ACCRUAL_FREQUENCY):
+            return False
+        if (self.accruedHours < 0) :
+            return False
+        return True
+
     @staticmethod
     def create(accrual_frequency):
         return AccrualSpec(accrual_frequency=accrual_frequency, accrued_hours=0.0)
@@ -50,6 +59,20 @@ class QuotaInfoCollectionEntry(object):
         if (annual_target_hours is not None):
             self.annualTargetHours = annual_target_hours
         self.accrualSpecs.patch(accrual_frequency=accrual_frequency)
+
+    def is_valid(self):
+        if (self.timeoffType is None 
+                or self.annualTargetHours is None 
+                or self.bankedHours is None
+                or self.accrualSpecs is None):
+            return False
+        if (self.timeoffType not in VALID_TIMEOFF_TYPE):
+            return False
+        if (self.annualTargetHours < 0):
+            return False
+        if (not self.accrualSpecs.is_valid()):
+            return False
+        return True
 
     @staticmethod
     def create(timeoff_type, banked_hours, annual_target_hours, accrual_frequency):
@@ -101,6 +124,16 @@ class TimeOffQuota(object):
                 accrual_frequency=accrual_frequency
             )
             self.quotaInfoCollection.append(new_quota_info_entry)
+
+    def is_valid(self):
+        if (self.personDescriptor is None or self.companyDescriptor is None):
+            return False
+        if (self.quotaInfoCollection is None or len(self.quotaInfoCollection) <= 0):
+            return False
+        for quotaInfoEntry in self.quotaInfoCollection:
+            if not quotaInfoEntry.is_valid():
+                return False
+        return True
 
     ''' Factory method. To create an instance of TimeOffQuota with expected
         quota specs information

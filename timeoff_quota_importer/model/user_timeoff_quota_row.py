@@ -1,6 +1,10 @@
-class UserTimeoffQuotaRow(object):
+from common.model.excel_row_model_base import ExcelRowModelBase
 
-    def __init__(self):
+
+class UserTimeoffQuotaRow(ExcelRowModelBase):
+
+    def __init__(self, row_number):
+        super(UserTimeoffQuotaRow, self).__init__(row_number)
         self.email = None
         self.first_name = None
         self.last_name = None
@@ -22,7 +26,7 @@ class UserTimeoffQuotaRow(object):
         if (self.accrual_frequency is None or self.timeoff_type is None or self.annual_target_hours is None):
             return False
 
-        if (not self.annual_target_hours.isdecimal() or float(self.annual_target_hours) < 0):
+        if (not self.__is_float(self.annual_target_hours) or float(self.annual_target_hours) < 0):
             return False
 
         return True
@@ -31,7 +35,10 @@ class UserTimeoffQuotaRow(object):
         if (not self.__is_user_info_valid()):
             return False
 
-        if (self.banked_hours is None or not self.banked_hours.isdecimal()):
+        if (self.timeoff_type is None):
+            return False
+
+        if (not self.__is_float(self.banked_hours)):
             return False
 
         return True
@@ -41,3 +48,12 @@ class UserTimeoffQuotaRow(object):
             return False
             
         return self.is_valid_for_specs() and self.is_valid_for_banked_hours()
+
+    def __is_float(self, input):
+        if input is None:
+            return False
+        try:
+            num = float(input)
+        except ValueError:
+            return False
+        return True

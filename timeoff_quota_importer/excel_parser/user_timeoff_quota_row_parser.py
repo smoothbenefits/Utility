@@ -17,5 +17,5 @@ class UserTimeoffQuotaRowParser(ModelParserBase):
             'banked hours': (lambda value, model: self._set_number_value_on_model(model, 'banked_hours', value))
         }
 
-    def _create_model_instance(self):
-        return UserTimeoffQuotaRow()
+    def _create_model_instance(self, row_number):
+        return UserTimeoffQuotaRow(row_number)

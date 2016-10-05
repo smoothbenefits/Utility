@@ -25,7 +25,17 @@ class ModelParserBase(object):
 
     # Parse a data row into an instance of the corresponding model object
     def parse_data_row(self, data_row):
-        model_instance = self._create_model_instance()
+        # This is a werid way to workaround an issue in the library
+        # where it returns None for the row number if a cell is empty..
+        # so here we do a iteration over the cell first to find the 
+        # row number.
+        row_number = None
+        for cell in data_row:
+            if cell.row:
+                row_number = cell.row
+                break
+
+        model_instance = self._create_model_instance(row_number)
 
         for cell in data_row:
             if cell.column in self.column_index_property_mapping:
@@ -49,5 +59,5 @@ class ModelParserBase(object):
     def _setup_column_mapping(self):
         raise NotImplementedError("Please Implement this method in the sub-class")
 
-    def _create_model_instance(self):
+    def _create_model_instance(self, row_number):
         raise NotImplementedError("Please Implement this method in the sub-class")

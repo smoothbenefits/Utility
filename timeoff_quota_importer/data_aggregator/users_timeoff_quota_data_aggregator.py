@@ -1,3 +1,4 @@
+import json
 import logging
 import sys, getopt
 
@@ -43,7 +44,7 @@ class UsersTimeoffQuotaDataAggregator(object):
         all_parsed_data = excel_data_provider.get_model()
 
         # Validate the input data
-        if not self.__validate_input_data():
+        if not self.__validate_input_data(all_parsed_data):
             raise ValueError('There were validation issues with the input data!')
 
         # Now perform aggregation on the 3 sets of data
@@ -57,19 +58,31 @@ class UsersTimeoffQuotaDataAggregator(object):
         self.__merge_all_input_data_to_aggregation(all_parsed_data, user_quota_mapping, all_users)
 
         # Validate the output data
-        if not self.__validate_output_data():
+        if not self.__validate_output_data(user_quota_mapping):
             raise ValueError('There were validation issues with the aggregated data!')
 
         for k in user_quota_mapping:
             yield user_quota_mapping[k]
 
-    def __validate_input_data(self):
-        # [TODO]: validate input excel data
-        return True
+    def __validate_input_data(self, excel_parsed_data_collection):
+        result = True 
+        for row_data in excel_parsed_data_collection:
+            if not row_data.is_valid_for_specs() and not row_data.is_valid_for_banked_hours():
+                result = False
+                # log the violating row
+                Logger.error('Input data row is invalid: Row Number "{}"'.format(row_data.row_number))
+        return result
 
-    def __validate_output_data(self):
-        # [TODO]: validate the finalized aggregated data 
-        return True
+    def __validate_output_data(self, user_quota_mapping):
+        result = True
+        for k in user_quota_mapping:
+            timeoff_quota = user_quota_mapping[k]
+            if not timeoff_quota or not timeoff_quota.is_valid():
+                Logger.error('Finalized timeoff quota data is invalid for user: "{}"'.format(k))
+                serializable = TimeoffQuotaJsonSerializer.serialize(timeoff_quota)
+                Logger.error(json.dumps(serializable))
+                result = False
+        return result
 
     def __build_user_quota_mapping(self, users_timeoff_quota_data):
         # This is a user_id to timeoff quota record mapping
@@ -112,6 +125,10 @@ class UsersTimeoffQuotaDataAggregator(object):
 
     def __get_user_id_for_input_data_row(self, parsed_data_row, all_company_users):
         user_info = next((user for user in all_company_users if self.__match_user_info_with_input_data_row(parsed_data_row, user)), None)
+        
+        if (not user_info):
+            self.__log_error_and_raise_exception('Could not locate existing user account for input. Row Number: {}'.format(parsed_data_row.row_number))
+
         return user_info.user_id
 
     def __match_user_info_with_input_data_row(self, parsed_data_row, user_info):
