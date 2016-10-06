@@ -132,12 +132,20 @@ class UsersTimeoffQuotaDataAggregator(object):
         return user_info.user_id
 
     def __match_user_info_with_input_data_row(self, parsed_data_row, user_info):
-        if (parsed_data_row.email == user_info.email):
+        if (self.__string_equal_no_case(parsed_data_row.email, user_info.email)):
             return True
-        if (parsed_data_row.first_name == user_info.first_name 
-            and parsed_data_row.last_name == user_info.last_name):
+        if (self.__string_equal_no_case(parsed_data_row.first_name, user_info.first_name)
+            and self.__string_equal_no_case(parsed_data_row.last_name, user_info.last_name)):
             return True
         return False
+
+    def __to_lower_case(self, string):
+        if not string:
+            return string 
+        return string.lower()
+
+    def __string_equal_no_case(self, string_a, string_b):
+        return self.__to_lower_case(string_a) == self.__to_lower_case(string_b)
 
     def __log_error_and_raise_exception(self, message):
         Logger.error(message)
