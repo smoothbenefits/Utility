@@ -61,8 +61,7 @@ class UsersTimeoffQuotaDataAggregator(object):
         if not self.__validate_output_data(user_quota_mapping):
             raise ValueError('There were validation issues with the aggregated data!')
 
-        for k in user_quota_mapping:
-            yield user_quota_mapping[k]
+        return user_quota_mapping.values()
 
     def __validate_input_data(self, excel_parsed_data_collection):
         result = True 
