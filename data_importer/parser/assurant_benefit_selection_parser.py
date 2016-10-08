@@ -1,5 +1,5 @@
-from model_parser_base import ModelParserBase
-from model.benefits.assurant_benefit_selection import AssurantBenefitSelection
+from common.excel_parse.model_parser_base import ModelParserBase
+from ..model.benefits.assurant_benefit_selection import AssurantBenefitSelection
 
 
 class AssurantBenefitSelectionParser(ModelParserBase):

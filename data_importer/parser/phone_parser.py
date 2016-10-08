@@ -1,5 +1,5 @@
-from model_parser_base import ModelParserBase
-from model.phone import Phone
+from common.excel_parse.model_parser_base import ModelParserBase
+from ..model.phone import Phone
 
 
 class PhoneParser(ModelParserBase):

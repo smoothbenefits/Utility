@@ -1,7 +1,7 @@
-from model.company_users import CompanyUsers
+from company_users import CompanyUsers
 from model_type import ModelType
 from excel_type import ExcelType
-from model.benefits.health_benefit_selection import HealthBenefitSelection
+from benefits.health_benefit_selection import HealthBenefitSelection
 from user import User
 import datetime
 

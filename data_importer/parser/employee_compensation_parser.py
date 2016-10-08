@@ -1,5 +1,5 @@
-from model_parser_base import ModelParserBase
-from model.employee_compensation import EmployeeCompensation
+from common.excel_parse.model_parser_base import ModelParserBase
+from ..model.employee_compensation import EmployeeCompensation
 
 
 class EmployeeCompensationParser(ModelParserBase):

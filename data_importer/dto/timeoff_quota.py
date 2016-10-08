@@ -41,7 +41,7 @@ class TimeOffQuota(object):
 
     def __init__(self, person_id, company_id, timeoff_types):
 
-        self.createdTimeStamp = datetime.datetime.now()
+        self.createdTimestamp = datetime.datetime.now()
         self.modifiedTimestamp = datetime.datetime.now()
         self.personDescriptor = person_id
         self.companyDescriptor = company_id
@@ -65,7 +65,7 @@ class TimeOffQuota(object):
         obj = {
                   "personDescriptor": self.personDescriptor,
                   "companyDescriptor": self.companyDescriptor,
-                  "createdTimeStamp": self.createdTimeStamp.strftime(DATETIME_FORMAT),
+                  "createdTimestamp": self.createdTimestamp.strftime(DATETIME_FORMAT),
                   "modifiedTimestamp": self.modifiedTimestamp.strftime(DATETIME_FORMAT),
                   "quotaInfoCollection": self._serialize_collection(self.quotaInfoCollection)
               }

@@ -1,5 +1,5 @@
-from model_parser_base import ModelParserBase
-from model.benefits.health_benefit_selection import HealthBenefitSelection
+from common.excel_parse.model_parser_base import ModelParserBase
+from ..model.benefits.health_benefit_selection import HealthBenefitSelection
 
 
 class MedicalBenefitSelectionParser(ModelParserBase):

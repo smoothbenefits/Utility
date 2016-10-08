@@ -5,7 +5,7 @@ import psycopg2
 import urlparse
 from dto.employee_time_off_data_generator import EmployeeTimeOffDataGenerator
 from serializer.mongodb.timeoff_quota_serializer import TimeOffQuotaSerializer
-from data_repository.employee_profile_company_repository import EmployeeProfileCompanyRepository
+from data_provider.employee_profile_company_data_provider import EmployeeProfileCompanyDataProvider
 #
 # Company settings defined below
 #
@@ -56,7 +56,7 @@ def main(argv):
     output_file = argv[2]
 
     # Use data repository to retrieve raw data from database
-    repository = EmployeeProfileCompanyRepository(cursor, company_id)
+    repository = EmployeeProfileCompanyDataProvider(cursor, company_id)
     data = repository.get_model()
 
     # Map database model to DTO objects for time off quota calculation

@@ -1,16 +1,6 @@
-from keyczar import keyczar
 import datetime
 
 class Serializer(object):
-    _crypter = keyczar.Crypter.Read('fieldkeys')
-
-    @staticmethod
-    def get_encrypted(item):
-        if item:
-            encrypted = Serializer._crypter.Encrypt(item)
-            return encrypted
-        else:
-            return ''
 
     @staticmethod
     def get_date_string(date):

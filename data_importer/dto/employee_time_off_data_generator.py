@@ -1,5 +1,5 @@
 import datetime
-from service.hash_key_service import HashKeyService
+from common.utility.hash_key_utility import HashKeyUtility
 from timeoff_quota import TimeOffQuota
 
 class EmployeeTimeOffDataGenerator(object):
@@ -11,9 +11,9 @@ class EmployeeTimeOffDataGenerator(object):
         self.environment = environment
 
     def CalculateEmployeeTimeOffQuota(self, timeoff_types):
-        hash_key_service = HashKeyService()
-        encoded_person_id = self.environment + '_' + hash_key_service.encode_key(self.user_id)
-        encoded_company_id = self.environment + '_' + hash_key_service.encode_key(self.company_id)
+        hash_key_utility = HashKeyUtility()
+        encoded_person_id = hash_key_utility.encode_key_with_environment(self.user_id, self.environment)
+        encoded_company_id = hash_key_utility.encode_key_with_environment(self.company_id, self.environment)
         self.quota = TimeOffQuota(encoded_person_id, encoded_company_id, timeoff_types)
 
         return self.quota
