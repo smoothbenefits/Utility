@@ -9,7 +9,7 @@ class UserTimeoffQuotaRow(ExcelRowModelBase):
         self.first_name = None
         self.last_name = None
         self.timeoff_type = None
-        self.annual_target_hours = None
+        self.accrual_rate = None
         self.accrual_frequency = None
         self.banked_hours = None
 
@@ -23,10 +23,10 @@ class UserTimeoffQuotaRow(ExcelRowModelBase):
         if (not self.__is_user_info_valid()):
             return False
 
-        if (self.accrual_frequency is None or self.timeoff_type is None or self.annual_target_hours is None):
+        if (self.accrual_frequency is None or self.timeoff_type is None or self.accrual_rate is None):
             return False
 
-        if (not self.__is_float(self.annual_target_hours) or float(self.annual_target_hours) < 0):
+        if (not self.__is_float(self.accrual_rate) or float(self.accrual_rate) < 0):
             return False
 
         return True
