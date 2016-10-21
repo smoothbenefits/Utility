@@ -12,6 +12,7 @@ class TimeoffQuotaJsonSerializer(object):
             return None
 
         obj = {
+                  'accrualRate': accrual_spec.accrualRate,
                   'accrualFrequency': accrual_spec.accrualFrequency,
                   'accruedHours': accrual_spec.accruedHours,
                   'lastAccrualTimestamp': accrual_spec.lastAccuralTimeStamp
@@ -25,7 +26,6 @@ class TimeoffQuotaJsonSerializer(object):
 
         obj =  {
                     'timeoffType': entry.timeoffType,
-                    'annualTargetHours': entry.annualTargetHours,
                     'bankedHours': entry.bankedHours,
                     'accrualSpecs': TimeoffQuotaJsonSerializer.__serialize_accrual_spec(entry.accrualSpecs)
                 }
@@ -66,6 +66,7 @@ class TimeoffQuotaJsonSerializer(object):
             return None
 
         obj = AccrualSpec(
+            accrual_rate=accrual_spec_data['accrualRate'],
             accrual_frequency=accrual_spec_data['accrualFrequency'],
             accrued_hours=accrual_spec_data['accruedHours'],
             last_accrual_time_stamp=accrual_spec_data['lastAccrualTimestamp']
@@ -80,7 +81,6 @@ class TimeoffQuotaJsonSerializer(object):
 
         obj = QuotaInfoCollectionEntry(
             timeoff_type=entry_data['timeoffType'],
-            annual_target_hours=entry_data['annualTargetHours'],
             banked_hours=entry_data['bankedHours'],
             accrual_specs=TimeoffQuotaJsonSerializer.__deserialize_accrual_spec(entry_data['accrualSpecs'])
         )

@@ -107,7 +107,7 @@ class UsersTimeoffQuotaDataAggregator(object):
             existing_record = user_quota_mapping[user_id]
             existing_record.patch(
                 timeoff_type=parsed_data_row.timeoff_type,
-                annual_target_hours=parsed_data_row.annual_target_hours,
+                accrual_rate=parsed_data_row.accrual_rate,
                 accrual_frequency=parsed_data_row.accrual_frequency,
                 banked_hours=parsed_data_row.banked_hours
             )
@@ -117,7 +117,7 @@ class UsersTimeoffQuotaDataAggregator(object):
                 person_descriptor=self.__hash_key_utility.encode_key_with_environment(user_id),
                 company_descriptor=self.__hash_key_utility.encode_key_with_environment(self.__company_id),
                 timeoff_type=parsed_data_row.timeoff_type,
-                annual_target_hours=parsed_data_row.annual_target_hours,
+                accrual_rate=parsed_data_row.accrual_rate,
                 accrual_frequency=parsed_data_row.accrual_frequency,
                 banked_hours=parsed_data_row.banked_hours
             )

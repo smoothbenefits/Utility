@@ -1,48 +1,33 @@
 # Utility
 
 ## Description
-This is the repository that have the scripts for the following purpose
-1. Parse a list of excel files to generate employee data for a company
+This is the repository that provides utilities for system admins to perform data operations, such as batch importing for new client on-boarding
 
+## Usage
+* The command format is: "python data_import.py [action] [action arguments]"
+* To see the list of available actions type "python data_import.py -h"
+* To see the list of auguments for a selected action, type "python data_import.py [action] -h"
+* Example:
+  * The below command runs the time-off quota spec import utility to import from excel file "../TestAssets/timeoff_quota_data.xlsx", for company with ID "1", and into the stage environment of the system.
+  * `python data_import.py timeoff_quota_spec_import -c 1 -e stage ../TestAssets/timeoff_quota_data.xlsx`
 
-## Get started
+## Development
+
+### Setting up prerequisites
 1. If you do not have virtualenvwrapper installed on your computer, please follow https://virtualenvwrapper.readthedocs.org/en/latest/install.html to install
 2. pip install openpyxl
 3. Install psycopg2 from http://initd.org/psycopg/docs/install.html#install-from-a-package
 
-## Design
-For data population, the we use a visitor pattern.
+### Code structure
+* The "common" folder
+  * Contains all common/shared constructs can be utilized by all utilities. Inlcuding base implementations, common utility services, etc.
+* Under each utility program folder
+  * The main utility program entry point (e.g. timeoff_quota_spec_import.py). This govern the programs behavior on command line, and needs to be registered in the main program "data_import.py".
+  * data_provider. Contains implementations that provide (i.e. read) data from different types of sources, such as web services, files, databases, etc. These are expected to be read-only.
+  * excel-parser (or xyz-parser). Contains implementations to parse data from data sources and formats. These normally serve as the proxy under data providers to work with data sources that need more complex logic in extraction and transformation.
+  * model. Contains implementations that represent entities/objects in memory, in a structured and readable and object-orientied way, to participate all upper-level (i.e. model or business logic layer) logics. All data providers public facing APIs are expected to return models.
+  * serialization. Contains implementations that capture the serialization/deserialization logics to convert domain models to their exchange formats, such as json, text, xml, sql or anything else.
+  * data_aggregator. Contains implementations that serves as the highest level service that utilizes all constructs above, directly or indirectly, and perform packing, validation and aggregation of data. They are like the assembly line of a factory. 
 
-## Testing
-1. Download the prod db snapshot
-createdb proddb
-pg_restore --verbose --clean --no-acl --no-owner -h localhost -U postgres -d proddb ~/Downloads/proddump
-psql proddb
 
-2. Make sure you added excluding emails into the /excel_importer/exclude.txt
-
-3. Run the parsing script without db component
-./import_excel.py ../../Assurant\ Fairview\ Enrollment\ Report\ 10.15.2015.xls.xlsx ../../2015-10-14\ Fairview\ HCHP.csv.xlsx
-If you have the db component, run the command below
-./import_excel.py -b proddb -t ../../Assurant\ Fairview\ Enrollment\ Report\ 10.15.2015.xls.xlsx ../../2015-10-14\ Fairview\ HCHP.csv.xlsx
-
-4. The generated sql file is at /excel_importer/serialized_users.sql
-
-5. Within the psql console, do \i {path_to_serializerd_user.sql}
-
-## How to use
-Repeat the steps in "Testing" section above starting from step 2 
-
-## Code structure:
-The excel_importer have the following group of objects:
-* model - These objects are the in memory models of the data parsed and retrieved.
-* parser - These objects are the excel reader that would translate all the excel data into model data
-* data_provider - These objects reads the needed data from BenefitMy_Python app database for company level data
-* serializer - These objects takes the models and output the data within models to which ever serialization format needed. Current we have text and sql (PL/pgSQL)
-* Company_benefits_provider - the main engine to read all the data from existing db and populate model
-* import_excel - The main program
-* users_db_data_provider - The engine to retrive and populate the company user data model from database
-* users_excel_data_provider - The engine to retrieve data from excel for company user data model
-
-Please note with in the model and parser, there are company specific model and parser like model.benefits.assurant_benefit_selection and assurant_benefit_selection_parser.
 
