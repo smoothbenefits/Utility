@@ -7,6 +7,8 @@ from openpyxl.cell import get_column_letter
 
 from common.data_import_base import DataImportBase
 from model.sys_pay_period_definition import PAY_PERIODS
+from model.company_onboarding_users import CompanyOnboardingUsers
+from users_excel_data_provider import UsersExcelDataProvider
 
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
@@ -64,3 +66,8 @@ class CompanyOnboardImport(DataImportBase):
         excel_path = args[1]
         Logger.debug("Onboarding company: {}".format(company_name))
         Logger.debug("here is the input excel: {}".format(excel_path))
+
+        company_users = CompanyOnboardingUsers(company_name)
+        data_provider = UsersExcelDataProvider()
+
+        data_provider.provide(excel_path, company_users)

@@ -29,6 +29,8 @@ class UsersExcelDataProvider(object):
     def _get_excel_type(self, file_name):
         if ExcelType.HCHP in file_name:
             return ExcelType.HCHP
+        if ExcelType.ONBOARD in file_name:
+            return ExcelType.ONBOARD
         else:
             return ExcelType.ENROLLMENT
 
