@@ -12,6 +12,7 @@ class Person(Base):
         self.ssn = ''
         self.birth_date = ''
         self.gender = ''
+        self.marital_status = ''
         self.phone = None
         self.address = None
         self.member_id = None
@@ -20,5 +21,4 @@ class Person(Base):
         self.id = ''
         self.medical_enrollment = None
         self.dental_enrollment = None
-    
 

@@ -1,8 +1,8 @@
 from openpyxl import load_workbook
-from parser.row_parser import RowParser
+from parser.onboarding.row_parser import RowParser
 from model.excel_type import ExcelType
 
-class UsersExcelDataProvider(object):
+class OnboardingExcelDataProvider(object):
     def provide(self, excel_file, company_users):
         work_book = load_workbook(excel_file, read_only=True, data_only=True, keep_vba=True)
         work_sheet = work_book.active
@@ -22,15 +22,9 @@ class UsersExcelDataProvider(object):
         for row in work_sheet.rows:
             header_row = row
             for cell in row:
-                if cell.value =='First Name' or cell.value == 'Last Name':
+                if cell.value =='Employee Number' or cell.value == 'Employee First Name':
                     return header_row, cell.row
         return None, None
 
     def _get_excel_type(self, file_name):
-        if ExcelType.HCHP in file_name:
-            return ExcelType.HCHP
-        else:
-            return ExcelType.ENROLLMENT
-
-
-
+        return ExcelType.ENROLLMENT

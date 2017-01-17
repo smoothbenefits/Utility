@@ -7,4 +7,5 @@ class EmployeeCompensation(Base):
         self.effective_date = ''
         self.hours = ''
         self.hourly_rate=''
+        self.pay_cycle = ''
         self.id = ''

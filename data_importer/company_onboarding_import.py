@@ -8,11 +8,15 @@ from openpyxl.cell import get_column_letter
 from common.data_import_base import DataImportBase
 from model.sys_pay_period_definition import PAY_PERIODS
 from model.company_onboarding_users import CompanyOnboardingUsers
-from users_excel_data_provider import UsersExcelDataProvider
+from onboarding_excel_data_provider import OnboardingExcelDataProvider
 
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
 Logger = logging.getLogger("import_excel")
+
+CSV = 'csv'
+EXCEL = 'excel'
+JSON = 'json'
 
 class CompanyOnboardImport(DataImportBase):
     def __init__(self):
@@ -22,18 +26,19 @@ class CompanyOnboardImport(DataImportBase):
         return 'company_onboard_import'
 
     def usage(self):
-        print "data_import.py {} [options] [company_name] [excel_file_path]\n".format(self.get_program_name())
+        print "data_import.py {} [options] [company_name] [file_path]\n".format(self.get_program_name())
         print "options can be one of the following: \n"
         print "-d (--debug) this will turn on the debug statment output \n"
         print "-h (--help) the option will print this message \n"
         print "-b (--base) the database to serialize the imported data into. Option argument specifies which database name\n"
         print "-t (--text) serialize the parsed data into the text file. Option argument specifies output file name\n"
         print "-p (--payperiod) specify the pay period definition. The choices are: {}\n".format(', '.join(PAY_PERIODS))
+        print "-f (--format) specify the format of the input file. The choices are: {}, {} and {}. Default is {}\n".format(EXCEL, CSV, JSON, EXCEL)
         print "The script needs the input excel file path to actually perform the company import action\n"
 
     def execute(self, argv):
         try:
-            opts, args = getopt.getopt(argv, "dhb:t:p:", ["debug", "help", "base=", "text=", "payperiod="])
+            opts, args = getopt.getopt(argv, "dhb:t:p:f:", ["debug", "help", "base=", "text=", "payperiod=", "format="])
         except getopt.GetoptError as err:
             # print help information and exit:
             print(err) # will print something like "option -a not recognized"
@@ -43,6 +48,7 @@ class CompanyOnboardImport(DataImportBase):
         database_connection = None
         text_output_path = None
         pay_period = PAY_PERIODS[0]
+        input_format = EXCEL
         for o, a in opts:
             if o == "-d":
                 Logger.setLevel(logging.DEBUG)
@@ -55,6 +61,8 @@ class CompanyOnboardImport(DataImportBase):
                 text_output_path = a
             elif o in ('-p', '--payperiod'):
                 pay_period = a
+            elif o in ('-f', '--format'):
+                input_format = a
             else:
                 assert False, "unhandled option"
 
@@ -68,6 +76,6 @@ class CompanyOnboardImport(DataImportBase):
         Logger.debug("here is the input excel: {}".format(excel_path))
 
         company_users = CompanyOnboardingUsers(company_name)
-        data_provider = UsersExcelDataProvider()
+        data_provider = OnboardingExcelDataProvider()
 
         data_provider.provide(excel_path, company_users)
