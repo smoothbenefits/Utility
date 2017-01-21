@@ -1,7 +1,0 @@
-class ModelType(object):
-    PERSON = 'person'
-    DEPENDENT = 'dependent'
-    MEDICAL_SELECTION = 'medical'
-    ASSURANT_SELECTION = 'assurant'
-    DIRECT_DEPOSITS = 'direct_deposits'
-    W4 = 'w4'
