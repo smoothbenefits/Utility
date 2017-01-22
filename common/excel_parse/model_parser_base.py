@@ -34,13 +34,10 @@ class ModelParserBase(object):
             if cell.row:
                 row_number = cell.row
                 break
-
         model_instance = self._create_model_instance(row_number)
-
         for cell in data_row:
             if cell.column in self.column_index_property_mapping:
                 self.column_index_property_mapping[cell.column](cell.value, model_instance)
-
         return model_instance
 
     def _set_string_value_on_model(self, model, field_name, value):

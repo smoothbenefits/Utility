@@ -2,15 +2,15 @@
 import os
 import sys
 
-from data_importer.account_benefit_data_import import AccountBenefitDataImport
 from timeoff_quota_importer.timeoff_banked_hours_import import TimeoffBankedHoursImport
 from timeoff_quota_importer.timeoff_quota_spec_import import TimeoffQuotaSpecImport
+from company_onboarding_importer.company_onboarding_import import CompanyOnboardImport
 
 # initialize the list of programs available
 AVAILABLE_PROGRAMS = [
-    AccountBenefitDataImport(),
     TimeoffBankedHoursImport(),
-    TimeoffQuotaSpecImport()
+    TimeoffQuotaSpecImport(),
+    CompanyOnboardImport(),
 ]
 
 PROGRAM_NAME_MAPPING = {}
