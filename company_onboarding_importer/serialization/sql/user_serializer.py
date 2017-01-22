@@ -11,22 +11,11 @@ class UserSerializer(object):
             return
         user_id_string = 'user_id_{}'.format(id)
         person_id_string = 'person_id_{}'.format(id)
-        medical_selection_id = 'usercompanybenefitplanoption_id_{}'.format(id)
-        dental_selection_id = 'usercompanybenefitplanoption_id_{}_dental'.format(id)
-        family_member_dictionary = {}
-        for i in range(0, len(user.family_members)):
-            member = user.family_members[i]
-            family_member_id_string = 'family_member_id_{}_{}'.format(id, i)
-            family_member_dictionary[family_member_id_string] = member
         file.write('\n')
         file.write('DECLARE\n')
         file.write('  {} int;\n'.format(user_id_string))
         file.write('  {} int;\n'.format(person_id_string))
-        for id_string in family_member_dictionary.keys():
-            file.write('  {} int;\n'.format(id_string))
         file.write('  company_user_id_{} int; \n'.format(id))
-        file.write('  {} int;\n'.format(medical_selection_id))
-        file.write('  {} int;\n'.format(dental_selection_id))
         file.write('BEGIN\n')
         if user.id:
             file.write('  {} := {};\n'.format(user_id_string, user.id))
@@ -39,8 +28,6 @@ class UserSerializer(object):
             file.write('  VALUES(\'employee\', \'f\', company_id, user_id_{})\n'.format(id))
             file.write('  RETURNING id into company_user_id_{};\n'.format(id))
             file.write('  raise notice \'The company_user_id_{} is %\', company_user_id_{};\n'.format(id, id))
-        
-        for id_string in family_member_dictionary.keys():
-            PersonSerializer.serialize(family_member_dictionary[id_string], file, user_id_string, id_string, medical_selection_id, dental_selection_id)
+            PersonSerializer.serialize(user.person, file, user_id_string, person_id_string)
         file.write('END;\n')
         file.write('\n')

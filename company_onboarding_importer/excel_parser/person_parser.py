@@ -13,7 +13,7 @@ class PersonParser(ModelParserBase):
             'employee middle name': (lambda value, model: setattr(model, 'middle_name', value)),
             'employee last name': (lambda value, model: setattr(model, 'last_name', value)),
             'employee email': (lambda value, model: setattr(model, 'email', value)),
-            'employee ssn': (lambda value, model: setattr(model, 'ssn', value)),
+            'employee ssn': (lambda value, model: setattr(model, 'ssn', str(value))),
             'employee birth date': (lambda value, model: setattr(model, 'birth_date', value)),
             'employee gender': (lambda value, model: setattr(model, 'gender', value)),
             'employee marital status': (lambda value, model: setattr(model, 'marital_status', value))

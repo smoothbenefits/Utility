@@ -10,7 +10,8 @@ from model.sys_pay_period_definition import PAY_PERIODS
 from model.company_onboarding_users import CompanyOnboardingUsers
 from model.company import Company
 from data_provider.onboarding_excel_data_provider import OnboardingExcelDataProvider
-from serialization.text.company_serializer import CompanySerializer
+from serialization.text.company_serializer import CompanySerializer as CompanyTextSerializer
+from serialization.sql.company_serializer import CompanySerializer as CompanySqlSerializer
 
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
@@ -32,7 +33,7 @@ class CompanyOnboardImport(DataImportBase):
         print "options can be one of the following: \n"
         print "-d (--debug) this will turn on the debug statment output \n"
         print "-h (--help) the option will print this message \n"
-        print "-b (--base) the database to serialize the imported data into. Option argument specifies which database name\n"
+        print "-o (--output) the sql file path to serialize the imported data into.\n"
         print "-t (--text) serialize the parsed data into the text file. Option argument specifies output file name\n"
         print "-p (--payperiod) specify the pay period definition. The choices are: {}\n".format(', '.join(PAY_PERIODS))
         print "-f (--format) specify the format of the input file. The choices are: {}, {} and {}. Default is {}\n".format(EXCEL, CSV, JSON, EXCEL)
@@ -40,14 +41,14 @@ class CompanyOnboardImport(DataImportBase):
 
     def execute(self, argv):
         try:
-            opts, args = getopt.getopt(argv, "dhb:t:p:f:", ["debug", "help", "base=", "text=", "payperiod=", "format="])
+            opts, args = getopt.getopt(argv, "dho:t:p:f:", ["debug", "help", "output=", "text=", "payperiod=", "format="])
         except getopt.GetoptError as err:
             # print help information and exit:
             print(err) # will print something like "option -a not recognized"
             self.usage()
             sys.exit(2)
 
-        database_connection = None
+        sql_file = None
         text_output_path = None
         pay_period = None
         input_format = EXCEL
@@ -57,8 +58,8 @@ class CompanyOnboardImport(DataImportBase):
             elif o in ("-h", "--help"):
                 self.usage()
                 sys.exit()
-            elif o in ("-b", "--base"):
-                database_connection = a
+            elif o in ("-o", "--output"):
+                sql_file = a
             elif o in ("-t", "--text"):
                 text_output_path = a
             elif o in ('-p', '--payperiod'):
@@ -92,6 +93,13 @@ class CompanyOnboardImport(DataImportBase):
         if text_output_path:
             f = open(text_output_path, 'w')
             f.truncate()
-            CompanySerializer.serialize(onboarding_company, f)
+            CompanyTextSerializer.serialize(onboarding_company, f)
             f.close()
+
+        if sql_file:
+            f = open(sql_file, 'w')
+            f.truncate()
+            CompanySqlSerializer.serialize(onboarding_company, f)
+            f.close()
+
 
