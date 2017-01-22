@@ -8,8 +8,9 @@ from openpyxl.cell import get_column_letter
 from common.data_import_base import DataImportBase
 from model.sys_pay_period_definition import PAY_PERIODS
 from model.company_onboarding_users import CompanyOnboardingUsers
+from model.company import Company
 from data_provider.onboarding_excel_data_provider import OnboardingExcelDataProvider
-from serialization.text.user_serializer import UserSerializer
+from serialization.text.company_serializer import CompanySerializer
 
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
@@ -48,7 +49,7 @@ class CompanyOnboardImport(DataImportBase):
 
         database_connection = None
         text_output_path = None
-        pay_period = PAY_PERIODS[0]
+        pay_period = None
         input_format = EXCEL
         for o, a in opts:
             if o in ("-d", "--debug"):
@@ -76,12 +77,21 @@ class CompanyOnboardImport(DataImportBase):
         Logger.debug("Onboarding company: {}".format(company_name))
         Logger.debug("here is the input excel: {}".format(excel_path))
 
+        # Setup the company model
+        onboarding_company = Company()
+        onboarding_company.pay_period = pay_period
+        onboarding_company.name = company_name
         company_users = CompanyOnboardingUsers(company_name)
-        data_provider = OnboardingExcelDataProvider()
+        onboarding_company.company_users = company_users
 
+        # Parse data into memory
+        data_provider = OnboardingExcelDataProvider()
         data_provider.provide(excel_path, company_users)
-        users = company_users.get_all_users()
+        
+        # Serialization
         if text_output_path:
             f = open(text_output_path, 'w')
-            for user in users:
-                UserSerializer.serialize(user, f)
+            f.truncate()
+            CompanySerializer.serialize(onboarding_company, f)
+            f.close()
+

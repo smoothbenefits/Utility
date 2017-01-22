@@ -1,11 +1,5 @@
 from person_serializer import PersonSerializer
-from benefits.medical_selection_serializer import MedicalSelectionSerializer
-from benefits.dental_selection_serializer import DentalSelectionSerializer
-from benefits.basic_life_selection_serializer import BasicLifeSelectionSerializer
-from benefits.supplemental_life_selection_serializer import SupplementalLifeSelectionSerializer
-from benefits.std_selection_serializer import StdSelectionSerializer
-from benefits.ltd_selection_serializer import LtdSelectionSerializer
-from benefits.hra_selection_serializer import HraSelectionSerializer
+
 import logging
 Logger = logging.getLogger("import_excel")
 
@@ -46,14 +40,6 @@ class UserSerializer(object):
             file.write('  RETURNING id into company_user_id_{};\n'.format(id))
             file.write('  raise notice \'The company_user_id_{} is %\', company_user_id_{};\n'.format(id, id))
         
-        MedicalSelectionSerializer.serialize(user.medical_selection, file, user_id_string, medical_selection_id)
-        DentalSelectionSerializer.serialize(user.dental_selection, file, user_id_string, dental_selection_id)
-        PersonSerializer.serialize(user.person, file, user_id_string, person_id_string, medical_selection_id, dental_selection_id)
-        BasicLifeSelectionSerializer.serialize(user.basic_life_selection, file, user_id_string, person_id_string)
-        SupplementalLifeSelectionSerializer.serialize(user.supplemental_life_selection, file, person_id_string)
-        StdSelectionSerializer.serialize(user.std_selection, file, user_id_string)
-        LtdSelectionSerializer.serialize(user.ltd_selection, file, user_id_string)
-        HraSelectionSerializer.serialize(user.hra_selection, file, person_id_string)
         for id_string in family_member_dictionary.keys():
             PersonSerializer.serialize(family_member_dictionary[id_string], file, user_id_string, id_string, medical_selection_id, dental_selection_id)
         file.write('END;\n')
