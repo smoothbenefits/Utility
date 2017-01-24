@@ -21,5 +21,5 @@ class CompanySerializer(object):
             file.write('  RETURNING id into company_id;\n')
         file.write('  raise notice \'The company_id after insert is %\', company_id;\n')
         CompanyUsersSerializer.serialize(company.company_users, file)
-        file.write('END\n')
-        file.write('$$;\n')
+        file.write('END;\n')
+        file.write('$$\n')

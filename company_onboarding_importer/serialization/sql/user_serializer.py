@@ -1,4 +1,6 @@
 from person_serializer import PersonSerializer
+from employee_w4_serializer import EmployeeW4Serializer
+from direct_deposit_accounts_serializer import DirectDepositAccountsSerializer
 
 import logging
 Logger = logging.getLogger("import_excel")
@@ -28,6 +30,8 @@ class UserSerializer(object):
             file.write('  VALUES(\'employee\', \'f\', company_id, user_id_{})\n'.format(id))
             file.write('  RETURNING id into company_user_id_{};\n'.format(id))
             file.write('  raise notice \'The company_user_id_{} is %\', company_user_id_{};\n'.format(id, id))
-            PersonSerializer.serialize(user.person, file, user_id_string, person_id_string)
+            PersonSerializer.serialize(user.person, file, user_id_string, person_id_string, id)
+        EmployeeW4Serializer.serialize(user.w4, file, user_id_string)
+        DirectDepositAccountsSerializer.serialize(user.direct_deposits, file, user_id_string, id)
         file.write('END;\n')
         file.write('\n')
