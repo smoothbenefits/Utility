@@ -17,6 +17,6 @@ class EmployeeW4Serializer(object):
         if not w4 or not w4.status:
             return
         marriage_number = EmployeeW4Serializer.get_marriage(w4.status)
-        file.write('  INSERT INTO app_w4 (marriage, dependencies, calculated_points, user_defined_points, extra_amount, user_id)\n')
-        file.write('  VALUES({}, 0, {}, {}, {}, {});\n'.format(marriage_number, w4.allowance, w4.allowance, '{:2f}'.format(w4.extra_amount), user_id_string))
+        file.write('  INSERT INTO app_w4 (marriage, dependencies, head, tax_credit, calculated_points, user_defined_points, extra_amount, user_id)\n')
+        file.write('  VALUES({}, 0, 0, 0, {}, {}, {:.2f}, {});\n'.format(marriage_number, w4.allowance, w4.allowance, w4.extra_amount, user_id_string))
         file.write('\n')

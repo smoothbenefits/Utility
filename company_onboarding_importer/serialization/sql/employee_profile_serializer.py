@@ -23,9 +23,9 @@ class EmployeeProfileSerializer(object):
             file.write('BEGIN\n')
             file.write('  SELECT id into {} from app_companydepartment WHERE department=\'{}\';\n'.format(company_department_id, profile.department))
             file.write('  IF {} IS null THEN\n'.format(company_department_id))
-            file.write('    INSERT INTO app_companydepartment(name, description, company)\n')
-            file.write('    VALUES(\'{}\', \'\', {});\n'.format(profile.department, 'company_id'))
-            file.write('    RETURNING id into {}\n'.format(company_department_id))
+            file.write('    INSERT INTO app_companydepartment(department, description, company_id)\n')
+            file.write('    VALUES(\'{}\', \'\', {})\n'.format(profile.department, 'company_id'))
+            file.write('    RETURNING id into {};\n'.format(company_department_id))
             file.write('  END IF;\n')
 
 
@@ -35,8 +35,12 @@ class EmployeeProfileSerializer(object):
         if not profile.employment_type:
             profile.employment_type = 'FullTime'
 
-        file.write('  INSERT INTO app_employeeprofile(job_title, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, benefit_start_date, employee_number, department)\n')
-        file.write('  VALUES(\'{}\', \'{}\', \'{}\', \'{}\', now(), now(), {}, company_id, \'{}\', \'{}\', {});\n'.format(profile.job_title, Serializer.get_date_string(profile.start_date), profile.employment_type, EmployeeProfileSerializer.get_employment_status(profile.employment_status), person_id_string, profile.benefit_start_date, profile.employee_number, company_department_id))
+        if not profile.benefit_start_date:
+            profile.benefit_start_date = 'null'
+        else:
+            profile.benefit_start_date = '\'{}\''.format(Serializer.get_date_string(profile.benefit_start_date))
+        file.write('  INSERT INTO app_employeeprofile(job_title, start_date, employment_type, employment_status, created_at, updated_at, person_id, company_id, benefit_start_date, employee_number, department_id)\n')
+        file.write('  VALUES(\'{}\', \'{}\', \'{}\', \'{}\', now(), now(), {}, company_id, {}, \'{}\', {});\n'.format(profile.job_title, Serializer.get_date_string(profile.start_date), profile.employment_type, EmployeeProfileSerializer.get_employment_status(profile.employment_status), person_id_string, profile.benefit_start_date, profile.employee_number, company_department_id))
         if profile.department:
             file.write('END; \n')
         file.write('\n')

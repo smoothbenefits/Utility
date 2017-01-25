@@ -16,12 +16,12 @@ class DirectDepositAccountsSerializer(object):
         file.write('DECLARE\n')
         file.write('  {} int;\n'.format(bank_account_id))
         file.write('BEGIN\n')
-        file.write('  INSERT INTO app_userbankaccount(routing, account, account_type, bank_name, user)\n')
-        file.write('  VALUES(\'{}\', \'{}\', \'{}\', \'{}\', {})\n'.format(str(routing_number), str(account_number), DirectDepositAccountsSerializer.get_account_type(account_type), bank_name, user_id_string))
-        file.write('  RETURN id into {};\n'.format(bank_account_id))
+        file.write('  INSERT INTO app_userbankaccount(routing, account, account_type, bank_name, user_id)\n')
+        file.write('  VALUES(\'{:.0f}\', \'{:.0f}\', \'{}\', \'{}\', {})\n'.format(routing_number, account_number, DirectDepositAccountsSerializer.get_account_type(account_type), bank_name, user_id_string))
+        file.write('  RETURNING id into {};\n'.format(bank_account_id))
 
         file.write('  INSERT INTO app_directdeposit(amount, percentage, remainder_of_all, bank_account_id, user_id)\n')
-        file.write('  VALUES(\'{}\', \'{}\', \'f\', {}, {});\n'.format(amount, percentage, bank_account_id, user_id_string))
+        file.write('  VALUES({}, {}, \'f\', {}, {});\n'.format(amount or 0, percentage or 0, bank_account_id, user_id_string))
         file.write('END;')
         file.write('\n')
 
