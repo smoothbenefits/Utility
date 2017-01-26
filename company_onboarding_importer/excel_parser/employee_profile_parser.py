@@ -16,7 +16,7 @@ class EmployeeProfileParser(ModelParserBase):
             'employee division': (lambda value, model: setattr(model, 'division', value)),
             'employee employment type': (lambda value, model: setattr(model, 'employment_type', value)),
             'employee number': (lambda value, model: setattr(model, 'employee_number', value)),
-            'employee job Title': (lambda value, model: setattr(model, 'job_title', value))
+            'employee job title': (lambda value, model: setattr(model, 'job_title', value))
         }
 
     def _create_model_instance(self, row_number):
