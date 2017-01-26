@@ -36,12 +36,13 @@ class CompanyOnboardImport(DataImportBase):
         print "-o (--output) the sql file path to serialize the imported data into.\n"
         print "-t (--text) serialize the parsed data into the text file. Option argument specifies output file name\n"
         print "-p (--payperiod) specify the pay period definition. The choices are: {}\n".format(', '.join(PAY_PERIODS))
+        print "-a (--admin) specify the admin email address. With this option specified, the company would have a valid admin user"
         print "-f (--format) specify the format of the input file. The choices are: {}, {} and {}. Default is {}\n".format(EXCEL, CSV, JSON, EXCEL)
         print "The script needs the input excel file path to actually perform the company import action\n"
 
     def execute(self, argv):
         try:
-            opts, args = getopt.getopt(argv, "dho:t:p:f:", ["debug", "help", "output=", "text=", "payperiod=", "format="])
+            opts, args = getopt.getopt(argv, "dho:t:p:a:f:", ["debug", "help", "output=", "text=", "payperiod=", "admin=", "format="])
         except getopt.GetoptError as err:
             # print help information and exit:
             print(err) # will print something like "option -a not recognized"
@@ -52,6 +53,7 @@ class CompanyOnboardImport(DataImportBase):
         text_output_path = None
         pay_period = None
         input_format = EXCEL
+        admin_email = None
         for o, a in opts:
             if o in ("-d", "--debug"):
                 Logger.setLevel(logging.DEBUG)
@@ -64,6 +66,8 @@ class CompanyOnboardImport(DataImportBase):
                 text_output_path = a
             elif o in ('-p', '--payperiod'):
                 pay_period = a
+            elif o in ('-a', '--admin'):
+                admin_email = a
             elif o in ('-f', '--format'):
                 input_format = a
             else:
@@ -82,6 +86,7 @@ class CompanyOnboardImport(DataImportBase):
         onboarding_company = Company()
         onboarding_company.pay_period = pay_period
         onboarding_company.name = company_name
+        onboarding_company.admin_email = admin_email
         company_users = CompanyOnboardingUsers(company_name)
         onboarding_company.company_users = company_users
 

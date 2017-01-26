@@ -9,5 +9,7 @@ class CompanySerializer(object):
         f.write('COMPANY: \n')
         f.write('\t {}'.format(company.name))
         if company.pay_period:
-            f.write('\t PayPeriod: {}'.format(company.pay_period))
+            f.write('\t PayPeriod: {}\n'.format(company.pay_period))
+        if company.admin_email:
+            f.write('\t Company Admin: {}\n'.format(company.admin_email))
         CompanyUsersSerializer.serialize(company.company_users, f, exclude_path)

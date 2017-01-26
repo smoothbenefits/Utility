@@ -26,6 +26,18 @@ class CompanySerializer(object):
         ))
         file.write('  RETURNING id into company_id;\n')
         file.write('  raise notice \'The company_id after insert is %\', company_id;\n')
+        if company.admin_email:
+            admin_id_string = 'company_admin_user_id'
+            file.write('DECLARE\n')
+            file.write('  {} int;\n'.format(admin_id_string))
+            file.write('BEGIN\n')
+            file.write('  INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)\n')
+            file.write('  VALUES(\'pbkdf2_sha256$15000$yQyU6XucXffw$m4mXFteyba8B6vKzw2oKFR9XLn7g+mOBLS111Il2+Ew=\', now(), \'{}\', \'t\', \'f\', \'f\', \'{}\', \'{}\', now(), now())\n'.format(company.admin_email, company.name, 'admin'))
+            file.write('  RETURNING id into {};\n'.format(admin_id_string))
+            file.write('  raise notice \'The company admin user_id after insert is %\', {};\n'.format(admin_id_string))
+            file.write('  INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)\n')
+            file.write('  VALUES(\'admin\', \'f\', company_id, {});\n'.format(admin_id_string))
+            file.write('END;')
         CompanyUsersSerializer.serialize(company.company_users, file)
         file.write('END;\n')
         file.write('$$\n')

@@ -5,4 +5,5 @@ class Company(Base):
         self.name = ''
         self.pay_period = None
         self.company_users = None
+        self.admin_email = ''
         self.id = ''
