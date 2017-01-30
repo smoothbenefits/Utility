@@ -4,9 +4,9 @@ class EmployeeProfileSerializer(object):
 
     @staticmethod
     def get_employment_status(raw_status):
-        if 'Active' in raw_status:
+        if 'A' in raw_status:
             return 'Active'
-        elif 'Prospective' in raw_status:
+        elif 'P' in raw_status:
             return 'Prospective'
         else:
             return 'Terminated'

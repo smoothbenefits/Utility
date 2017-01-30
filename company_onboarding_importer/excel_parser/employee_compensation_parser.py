@@ -12,9 +12,9 @@ class EmployeeCompensationParser(ModelParserBase):
             'employee annual salary amount': (lambda value, model: setattr(model, 'annual_base_salary', value)),
             'employee scheduled hours': (lambda value, model: setattr(model, 'hours', value)),
             'employee pay rate effective date': (lambda value, model: setattr(model, 'effective_date', value)),
-            'employee pay type': (lambda value, model: setattr(model, 'salary_type', value)),
+            'employee pay type': (lambda value, model: setattr(model, 'salary_type', value.strip())),
             'employee hourly pay rate': (lambda value, model: setattr(model, 'hourly_rate', value)),
-            'employee pay cycle': (lambda value, model: setattr(model, 'pay_cycle', value))
+            'employee pay cycle': (lambda value, model: setattr(model, 'pay_cycle', value.strip()))
         }
 
     def _create_model_instance(self, row_number):

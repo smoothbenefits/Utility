@@ -16,7 +16,7 @@ class EmployeeCompensationSerializer(object):
 
     @staticmethod
     def serialize(comp, file, person_id_string):
-        if not comp or not comp.hours:
+        if not comp:
             return
 
         hourly_rate = 'null'

@@ -9,7 +9,7 @@ class EmployeeW4Parser(ModelParserBase):
     # Allow concrete classes to populate the mapping polymorphically
     def _setup_column_mapping(self):
         self.column_property_mapping = {
-            'employee fit status ': (lambda value, model: setattr(model, 'status', value)),
+            'employee fit status ': (lambda value, model: setattr(model, 'status', value.strip())),
             'employee fit allowance': (lambda value, model: setattr(model, 'allowance', value)),
             'employee fit extra amount': (lambda value, model: setattr(model, 'extra_amount', value))
         }

@@ -17,7 +17,7 @@ class DirectDepositAccountsSerializer(object):
         file.write('  {} int;\n'.format(bank_account_id))
         file.write('BEGIN\n')
         file.write('  INSERT INTO app_userbankaccount(routing, account, account_type, bank_name, user_id)\n')
-        file.write('  VALUES(\'{:.0f}\', \'{:.0f}\', \'{}\', \'{}\', {})\n'.format(routing_number, account_number, DirectDepositAccountsSerializer.get_account_type(account_type), bank_name, user_id_string))
+        file.write('  VALUES(\'{}\', \'{}\', \'{}\', \'{}\', {})\n'.format(routing_number, account_number, DirectDepositAccountsSerializer.get_account_type(account_type), bank_name, user_id_string))
         file.write('  RETURNING id into {};\n'.format(bank_account_id))
 
         file.write('  INSERT INTO app_directdeposit(amount, percentage, remainder_of_all, bank_account_id, user_id)\n')
