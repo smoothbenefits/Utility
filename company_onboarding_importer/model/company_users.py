@@ -1,8 +1,8 @@
 from base import Base
 
 class CompanyUsers(object):
-    def __init__(self, company_id):
-        self.company_id = company_id
+    def __init__(self, company_name):
+        self.company_name = company_name
         self.users = {}
 
     def _merge_info(self, existing, new):

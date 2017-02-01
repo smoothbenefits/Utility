@@ -58,3 +58,9 @@ class ModelParserBase(object):
 
     def _create_model_instance(self, row_number):
         raise NotImplementedError("Please Implement this method in the sub-class")
+
+    def _setattr_strip(self, obj, attr_key, value):
+        if type(value) is unicode or type(value) is str:
+            setattr(obj, attr_key, value.strip())
+        else:
+            setattr(obj, attr_key, value)
