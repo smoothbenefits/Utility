@@ -10,6 +10,7 @@ from model.sys_pay_period_definition import PAY_PERIODS
 from model.company_onboarding_users import CompanyOnboardingUsers
 from model.company import Company
 from data_provider.onboarding_excel_data_provider import OnboardingExcelDataProvider
+from data_provider.onboarding_csv_data_provider import OnboardingCSVDataProvider
 from serialization.text.company_serializer import CompanySerializer as CompanyTextSerializer
 from serialization.sql.company_serializer import CompanySerializer as CompanySqlSerializer
 
@@ -78,9 +79,9 @@ class CompanyOnboardImport(DataImportBase):
             sys.exit(2)
 
         company_name = args[0]
-        excel_path = args[1]
+        file_path = args[1]
         Logger.debug("Onboarding company: {}".format(company_name))
-        Logger.debug("here is the input excel: {}".format(excel_path))
+        Logger.debug("here is the input excel: {}".format(file_path))
 
         # Setup the company model
         onboarding_company = Company()
@@ -91,8 +92,13 @@ class CompanyOnboardImport(DataImportBase):
         onboarding_company.company_users = company_users
 
         # Parse data into memory
-        data_provider = OnboardingExcelDataProvider()
-        data_provider.provide(excel_path, company_users)
+        data_provider = None
+        if input_format == CSV:
+            data_provider = OnboardingCSVDataProvider()
+        else:
+            data_provider = OnboardingExcelDataProvider()
+        
+        data_provider.provide(file_path, company_users)
         
         # Serialization
         if text_output_path:
