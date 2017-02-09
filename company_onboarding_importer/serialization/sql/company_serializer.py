@@ -32,7 +32,7 @@ class CompanySerializer(object):
             file.write('  {} int;\n'.format(admin_id_string))
             file.write('BEGIN\n')
             file.write('  INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)\n')
-            file.write('  VALUES(\'pbkdf2_sha256$15000$yQyU6XucXffw$m4mXFteyba8B6vKzw2oKFR9XLn7g+mOBLS111Il2+Ew=\', now(), \'{}\', \'t\', \'f\', \'f\', \'{}\', \'{}\', now(), now())\n'.format(company.admin_email, company.name, 'admin'))
+            file.write('  VALUES(\'pbkdf2_sha256$15000$FdFj2db1ynfa$NQk2m/RWgerM0ZhrKAhZ9ae0WrgUb220LalJUV4Eqzk=\', now(), \'{}\', \'t\', \'f\', \'f\', \'{}\', \'{}\', now(), now())\n'.format(company.admin_email, company.name, 'admin'))
             file.write('  RETURNING id into {};\n'.format(admin_id_string))
             file.write('  raise notice \'The company admin user_id after insert is %\', {};\n'.format(admin_id_string))
             file.write('  INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)\n')
