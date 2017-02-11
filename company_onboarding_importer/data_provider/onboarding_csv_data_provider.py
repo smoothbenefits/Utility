@@ -8,4 +8,4 @@ class OnboardingCSVDataProvider(object):
             csv_file_reader = csv.reader(csv_file)
             for row in csv_file_reader:
                 row_parsed = row_parser.parse_data(row)
-                company_users.merge_with_excel_data(row_parsed)
+                company_users.merge_with_file_data(row_parsed)

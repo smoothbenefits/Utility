@@ -95,8 +95,12 @@ class CompanyOnboardImport(DataImportBase):
         data_provider = None
         if input_format == CSV:
             data_provider = OnboardingCSVDataProvider()
-        else:
+        elif input_format == EXCEL:
             data_provider = OnboardingExcelDataProvider()
+        else:
+            print "ERROR: Please specify the input format accepted by the program:  {}, {} and {}".format(EXCEL, CSV, JSON)
+            sys.exit(2)
+
         
         data_provider.provide(file_path, company_users)
         

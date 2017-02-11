@@ -14,7 +14,7 @@ class OnboardingExcelDataProvider(object):
             if not row:
                 continue
             row_parsed = row_parser.parse_data(row)
-            company_users.merge_with_excel_data(row_parsed)
+            company_users.merge_with_file_data(row_parsed)
 
     def _find_header_row(self, work_sheet):
         header_row = None
