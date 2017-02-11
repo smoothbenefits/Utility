@@ -10,7 +10,7 @@ class EmployeeProfileParser(ModelParserBase):
     def _setup_column_mapping(self):
         self.column_property_mapping = {
             'employee employment start date': (lambda value, model: self._setattr_strip(model, 'start_date', value)),
-            'employee employment termination date': (lambda value, model: self._setattr_strip(model, 'start_date', value)),
+            'employee employment termination date': (lambda value, model: self._setattr_strip(model, 'terminate_date', value)),
             'employee employment status': (lambda value, model: self._setattr_strip(model, 'employment_status', value)),
             'employee department': (lambda value, model: self._setattr_strip(model, 'department', value)),
             'employee division': (lambda value, model: self._setattr_strip(model, 'division', value)),

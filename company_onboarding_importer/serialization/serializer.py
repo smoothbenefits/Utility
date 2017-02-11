@@ -4,12 +4,21 @@ class Serializer(object):
 
     @staticmethod
     def get_date_string(date):
-        if isinstance(date, unicode):
+        if isinstance(date, str):
             converted_date = datetime.datetime.strptime(date, '%m/%d/%Y')
         else:
             converted_date = date
 
         return converted_date.strftime('%Y-%m-%d')
+
+    @staticmethod
+    def clean_datetime(model, attr):
+        model_value = getattr(model, attr)
+        if not model_value:
+            setattr(model, attr, 'null')
+        else:
+            setattr(model, attr, '\'{}\''.format(Serializer.get_date_string(model_value)))
+
 
     @staticmethod
     def get_exclude_list(exclude_path):

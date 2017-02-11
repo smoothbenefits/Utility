@@ -20,7 +20,7 @@ class CompanyOnboardingUsers(CompanyUsers):
             the_user.email = re.sub('[\s+]', '', '{}.{}@{}.com'.format(person.first_name, person.last_name, self.company_name))
         return the_user
 
-    def merge_with_excel_data(self, row):
+    def merge_with_file_data(self, row):
         cur_user = None
         person = row.get(ModelType.PERSON)
         if not person:

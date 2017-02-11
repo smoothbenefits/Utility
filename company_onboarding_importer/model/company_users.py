@@ -18,7 +18,7 @@ class CompanyUsers(object):
         raise NotImplementedError("Please implement _get_user_key function")
     
 
-    def merge_with_excel_data(self, row):
+    def merge_with_file_data(self, row):
         raise NotImplementedError("Please implement merge_with_excel_data function")
     
     def merge_with_db_data(self, users):
