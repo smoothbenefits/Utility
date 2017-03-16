@@ -8,8 +8,10 @@ from openpyxl.cell import get_column_letter
 from common.data_import_base import DataImportBase
 from model.sys_pay_period_definition import PAY_PERIODS
 from model.company_onboarding_users import CompanyOnboardingUsers
+from model.ap_company_onboarding_users import APCompanyOnboardingUsers
 from model.company import Company
 from data_provider.onboarding_excel_data_provider import OnboardingExcelDataProvider
+from data_provider.onboarding_ap_excel_data_provider import OnboardingAPExcelDataProvider
 from data_provider.onboarding_csv_data_provider import OnboardingCSVDataProvider
 from serialization.text.company_serializer import CompanySerializer as CompanyTextSerializer
 from serialization.sql.company_serializer import CompanySerializer as CompanySqlSerializer
@@ -20,6 +22,7 @@ Logger = logging.getLogger("import_excel")
 
 CSV = 'csv'
 EXCEL = 'excel'
+AP_EXCEL = 'ap_excel'
 JSON = 'json'
 
 class CompanyOnboardImport(DataImportBase):
@@ -38,7 +41,7 @@ class CompanyOnboardImport(DataImportBase):
         print "-t (--text) serialize the parsed data into the text file. Option argument specifies output file name\n"
         print "-p (--payperiod) specify the pay period definition. The choices are: {}\n".format(', '.join(PAY_PERIODS))
         print "-a (--admin) specify the admin email address. With this option specified, the company would have a valid admin user"
-        print "-f (--format) specify the format of the input file. The choices are: {}, {} and {}. Default is {}\n".format(EXCEL, CSV, JSON, EXCEL)
+        print "-f (--format) specify the format of the input file. The choices are: {}, {}, {} and {}. Default is {}\n".format(EXCEL, AP_EXCEL, CSV, JSON, EXCEL)
         print "The script needs the input excel file path to actually perform the company import action\n"
 
     def execute(self, argv):
@@ -83,27 +86,28 @@ class CompanyOnboardImport(DataImportBase):
         Logger.debug("Onboarding company: {}".format(company_name))
         Logger.debug("here is the input excel: {}".format(file_path))
 
-        # Setup the company model
-        onboarding_company = Company()
-        onboarding_company.pay_period = pay_period
-        onboarding_company.name = company_name
-        onboarding_company.admin_email = admin_email
         company_users = CompanyOnboardingUsers(company_name)
-        onboarding_company.company_users = company_users
-
         # Parse data into memory
         data_provider = None
         if input_format == CSV:
             data_provider = OnboardingCSVDataProvider()
         elif input_format == EXCEL:
             data_provider = OnboardingExcelDataProvider()
+        elif input_format == AP_EXCEL:
+            data_provider = OnboardingAPExcelDataProvider()
+            company_users = APCompanyOnboardingUsers(company_name)
         else:
             print "ERROR: Please specify the input format accepted by the program:  {}, {} and {}".format(EXCEL, CSV, JSON)
             sys.exit(2)
 
-        
+        # Setup the company model
+        onboarding_company = Company()
+        onboarding_company.pay_period = pay_period
+        onboarding_company.name = company_name
+        onboarding_company.admin_email = admin_email
+        onboarding_company.company_users = company_users
         data_provider.provide(file_path, company_users)
-        
+
         # Serialization
         if text_output_path:
             f = open(text_output_path, 'w')

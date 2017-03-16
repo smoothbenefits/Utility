@@ -14,7 +14,7 @@ class PersonSerializer(object):
             else:
                 f.write("No phone\n")
             if person and person.employee_profile:
-                f.write("profile: {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(person.employee_profile.id, person.employee_profile.employment_status, person.employee_profile.employment_status, person.employee_profile.start_date, person.employee_profile.terminate_date, person.employee_profile.employee_number, person.employee_profile.division, person.employee_profile.department, person.employee_profile.job_title))
+                f.write("profile: {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(person.employee_profile.id, person.employee_profile.employment_type, person.employee_profile.employment_status, person.employee_profile.start_date, person.employee_profile.terminate_date, person.employee_profile.employee_number, person.employee_profile.division, person.employee_profile.department, person.employee_profile.job_title))
             else:
                 f.write("No employee profile\n")
             if person and person.employee_compensation:
