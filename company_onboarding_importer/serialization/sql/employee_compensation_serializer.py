@@ -1,6 +1,8 @@
 class EmployeeCompensationSerializer(object):
     @staticmethod
     def get_projected_hours_from_pay_cycle(hours, pay_cycle):
+        if hours == 0:
+            return 0
         if pay_cycle == 'W':
             # Weekly
             return  '{:.4f}'.format(float(hours) * 52 / 12)

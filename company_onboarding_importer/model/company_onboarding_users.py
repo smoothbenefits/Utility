@@ -17,7 +17,11 @@ class CompanyOnboardingUsers(CompanyUsers):
         the_user.last_name = person.last_name
         the_user.email = person.email
         if not the_user.email.strip():
-            the_user.email = re.sub('[\s+]', '', '{}.{}@{}.com'.format(person.first_name, person.last_name, self.company_name))
+            the_user.email = '{}.{}@{}.com'.format(
+                re.sub('[\s+]', '', person.first_name),
+                re.sub('[\s+]', '', person.last_name),
+                re.sub('[\s+]', '', self.company_name)
+            )
         return the_user
 
     def merge_with_file_data(self, row):
