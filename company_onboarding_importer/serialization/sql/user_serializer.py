@@ -7,16 +7,18 @@ Logger = logging.getLogger("import_excel")
 
 class UserSerializer(object):
     @staticmethod
-    def serialize(user, file, id):
+    def serialize(user, file, id, service_id_string, company):
         if not user:
             Logger.debug("Tried to serialize a non-existing user")
             return
         user_id_string = 'user_id_{}'.format(id)
         person_id_string = 'person_id_{}'.format(id)
+        service_user_external_id_string = 'service_user_external_id_{}'.format(id)
         file.write('\n')
         file.write('DECLARE\n')
         file.write('  {} int;\n'.format(user_id_string))
         file.write('  {} int;\n'.format(person_id_string))
+        file.write('  {} int;\n'.format(service_user_external_id_string))
         file.write('  company_user_id_{} int; \n'.format(id))
         file.write('BEGIN\n')
         if user.id:
@@ -30,6 +32,11 @@ class UserSerializer(object):
             file.write('  VALUES(\'employee\', \'f\', company_id, user_id_{})\n'.format(id))
             file.write('  RETURNING id into company_user_id_{};\n'.format(id))
             file.write('  raise notice \'The company_user_id_{} is %\', company_user_id_{};\n'.format(id, id))
+            if company and company.service_name and user.service_user_external_id:
+                file.write('  INSERT INTO app_companyuserintegrationprovider(company_user_external_id, created_at, updated_at, company_user_id, integration_provider_id)\n')
+                file.write('  VALUES(\'{}\', now(), now(), company_user_id_{}, {})\n'.format(user.service_user_external_id, id, service_id_string))
+                file.write('  RETURNING id into {};\n'.format(service_user_external_id_string))
+                file.write('  raise notice \'The {} is %\', {};\n'.format(service_user_external_id_string, service_user_external_id_string))
             PersonSerializer.serialize(user.person, file, user_id_string, person_id_string, id)
         EmployeeW4Serializer.serialize(user.w4, file, user_id_string)
         DirectDepositAccountsSerializer.serialize(user.direct_deposits, file, user_id_string, id)

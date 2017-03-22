@@ -42,13 +42,14 @@ class CompanyOnboardImport(DataImportBase):
         print "-p (--payperiod) specify the pay period definition. The choices are: {}\n".format(', '.join(PAY_PERIODS))
         print "-a (--admin) specify the admin email address. With this option specified, the company would have a valid admin user"
         print "-f (--format) specify the format of the input file. The choices are: {}, {}, {} and {}. Default is {}\n".format(EXCEL, AP_EXCEL, CSV, JSON, EXCEL)
-        print "-r (--payroll) specify the payroll company integrated. Only support \"Advantage Payroll\" for now\n"
-        print "-c (--comppayrollid) specify the id the company is registered as in the payroll company\n"
+        print "-s (--servicetype) specify the type of the service integrated with the company in our system. Only \"Payroll\" for now\n"
+        print "-n (--providername) specify the name of the service provider integrated in our system. Only \"Advantage Payroll\" for now\n"
+        print "-c (--compserviceid) specify the id the company is registered as in the service integrated\n"
         print "The script needs the input excel file path to actually perform the company import action\n"
 
     def execute(self, argv):
         try:
-            opts, args = getopt.getopt(argv, "dho:t:p:a:f:r:c:", ["debug", "help", "output=", "text=", "payperiod=", "admin=", "format=", "payroll=", "comppayrollid"])
+            opts, args = getopt.getopt(argv, "dho:t:p:a:f:s:n:c:", ["debug", "help", "output=", "text=", "payperiod=", "admin=", "format=", "servicetype=", "providername=", "compserviceid="])
         except getopt.GetoptError as err:
             # print help information and exit:
             print(err) # will print something like "option -a not recognized"
@@ -60,8 +61,9 @@ class CompanyOnboardImport(DataImportBase):
         pay_period = None
         input_format = EXCEL
         admin_email = None
-        payroll_name = None
-        company_payroll_id = None
+        service_type = None
+        service_name = None
+        company_service_id = None
         for o, a in opts:
             if o in ("-d", "--debug"):
                 Logger.setLevel(logging.DEBUG)
@@ -78,10 +80,12 @@ class CompanyOnboardImport(DataImportBase):
                 admin_email = a
             elif o in ('-f', '--format'):
                 input_format = a
-            elif o in ('-r', '--payroll'):
-                payroll_name = a
-            elif o in ('-c', '--comppayrollid'):
-                company_payroll_id = a
+            elif o in ('-s', '--servicetype'):
+                service_type = a
+            elif o in ('-n', '--providername'):
+                service_name = a
+            elif o in ('-c', '--compserviceid'):
+                company_service_id = a
             else:
                 assert False, "unhandled option"
 
@@ -114,8 +118,9 @@ class CompanyOnboardImport(DataImportBase):
         onboarding_company.name = company_name
         onboarding_company.admin_email = admin_email
         onboarding_company.company_users = company_users
-        onboarding_company.payroll_name = payroll_name
-        onboarding_company.company_external_id = company_payroll_id
+        onboarding_company.service_type = service_type
+        onboarding_company.service_name = service_name
+        onboarding_company.company_external_id = company_service_id
         data_provider.provide(file_path, company_users)
 
         # Serialization

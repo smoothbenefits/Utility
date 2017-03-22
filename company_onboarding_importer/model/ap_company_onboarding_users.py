@@ -68,6 +68,7 @@ class APCompanyOnboardingUsers(CompanyUsers):
             if len(user.person.address.zipcode) < 5:
                 user.person.address.zipcode = '0' + user.person.address.zipcode
         if user.person.employee_profile:
+            user.service_user_external_id = user.person.employee_profile.employee_number
             if user.person.employee_profile.employment_status == 'Z':
                 user.person.employee_profile.employment_status = 'T'
             else:

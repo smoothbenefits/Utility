@@ -10,3 +10,4 @@ class User(Base):
         self.direct_deposits = None
         self.w4 = None
         self.id = ""
+        self.service_user_external_id = None
