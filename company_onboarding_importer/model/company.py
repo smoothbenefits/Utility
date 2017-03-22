@@ -7,3 +7,5 @@ class Company(Base):
         self.company_users = None
         self.admin_email = ''
         self.id = ''
+        self.payroll_name = None
+        self.company_external_id = None
