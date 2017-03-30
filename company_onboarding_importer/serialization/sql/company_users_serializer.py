@@ -12,7 +12,7 @@ class CompanyUsersSerializer(object):
             if user.email.lower() not in exclude_list and \
             user.person.employee_profile and \
             user.person.employee_profile.employment_status and \
-            user.person.employee_profile.employment_status == 'A':
+            user.person.employee_profile.employment_status != 'T':
                 counter += 1
                 UserSerializer.serialize(user, file, counter, service_id_string, company)
 
