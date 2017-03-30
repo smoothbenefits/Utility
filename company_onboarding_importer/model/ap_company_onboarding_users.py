@@ -96,7 +96,7 @@ class APCompanyOnboardingUsers(CompanyUsers):
     def merge_with_file_data(self, row):
         cur_user = None
         person = row.get(ModelType.PERSON)
-        if not person:
+        if not (person and (person.first_name or person.last_name)):
             return
         key = self._get_user_key(person)
         cur_user = self.users.get(key)
