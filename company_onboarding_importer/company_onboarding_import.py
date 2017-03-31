@@ -45,11 +45,12 @@ class CompanyOnboardImport(DataImportBase):
         print "-s (--servicetype) specify the type of the service integrated with the company in our system. Only \"Payroll\" for now\n"
         print "-n (--providername) specify the name of the service provider integrated in our system. Only \"Advantage Payroll\" for now\n"
         print "-c (--compserviceid) specify the id the company is registered as in the service integrated\n"
+        print "-l (--trial) tells the system whether this is a trial or not. If this flag is not present, it is real\n"
         print "The script needs the input excel file path to actually perform the company import action\n"
 
     def execute(self, argv):
         try:
-            opts, args = getopt.getopt(argv, "dho:t:p:a:f:s:n:c:", ["debug", "help", "output=", "text=", "payperiod=", "admin=", "format=", "servicetype=", "providername=", "compserviceid="])
+            opts, args = getopt.getopt(argv, "dhlo:t:p:a:f:s:n:c:", ["debug", "help", "trial", "output=", "text=", "payperiod=", "admin=", "format=", "servicetype=", "providername=", "compserviceid="])
         except getopt.GetoptError as err:
             # print help information and exit:
             print(err) # will print something like "option -a not recognized"
@@ -64,6 +65,7 @@ class CompanyOnboardImport(DataImportBase):
         service_type = None
         service_name = None
         company_service_id = None
+        is_trial = False
         for o, a in opts:
             if o in ("-d", "--debug"):
                 Logger.setLevel(logging.DEBUG)
@@ -86,6 +88,8 @@ class CompanyOnboardImport(DataImportBase):
                 service_name = a
             elif o in ('-c', '--compserviceid'):
                 company_service_id = a
+            elif o in ('-l', '--trial'):
+                is_trial = True
             else:
                 assert False, "unhandled option"
 
@@ -98,7 +102,7 @@ class CompanyOnboardImport(DataImportBase):
         Logger.debug("Onboarding company: {}".format(company_name))
         Logger.debug("here is the input excel: {}".format(file_path))
 
-        company_users = CompanyOnboardingUsers(company_name)
+        company_users = CompanyOnboardingUsers(company_name, is_trial)
         # Parse data into memory
         data_provider = None
         if input_format == CSV:
@@ -107,7 +111,7 @@ class CompanyOnboardImport(DataImportBase):
             data_provider = OnboardingExcelDataProvider()
         elif input_format == AP_EXCEL:
             data_provider = OnboardingAPExcelDataProvider()
-            company_users = APCompanyOnboardingUsers(company_name)
+            company_users = APCompanyOnboardingUsers(company_name, is_trial)
         else:
             print "ERROR: Please specify the input format accepted by the program:  {}, {} and {}".format(EXCEL, CSV, JSON)
             sys.exit(2)
