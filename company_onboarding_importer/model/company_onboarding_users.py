@@ -5,8 +5,8 @@ from user import User
 from model_type import ModelType
 
 class CompanyOnboardingUsers(CompanyUsers):
-    def __init__(self, company_name):
-        super(CompanyOnboardingUsers, self).__init__(company_name)
+    def __init__(self, company_name, is_trial):
+        super(CompanyOnboardingUsers, self).__init__(company_name, is_trial)
 
     def _get_user_key(self, user_info):
         return user_info.ssn
@@ -16,11 +16,14 @@ class CompanyOnboardingUsers(CompanyUsers):
         the_user.first_name = person.first_name
         the_user.last_name = person.last_name
         the_user.email = person.email
-        if not the_user.email.strip():
+        email_host = self.company_name
+        if self.is_trial:
+            email_host += 'workbenefitsme'
+        if not the_user.email.strip() or self.is_trial:
             the_user.email = '{}.{}@{}.com'.format(
                 re.sub('[\s+]', '', person.first_name),
                 re.sub('[\s+]', '', person.last_name),
-                re.sub('[\s+]', '', self.company_name)
+                re.sub('[\s+]', '', email_host)
             )
         return the_user
 

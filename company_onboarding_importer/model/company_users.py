@@ -1,9 +1,10 @@
 from base import Base
 
 class CompanyUsers(object):
-    def __init__(self, company_name):
+    def __init__(self, company_name, is_trial):
         self.company_name = company_name
         self.users = {}
+        self.is_trial = is_trial
 
     def _merge_info(self, existing, new):
         for attr in vars(existing):
