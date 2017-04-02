@@ -42,8 +42,11 @@ class ModelParserBase(object):
 
     def _set_string_value_on_model(self, model, field_name, value):
         result_value = value
-        if (value is not None):
-            result_value = value.strip()
+        if (result_value is not None):
+            if type(result_value) is unicode or type(result_value) is str:
+                result_value = result_value.strip()
+            else:
+                result_value = '{0:g}'.format(result_value).strip()
         setattr(model, field_name, result_value)
 
     def _set_number_value_on_model(self, model, field_name, value):

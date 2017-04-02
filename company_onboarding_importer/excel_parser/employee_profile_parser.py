@@ -15,7 +15,7 @@ class EmployeeProfileParser(ModelParserBase):
             'employee department': (lambda value, model: self._setattr_strip(model, 'department', value)),
             'employee division': (lambda value, model: self._setattr_strip(model, 'division', value)),
             'employee employment type': (lambda value, model: self._setattr_strip(model, 'employment_type', value)),
-            'employee number': (lambda value, model: self._setattr_strip(model, 'employee_number', value)),
+            'employee number': (lambda value, model: self._set_string_value_on_model(model, 'employee_number', value)),
             'employee job title': (lambda value, model: self._setattr_strip(model, 'job_title', value))
         }
 
