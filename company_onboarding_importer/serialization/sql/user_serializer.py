@@ -27,7 +27,7 @@ class UserSerializer(object):
             file.write('  {} := {};\n'.format(user_id_string, user.id))
         else:
             file.write('  INSERT INTO app_authuser(password, last_login, email, is_active, is_admin, is_superuser, first_name, last_name, last_updated, date_created)\n')
-            file.write('  VALUES(\'pbkdf2_sha256$15000$FdFj2db1ynfa$NQk2m/RWgerM0ZhrKAhZ9ae0WrgUb220LalJUV4Eqzk=\', now(), \'{}\', \'t\', \'f\', \'f\', \'{}\', \'{}\', now(), now())\n'.format(user.email.replace('\'', '').lower(), user.first_name.replace('\'', '\'\'').lower().title(), user.last_name.replace('\'', '\'\'').lower().title()))
+            file.write('  VALUES(\'pbkdf2_sha256$15000$FdFj2db1ynfa$NQk2m/RWgerM0ZhrKAhZ9ae0WrgUb220LalJUV4Eqzk=\', now(), \'{}\', \'t\', \'f\', \'f\', \'{}\', \'{}\', now(), now())\n'.format(user.email.replace('\'', '').lower(), user.first_name.replace('\'', '\'\''), user.last_name.replace('\'', '\'\'')))
             file.write('  RETURNING id into user_id_{};\n'.format(id))
             file.write('  raise notice \'The user_id_{} after insert is %\', user_id_{};\n'.format(id, id))
             file.write('  INSERT INTO app_companyuser(company_user_type, new_employee, company_id, user_id)\n')
