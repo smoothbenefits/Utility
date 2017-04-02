@@ -13,7 +13,7 @@ class EmployeeProfileParser(ModelParserBase):
             'termdate': (lambda value, model: self._setattr_strip(model, 'terminate_date', value)),
             'active/term': (lambda value, model: self._setattr_strip(model, 'employment_status', value)),
             'division': (lambda value, model: self._setattr_strip(model, 'division', value)),
-            'emp#': (lambda value, model: self._setattr_strip(model, 'employee_number', value)),
+            'emp#': (lambda value, model: self._set_string_value_on_model(model, 'employee_number', value)),
             'job': (lambda value, model: self._setattr_strip(model, 'job_title', value))
         }
 

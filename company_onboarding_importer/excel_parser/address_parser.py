@@ -13,7 +13,7 @@ class AddressParser(ModelParserBase):
             'employee address 1 line 2': (lambda value, model: self._setattr_strip(model, 'street_2', value)),
             'employee address 1 city': (lambda value, model: self._setattr_strip(model, 'city', value)),
             'employee address 1 state': (lambda value, model: self._setattr_strip(model, 'state', value)),
-            'employee address 1 zip code': (lambda value, model: self._setattr_strip(model, 'zipcode', value))
+            'employee address 1 zip code': (lambda value, model: model.set_normalized_zipcode(value))
         }
 
     def _create_model_instance(self, row_number):

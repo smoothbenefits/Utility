@@ -5,7 +5,9 @@ Logger = logging.getLogger("import_excel")
 class EmployeeW4Serializer(object):
     @staticmethod
     def get_marriage(status):
-        if status == 'S' or status == 'H':
+        if status == 'S':
+            return 0
+        elif status == 'H':
             return 1
         elif status == 'M':
             return 2

@@ -14,7 +14,7 @@ class PersonParser(ModelParserBase):
             2: (lambda value, model: self._setattr_strip(model, 'middle_name', value)),
             3: (lambda value, model: self._setattr_strip(model, 'last_name', value)),
             10: (lambda value, model: self._setattr_strip(model, 'email', value)),
-            9: (lambda value, model: self._setattr_strip(model, 'ssn', str(value))),
+            9: (lambda value, model: self._set_string_value_on_model(model, 'ssn', value)),
             12: (lambda value, model: self._set_date_value_on_model(model, 'birth_date', value)),
             13: (lambda value, model: self._setattr_strip(model, 'gender', value)),
             14: (lambda value, model: self._setattr_strip(model, 'marital_status', value))

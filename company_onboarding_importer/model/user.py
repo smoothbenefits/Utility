@@ -4,10 +4,10 @@ class User(Base):
     def __init__(self):
         self.first_name = ""
         self.last_name = ""
-        self.company_domain = None
-        self.email = None
-        self.person = None
-        self.direct_deposits = None
-        self.w4 = None
+        self.company_domain = ''
+        self.email = ''
+        self.person = ''
+        self.direct_deposits = ''
+        self.w4 = ''
         self.id = ""
-        self.service_user_external_id = None
+        self.service_user_external_id = ''
