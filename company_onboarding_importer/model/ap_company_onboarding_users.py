@@ -108,3 +108,9 @@ class APCompanyOnboardingUsers(CompanyUsers):
 
         cur_user.w4 = row.get(ModelType.W4)
         self._translate_to_system_values(cur_user)
+
+    def merge_with_basic_data(self, basic_users):
+        all_basic_users = basic_users.get_all_users()
+        for user in all_basic_users:
+            print "in basic users {}".format(user.email)
+            print "  user benefit_start_date is {}".format(user.person.employee_profile.benefit_start_date)

@@ -9,10 +9,12 @@ from common.data_import_base import DataImportBase
 from model.sys_pay_period_definition import PAY_PERIODS
 from model.company_onboarding_users import CompanyOnboardingUsers
 from model.ap_company_onboarding_users import APCompanyOnboardingUsers
+from model.basic_company_onboarding_users import BasicCompanyOnboardingUsers
 from model.company import Company
 from data_provider.onboarding_excel_data_provider import OnboardingExcelDataProvider
 from data_provider.onboarding_ap_excel_data_provider import OnboardingAPExcelDataProvider
 from data_provider.onboarding_csv_data_provider import OnboardingCSVDataProvider
+from data_provider.onboarding_basic_excel_data_provider import OnboardingBasicExcelDataProvider
 from serialization.text.company_serializer import CompanySerializer as CompanyTextSerializer
 from serialization.sql.company_serializer import CompanySerializer as CompanySqlSerializer
 
@@ -46,11 +48,12 @@ class CompanyOnboardImport(DataImportBase):
         print "-n (--providername) specify the name of the service provider integrated in our system. Only \"Advantage Payroll\" for now\n"
         print "-c (--compserviceid) specify the id the company is registered as in the service integrated\n"
         print "-l (--trial) tells the system whether this is a trial or not. If this flag is not present, it is real\n"
+        print "-e (--emailfile) tells the system the path of the email excel file \n"
         print "The script needs the input excel file path to actually perform the company import action\n"
 
     def execute(self, argv):
         try:
-            opts, args = getopt.getopt(argv, "dhlo:t:p:a:f:s:n:c:", ["debug", "help", "trial", "output=", "text=", "payperiod=", "admin=", "format=", "servicetype=", "providername=", "compserviceid="])
+            opts, args = getopt.getopt(argv, "dhlo:t:p:a:f:s:n:c:e:", ["debug", "help", "trial", "output=", "text=", "payperiod=", "admin=", "format=", "servicetype=", "providername=", "compserviceid=", "emailfile="])
         except getopt.GetoptError as err:
             # print help information and exit:
             print(err) # will print something like "option -a not recognized"
@@ -65,6 +68,7 @@ class CompanyOnboardImport(DataImportBase):
         service_type = None
         service_name = None
         company_service_id = None
+        email_file_path = None
         is_trial = False
         for o, a in opts:
             if o in ("-d", "--debug"):
@@ -90,6 +94,8 @@ class CompanyOnboardImport(DataImportBase):
                 company_service_id = a
             elif o in ('-l', '--trial'):
                 is_trial = True
+            elif o in ('-e', '--emailfile'):
+                email_file_path = a
             else:
                 assert False, "unhandled option"
 
@@ -126,6 +132,12 @@ class CompanyOnboardImport(DataImportBase):
         onboarding_company.service_name = service_name
         onboarding_company.company_external_id = company_service_id
         data_provider.provide(file_path, company_users)
+
+        if email_file_path:
+            email_data_provider = OnboardingBasicExcelDataProvider()
+            basic_users = BasicCompanyOnboardingUsers(company_name)
+            email_data_provider.provide(email_file_path, 'Employees', basic_users)
+            company_users.merge_with_basic_data(basic_users)
 
         # Serialization
         if text_output_path:
