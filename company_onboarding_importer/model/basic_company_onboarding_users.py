@@ -14,13 +14,12 @@ class BasicCompanyOnboardingUsers(CompanyUsers):
         the_user.first_name = person.first_name
         the_user.last_name = person.last_name
         the_user.email = person.email
-        email_host = self.company_name
         return the_user
 
     def merge_with_file_data(self, row):
         cur_user = None
         person = row.get(ModelType.PERSON)
-        if not person:
+        if not person or not person.email:
             return
         key = self._get_user_key(person)
         cur_user = self.users.get(key)

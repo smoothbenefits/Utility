@@ -109,8 +109,19 @@ class APCompanyOnboardingUsers(CompanyUsers):
         cur_user.w4 = row.get(ModelType.W4)
         self._translate_to_system_values(cur_user)
 
+    def _find_with_first_name_last_name(self, first_name, last_name):
+        for user in self.get_all_users():
+            if user.person and user.person.first_name and first_name.upper() in user.person.first_name.upper() and \
+                user.person.last_name and last_name.upper() in user.person.last_name.upper():
+                return user
+
     def merge_with_basic_data(self, basic_users):
         all_basic_users = basic_users.get_all_users()
-        for user in all_basic_users:
-            print "in basic users {}".format(user.email)
-            print "  user benefit_start_date is {}".format(user.person.employee_profile.benefit_start_date)
+        for basic_user in all_basic_users:
+            if basic_user.person and basic_user.person.first_name and basic_user.person.last_name:
+                matched_user = self._find_with_first_name_last_name(basic_user.person.first_name, basic_user.person.last_name)
+                if matched_user:
+                    matched_user.person.email = basic_user.person.email
+                    matched_user.email = basic_user.email
+                    self._merge_info(matched_user, basic_user)
+
