@@ -3,6 +3,7 @@ import re
 from company_users import CompanyUsers
 from user import User
 from model_type import ModelType
+from common.utility.password_utility import PasswordUtility
 
 class APCompanyOnboardingUsers(CompanyUsers):
     _division_map = {
@@ -38,6 +39,7 @@ class APCompanyOnboardingUsers(CompanyUsers):
 
     def __init__(self, company_name, is_trial):
         super(APCompanyOnboardingUsers, self).__init__(company_name, is_trial)
+        self._password_util = PasswordUtility()
 
     def _get_user_key(self, user_info):
         return user_info.ssn
@@ -46,7 +48,6 @@ class APCompanyOnboardingUsers(CompanyUsers):
         the_user = User()
         the_user.first_name = person.first_name
         the_user.last_name = person.last_name
-        the_user.email = person.email
         email_host = self.company_name
         if self.is_trial:
             email_host += 'workbenefitsme'
@@ -58,6 +59,13 @@ class APCompanyOnboardingUsers(CompanyUsers):
             )
             the_user.email = email
             person.email = email
+        else:
+            the_user.email = person.email
+
+        # We should randomize the passwords
+        password, hashed_password = self._password_util.get_next_password_pair()
+        the_user.password = hashed_password
+        print "For user {} {} with email {} has the password: {}".format(the_user.first_name, the_user.last_name, the_user.email, password)
         return the_user
 
     def _update_annual_salary(self, user, pay_per_year):
@@ -121,7 +129,8 @@ class APCompanyOnboardingUsers(CompanyUsers):
             if basic_user.person and basic_user.person.first_name and basic_user.person.last_name:
                 matched_user = self._find_with_first_name_last_name(basic_user.person.first_name, basic_user.person.last_name)
                 if matched_user:
-                    matched_user.person.email = basic_user.person.email
-                    matched_user.email = basic_user.email
+                    if not self.is_trial:
+                        matched_user.person.email = basic_user.person.email
+                        matched_user.email = basic_user.email
                     self._merge_info(matched_user, basic_user)
 
