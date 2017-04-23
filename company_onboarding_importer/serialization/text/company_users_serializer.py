@@ -15,6 +15,7 @@ class CompanyUsersSerializer(object):
                 user.person.employee_profile and \
                 user.person.employee_profile.employment_status and \
                 user.person.employee_profile.employment_status != 'T':
+                print "{} {} | {} | {}".format(user.first_name, user.last_name, user.email, user.text_password)
                 UserSerializer.serialize(user, f)
                 count += 1
         f.write("\nUser Count: {}\n".format(count))

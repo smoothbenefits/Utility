@@ -28,3 +28,10 @@ class BasicCompanyOnboardingUsers(CompanyUsers):
             cur_user.person = person
             self.users[key] = cur_user
 
+        if cur_user.person.employee_profile and \
+            cur_user.person.employee_profile.benefit_start_date == 'n/a':
+            if cur_user.person.employee_profile.start_date:
+                cur_user.person.employee_profile.benefit_start_date = cur_user.person.employee_profile.start_date
+            else:
+                cur_user.person.employee_profile.benefit_start_date = None
+

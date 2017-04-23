@@ -65,7 +65,7 @@ class APCompanyOnboardingUsers(CompanyUsers):
         # We should randomize the passwords
         password, hashed_password = self._password_util.get_next_password_pair()
         the_user.password = hashed_password
-        print "For user {} {} with email {} has the password: {}".format(the_user.first_name, the_user.last_name, the_user.email, password)
+        the_user.text_password = password
         return the_user
 
     def _update_annual_salary(self, user, pay_per_year):
@@ -129,7 +129,7 @@ class APCompanyOnboardingUsers(CompanyUsers):
             if basic_user.person and basic_user.person.first_name and basic_user.person.last_name:
                 matched_user = self._find_with_first_name_last_name(basic_user.person.first_name, basic_user.person.last_name)
                 if matched_user:
-                    if not self.is_trial:
+                    if not self.is_trial and basic_user.person.email.strip():
                         matched_user.person.email = basic_user.person.email
                         matched_user.email = basic_user.email
                     self._merge_info(matched_user, basic_user)
