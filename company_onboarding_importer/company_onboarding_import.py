@@ -43,7 +43,7 @@ class CompanyOnboardImport(DataImportBase):
         print "-a (--admin) specify the admin email address. With this option specified, the company would have a valid admin user"
         print "-f (--format) specify the format of the input file. The choices are: {}, {}, {} and {}. Default is {}\n".format(EXCEL, AP_EXCEL, CSV, JSON, EXCEL)
         print "-s (--servicetype) specify the type of the service integrated with the company in our system. Only \"Payroll\" for now\n"
-        print "-n (--providername) specify the name of the service provider integrated in our system. Only \"Advantage Payroll\" for now\n"
+        print "-n (--providername) specify the name of the service provider integrated in our system. \n"
         print "-c (--compserviceid) specify the id the company is registered as in the service integrated\n"
         print "-l (--trial) tells the system whether this is a trial or not. If this flag is not present, it is real\n"
         print "The script needs the input excel file path to actually perform the company import action\n"
