@@ -20,9 +20,10 @@ class CompanyOnboardingUsers(CompanyUsers):
         if self.is_trial:
             email_host += 'workbenefitsme'
         if not the_user.email.strip() or self.is_trial:
-            email = '{}.{}@{}.com'.format(
+            email = '{}{}{}@{}.com'.format(
                 re.sub('[\s+]', '', person.first_name),
-                re.sub('[\s+]', '', person.last_name),
+                '.' + re.sub('[\s+]', '', person.middle_name),
+                '.' + re.sub('[\s+]', '', person.last_name),
                 re.sub('[\s+]', '', email_host)
             )
             the_user.email = email
