@@ -4,7 +4,7 @@ class Serializer(object):
 
     @staticmethod
     def get_date_string(date):
-        if isinstance(date, str):
+        if isinstance(date, str) or isinstance(date, unicode):
             converted_date = datetime.datetime.strptime(date, '%m/%d/%Y')
         else:
             converted_date = date

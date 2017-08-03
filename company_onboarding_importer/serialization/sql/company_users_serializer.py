@@ -14,6 +14,7 @@ class CompanyUsersSerializer(object):
             user.person.employee_profile.employment_status and \
             user.person.employee_profile.employment_status != 'T':
                 counter += 1
+                print "{} {} | {} | {}".format(user.first_name, user.last_name, user.email, user.text_password)
                 UserSerializer.serialize(user, file, counter, service_id_string, company_group_id_string, company)
 
         file.write('raise notice \'There are {} users created \';\n'.format(counter))
