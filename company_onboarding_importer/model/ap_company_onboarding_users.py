@@ -69,7 +69,6 @@ class APCompanyOnboardingUsers(CompanyUsers):
         if not user.person.email:
             user.person.email = ''
         if user.person.employee_profile:
-            user.service_user_external_id = user.person.employee_profile.employee_number
             if user.person.employee_profile.employment_status == 'Z':
                 user.person.employee_profile.employment_status = 'T'
             else:

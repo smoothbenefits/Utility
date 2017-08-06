@@ -20,9 +20,10 @@ class CompanyOnboardingUsers(CompanyUsers):
         if self.is_trial:
             email_host += 'workbenefitsme'
         if not the_user.email.strip() or self.is_trial:
-            email = '{}.{}@{}.com'.format(
+            email = '{}{}{}@{}.com'.format(
                 re.sub('[\s+]', '', person.first_name),
-                re.sub('[\s+]', '', person.last_name),
+                '.' + re.sub('[\s+]', '', person.middle_name),
+                '.' + re.sub('[\s+]', '', person.last_name),
                 re.sub('[\s+]', '', email_host)
             )
             the_user.email = email
@@ -43,3 +44,5 @@ class CompanyOnboardingUsers(CompanyUsers):
 
         cur_user.direct_deposits = row.get(ModelType.DIRECT_DEPOSITS)
         cur_user.w4 = row.get(ModelType.W4)
+        if cur_user.person.employee_profile:
+            cur_user.service_user_external_id = cur_user.person.employee_profile.employee_number
