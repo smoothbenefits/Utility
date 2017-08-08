@@ -23,9 +23,22 @@ class EmployeeProfileSerializer(object):
             file.write('BEGIN\n')
             file.write('  SELECT id into {} from app_companydepartment WHERE department=\'{}\';\n'.format(company_department_id, profile.department))
             file.write('  IF {} IS null THEN\n'.format(company_department_id))
-            file.write('    INSERT INTO app_companydepartment(department, description, company_id)\n')
-            file.write('    VALUES(\'{}\', \'\', {})\n'.format(profile.department, 'the_company_id'))
+            file.write('    INSERT INTO app_companydepartment(department, description, code, company_id)\n')
+            file.write('    VALUES(\'{}\', \'\', \'{}\', {})\n'.format(profile.department, profile.department_code, 'the_company_id'))
             file.write('    RETURNING id into {};\n'.format(company_department_id))
+            file.write('  END IF;\n')
+
+        company_division_id = 'null'
+        if profile.division:
+            company_division_id = 'company_division_{}'.format(id)
+            file.write('DECLARE\n')
+            file.write('  {} int; \n'.format(company_division_id))
+            file.write('BEGIN\n')
+            file.write('  SELECT id into {} from app_companydivision WHERE division=\'{}\';\n'.format(company_division_id, profile.division))
+            file.write('  IF {} IS null THEN\n'.format(company_division_id))
+            file.write('    INSERT INTO app_companydivision(division, description, code, company_id)\n')
+            file.write('    VALUES(\'{}\', \'\', \'{}\', {})\n'.format(profile.division, profile.division_code, 'the_company_id'))
+            file.write('    RETURNING id into {};\n'.format(company_division_id))
             file.write('  END IF;\n')
 
 

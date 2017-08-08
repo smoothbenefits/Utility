@@ -13,5 +13,7 @@ class EmployeeProfile(Base):
         self.user_id = ''
         self.employee_number=''
         self.department = ''
+        self.department_code = ''
         self.division = ''
+        self.division_code = ''
         self.job_title = ''
