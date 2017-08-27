@@ -45,4 +45,7 @@ class CompanyOnboardingUsers(CompanyUsers):
         cur_user.direct_deposits = row.get(ModelType.DIRECT_DEPOSITS)
         cur_user.w4 = row.get(ModelType.W4)
         if cur_user.person.employee_profile:
-            cur_user.service_user_external_id = cur_user.person.employee_profile.employee_number
+            if cur_user.person.employee_profile.employee_id:
+                cur_user.service_user_external_id = cur_user.person.employee_profile.employee_id
+            else:
+                cur_user.service_user_external_id = cur_user.person.employee_profile.employee_number
