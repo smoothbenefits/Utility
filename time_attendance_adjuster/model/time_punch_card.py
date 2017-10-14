@@ -26,6 +26,9 @@ class TimePunchCard(object):
         # Parse all dates and times to objects
         self.date = self._parse_date_time(punch_card_domain_model['date'])
 
+        # Parse card mode, hours or range
+        self.in_hours = punch_card_domain_model['inHours']
+
         start_str = punch_card_domain_model['start']
         if (start_str):
             self.start = self._parse_date_time(start_str)

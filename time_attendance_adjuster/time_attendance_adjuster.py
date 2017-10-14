@@ -6,11 +6,7 @@ import dateutil.parser
 
 from common.data_import_base import DataImportBase
 from common.utility.environment_utility import EnvironmentUtility
-
-from .data_provider.company_users_data_provider import CompanyUsersDataProvider
-from .data_provider.excel_users_adjustment_specification_data_provider import ExcelUsersAdjustmentSpecificationDataProvider
-from .data_provider.company_users_time_card_data_provider import CompanyUsersTimeCardDataProvider
-from .data_provider.excel_cp_time_attendance_export_data_provider import ExcelCPTimeAttendanceExportDataProvider
+from .data_aggregator.time_attendance_data_aggregator import TimeAttendanceDataAggregator
 
 from common.writer.csv_writer import CSVWriter
 
@@ -94,39 +90,102 @@ class TimeAttendanceAdjuster(DataImportBase):
 
     def __perform_import(self, company_id, spec_file_path, start_date, end_date, target_file_path, output_file_path):
 
-        # Print output
-        print '####### Output Starts #######'
-        print ''
+        print 'Collecting all data ...'
 
-        # company_users_data_provider = CompanyUsersDataProvider(company_id)
-        # all_users = company_users_data_provider.get_model()
-        # for user in all_users:
-        #     print '{0} {1} {2} {3}'.format(user.user_id, user.first_name, user.last_name, user.employee_number)
+        data_aggregator = TimeAttendanceDataAggregator(company_id, spec_file_path, start_date, end_date, target_file_path)
+        records = data_aggregator.get_aggregated_data()
 
-        # spec_provider = ExcelUsersAdjustmentSpecificationDataProvider(spec_file_path)
-        # all_specs = spec_provider.get_model()
-        # for spec in all_specs:
-        #     print '{0} {1} {2} {3} {4} {5}'.format(spec.first_name, spec.last_name, spec.employee_number, spec.department_number, spec.department_name, spec.adjustment_code)
+        print 'Generating CSV data ...'
+        csv_writer = CSVWriter()
+        self.__write_headers(csv_writer)
+        for record in records:
+            self.__write_row(csv_writer, record)
 
-        # time_card_provider = CompanyUsersTimeCardDataProvider(company_id, start_date, end_date)
-        # cards = time_card_provider.get_model()
-        # for card in cards:
-        #     print '{0} {1} {2} {3}'.format(card.user_id, card.card_type, card.date, card.get_punch_card_hours())
+        print 'Writing to output file ...'
+        csv_writer.save(output_file_path)
 
-        # export_provider = ExcelCPTimeAttendanceExportDataProvider(target_file_path)
-        # all_records = export_provider.get_model()
-        # for record in all_records:
-        #     print '{0} {1} {2} {3} {4} {5} {6} {7} {8}'.format(
-        #         record.file_type, record.client_number, record.client_name,
-        #         record.employee_number, record.employee_name, record.earning_name,
-        #         record.earning_code, record.hours, record.department)
+        print 'Operation completed!'
 
-        # writer = CSVWriter()
-        # writer.write_cell('aaa')
-        # writer.next_row()
-        # writer.write_cell('ddd')
-        # writer.save(output_file_path)
+        # # Print output
+        # print '####### Output Starts #######'
+        # print ''
 
-        print ''
-        print '####### Output Ends #######'
-        print ''
+        # # company_users_data_provider = CompanyUsersDataProvider(company_id)
+        # # all_users = company_users_data_provider.get_model()
+        # # for user in all_users:
+        # #     print '{0} {1} {2} {3}'.format(user.user_id, user.first_name, user.last_name, user.employee_number)
+
+        # # spec_provider = ExcelUsersAdjustmentSpecificationDataProvider(spec_file_path)
+        # # all_specs = spec_provider.get_model()
+        # # for spec in all_specs:
+        # #     print '{0} {1} {2} {3} {4} {5}'.format(spec.first_name, spec.last_name, spec.employee_number, spec.department_number, spec.department_name, spec.adjustment_code)
+
+        # # time_card_provider = CompanyUsersTimeCardDataProvider(company_id, start_date, end_date)
+        # # cards = time_card_provider.get_model()
+        # # for card in cards:
+        # #     print '{0} {1} {2} {3} {4}'.format(card.user_id, card.card_type, card.date, card.get_punch_card_hours(), card.in_hours)
+
+        # # export_provider = ExcelCPTimeAttendanceExportDataProvider(target_file_path)
+        # # all_records = export_provider.get_model()
+        # # for record in all_records:
+        # #     print '{0} {1} {2} {3} {4} {5} {6} {7} {8}'.format(
+        # #         record.file_type, record.client_number, record.client_name,
+        # #         record.employee_number, record.employee_name, record.earning_name,
+        # #         record.earning_code, record.hours, record.department)
+
+        # # writer = CSVWriter()
+        # # writer.write_cell('aaa')
+        # # writer.next_row()
+        # # writer.write_cell('ddd')
+        # # writer.save(output_file_path)
+
+        # print ''
+        # print '####### Output Ends #######'
+        # print ''
+
+    def __write_headers(self, csv_writer):
+        csv_writer.write_cell('File Type')
+        csv_writer.write_cell('Client Name')
+        csv_writer.write_cell('Client Number')
+        csv_writer.write_cell('Employee Number')
+        csv_writer.write_cell('Employee Name')
+        csv_writer.write_cell('SSN')
+        csv_writer.write_cell('Earning Name')
+        csv_writer.write_cell('Earning Code')
+        csv_writer.write_cell('Hours')
+        csv_writer.write_cell('Pay Rate')
+        csv_writer.write_cell('Fixed $ Amount')
+        csv_writer.write_cell('Location')
+        csv_writer.write_cell('Division')
+        csv_writer.write_cell('Department')
+        csv_writer.write_cell('Job Code')
+        csv_writer.write_cell('Beginning Balance')
+        csv_writer.write_cell('Accrued')
+        csv_writer.write_cell('Used')
+        csv_writer.write_cell('Ending Balance')
+
+        csv_writer.next_row()
+
+    def __write_row(self, csv_writer, row_data):
+        csv_writer.write_cell(row_data.file_type)
+        csv_writer.write_cell(row_data.client_name)
+        csv_writer.write_cell(row_data.client_number)
+        csv_writer.write_cell(row_data.employee_number)
+        csv_writer.write_cell(row_data.employee_name)
+        csv_writer.write_cell(row_data.ssn)
+        csv_writer.write_cell(row_data.earning_name)
+        csv_writer.write_cell(row_data.earning_code)
+        csv_writer.write_cell(row_data.hours)
+        csv_writer.write_cell(row_data.pay_rate)
+        csv_writer.write_cell(row_data.fixed_amount)
+        csv_writer.write_cell(row_data.location)
+        csv_writer.write_cell(row_data.division)
+        csv_writer.write_cell(row_data.department)
+        csv_writer.write_cell(row_data.job_code)
+        csv_writer.write_cell(row_data.begin_balance)
+        csv_writer.write_cell(row_data.accrued)
+        csv_writer.write_cell(row_data.used)
+        csv_writer.write_cell(row_data.end_balance)
+
+        # move to next row
+        csv_writer.next_row()

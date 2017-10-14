@@ -25,5 +25,14 @@ class CPTimeAttendanceExportRow(ExcelRowModelBase):
         self.used = ''
         self.end_balance = ''
 
+        self.hours_adjustment = None
+
     def is_valid_for_complete_info(self):
         return True
+
+    def get_adjusted_hours(self):
+        if (not self.hours):
+            return None
+        if (not self.hours_adjustment):
+            return self.hours
+        return self.hours + self.hours_adjustment
