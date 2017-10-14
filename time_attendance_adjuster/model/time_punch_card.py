@@ -3,6 +3,7 @@ import dateutil.parser
 from common.utility.environment_utility import EnvironmentUtility
 from common.utility.hash_key_utility import HashKeyUtility
 
+PUNCH_CARD_TYPE_WORK_TIME = 'Work Time'
 
 class TimePunchCard(object):
     def __init__(self, punch_card_domain_model):
@@ -51,3 +52,6 @@ class TimePunchCard(object):
 
     def _parse_date_time(self, date_time_string):
         return dateutil.parser.parse(date_time_string)
+
+    def is_work_card(self):
+        return self.card_type == PUNCH_CARD_TYPE_WORK_TIME

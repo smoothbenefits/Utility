@@ -10,6 +10,12 @@ from .data_aggregator.time_attendance_data_aggregator import TimeAttendanceDataA
 
 from common.writer.csv_writer import CSVWriter
 
+from .data_provider.company_users_data_provider import CompanyUsersDataProvider
+from .data_provider.excel_users_adjustment_specification_data_provider import ExcelUsersAdjustmentSpecificationDataProvider
+from .data_provider.company_users_time_card_data_provider import CompanyUsersTimeCardDataProvider
+from .data_provider.excel_cp_time_attendance_export_data_provider import ExcelCPTimeAttendanceExportDataProvider
+
+
 class TimeAttendanceAdjuster(DataImportBase):
     def __init__(self):
         super(TimeAttendanceAdjuster, self).__init__()
@@ -87,6 +93,7 @@ class TimeAttendanceAdjuster(DataImportBase):
         target_file_path = args[0]
 
         self.__perform_import(company_id, spec_file_path, begin, end, target_file_path, output_file_path)
+        #self.__test_output(company_id, spec_file_path, begin, end, target_file_path, output_file_path)
 
     def __perform_import(self, company_id, spec_file_path, start_date, end_date, target_file_path, output_file_path):
 
@@ -106,42 +113,43 @@ class TimeAttendanceAdjuster(DataImportBase):
 
         print 'Operation completed!'
 
-        # # Print output
-        # print '####### Output Starts #######'
-        # print ''
+    def __test_output(self, company_id, spec_file_path, start_date, end_date, target_file_path, output_file_path):
+        # Print output
+        print '####### Output Starts #######'
+        print ''
 
-        # # company_users_data_provider = CompanyUsersDataProvider(company_id)
-        # # all_users = company_users_data_provider.get_model()
-        # # for user in all_users:
-        # #     print '{0} {1} {2} {3}'.format(user.user_id, user.first_name, user.last_name, user.employee_number)
+        # company_users_data_provider = CompanyUsersDataProvider(company_id)
+        # all_users = company_users_data_provider.get_model()
+        # for user in all_users:
+        #     print '{0} {1} {2} {3}'.format(user.user_id, user.first_name, user.last_name, user.employee_number)
 
-        # # spec_provider = ExcelUsersAdjustmentSpecificationDataProvider(spec_file_path)
-        # # all_specs = spec_provider.get_model()
-        # # for spec in all_specs:
-        # #     print '{0} {1} {2} {3} {4} {5}'.format(spec.first_name, spec.last_name, spec.employee_number, spec.department_number, spec.department_name, spec.adjustment_code)
+        # spec_provider = ExcelUsersAdjustmentSpecificationDataProvider(spec_file_path)
+        # all_specs = spec_provider.get_model()
+        # for spec in all_specs:
+        #     print '{0} {1} {2} {3} {4} {5}'.format(spec.first_name, spec.last_name, spec.employee_number, spec.department_number, spec.department_name, spec.adjustment_code)
 
-        # # time_card_provider = CompanyUsersTimeCardDataProvider(company_id, start_date, end_date)
-        # # cards = time_card_provider.get_model()
-        # # for card in cards:
-        # #     print '{0} {1} {2} {3} {4}'.format(card.user_id, card.card_type, card.date, card.get_punch_card_hours(), card.in_hours)
+        # time_card_provider = CompanyUsersTimeCardDataProvider(company_id, start_date, end_date)
+        # cards = time_card_provider.get_model()
+        # for card in cards:
+        #     print '{0} {1} {2} {3} {4}'.format(card.user_id, card.card_type, card.date, card.get_punch_card_hours(), card.in_hours)
 
-        # # export_provider = ExcelCPTimeAttendanceExportDataProvider(target_file_path)
-        # # all_records = export_provider.get_model()
-        # # for record in all_records:
-        # #     print '{0} {1} {2} {3} {4} {5} {6} {7} {8}'.format(
-        # #         record.file_type, record.client_number, record.client_name,
-        # #         record.employee_number, record.employee_name, record.earning_name,
-        # #         record.earning_code, record.hours, record.department)
+        # export_provider = ExcelCPTimeAttendanceExportDataProvider(target_file_path)
+        # all_records = export_provider.get_model()
+        # for record in all_records:
+        #     print '{0} {1} {2} {3} {4} {5} {6} {7} {8}'.format(
+        #         record.file_type, record.client_number, record.client_name,
+        #         record.employee_number, record.employee_name, record.earning_name,
+        #         record.earning_code, record.hours, record.department)
 
-        # # writer = CSVWriter()
-        # # writer.write_cell('aaa')
-        # # writer.next_row()
-        # # writer.write_cell('ddd')
-        # # writer.save(output_file_path)
+        # writer = CSVWriter()
+        # writer.write_cell('aaa')
+        # writer.next_row()
+        # writer.write_cell('ddd')
+        # writer.save(output_file_path)
 
-        # print ''
-        # print '####### Output Ends #######'
-        # print ''
+        print ''
+        print '####### Output Ends #######'
+        print ''
 
     def __write_headers(self, csv_writer):
         csv_writer.write_cell('File Type')
@@ -163,6 +171,8 @@ class TimeAttendanceAdjuster(DataImportBase):
         csv_writer.write_cell('Accrued')
         csv_writer.write_cell('Used')
         csv_writer.write_cell('Ending Balance')
+        csv_writer.write_cell('Original Hours')
+        csv_writer.write_cell('Adjustment Delta')
 
         csv_writer.next_row()
 
@@ -175,7 +185,7 @@ class TimeAttendanceAdjuster(DataImportBase):
         csv_writer.write_cell(row_data.ssn)
         csv_writer.write_cell(row_data.earning_name)
         csv_writer.write_cell(row_data.earning_code)
-        csv_writer.write_cell(row_data.hours)
+        csv_writer.write_cell(row_data.get_adjusted_hours())
         csv_writer.write_cell(row_data.pay_rate)
         csv_writer.write_cell(row_data.fixed_amount)
         csv_writer.write_cell(row_data.location)
@@ -186,6 +196,8 @@ class TimeAttendanceAdjuster(DataImportBase):
         csv_writer.write_cell(row_data.accrued)
         csv_writer.write_cell(row_data.used)
         csv_writer.write_cell(row_data.end_balance)
+        csv_writer.write_cell(row_data.hours)
+        csv_writer.write_cell(row_data.hours_adjustment)
 
         # move to next row
         csv_writer.next_row()
