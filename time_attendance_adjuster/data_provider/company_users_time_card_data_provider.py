@@ -8,6 +8,8 @@ class CompanyUsersTimeCardDataProvider(WebApiDataProviderBase):
     def __init__(self, company_id, start_date, end_date):
         super(CompanyUsersTimeCardDataProvider, self).__init__()
         self._company_id = company_id
+        self._start_date = start_date
+        self._end_date = end_date
 
     def _get_url(self):
         hash_key_utility = HashKeyUtility()
@@ -15,8 +17,8 @@ class CompanyUsersTimeCardDataProvider(WebApiDataProviderBase):
         url = '{0}api/v1/company/{1}/time_punch_cards?start_date={2}&end_date={3}'.format(
             EnvironmentUtility.get_active_settings().time_tracking_base_url,
             hash_key_utility.encode_key_with_environment(self._company_id),
-            start_date.isoformat(),
-            end_date.isoformat())
+            self._start_date.isoformat(),
+            self._end_date.isoformat())
 
         return url
 

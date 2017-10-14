@@ -1,5 +1,5 @@
 from common.data_provider.excel_data_provider_base import ExcelDataProviderBase
-from ..excel_parser.user_timeoff_quota_row_parser import UserTimeoffQuotaRowParser
+from ..excel_parser.user_adjustment_sepcification_row_parser import UserAdjustmentSpecificationRowParser
 
 
 class ExcelUsersAdjustmentSpecificationDataProvider(ExcelDataProviderBase):
@@ -7,4 +7,4 @@ class ExcelUsersAdjustmentSpecificationDataProvider(ExcelDataProviderBase):
         super(ExcelUsersAdjustmentSpecificationDataProvider, self).__init__(excel_file)
 
     def _get_row_parser(self):
-        return UserTimeoffQuotaRowParser()
+        return UserAdjustmentSpecificationRowParser()
