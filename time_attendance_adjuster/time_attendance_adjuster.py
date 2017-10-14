@@ -12,6 +12,7 @@ from .data_provider.excel_users_adjustment_specification_data_provider import Ex
 from .data_provider.company_users_time_card_data_provider import CompanyUsersTimeCardDataProvider
 from .data_provider.excel_cp_time_attendance_export_data_provider import ExcelCPTimeAttendanceExportDataProvider
 
+from common.writer.csv_writer import CSVWriter
 
 class TimeAttendanceAdjuster(DataImportBase):
     def __init__(self):
@@ -29,12 +30,13 @@ class TimeAttendanceAdjuster(DataImportBase):
         print "-e (--environment) [Optional Default=local] the option to specify target environment to use. Values being one of: local, stage, demo1, demo2, prod \n"
         print "-b (--begin) [Required] the begin date of the range to adjust"
         print "-t (--end) [Required] the end date of the range to adjust"
+        print "-o (--output) [Required] the output file path"
         print "-h (--help) [Optional] the option will print this message \n"
         print "The script needs the expected input Excel file path to perform the adjustment action\n"
 
     def execute(self, argv):
         try:
-            opts, args = getopt.getopt(argv, "c:s:de:b:t:h", ["company=", "specification=", "debug", "environment=", "begin=", "end=", "help"])
+            opts, args = getopt.getopt(argv, "c:s:de:b:t:o:h", ["company=", "specification=", "debug", "environment=", "begin=", "end=", "output=", "help"])
         except getopt.GetoptError as err:
             # print help information and exit:
             print(err) # will print something like "option -a not recognized"
@@ -45,6 +47,7 @@ class TimeAttendanceAdjuster(DataImportBase):
         spec_file_path = None
         begin_str = None
         end_str = None
+        output_file_path = None
 
         for o, a in opts:
             if o == "-d":
@@ -62,11 +65,14 @@ class TimeAttendanceAdjuster(DataImportBase):
                 begin_str = a
             elif o in ("-t", "--end"):
                 end_str = a
+            elif o in ("-o", "--output"):
+                output_file_path = a
             else:
                 assert False, "unhandled option"
 
         if (not company_id
-            or not spec_file_path):
+            or not spec_file_path
+            or not output_file_path):
             self.usage()
             sys.exit(2)
 
@@ -84,9 +90,9 @@ class TimeAttendanceAdjuster(DataImportBase):
 
         target_file_path = args[0]
 
-        self.__perform_import(company_id, spec_file_path, begin, end, target_file_path)
+        self.__perform_import(company_id, spec_file_path, begin, end, target_file_path, output_file_path)
 
-    def __perform_import(self, company_id, spec_file_path, start_date, end_date, target_file_path):
+    def __perform_import(self, company_id, spec_file_path, start_date, end_date, target_file_path, output_file_path):
 
         # Print output
         print '####### Output Starts #######'
@@ -115,6 +121,11 @@ class TimeAttendanceAdjuster(DataImportBase):
         #         record.employee_number, record.employee_name, record.earning_name,
         #         record.earning_code, record.hours, record.department)
 
+        # writer = CSVWriter()
+        # writer.write_cell('aaa')
+        # writer.next_row()
+        # writer.write_cell('ddd')
+        # writer.save(output_file_path)
 
         print ''
         print '####### Output Ends #######'
