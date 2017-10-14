@@ -1,1 +1,1 @@
-python data_import.py  time_attendance_adjuster -c 33 -e prod -s ./adjust.xlsx -b 2017/10/08 -t 2017/10/14
+python data_import.py  time_attendance_adjuster -c 33 -e prod -s ~/Downloads/adjust2.xlsx -b 2017/10/08 -t 2017/10/14 -o ~/Downloads/output.csv ~/Downloads/period.xlsx 

@@ -171,8 +171,6 @@ class TimeAttendanceAdjuster(DataImportBase):
         csv_writer.write_cell('Accrued')
         csv_writer.write_cell('Used')
         csv_writer.write_cell('Ending Balance')
-        csv_writer.write_cell('Original Hours')
-        csv_writer.write_cell('Adjustment Delta')
 
         csv_writer.next_row()
 
@@ -196,8 +194,6 @@ class TimeAttendanceAdjuster(DataImportBase):
         csv_writer.write_cell(row_data.accrued)
         csv_writer.write_cell(row_data.used)
         csv_writer.write_cell(row_data.end_balance)
-        csv_writer.write_cell(row_data.hours)
-        csv_writer.write_cell(row_data.hours_adjustment)
 
         # move to next row
         csv_writer.next_row()

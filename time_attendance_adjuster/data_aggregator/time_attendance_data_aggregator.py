@@ -6,6 +6,7 @@ from ..data_provider.company_users_data_provider import CompanyUsersDataProvider
 from ..data_provider.excel_users_adjustment_specification_data_provider import ExcelUsersAdjustmentSpecificationDataProvider
 from ..data_provider.company_users_time_card_data_provider import CompanyUsersTimeCardDataProvider
 from ..data_provider.excel_cp_time_attendance_export_data_provider import ExcelCPTimeAttendanceExportDataProvider
+from ..model.user_cp_time_attendance_record import UserCPTimeAttendanceRecord
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
 Logger = logging.getLogger("TimeAttendanceDataAggregator")
@@ -46,10 +47,18 @@ class TimeAttendanceDataAggregator(object):
 
         # Now process each row of the original dump and prepare data for the adjusted version
         export_data = self.__cp_export_provider.get_model()
+        user_record_map = {}
         users = self.__users_provider.get_model()
         for record in export_data:
             # Find the user record match
             user = self.__get_user_info_for_record(record, users)
+            if (user.user_id not in user_record_map):
+                user_record_map[user.user_id] = UserCPTimeAttendanceRecord(user)
+            user_record_map[user.user_id].append_record(record)
+
+        result = []
+        for user_record in user_record_map.values():
+            user = user_record.user
             user_specs = None
             user_time_cards = None
             if (user.user_id in time_card_map):
@@ -69,9 +78,10 @@ class TimeAttendanceDataAggregator(object):
                             and not card.in_hours
                             and card.get_punch_card_hours() > 6.0):
                             lunch_hours = lunch_hours + 0.5
-                    record.hours_adjustment = record.hours_adjustment - lunch_hours
+                    user_record.adjust_hours(-lunch_hours)
 
-        return export_data
+            result.extend(user_record.get_records(include_zero_hours=False))
+        return result
 
     def __get_user_info_for_record(self, export_record, users):
         user_info = next((user for user in users if self.__match_user_info_with_record(export_record, user)), None)
