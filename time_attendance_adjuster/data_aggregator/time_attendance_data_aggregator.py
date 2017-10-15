@@ -56,8 +56,8 @@ class TimeAttendanceDataAggregator(object):
                 user_record_map[user.user_id] = UserCPTimeAttendanceRecord(user)
             user_record_map[user.user_id].append_record(record)
 
-        result = []
-        for user_record in user_record_map.values():
+        user_records = user_record_map.values()
+        for user_record in user_records:
             user = user_record.user
             user_specs = None
             user_time_cards = None
@@ -78,10 +78,10 @@ class TimeAttendanceDataAggregator(object):
                             and not card.in_hours
                             and card.get_punch_card_hours() > 6.0):
                             lunch_hours = lunch_hours + 0.5
+                            user_record.lunch_hours_records[card.get_card_date_text()] = 0.5
                     user_record.adjust_hours(-lunch_hours)
 
-            result.extend(user_record.get_records(include_zero_hours=False))
-        return result
+        return user_records
 
     def __get_user_info_for_record(self, export_record, users):
         user_info = next((user for user in users if self.__match_user_info_with_record(export_record, user)), None)

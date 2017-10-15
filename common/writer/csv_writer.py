@@ -19,7 +19,7 @@ class CSVWriter(object):
 
     def skip_cells(self, num_cells):
         for i in range(num_cells):
-            self._write_cell('')
+            self.write_cell('')
 
     def next_row(self):
         self._rows.append([])

@@ -1,4 +1,5 @@
 import dateutil.parser
+import datetime
 
 from common.utility.environment_utility import EnvironmentUtility
 from common.utility.hash_key_utility import HashKeyUtility
@@ -45,6 +46,9 @@ class TimePunchCard(object):
 
     def get_card_day_of_week_iso(self):
         return self.date.isoweekday() % 7
+
+    def get_card_date_text(self):
+        return self.date.strftime('%a %m/%d/%y')
 
     def _get_time_diff_in_hours(self, start_time, end_time, time_unit_precsion=1):
         delta = end_time - start_time

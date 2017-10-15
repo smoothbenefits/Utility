@@ -3,6 +3,7 @@ import sys, getopt, os
 import logging
 import json
 import dateutil.parser
+from datetime import timedelta, date
 
 from common.data_import_base import DataImportBase
 from common.utility.environment_utility import EnvironmentUtility
@@ -105,8 +106,11 @@ class TimeAttendanceAdjuster(DataImportBase):
         print 'Generating CSV data ...'
         self.__write_output(data, output_file_path)
         
-        print 'Generating Metadata'
+        print 'Generating metadata ...'
         self.__write_metadata(data, output_file_path)
+
+        print 'Generating audit data ...'
+        self.__write_audit_data(data, start_date, end_date, output_file_path)
 
         print 'Operation completed!'
 
@@ -152,8 +156,9 @@ class TimeAttendanceAdjuster(DataImportBase):
         csv_writer = CSVWriter()
         self.__write_headers(csv_writer)
 
-        for record in aggregated_data:
-            self.__write_row(csv_writer, record)
+        for user_record in aggregated_data:
+            for cp_record in user_record.get_records(include_zero_hours=False):
+                self.__write_row(csv_writer, cp_record)
 
         csv_writer.save(output_file_path)
 
@@ -208,8 +213,9 @@ class TimeAttendanceAdjuster(DataImportBase):
         csv_writer = CSVWriter()
         self.__write_metadata_headers(csv_writer)
 
-        for record in aggregated_data:
-            self.__write_metadata_row(csv_writer, record)
+        for user_record in aggregated_data:
+            for cp_record in user_record.get_records(include_zero_hours=True):
+                self.__write_metadata_row(csv_writer, cp_record)
 
         meta_file_path = self.__get_metadata_file_path(output_file_path)
         csv_writer.save(meta_file_path)
@@ -239,3 +245,47 @@ class TimeAttendanceAdjuster(DataImportBase):
     def __get_metadata_file_path(self, output_file_path):
         name, ext = os.path.splitext(output_file_path)
         return "{0}_{1}.{2}".format(name, 'meta', ext)
+
+    def __write_audit_data(self, aggregated_data, start_date, end_date, output_file_path):
+        csv_writer = CSVWriter()
+
+        date_list = []
+        for date in self.__daterange(start_date, end_date):
+            date_list.append(date.strftime('%a %m/%d/%y'))
+
+        self.__write_audit_headers(csv_writer, date_list)
+
+        for user_record in aggregated_data:
+            self.__write_audit_row(csv_writer, date_list, user_record)
+
+        audit_file_path = self.__get_audit_file_path(output_file_path)
+        csv_writer.save(audit_file_path)
+
+    def __write_audit_headers(self, csv_writer, date_list):
+        csv_writer.write_cell('Employee Number')
+        csv_writer.write_cell('Employee Name')
+
+        for date in date_list:
+            csv_writer.write_cell(date)
+
+        csv_writer.next_row()
+
+    def __write_audit_row(self, csv_writer, date_list, user_record):
+        csv_writer.write_cell(user_record.user.employee_number)
+        csv_writer.write_cell(user_record.user.get_full_name())
+
+        for date in date_list:
+            if (date in user_record.lunch_hours_records):
+                csv_writer.write_cell(user_record.lunch_hours_records[date])
+            else:
+                csv_writer.skip_cells(1)
+
+        csv_writer.next_row()
+
+    def __get_audit_file_path(self, output_file_path):
+        name, ext = os.path.splitext(output_file_path)
+        return "{0}_{1}.{2}".format(name, 'audit', ext)
+
+    def __daterange(self, start_date, end_date):
+        for n in range(int ((end_date - start_date).days)):
+            yield start_date + timedelta(n)

@@ -2,6 +2,7 @@ class UserCPTimeAttendanceRecord(object):
     def __init__(self, user):
         self.user = user
         self.cp_export_records = []
+        self.lunch_hours_records = {}
 
     def adjust_hours(self, hours_delta):
         # For now we do not support positive adjustment, due to involvement of 
