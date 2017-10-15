@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import sys, getopt
+import sys, getopt, os
 import logging
 import json
 import dateutil.parser
@@ -100,16 +100,13 @@ class TimeAttendanceAdjuster(DataImportBase):
         print 'Collecting all data ...'
 
         data_aggregator = TimeAttendanceDataAggregator(company_id, spec_file_path, start_date, end_date, target_file_path)
-        records = data_aggregator.get_aggregated_data()
+        data = data_aggregator.get_aggregated_data()
 
         print 'Generating CSV data ...'
-        csv_writer = CSVWriter()
-        self.__write_headers(csv_writer)
-        for record in records:
-            self.__write_row(csv_writer, record)
-
-        print 'Writing to output file ...'
-        csv_writer.save(output_file_path)
+        self.__write_output(data, output_file_path)
+        
+        print 'Generating Metadata'
+        self.__write_metadata(data, output_file_path)
 
         print 'Operation completed!'
 
@@ -150,6 +147,15 @@ class TimeAttendanceAdjuster(DataImportBase):
         print ''
         print '####### Output Ends #######'
         print ''
+
+    def __write_output(self, aggregated_data, output_file_path):
+        csv_writer = CSVWriter()
+        self.__write_headers(csv_writer)
+
+        for record in aggregated_data:
+            self.__write_row(csv_writer, record)
+
+        csv_writer.save(output_file_path)
 
     def __write_headers(self, csv_writer):
         csv_writer.write_cell('File Type')
@@ -197,3 +203,39 @@ class TimeAttendanceAdjuster(DataImportBase):
 
         # move to next row
         csv_writer.next_row()
+
+    def __write_metadata(self, aggregated_data, output_file_path):
+        csv_writer = CSVWriter()
+        self.__write_metadata_headers(csv_writer)
+
+        for record in aggregated_data:
+            self.__write_metadata_row(csv_writer, record)
+
+        meta_file_path = self.__get_metadata_file_path(output_file_path)
+        csv_writer.save(meta_file_path)
+
+    def __write_metadata_headers(self, csv_writer):
+        csv_writer.write_cell('Employee Number')
+        csv_writer.write_cell('Employee Name')
+        csv_writer.write_cell('Earning Name')
+        csv_writer.write_cell('Earning Code')
+        csv_writer.write_cell('Original Hours')
+        csv_writer.write_cell('Adjustment Delta')
+        csv_writer.write_cell('Final Hours')
+
+        csv_writer.next_row()
+
+    def __write_metadata_row(self, csv_writer, row_data):
+        csv_writer.write_cell(row_data.employee_number)
+        csv_writer.write_cell(row_data.employee_name)
+        csv_writer.write_cell(row_data.earning_name)
+        csv_writer.write_cell(row_data.earning_code)
+        csv_writer.write_cell(row_data.hours)
+        csv_writer.write_cell(row_data.hours_adjustment)
+        csv_writer.write_cell(row_data.get_adjusted_hours())
+
+        csv_writer.next_row()
+
+    def __get_metadata_file_path(self, output_file_path):
+        name, ext = os.path.splitext(output_file_path)
+        return "{0}_{1}.{2}".format(name, 'meta', ext)
