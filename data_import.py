@@ -5,12 +5,14 @@ import sys
 from timeoff_quota_importer.timeoff_banked_hours_import import TimeoffBankedHoursImport
 from timeoff_quota_importer.timeoff_quota_spec_import import TimeoffQuotaSpecImport
 from company_onboarding_importer.company_onboarding_import import CompanyOnboardImport
+from time_attendance_adjuster.time_attendance_adjuster import TimeAttendanceAdjuster
 
 # initialize the list of programs available
 AVAILABLE_PROGRAMS = [
     TimeoffBankedHoursImport(),
     TimeoffQuotaSpecImport(),
     CompanyOnboardImport(),
+    TimeAttendanceAdjuster()
 ]
 
 PROGRAM_NAME_MAPPING = {}
