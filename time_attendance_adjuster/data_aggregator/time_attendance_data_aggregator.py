@@ -7,6 +7,7 @@ from ..data_provider.excel_users_adjustment_specification_data_provider import E
 from ..data_provider.company_users_time_card_data_provider import CompanyUsersTimeCardDataProvider
 from ..data_provider.excel_cp_time_attendance_export_data_provider import ExcelCPTimeAttendanceExportDataProvider
 from ..model.user_cp_time_attendance_record import UserCPTimeAttendanceRecord
+from ..model.blank_user_adjustment_spec import BlankUserAdjustmentSpec
 
 logging.basicConfig(level=logging.INFO, stream = sys.stdout)
 Logger = logging.getLogger("TimeAttendanceDataAggregator")
@@ -65,6 +66,8 @@ class TimeAttendanceDataAggregator(object):
                 user_time_cards = time_card_map[user.user_id]
             if (user.employee_number in spec_data_map):
                 user_specs = spec_data_map[user.employee_number]
+            else:
+                user_specs = BlankUserAdjustmentSpec()
 
             # If we have all the data to perform the adjustment. Do it!
             if (user_specs and user_time_cards):
