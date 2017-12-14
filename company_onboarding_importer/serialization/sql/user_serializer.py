@@ -45,7 +45,7 @@ class UserSerializer(object):
             file.write('    INSERT INTO app_companygroupmember(created, company_group_id, user_id)\n')
             file.write('    VALUES(now(), {}, {})\n'.format(company_group_id_string, user_id_string))
             file.write('    RETURNING id into {};\n'.format(company_group_member_id_string))
-            file.write('  END IF;')
+            file.write('  END IF;\n')
             PersonSerializer.serialize(user.person, file, user_id_string, person_id_string, id)
         EmployeeW4Serializer.serialize(user.w4, file, user_id_string)
         DirectDepositAccountsSerializer.serialize(user.direct_deposits, file, user_id_string, id)

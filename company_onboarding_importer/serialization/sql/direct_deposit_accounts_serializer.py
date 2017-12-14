@@ -26,6 +26,10 @@ class DirectDepositAccountsSerializer(object):
         file.write('\n')
 
     @staticmethod
+    def escape_single_quote(name):
+        return name.replace('\'', '\'\'')
+
+    @staticmethod
     def serialize(accounts, file, user_id_string, id):
         account_count = 1
         if accounts and accounts.account_1_account_number:
@@ -35,7 +39,7 @@ class DirectDepositAccountsSerializer(object):
                 accounts.account_1_percentage,
                 accounts.account_1_routing_number,
                 accounts.account_1_account_number,
-                accounts.account_1_bank_name,
+                DirectDepositAccountsSerializer.escape_single_quote(accounts.account_1_bank_name),
                 accounts.account_1_account_type,
                 user_id_string,
                 id,
@@ -50,7 +54,7 @@ class DirectDepositAccountsSerializer(object):
                 accounts.account_2_percentage,
                 accounts.account_2_routing_number,
                 accounts.account_2_account_number,
-                accounts.account_2_bank_name,
+                DirectDepositAccountsSerializer.escape_single_quote(accounts.account_2_bank_name),
                 accounts.account_2_account_type,
                 user_id_string,
                 id,
@@ -65,7 +69,7 @@ class DirectDepositAccountsSerializer(object):
                 accounts.account_3_percentage,
                 accounts.account_3_routing_number,
                 accounts.account_3_account_number,
-                accounts.account_3_bank_name,
+                DirectDepositAccountsSerializer.escape_single_quote(accounts.account_3_bank_name),
                 accounts.account_3_account_type,
                 user_id_string,
                 id,
