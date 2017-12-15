@@ -4,3 +4,4 @@ python-keyczar==0.715
 psycopg2==2.6.1
 pyOpenSSL==16.2.0
 requests==2.12.4
+python-dateutil==2.6.1
