@@ -36,3 +36,20 @@ class StateTaxInfo(object):
             and not self.allowance
             and not self.extra_amount
         )
+
+    def get_json(self):
+        if (not self.is_valid()):
+            raise RuntimeError('This state tax info object is not valid to be serailized.')
+
+        if (self.is_empty()):
+            return ''
+
+        return '{{"filing_status": "{0}", "allowance": {1}, "extra_amount": {2}, "metadata": {{"data_source" : "import" }}}}'.format(
+            self.filing_status,
+            self.allowance,
+            self.__normalize_extra_amount())
+
+    def __normalize_extra_amount(self):
+        if not self.extra_amount:
+            return 0.0
+        return self.extra_amount

@@ -8,6 +8,7 @@ from datetime import timedelta, date
 from common.data_import_base import DataImportBase
 from common.utility.environment_utility import EnvironmentUtility
 from data_aggregator.state_tax_data_aggregator import StateTaxDataAggregator
+from common.writer.sql_writer import SQLWriter
 
 
 class StateTaxImporter(DataImportBase):
@@ -72,6 +73,7 @@ class StateTaxImporter(DataImportBase):
 
         print 'Collecting all data ...'
         data_aggregator = StateTaxDataAggregator(company_id, target_file_path)
+        # This is the aggregated map of user_id to state tax input record
         data = data_aggregator.get_aggregated_data()
 
         print 'Generating SQL file ...'
@@ -80,4 +82,24 @@ class StateTaxImporter(DataImportBase):
         print 'Operation completed!'
 
     def __write_output(self, aggregated_data, output_file_path):
-        pass
+        with SQLWriter(output_file_path) as sql_writer:
+            for user_id, record in aggregated_data.iteritems():
+                sql_writer.write_line('-- user_id={0}'.format(user_id))
+
+                # Only write out if user does not have state tax info yet
+                sql_writer.write_line('IF NOT EXISTS (SELECT 1 FROM app_employeestatetaxelection WHERE user_id={0}) THEN'.format(user_id))
+
+                # Write each of the state tax info inserts
+                self.__write_state_tax_info(user_id, record.sit_1_info, sql_writer)
+                self.__write_state_tax_info(user_id, record.sit_2_info, sql_writer)
+
+                sql_writer.write_line('END IF;')
+
+                sql_writer.write_line('')
+
+    def __write_state_tax_info(self, user_id, state_tax_info, sql_writer):
+        if (state_tax_info.is_empty()):
+            return
+
+        sql_writer.write_line('INSERT INTO app_employeestatetaxelection(user_id, state, data)')
+        sql_writer.write_line('VALUES({0}, \'{1}\', \'{2}\');'.format(user_id, state_tax_info.state, state_tax_info.get_json()))

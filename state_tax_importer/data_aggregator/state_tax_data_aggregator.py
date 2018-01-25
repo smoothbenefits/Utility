@@ -19,33 +19,42 @@ class StateTaxDataAggregator(object):
         self.__excel_state_tax_provider = ExcelUsersStateTaxDataProvider(target_file_path)
 
     def get_aggregated_data(self):
+        # The result to hold the resultant aggregation of data
+        # A map between user_id and input state tax record
+        user_record_map = {}
+
         # Get all state tax models from the provider that parsed 
         # the target file
         all_records = self.__excel_state_tax_provider.get_model()
-        for record in all_records:
-            if (record.is_valid()):
-                print record.first_name
-                print record.sit_1_info.state
-                print '@@@@@@@@@@@@@@@@@@@@@@@@'
-            else:
-                print 'OMG!!!!!'
 
         # For each of the row model, attempt at finding the existing 
         # company employee record on file. 
         # Report if cannot find a match, or find multiple
-
         # Create map of user_id:state_tax_record
         # Report if encountering a single user mapped to more than 2 records
+        users = self.__users_provider.get_model()
+        for record in all_records:
+            if (not record.is_valid()):
+                Logger.error('Encountered invalid input record. Row Number: {}'.format(record.row_number))
+                continue
+                
+            user_info_list = self.__get_users_info_for_record(record, users)
+            if (len(user_info_list) < 1):
+                Logger.error('Could not locate existing user account for input. Row Number: {}'.format(record.row_number))
+            elif (len(user_info_list) > 1):
+                Logger.error('Located multiple user accounts for input. Row Number: {}'.format(record.row_number))
+            else:
+                user_info = user_info_list[0]
+                if (user_info.user_id in user_record_map):
+                    Logger.error('Encountered multiple input records for the same user. Row Number: {}'.format(record.row_number))
+                else:
+                    user_record_map[user_info.user_id] = record
 
         # Return the user_id:state_tax_record map as result
+        return user_record_map
 
-    def __get_user_info_for_record(self, record, users):
-        user_info = next((user for user in users if self.__match_user_info_with_record(record, user)), None)
-        
-        if (not user_info):
-            self.__log_error_and_raise_exception('Could not locate existing user account for input. Row Number: {}'.format(export_record.row_number))
-
-        return user_info
+    def __get_users_info_for_record(self, record, users):
+        return [user for user in users if self.__match_user_info_with_record(record, user)]
 
     def __match_user_info_with_record(self, record, user_info):
         return (self.__string_equal_no_case(record.first_name, user_info.first_name)
