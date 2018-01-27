@@ -46,10 +46,13 @@ class StateTaxInfo(object):
 
         return '{{"filing_status": "{0}", "allowance": {1}, "extra_amount": {2}, "metadata": {{"data_source" : "import" }}}}'.format(
             self.filing_status,
-            self.allowance,
+            self.__normalize_allowance(),
             self.__normalize_extra_amount())
 
     def __normalize_extra_amount(self):
         if not self.extra_amount:
             return 0.0
         return self.extra_amount
+
+    def __normalize_allowance(self):
+        return int(self.allowance)
