@@ -67,7 +67,6 @@ class StateTaxImporter(DataImportBase):
         target_file_path = args[0]
 
         self.__perform_import(company_id, target_file_path, output_file_path)
-        #self.__test_output(company_id, spec_file_path, begin, end, target_file_path, output_file_path)
 
     def __perform_import(self, company_id, target_file_path, output_file_path):
 
