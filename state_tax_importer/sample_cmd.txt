@@ -1,1 +1,0 @@
-python data_import.py  state_tax_importer -c 1 -e local -o ~/Downloads/state_tax_import_output.sql ./state_tax_importer/sample_state_tax_input_excel.xlsx
